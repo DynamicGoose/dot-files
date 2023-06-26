@@ -167,6 +167,7 @@
   programs = {
     dconf.enable = true;
     zsh.enable = true;
+    ssh.askPassword = "${pkgs.ssh-askpass-fullscreen}";
   };
 
   # System
