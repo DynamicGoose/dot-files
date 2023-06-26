@@ -128,6 +128,7 @@
   # Environment
   environment.shells = with pkgs; [ zsh bash ];
   environment.systemPackages = with pkgs; [
+    btop
     cinnamon.nemo
     esbuild
     firefox-wayland
