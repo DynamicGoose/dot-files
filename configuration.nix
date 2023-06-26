@@ -151,7 +151,6 @@
     signal-desktop
     slurp
     spotify
-    ssh-askpass-fullscreen
     swaybg
     swaylock-effects
     vsce
@@ -168,7 +167,7 @@
   programs = {
     dconf.enable = true;
     zsh.enable = true;
-    ssh.askPassword = "${pkgs.ssh-askpass-fullscreen}";
+    ssh.askPassword = "";
   };
 
   # System
