@@ -151,6 +151,7 @@
     signal-desktop
     slurp
     spotify
+    ssh-askpass-fullscreen
     swaybg
     swaylock-effects
     vsce
