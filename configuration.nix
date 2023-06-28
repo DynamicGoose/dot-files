@@ -14,7 +14,7 @@
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+      efiSysMountPoint = "/boot";
     };
     grub = {
       enable = true;
@@ -70,11 +70,13 @@
   # Hardware
   hardware = {
     pulseaudio.enable = false;
+    opengl.enable = true;
   };
 
   # Security
   security = {
     rtkit.enable = true;
+    polkit.enable = true;
 
     pam.services.swaylock = {
       text = ''
@@ -113,6 +115,14 @@
     blueman.enable = true;
     printing.enable = true;
     cpupower-gui.enable = true;
+  };
+
+  # XDG
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+    ];
   };
 
   # NixPkgs
@@ -165,7 +175,8 @@
 
   # Programs
   programs = {
-    dconf.enable = true;
+    dconf.enable = true; 
+    xwayland.enable = true;
     zsh.enable = true;
     ssh.askPassword = "";
   };
