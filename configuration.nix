@@ -116,6 +116,7 @@ in {
     };
 
     blueman.enable = true;
+    devmon.enable = true;
     printing.enable = true;
     cpupower-gui.enable = true;
   };
@@ -380,6 +381,8 @@ in {
     home.pointerCursor = {
       name = "graphite-dark";
       package = pkgs.graphite-cursors;
+      size = 24;
+      gtk.enable = true;
     };
 
     # GTK
