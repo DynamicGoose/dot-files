@@ -378,7 +378,7 @@ in {
 
     # Cursor
     home.pointerCursor = {
-      name = "Graphite-dark-cursors";
+      name = "graphite-dark";
       package = pkgs.graphite-cursors;
     };
 
