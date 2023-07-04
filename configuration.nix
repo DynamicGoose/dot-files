@@ -1,9 +1,11 @@
 { inputs, config, pkgs, ... }:
-{
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+in {
   imports =
     [
       ./hardware-configuration.nix
-      <home-manager/nixos>
+      (import "${home-manager}/nixos")
     ];
 
   nix.settings = {
@@ -69,6 +71,7 @@
 
   # Hardware
   hardware = {
+    bluetooth.enable = true;
     pulseaudio.enable = false;
     opengl.enable = true;
   };
@@ -146,11 +149,13 @@
     git
     grim
     hyprpicker
+    imv
     killall
     kitty
     krita
     libreoffice
     mako
+    mpv
     neofetch
     networkmanagerapplet
     nodePackages.typescript
@@ -165,11 +170,11 @@
     swaylock-effects
     vsce
     vscodium
-    waybar
     wdisplays
     wget
     whatsapp-for-linux
     wl-clipboard
+    wl-clip-persist
     zulu
   ];
 
@@ -207,13 +212,11 @@
       extraConfig = ''
           monitor=,preferred,auto,1
 
+          exec-once = wl-clip-persist --clipboard both
           exec-once = waybar
           exec-once = swaybg -m fill -i ~/.config/wallpaper/wallpaper.jpg -o eDP-1
           exec-once = nm-applet
           exec-once = blueman-applet
-
-          # Source a file (multi-file configs)
-          # source = ~/.config/hypr/myColors.conf
 
           input {
           kb_layout = de
@@ -371,6 +374,12 @@
           exec Hyprland
         fi
       '';
+    };
+
+    # Cursor
+    home.pointerCursor = {
+      name = "Graphite-dark-cursors";
+      package = pkgs.graphite-cursors;
     };
 
     # GTK
@@ -643,6 +652,31 @@
 
       settings = {
         theme = "dark_high_contrast";
+
+        editor = {
+          mouse = false;
+          line-number = "relative";
+          color-modes = true;
+        };
+
+        editor.cursor-shape = {
+          normal = "block";
+          insert = "bar";
+          select = "block";
+        };
+
+        editor.indent-guides = {
+          render = true;
+          character = "▏";
+          skip-levels = 1;
+        };
+
+        editor.soft-wrap = {
+          enable = true;
+          max-value = 25;
+          max-indent-retain = 0;
+          wrap-indicator = "▷";
+        };
       };
     };
     
