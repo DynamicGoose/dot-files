@@ -679,9 +679,9 @@ in {
 
         editor.soft-wrap = {
           enable = true;
-          max-value = 25;
+          max-wrap = 25;
           max-indent-retain = 0;
-          wrap-indicator = "▷";
+          wrap-indicator = "▷ ";
         };
       };
     };
