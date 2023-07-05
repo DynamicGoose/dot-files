@@ -117,9 +117,10 @@ in {
     };
 
     blueman.enable = true;
-    devmon.enable = true;
-    printing.enable = true;
     cpupower-gui.enable = true;
+    devmon.enable = true;
+    gvfs.enable = true;
+    printing.enable = true;
   };
 
   # XDG
