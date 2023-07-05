@@ -28,7 +28,7 @@ in {
 
   # Networking
   networking = {
-    hostName = "tp-e490";
+    hostName = "usb-gezaa";
     networkmanager.enable = true;
   };
 
