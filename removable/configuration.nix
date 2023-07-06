@@ -173,6 +173,7 @@ in {
     vsce
     vscodium
     wdisplays
+    webcord
     wget
     whatsapp-for-linux
     wl-clipboard
@@ -182,6 +183,12 @@ in {
 
   # Programs
   programs = {
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+    
     dconf.enable = true; 
     xwayland.enable = true;
     zsh.enable = true;
