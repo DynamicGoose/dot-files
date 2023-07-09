@@ -4,8 +4,8 @@ let
 in {
   imports =
     [
-      ./hardware-configuration.nix
-      ./device-specific.nix
+      /etc/nixos/hardware-configuration.nix
+      /etc/nixos/device-specific.nix
       (import "${home-manager}/nixos")
     ];
 
