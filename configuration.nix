@@ -5,6 +5,7 @@ in {
   imports =
     [
       ./hardware-configuration.nix
+      ./device-specific.nix
       (import "${home-manager}/nixos")
     ];
 
@@ -12,22 +13,12 @@ in {
     experimental-features = [ "nix-command" "flakes" ];
   };
   
-  # Bootloader.
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-    };
-  };
+  # Bootloader configured in device-specific.nix
 
   # Networking
   networking = {
-    hostName = "tp-e490";
+    # Host name configured in device-specific.nix
+    
     networkmanager.enable = true;
   };
 
@@ -161,6 +152,7 @@ in {
     networkmanagerapplet
     nodePackages.typescript
     nodejs_20
+    obsidian
     pavucontrol
     polkit_gnome
     sbt
@@ -169,6 +161,7 @@ in {
     spotify
     swaybg
     swaylock-effects
+    syncthing-tray
     vsce
     vscodium
     wdisplays
@@ -177,6 +170,7 @@ in {
     whatsapp-for-linux
     wl-clipboard
     wl-clip-persist
+    xarchiver
     zulu
   ];
 
@@ -224,7 +218,8 @@ in {
           exec-once = waybar
           exec-once = swaybg -m fill -i ~/.config/wallpaper/wallpaper.jpg -o eDP-1
           exec-once = nm-applet
-          exec-once = blueman-applet
+          exec-once = sleep 1 && blueman-applet
+          exec-once = sleep 2 && syncthing-tray -api gezaa
 
           input {
           kb_layout = de
@@ -689,6 +684,11 @@ in {
           wrap-indicator = "▷ ";
         };
       };
+    };
+
+    services.syncthing = {
+      enable = true;
+      extraOptions = [ "--gui-apikey=gezaa" ];
     };
     
     home.stateVersion = "23.05";
