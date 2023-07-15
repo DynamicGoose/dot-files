@@ -108,8 +108,26 @@ in {
 
     blueman.enable = true;
     cpupower-gui.enable = true;
+    gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     printing.enable = true;
+  };
+
+  # Systemd
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
   };
 
   # XDG
@@ -139,6 +157,7 @@ in {
     firefox-wayland
     gimp
     git
+    gnome.gnome-disk-utility
     grim
     hyprpicker
     imv
@@ -146,6 +165,7 @@ in {
     kitty
     krita
     libreoffice
+    lutris
     mako
     mpv
     neofetch
@@ -154,7 +174,7 @@ in {
     nodejs_20
     obsidian
     pavucontrol
-    polkit_gnome
+    protonup-qt
     sbt
     signal-desktop
     slurp
@@ -168,6 +188,7 @@ in {
     webcord
     wget
     whatsapp-for-linux
+    wineWowPackages.waylandFull
     wl-clipboard
     wl-clip-persist
     xarchiver
@@ -370,7 +391,13 @@ in {
       };
       
       initExtra = ''
-        export PS1="[%m::%n::%1d]: "
+        autoload -Uz vcs_info
+        setopt prompt_subst
+        zstyle ':vcs_info:*' actionformats ' %F{3}-> %F{4}%f%F{4}%s%F{5}::%F{1}%b|%F{4}%a%F{3}%u%f'
+        zstyle ':vcs_info:*' formats ' %F{3}-> %F{4}%f%F{4}%s%F{5}::%F{1}%b%f'
+        zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+        precmd () { vcs_info }
+        export PS1='%F{5}[%F{2}%m%F{5}::%F{255}%n%F{5}::%F{255}%1d''${vcs_info_msg_0_}%F{5}]%F{255}: '
       '';
       
       profileExtra = ''
