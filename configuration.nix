@@ -151,6 +151,7 @@ in {
   # Environment
   environment.shells = with pkgs; [ zsh bash ];
   environment.systemPackages = with pkgs; [
+    brightnessctl
     btop
     cinnamon.nemo
     esbuild
@@ -321,6 +322,7 @@ in {
           bind = CTRL_ALT, C, exec, hyprpicker --autocopy
           bind = ALT, X, killactive,  
           bind = ALT, F, togglefloating, 
+          bind = SUPER, F, fullscreen,
           bind = CTRL_ALT, T, exec, kitty
           bind = SUPER, A, exec, wofi
           bind = SUPER_ALT, L, exec, swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000
@@ -371,6 +373,13 @@ in {
           # Move/resize windows with mainMod + LMB/RMB and dragging
           bindm = ALT, mouse:272, movewindow
           bindm = ALT, mouse:273, resizewindow
+
+          # Funtion keys
+          binde = , XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+
+          binde = , XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%-
+          bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+          binde = , XF86MonBrightnessUp, exec, brightnessctl s 2%+
+          binde = , XF86MonBrightnessDown, exec, brightnessctl s 2%-
         '';
     };
 
@@ -397,7 +406,7 @@ in {
         zstyle ':vcs_info:*' formats ' %F{3}-> %F{4}%f%F{4}%s%F{5}::%F{1}%b%f'
         zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
         precmd () { vcs_info }
-        export PS1='%F{5}[%F{2}%m%F{5}::%F{255}%n%F{5}::%F{255}%1d''${vcs_info_msg_0_}%F{5}]%F{255}: '
+        export PS1='%F{5}[%F{2}%m%F{5}::%F{2}%n%F{5}::%F{255}%1d''${vcs_info_msg_0_}%F{5}]%F{255}: '
       '';
       
       profileExtra = ''
