@@ -12,13 +12,18 @@ in {
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
   };
-  
+ 
   # Bootloader configured in device-specific.nix
 
   # Networking
   networking = {
     # Host name configured in device-specific.nix
-    
+
+    # Allow port 8000 for simple-http-server
+    firewall.allowedTCPPorts = [
+      8000
+    ];
+
     networkmanager.enable = true;
   };
 
@@ -106,9 +111,14 @@ in {
       pulse.enable = true;
     };
 
+    logind.extraConfig = ''
+      HandlePowerKey=suspend
+    '';
+
     blueman.enable = true;
     cpupower-gui.enable = true;
     gnome.gnome-keyring.enable = true;
+    gpm.enable = true;
     gvfs.enable = true;
     printing.enable = true;
   };
@@ -135,6 +145,7 @@ in {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 
@@ -156,6 +167,7 @@ in {
     cinnamon.nemo
     esbuild
     firefox-wayland
+    galculator
     gimp
     git
     gnome.gnome-disk-utility
@@ -175,12 +187,15 @@ in {
     nodejs_20
     obsidian
     pavucontrol
+    prismlauncher
     protonup-qt
     sbt
     signal-desktop
+    simple-http-server
     slurp
     spotify
     swaybg
+    swayidle
     swaylock-effects
     syncthing-tray
     vsce
@@ -204,7 +219,7 @@ in {
       dedicatedServer.openFirewall = true;
     };
     
-    dconf.enable = true; 
+    dconf.enable = true;
     xwayland.enable = true;
     zsh.enable = true;
     ssh.askPassword = "";
@@ -218,169 +233,164 @@ in {
 
   # Home-Manager
   home-manager.useGlobalPkgs = true;
-  home-manager.users.gezaa = { pkgs, ... }: let
-    flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
-
-    hyprland = (import flake-compat {
-      src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
-    }).defaultNix;
-  in {
-    imports = [
-      hyprland.homeManagerModules.default
-    ];
-
+  home-manager.users.gezaa = { pkgs, ... }: {
     # Hyprland
     wayland.windowManager.hyprland = {
       enable = true;
 
       extraConfig = ''
-          monitor=,preferred,auto,1
+        monitor=,preferred,auto,1
 
-          exec-once = wl-clip-persist --clipboard both
-          exec-once = waybar
-          exec-once = swaybg -m fill -i ~/.config/wallpaper/wallpaper.jpg -o eDP-1
-          exec-once = nm-applet
-          exec-once = sleep 1 && blueman-applet
-          exec-once = sleep 2 && syncthing-tray -api gezaa
+        exec-once = wl-clip-persist --clipboard both
+        exec-once = swayidle -w timeout 120 'brightnessctl -s && brightnessctl s 5%' resume 'brightnessctl -r' timeout 240 'hyprctl dispatch dpms off' before-sleep 'swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000'
+        exec-once = waybar
+        exec-once = swaybg -m fill -i ~/.config/wallpaper/wallpaper.jpg -o eDP-1
+        exec-once = nm-applet
+        exec-once = sleep 1 && blueman-applet
+        exec-once = sleep 3 && syncthing-tray -api gezaa
+        exec-once = id=0
 
-          input {
-          kb_layout = de
-          kb_variant =
-          kb_model =
-          kb_options =
-          kb_rules =
-          scroll_method = 2fg
-          follow_mouse = 1
-          numlock_by_default = true
+        input {
+        kb_layout = de
+        kb_variant =
+        kb_model =
+        kb_options =
+        kb_rules =
+        scroll_method = 2fg
+        follow_mouse = 1
+        numlock_by_default = true
 
-          touchpad {
-          natural_scroll = true
-          disable_while_typing = false
-          tap-to-click = true
-          }
+        touchpad {
+        natural_scroll = true
+        disable_while_typing = false
+        tap-to-click = true
+        }
 
-          sensitivity = 0.5 # -1.0 - 1.0, 0 means no modification.
-          }
+        sensitivity = 0.5 # -1.0 - 1.0, 0 means no modification.
+        }
 
-          general {
-          gaps_in = 3px
-          gaps_out = 6px
-          border_size = 2
-          resize_on_border = false
-          col.active_border = rgba(e0e0e0ff)
-          col.inactive_border = rgba(00000000)
-          layout = master
-          }
+        general {
+        gaps_in = 3px
+        gaps_out = 6px
+        border_size = 2
+        resize_on_border = false
+        col.active_border = rgba(e0e0e0ff)
+        col.inactive_border = rgba(00000000)
+        layout = master
+        }
 
-          decoration {
-          active_opacity = 1.0
-          inactive_opacity = 1.0
-          fullscreen_opacity = 1.0
-          rounding = 8
-          blur = true
-          blur_ignore_opacity = false
-          blur_size = 8
-          blur_passes = 1
-          blur_new_optimizations = on
+        decoration {
+        active_opacity = 1.0
+        inactive_opacity = 1.0
+        fullscreen_opacity = 1.0
+        rounding = 8
+        blur = true
+        blur_ignore_opacity = false
+        blur_size = 8
+        blur_passes = 1
+        blur_new_optimizations = on
 
-          drop_shadow = false
-          shadow_range = 4
-          shadow_render_power = 3
-          col.shadow = rgba(1a1a1aee)
-          }
+        drop_shadow = false
+        shadow_range = 4
+        shadow_render_power = 3
+        col.shadow = rgba(1a1a1aee)
+        }
 
-          animations {
-          enabled = yes
+        animations {
+        enabled = yes
 
-          bezier = overshot, 0.05, 0.9, 0.1, 1.05
-          bezier = fade, 0, 0, 0, 1
+        bezier = overshot, 0.05, 0.9, 0.1, 1.05
+        bezier = fade, 0, 0, 0, 1
 
-          animation = windows, 1, 7, overshot
-          animation = windowsOut, 1, 7, default, popin 80%
-          animation = border, 1, 10, default
-          animation = fade, 1, 7, fade
-          animation = workspaces, 1, 6, default
-          }
+        animation = windows, 1, 7, overshot
+        animation = windowsOut, 1, 7, default, popin 80%
+        animation = border, 1, 10, default
+        animation = fade, 1, 7, fade
+        animation = workspaces, 1, 6, default
+        }
 
-          master {
-          new_is_master = true
-          }
+        master {
+        new_is_master = true
+        }
 
-          gestures {
-          workspace_swipe = true
-          }
+        gestures {
+        workspace_swipe = true
+        }
 
-          misc {
-          disable_hyprland_logo = true
-          vfr = true
-          enable_swallow = true
-          swallow_regex = ^(kitty)$
-          }
+        misc {
+        disable_hyprland_logo = true
+        vfr = true
+        enable_swallow = true
+        swallow_regex = ^(kitty)$
+        mouse_move_enables_dpms = true
+        key_press_enables_dpms = true
+        }
 
-          # Binds
-          bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') | wl-copy
-          bind = CTRL_ALT, C, exec, hyprpicker --autocopy
-          bind = ALT, X, killactive,  
-          bind = ALT, F, togglefloating, 
-          bind = SUPER, F, fullscreen,
-          bind = CTRL_ALT, T, exec, kitty
-          bind = SUPER, A, exec, wofi
-          bind = SUPER_ALT, L, exec, swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000
-          bind = SUPER_ALT, P, exec, wlogout
-          bind = ALT, comma, splitratio, -0.05
-          bind = ALT, period, splitratio, +0.05
+        # Binds
+        bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') | wl-copy
+        bind = CTRL_ALT, C, exec, hyprpicker --autocopy
+        bind = ALT, X, killactive,  
+        bind = ALT, F, togglefloating, 
+        bind = SUPER, F, fullscreen,
+        bind = CTRL_ALT, T, exec, kitty
+        bind = SUPER, A, exec, wofi
+        bind = SUPER_ALT, L, exec, swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000
+        bind = SUPER_ALT, P, exec, wlogout
+        bind = ALT, comma, splitratio, -0.05
+        bind = ALT, period, splitratio, +0.05
 
-          # Move focus with alt + arrow keys
-          bind = ALT, left, movefocus, l
-          bind = ALT, right, movefocus, r
-          bind = ALT, up, movefocus, u
-          bind = ALT, down, movefocus, d
-          bind = ALT_CTRL, left, movewindow, l
-          bind = ALT_CTRL, right, movewindow, r
-          bind = ALT_CTRL, up, movewindow, u
-          bind = ALT_CTRL, down, movewindow, d
+        # Move focus with alt + arrow keys
+        bind = ALT, left, movefocus, l
+        bind = ALT, right, movefocus, r
+        bind = ALT, up, movefocus, u
+        bind = ALT, down, movefocus, d
+        bind = ALT_CTRL, left, movewindow, l
+        bind = ALT_CTRL, right, movewindow, r
+        bind = ALT_CTRL, up, movewindow, u
+        bind = ALT_CTRL, down, movewindow, d
 
-          # Switch workspaces with alt + [0-9]
-          bind = ALT, 1, workspace, 1
-          bind = ALT, 2, workspace, 2
-          bind = ALT, 3, workspace, 3
-          bind = ALT, 4, workspace, 4
-          bind = ALT, 5, workspace, 5
-          bind = ALT, 6, workspace, 6
-          bind = ALT, 7, workspace, 7
-          bind = ALT, 8, workspace, 8
-          bind = ALT, 9, workspace, 9
-          bind = ALT, 0, workspace, 10
-          bind = ALT_SUPER, left, workspace, e-1
-          bind = ALT_SUPER, right, workspace, e+1
+        # Switch workspaces with alt + [0-9]
+        bind = ALT, 1, workspace, 1
+        bind = ALT, 2, workspace, 2
+        bind = ALT, 3, workspace, 3
+        bind = ALT, 4, workspace, 4
+        bind = ALT, 5, workspace, 5
+        bind = ALT, 6, workspace, 6
+        bind = ALT, 7, workspace, 7
+        bind = ALT, 8, workspace, 8
+        bind = ALT, 9, workspace, 9
+        bind = ALT, 0, workspace, 10
+        bind = ALT_SUPER, left, workspace, e-1
+        bind = ALT_SUPER, right, workspace, e+1
 
-          # Move active window to a workspace with ALT + CTRL + [0-9]
-          bind = ALT_CTRL, 1, movetoworkspace, 1
-          bind = ALT_CTRL, 2, movetoworkspace, 2
-          bind = ALT_CTRL, 3, movetoworkspace, 3
-          bind = ALT_CTRL, 4, movetoworkspace, 4
-          bind = ALT_CTRL, 5, movetoworkspace, 5
-          bind = ALT_CTRL, 6, movetoworkspace, 6
-          bind = ALT_CTRL, 7, movetoworkspace, 7
-          bind = ALT_CTRL, 8, movetoworkspace, 8
-          bind = ALT_CTRL, 9, movetoworkspace, 9
-          bind = ALT_CTRL, 0, movetoworkspace, 10
+        # Move active window to a workspace with ALT + CTRL + [0-9]
+        bind = ALT_CTRL, 1, movetoworkspace, 1
+        bind = ALT_CTRL, 2, movetoworkspace, 2
+        bind = ALT_CTRL, 3, movetoworkspace, 3
+        bind = ALT_CTRL, 4, movetoworkspace, 4
+        bind = ALT_CTRL, 5, movetoworkspace, 5
+        bind = ALT_CTRL, 6, movetoworkspace, 6
+        bind = ALT_CTRL, 7, movetoworkspace, 7
+        bind = ALT_CTRL, 8, movetoworkspace, 8
+        bind = ALT_CTRL, 9, movetoworkspace, 9
+        bind = ALT_CTRL, 0, movetoworkspace, 10
 
-          # Scroll through existing workspaces with mainMod + scroll
-          bind = ALT, mouse_down, workspace, e+1
-          bind = ALT, mouse_up, workspace, e-1
+        # Scroll through existing workspaces with mainMod + scroll
+        bind = ALT, mouse_down, workspace, e+1
+        bind = ALT, mouse_up, workspace, e-1
 
-          # Move/resize windows with mainMod + LMB/RMB and dragging
-          bindm = ALT, mouse:272, movewindow
-          bindm = ALT, mouse:273, resizewindow
+        # Move/resize windows with mainMod + LMB/RMB and dragging
+        bindm = ALT, mouse:272, movewindow
+        bindm = ALT, mouse:273, resizewindow
 
-          # Funtion keys
-          binde = , XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+
-          binde = , XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%-
-          bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-          binde = , XF86MonBrightnessUp, exec, brightnessctl s 2%+
-          binde = , XF86MonBrightnessDown, exec, brightnessctl s 2%-
-        '';
+        # Funtion keys
+        binde = , XF86AudioRaiseVolume, exec, swayosd --output-volume=raise
+        binde = , XF86AudioLowerVolume, exec, swayosd --output-volume=lower
+        bind = , XF86AudioMute, exec, swayosd --output-volume=mute-toggle
+        binde = , XF86MonBrightnessUp, exec, brightnessctl s 5%+
+        # swayosd --brightness=raise
+        binde = , XF86MonBrightnessDown, exec, brightnessctl s 5%-
+      '';
     };
 
     # zsh
@@ -616,6 +626,12 @@ in {
         	font-weight: normal;
         }
       '';
+    };
+
+    # Swayosd
+    services.swayosd = {
+      enable = true;
+      maxVolume = 100;
     };
 
     # Wlogout
