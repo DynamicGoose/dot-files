@@ -56,7 +56,7 @@ in {
       monospace = [ "JetBrainsMono NF"];
     };
     
-    fonts = with pkgs; [
+    packages = with pkgs; [
       jetbrains-mono
       nerdfonts
     ];
@@ -98,7 +98,24 @@ in {
   services = {
     xserver = {
       enable = true;
-      displayManager.startx.enable = true;
+      
+      displayManager = {
+        sessionPackages = [ pkgs.hyprland ];
+        lightdm = {
+          enable = true;
+          background = "${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/apollo-11-earth.jpg";
+          greeters.gtk = {
+            enable = true;
+            theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
+            theme.name = "Graphite-Dark";
+            iconTheme.package = pkgs.papirus-icon-theme;
+            iconTheme.name = "Papirus-Dark";
+            cursorTheme.package = pkgs.graphite-cursors;
+            cursorTheme.name = "graphite-gark";
+          };
+        };
+      };
+      
       layout = "de";
       xkbVariant = "";
     };
@@ -242,89 +259,111 @@ in {
         monitor=,preferred,auto,1
 
         exec-once = wl-clip-persist --clipboard both
-        exec-once = swayidle -w timeout 120 'brightnessctl -s && brightnessctl s 5%' resume 'brightnessctl -r' timeout 240 'hyprctl dispatch dpms off' before-sleep 'swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000'
+        exec-once = swayidle -w timeout 120 'brightnessctl -s && brightnessctl s 5%' resume 'brightnessctl -r' timeout 240 'hyprctl dispatch dpms off' timeout 3600 'hyprctl dispatch dpms on && systemctl suspend' before-sleep 'swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000'
         exec-once = waybar
-        exec-once = swaybg -m fill -i ~/.config/wallpaper/wallpaper.jpg -o eDP-1
+        exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/apollo-11-earth.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = sleep 1 && blueman-applet
         exec-once = sleep 3 && syncthing-tray -api gezaa
         exec-once = id=0
 
         input {
-        kb_layout = de
-        kb_variant =
-        kb_model =
-        kb_options =
-        kb_rules =
-        scroll_method = 2fg
-        follow_mouse = 1
-        numlock_by_default = true
+          kb_layout = de
+          kb_variant =
+          kb_model =
+          kb_options =
+          kb_rules =
+          scroll_method = 2fg
+          follow_mouse = 1
+          numlock_by_default = true
 
-        touchpad {
-        natural_scroll = true
-        disable_while_typing = false
-        tap-to-click = true
-        }
+          touchpad {
+            natural_scroll = true
+            disable_while_typing = false
+            tap-to-click = true
+          }
 
-        sensitivity = 0.5 # -1.0 - 1.0, 0 means no modification.
+          sensitivity = 0.5 # -1.0 - 1.0, 0 means no modification.
         }
 
         general {
-        gaps_in = 3px
-        gaps_out = 6px
-        border_size = 2
-        resize_on_border = false
-        col.active_border = rgba(e0e0e0ff)
-        col.inactive_border = rgba(00000000)
-        layout = master
+          gaps_in = 3px
+          gaps_out = 6px
+          border_size = 2
+          resize_on_border = false
+          col.active_border = rgba(e0e0e0ff)
+          col.inactive_border = rgba(00000000)
+          layout = master
         }
 
         decoration {
-        active_opacity = 1.0
-        inactive_opacity = 1.0
-        fullscreen_opacity = 1.0
-        rounding = 8
-        blur = true
-        blur_ignore_opacity = false
-        blur_size = 8
-        blur_passes = 1
-        blur_new_optimizations = on
+          active_opacity = 1.0
+          inactive_opacity = 1.0
+          fullscreen_opacity = 1.0
+          rounding = 8
 
-        drop_shadow = false
-        shadow_range = 4
-        shadow_render_power = 3
-        col.shadow = rgba(1a1a1aee)
+          blur {
+            enabled = true
+            size = 8
+            passes = 1
+            ignore_opacity = false
+            new_optimizations = true
+          }
+
+          drop_shadow = false
+          shadow_range = 4
+          shadow_render_power = 3
+          col.shadow = rgba(1a1a1aee)
         }
 
         animations {
-        enabled = yes
+          enabled = yes
 
-        bezier = overshot, 0.05, 0.9, 0.1, 1.05
-        bezier = fade, 0, 0, 0, 1
+          bezier = overshot, 0.05, 0.9, 0.1, 1.05
+          bezier = fade, 0, 0, 0, 1
 
-        animation = windows, 1, 7, overshot
-        animation = windowsOut, 1, 7, default, popin 80%
-        animation = border, 1, 10, default
-        animation = fade, 1, 7, fade
-        animation = workspaces, 1, 6, default
+          animation = windows, 1, 7, overshot
+          animation = windowsOut, 1, 7, default, popin 80%
+          animation = border, 1, 10, default
+          animation = fade, 1, 7, fade
+          animation = workspaces, 1, 6, default
         }
 
         master {
-        new_is_master = true
+          new_is_master = true
         }
 
         gestures {
-        workspace_swipe = true
+          workspace_swipe = true
         }
 
         misc {
-        disable_hyprland_logo = true
-        vfr = true
-        enable_swallow = true
-        swallow_regex = ^(kitty)$
-        mouse_move_enables_dpms = true
-        key_press_enables_dpms = true
+          disable_hyprland_logo = true
+          vfr = true
+          enable_swallow = true
+          swallow_regex = ^(kitty)$
+          mouse_move_enables_dpms = true
+          key_press_enables_dpms = true
         }
+
+        # Window Rules
+        windowrule = float, title:^(Bluetooth Devices)
+        windowrule = float, title:^(Network Connections)
+        windowrule = float, title:^(Volume Control)
+        windowrule = float, title:(wdisplays)
+        windowrule = float, title:(cpupower-gui)
+        
+        windowrule = center (1), title:^(Bluetooth Devices)
+        windowrule = center (1), title:^(Network Connections)
+        windowrule = center (1), title:^(Volume Control)
+        windowrule = center (1), title:(wdisplays)
+        windowrule = center (1), title:(cpupower-gui)
+        
+        windowrule = size 60% 60%, title:^(Bluetooth Devices)
+        windowrule = size 60% 60%, title:^(Network Connections)
+        windowrule = size 60% 60%, title:^(Volume Control)
+        windowrule = size 60% 60%, title:(wdisplays)
+        windowrule = size 60% 60%, title:(cpupower-gui)
 
         # Binds
         bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') | wl-copy
