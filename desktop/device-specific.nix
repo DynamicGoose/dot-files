@@ -3,31 +3,18 @@
   # Bootloader
   boot.loader = {
     efi = {
-      canTouchEfiVariables = false;
+      canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
     grub = {
       enable = true;
       efiSupport = true;
-      efiInstallAsRemovable = true;
       device = "nodev";
-      # UUID needs to be adjusted on new install
-      extraEntries = ''
-        menuentry "Netboot.xyz" {
-          insmod part_gpt
-          insmod ext2
-          insmod chain
-          search --no-floppy --fs-uuid --set root aa18d19c-9806-417e-be19-71065c50d455
-          chainloader ${pkgs.netbootxyz-efi}
-        }
-      '';
     };
   };
-
-  services.cpupower-gui.enable = true;
-
+  
   # Host name
-  networking.hostName = "usb-gezaa";
+  networking.hostName = "desktop-gezaa";
 
   home-manager.users.gezaa = { pkgs, ...}: {
     # Waybar
@@ -43,24 +30,14 @@
           "margin-left" = 6;
           "margin-right" = 6;
           "height" = 34;
-          "modules-left" = [ "clock" "custom/power-settings" "custom/display-settings" "wlr/workspaces" ];
+          "modules-left" = [ "clock" "custom/display-settings" "wlr/workspaces" ];
           "modules-center" = [ "hyprland/window" ];
-          "modules-right" = [ "tray" "pulseaudio" "backlight" "battery" "custom/power"];
+          "modules-right" = [ "tray" "pulseaudio" "custom/power"];
 
           "wlr/workspaces" = {
             "on-click" = "activate";
             "all-outputs" = true;
             "active-only" = false;
-          };
-
-          "backlight" = {
-            "format" = "{icon} {percent}%";
-            "format-icons" = [ "󰃞" "󰃟" "󰃠" ];
-          };
-
-          "battery" = {
-            "format" = "{icon} {capacity}%";
-            "format-icons" = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           };
 
           "clock" = {
@@ -87,11 +64,6 @@
           "custom/power" = {
             "format" = "⏻";
             "on-click" = "wlogout";
-          };
-
-          "custom/power-settings" = {
-            "format" = "󱐋";
-            "on-click" = "cpupower-gui";
           };
 
           "custom/display-settings" = {

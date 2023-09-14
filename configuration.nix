@@ -14,7 +14,7 @@ in {
   };
  
   # Bootloader configured in device-specific.nix
-
+   
   # Networking
   networking = {
     # Host name configured in device-specific.nix
@@ -112,6 +112,8 @@ in {
             iconTheme.name = "Papirus-Dark";
             cursorTheme.package = pkgs.graphite-cursors;
             cursorTheme.name = "graphite-gark";
+            cursorTheme.size = 24;
+            indicators = [];
           };
         };
       };
@@ -173,18 +175,25 @@ in {
       waybar = super.waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
       });
+      ardour = super.ardour.overrideAttrs (oldAttrs: {
+        version = "7.5";
+      });
     })
   ];
 
   # Environment
   environment.shells = with pkgs; [ zsh bash ];
   environment.systemPackages = with pkgs; [
+    ardour
     brightnessctl
     btop
     cinnamon.nemo
+    discord
     esbuild
     firefox-wayland
     galculator
+    gedit
+    geogebra6
     gimp
     git
     gnome.gnome-disk-utility
@@ -198,6 +207,7 @@ in {
     lutris
     mako
     mpv
+    musescore
     neofetch
     networkmanagerapplet
     nodePackages.typescript
@@ -218,7 +228,6 @@ in {
     vsce
     vscodium
     wdisplays
-    webcord
     wget
     whatsapp-for-linux
     wineWowPackages.waylandFull
@@ -237,6 +246,7 @@ in {
     };
     
     dconf.enable = true;
+    evince.enable = true;
     xwayland.enable = true;
     zsh.enable = true;
     ssh.askPassword = "";
@@ -244,7 +254,6 @@ in {
 
   # System
   system = {
-    autoUpgrade.enable = true;
     stateVersion = "23.05";
   };
 
@@ -352,12 +361,14 @@ in {
         windowrule = float, title:^(Volume Control)
         windowrule = float, title:(wdisplays)
         windowrule = float, title:(cpupower-gui)
+        windowrule = float, galculator
         
         windowrule = center (1), title:^(Bluetooth Devices)
         windowrule = center (1), title:^(Network Connections)
         windowrule = center (1), title:^(Volume Control)
         windowrule = center (1), title:(wdisplays)
         windowrule = center (1), title:(cpupower-gui)
+        windowrule = center (1), galculator
         
         windowrule = size 60% 60%, title:^(Bluetooth Devices)
         windowrule = size 60% 60%, title:^(Network Connections)
@@ -366,8 +377,9 @@ in {
         windowrule = size 60% 60%, title:(cpupower-gui)
 
         # Binds
-        bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') | wl-copy
+        bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') && wl-copy < ~/Pictures/Screenshots/$(date +'%s_grim.png')
         bind = CTRL_ALT, C, exec, hyprpicker --autocopy
+        bind = SUPER, C, exec, galculator
         bind = ALT, X, killactive,  
         bind = ALT, F, togglefloating, 
         bind = SUPER, F, fullscreen,
@@ -451,18 +463,18 @@ in {
       initExtra = ''
         autoload -Uz vcs_info
         setopt prompt_subst
-        zstyle ':vcs_info:*' actionformats ' %F{3}-> %F{4}%f%F{4}%s%F{5}::%F{1}%b|%F{4}%a%F{3}%u%f'
-        zstyle ':vcs_info:*' formats ' %F{3}-> %F{4}%f%F{4}%s%F{5}::%F{1}%b%f'
+        zstyle ':vcs_info:*' actionformats ' %F{3}-> %F{4}%f%F{4}%s%F{255}:%F{5}%b|%F{4}%a%F{3}%u%f'
+        zstyle ':vcs_info:*' formats ' %F{3}-> %F{4}%f%F{4}%s%F{255}:%F{6}%b%f'
         zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
         precmd () { vcs_info }
-        export PS1='%F{5}[%F{2}%m%F{5}::%F{2}%n%F{5}::%F{255}%1d''${vcs_info_msg_0_}%F{5}]%F{255}: '
+        export PS1='%~/''${vcs_info_msg_0_}%F{1} ❯%F{255} '
       '';
       
-      profileExtra = ''
-        if [ -z "''${DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
-          exec Hyprland
-        fi
-      '';
+      # profileExtra = ''
+      #   if [ -z "''${DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
+      #     exec Hyprland
+      #   fi
+      # '';
     };
 
     # Cursor
@@ -480,99 +492,6 @@ in {
       iconTheme.package = pkgs.papirus-icon-theme;
       theme.name = "Graphite-Dark";
       theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
-    };
-
-    # Waybar
-    programs.waybar = {
-      enable = true;
-      settings = [
-        {
-          "spacing" =  4;
-          "layer" = "top";
-          "position" = "top";
-          "margin-top" = 6;
-          "margin-bottom" = 0;
-          "margin-left" = 6;
-          "margin-right" = 6;
-          "height" = 34;
-          "modules-left" = [ "clock" "wlr/workspaces" ];
-          "modules-center" = [ "hyprland/window" ];
-          "modules-right" = [ "tray" "pulseaudio" "backlight" "battery" "custom/power" ];
-
-          "wlr/workspaces" = {
-            "on-click" = "activate";
-            "all-outputs" = true;
-            "active-only" = false;
-          };
-
-          "backlight" = {
-            "format" = "{icon} {percent}%";
-            "format-icons" = [ "󰃞" "󰃟" "󰃠" ];
-            "on-click" = "wdisplays";
-          };
-
-          "battery" = {
-            "format" = "{icon} {capacity}%";
-            "format-icons" = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
-            "on-click" = "cpupower-gui";
-          };
-
-          "clock" = {
-            "format" = "󱑇 {:%H:%M}";
-          };
-
-          "pulseaudio" = {
-            "format" = "{icon} {volume}%";
-            "format-bluetooth" = "{icon}󰂯 {volume}%";
-            "format-muted" = "";
-            "format-icons" = {
-              "headphones" = "󰋋";
-              "phone" = "";
-              "default" = ["" ""];
-            };
-            "on-click" = "pavucontrol";
-          };
-
-          "tray" = {
-            "spacing" = 4;
-            "reverse-direction" = true;
-          };
-
-          "custom/power" = {
-            "format" = "⏻";
-            "on-click" = "wlogout";
-          };
-        }
-      ];
-      
-      style = ''
-        * {
-          font-size: 16px;
-          font-family: "Ubuntu Nerdfont";
-          font-weight: Bold;
-          padding: 0 4px 0 4px;
-        }
-        window#waybar {
-          background: #0F0F0F;
-          color: #E0E0E0;
-          border: Solid;
-          border-radius: 10px;
-          border-width: 2px;
-          border-color: #E0E0E0;
-        }
-        #workspaces button {
-          background: #0F0F0F;
-          margin: 4px 2px 4px 2px;
-        }
-        #workspaces button.active {
-          background: #E0E0E0;
-          color: #0F0F0F;
-          margin: 4px 2px 4px 2px;
-        }
-        #tray {
-          padding: 0;
-        }
-      '';
     };
 
     # Mako
