@@ -196,6 +196,7 @@ in {
     geogebra6
     gimp
     git
+    gnome.cheese
     gnome.gnome-disk-utility
     grim
     hyprpicker
