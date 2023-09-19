@@ -33,12 +33,13 @@
           "margin-left" = 6;
           "margin-right" = 6;
           "height" = 34;
-          "modules-left" = [ "clock" "wlr/workspaces" ];
+          "modules-left" = [ "clock" "hyprland/workspaces" ];
           "modules-center" = [ "hyprland/window" ];
           "modules-right" = [ "tray" "pulseaudio" "backlight" "battery" "custom/power"];
 
-          "wlr/workspaces" = {
+          "hyprland/workspaces" = {
             "on-click" = "activate";
+            "sort-by-number" = true;
             "all-outputs" = true;
             "active-only" = false;
           };

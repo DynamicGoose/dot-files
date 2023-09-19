@@ -67,7 +67,11 @@ in {
 
   # Hardware
   hardware = {
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
+    
     pulseaudio.enable = false;
     opengl.enable = true;
   };
@@ -170,16 +174,13 @@ in {
 
   # NixPkgs
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-      ardour = super.ardour.overrideAttrs (oldAttrs: {
-        version = "7.5";
-      });
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   (self: super: {
+  #     ardour = super.ardour.overrideAttrs (oldAttrs: {
+  #       version = "7.5";
+  #     });
+  #   })
+  # ];
 
   # Environment
   environment.shells = with pkgs; [ zsh bash ];
@@ -226,6 +227,7 @@ in {
     swayidle
     swaylock-effects
     syncthing-tray
+    tidal-hifi
     vsce
     vscodium
     wdisplays
