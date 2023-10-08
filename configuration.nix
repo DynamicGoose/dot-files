@@ -24,7 +24,10 @@ in {
       8000
     ];
 
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
   };
 
   # Set time zone
@@ -185,6 +188,7 @@ in {
   # Environment
   environment.shells = with pkgs; [ zsh bash ];
   environment.systemPackages = with pkgs; [
+    adwaita-qt6
     ardour
     brightnessctl
     btop
@@ -192,11 +196,11 @@ in {
     discord
     esbuild
     firefox-wayland
-    galculator
     gedit
     geogebra6
     gimp
     git
+    glibc
     gnome.cheese
     gnome.gnome-disk-utility
     grim
@@ -204,10 +208,11 @@ in {
     imv
     killall
     kitty
+    kooha
     krita
     libreoffice
+    libsForQt5.qtstyleplugin-kvantum
     lutris
-    mako
     mpv
     musescore
     neofetch
@@ -215,9 +220,11 @@ in {
     nodePackages.typescript
     nodejs_20
     obsidian
-    pavucontrol
     prismlauncher
+    pavucontrol
     protonup-qt
+    qalculate-gtk
+    rustup
     sbt
     signal-desktop
     simple-http-server
@@ -226,7 +233,8 @@ in {
     swaybg
     swayidle
     swaylock-effects
-    syncthing-tray
+    swaynotificationcenter
+    syncthingtray-minimal
     tidal-hifi
     vsce
     vscodium
@@ -239,6 +247,12 @@ in {
     xarchiver
     zulu
   ];
+
+  # QT
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+  };
 
   # Programs
   programs = {
@@ -271,12 +285,13 @@ in {
         monitor=,preferred,auto,1
 
         exec-once = wl-clip-persist --clipboard both
-        exec-once = swayidle -w timeout 120 'brightnessctl -s && brightnessctl s 5%' resume 'brightnessctl -r' timeout 240 'hyprctl dispatch dpms off' timeout 3600 'hyprctl dispatch dpms on && systemctl suspend' before-sleep 'swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000'
+        exec-once = swayidle timeout 120 'brightnessctl -s && brightnessctl s 5%' resume 'brightnessctl -r' timeout 240 'hyprctl dispatch dpms off' timeout 3600 'hyprctl dispatch dpms on && systemctl suspend' before-sleep 'swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000'
         exec-once = waybar
         exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/apollo-11-earth.jpg -o eDP-1
         exec-once = nm-applet
+        exec-once = swaync
         exec-once = sleep 1 && blueman-applet
-        exec-once = sleep 3 && syncthing-tray -api gezaa
+        exec-once = sleep 3 && syncthingtray --widgets-style kvantum --platformtheme qt5ct --config-dir-path $HOME/.config/syncthingtray
         exec-once = id=0
 
         input {
@@ -362,27 +377,30 @@ in {
         windowrule = float, title:^(Bluetooth Devices)
         windowrule = float, title:^(Network Connections)
         windowrule = float, title:^(Volume Control)
+        windowrule = float, title:^(Syncthing Tray)
         windowrule = float, title:(wdisplays)
         windowrule = float, title:(cpupower-gui)
-        windowrule = float, galculator
+        windowrule = float, qalculate-gtk
         
         windowrule = center (1), title:^(Bluetooth Devices)
         windowrule = center (1), title:^(Network Connections)
         windowrule = center (1), title:^(Volume Control)
+        windowrule = center (1), title:^(Syncthing Tray)
         windowrule = center (1), title:(wdisplays)
         windowrule = center (1), title:(cpupower-gui)
-        windowrule = center (1), galculator
+        windowrule = center (1), qalculate-gtk
         
         windowrule = size 60% 60%, title:^(Bluetooth Devices)
         windowrule = size 60% 60%, title:^(Network Connections)
         windowrule = size 60% 60%, title:^(Volume Control)
+        windowrule = size 60% 60%, title:^(Syncthing Tray)
         windowrule = size 60% 60%, title:(wdisplays)
         windowrule = size 60% 60%, title:(cpupower-gui)
 
         # Binds
         bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') && wl-copy < ~/Pictures/Screenshots/$(date +'%s_grim.png')
         bind = CTRL_ALT, C, exec, hyprpicker --autocopy
-        bind = SUPER, C, exec, galculator
+        bind = SUPER, C, exec, qalculate-gtk
         bind = ALT, X, killactive,  
         bind = ALT, F, togglefloating, 
         bind = SUPER, F, fullscreen,
@@ -447,6 +465,188 @@ in {
       '';
     };
 
+    # XDG
+    xdg = {
+      enable = true;
+      configFile = {
+        "kvantum" = {
+          enable = true;
+          target = "Kvantum/home-manager.md";
+          text = ''
+            # Theme
+            Graphite-Dark
+          '';
+          onChange = "rm -rf /home/gezaa/.config/Kvantum/Graphite && cp -rf /home/gezaa/git/dot-files/Graphite /home/gezaa/.config/Kvantum/Graphite && rm -rf /home/gezaa/.config/Kvantum/kvantum.kvconfig && touch /home/gezaa/.config/Kvantum/kvantum.kvconfig && echo -e '[General]''\ntheme=GraphiteDark' >> /home/gezaa/.config/Kvantum/kvantum.kvconfig";
+        };
+        "qt5ct" = {
+          enable = true;
+          target = "qt5ct/qt5ct.conf";
+          text = ''
+            [Appearance]
+            color_scheme_path=/nix/store/4i9q0lnzl8cr7yq0s07bd4yfbz7gc7nc-qt5ct-1.7/share/qt5ct/colors/darker.conf
+            custom_palette=true
+            icon_theme=Papirus-Dark
+            standard_dialogs=default
+            style=kvantum-dark
+
+            [Fonts]
+            fixed="Ubuntu Nerd Font,12,-1,5,50,0,0,0,0,0"
+            general="Ubuntu Nerd Font,12,-1,5,50,0,0,0,0,0"
+
+            [Interface]
+            activate_item_on_single_click=1
+            buttonbox_layout=0
+            cursor_flash_time=1000
+            dialog_buttons_have_icons=1
+            double_click_interval=400
+            gui_effects=@Invalid()
+            keyboard_scheme=2
+            menus_have_icons=true
+            show_shortcuts_in_context_menus=true
+            stylesheets=@Invalid()
+            toolbutton_style=4
+            underline_shortcut=1
+            wheel_scroll_lines=3
+
+            [SettingsWindow]
+            geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0\0\0\0\ao\0\0\x3\xff\0\0\0\0\0\0\0\0\0\0\x2\xde\0\0\x3\x1b\0\0\0\0\x2\0\0\0\a\x80\0\0\0\0\0\0\0\0\0\0\ao\0\0\x3\xff)
+
+            [Troubleshooting]
+            force_raster_widgets=1
+            ignored_applications=@Invalid()
+          '';
+        };
+        "qt6ct" = {
+          enable = true;
+          target = "qt6ct/qt6ct.conf";
+          text = ''
+            [Appearance]
+            color_scheme_path=/nix/store/2jgifi5bl6qim74h2jwpdz1jwbd4qcbm-qt6ct-0.8/share/qt6ct/colors/airy.conf
+            custom_palette=false
+            icon_theme=Papirus-Dark
+            standard_dialogs=default
+            style=Adwaita-Dark
+
+            [Fonts]
+            fixed="Ubuntu Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+            general="Ubuntu Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+
+            [Interface]
+            activate_item_on_single_click=1
+            buttonbox_layout=0
+            cursor_flash_time=1000
+            dialog_buttons_have_icons=1
+            double_click_interval=400
+            gui_effects=@Invalid()
+            keyboard_scheme=2
+            menus_have_icons=true
+            show_shortcuts_in_context_menus=true
+            stylesheets=@Invalid()
+            toolbutton_style=4
+            underline_shortcut=1
+            wheel_scroll_lines=3
+
+            [PaletteEditor]
+            geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\xc4\0\0\0\xd0\0\0\x3:\0\0\x2\xe0\0\0\0\xc4\0\0\0\xd0\0\0\x3:\0\0\x2\xe0\0\0\0\0\0\0\0\0\a\x80\0\0\0\xc4\0\0\0\xd0\0\0\x3:\0\0\x2\xe0)
+
+            [SettingsWindow]
+            geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0\0\0\0\x4\x12\0\0\x3\xff\0\0\0\0\0\0\0\0\0\0\x4\x12\0\0\x3\xff\0\0\0\0\0\0\0\0\a\x80\0\0\0\0\0\0\0\0\0\0\x4\x12\0\0\x3\xff)
+
+            [Troubleshooting]
+            force_raster_widgets=1
+            ignored_applications=@Invalid()
+          '';
+        };
+        "syncthingtray" = {
+          enable = true;
+          target = "syncthingtray/syncthingtray.ini";
+          text = ''
+            [General]
+            v=1.4.6
+
+            [startup]
+            considerForReconnect=false
+            considerLauncherForReconnect=false
+            showButton=false
+            showLauncherButton=false
+            syncthingArgs="-no-browser -no-restart -logflags=3"
+            syncthingAutostart=false
+            syncthingPath=syncthing
+            syncthingUnit=syncthing.service
+            systemUnit=false
+            tools\Process\args=
+            tools\Process\autostart=false
+            tools\Process\path=
+            useLibSyncthing=false
+
+            [tray]
+            connections\1\apiKey=@ByteArray(gezaa)
+            connections\1\authEnabled=false
+            connections\1\autoConnect=true
+            connections\1\devStatsPollInterval=60000
+            connections\1\errorsPollInterval=30000
+            connections\1\httpsCertPath=
+            connections\1\label=Primary instance
+            connections\1\password=
+            connections\1\reconnectInterval=30000
+            connections\1\requestTimeout=0
+            connections\1\statusComputionFlags=59
+            connections\1\syncthingUrl=http://127.0.0.1:8384
+            connections\1\trafficPollInterval=5000
+            connections\1\userName=
+            connections\size=1
+            dbusNotifications=true
+            distinguishTrayIcons=false
+            frameStyle=16
+            ignoreInavailabilityAfterStart=15
+            notifyOnDisconnect=true
+            notifyOnErrors=true
+            notifyOnLauncherErrors=true
+            notifyOnLocalSyncComplete=false
+            notifyOnNewDeviceConnects=false
+            notifyOnNewDirectoryShared=false
+            notifyOnRemoteSyncComplete=false
+            positioning\assumedIconPos=@Point(0 0)
+            positioning\useAssumedIconPosition=false
+            positioning\useCursorPos=true
+            preferIconsFromTheme=false
+            showSyncthingNotifications=true
+            showTabTexts=true
+            showTraffic=true
+            statusIcons="#00000000,#00000000,#ffffffff;#00000000,#00000000,#ffffaea5;#00ffffff,#00ffffff,#fffff6a5;#00ffffff,#00ffffff,#ffffffff;#00ffffff,#00ffffff,#ffa5efff;#00ffffff,#00ffffff,#ffa5efff;#00000000,#00ffffff,#ffa7a7a7;#00000000,#00000000,#ffa7a7a7"
+            statusIconsRenderSize=@Size(32 32)
+            statusIconsStrokeWidth=1
+            tabPos=1
+            trayIcons="#00000000,#00000000,#ffffffff;#00000000,#00000000,#ffffaea5;#00ffffff,#00ffffff,#fffff6a5;#00ffffff,#00ffffff,#ffffffff;#00ffffff,#00ffffff,#ffa5efff;#00ffffff,#00ffffff,#ffa5efff;#00000000,#00ffffff,#ffa7a7a7;#00000000,#00000000,#ffa7a7a7"
+            trayIconsRenderSize=@Size(32 32)
+            trayIconsStrokeWidth=0
+            trayMenuSize=@Size(575 475)
+            windowType=2
+
+            [webview]
+            customCommand=
+            disabled=true
+            mode=1
+            qt\customfont=false
+            qt\customicontheme=false
+            qt\customlocale=false
+            qt\custompalette=false
+            qt\customstylesheet=false
+            qt\customwidgetstyle=true
+            qt\font="Ubuntu Nerd Font,12,-1,5,50,0,0,0,0,0"
+            qt\icontheme=Papirus-Dark
+            qt\iconthemepath=
+            qt\locale=en_US
+            qt\palette=@Variant(\0\0\0\x44\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xffMMMMMM\0\0\x1\x1\xff\xffSSSSSS\0\0\x1\x1\xff\xffGGGGGG\0\0\x1\x1\xff\xff((((((\0\0\x1\x1\xff\xff\x32\x32\x32\x32\x32\x32\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xff\xff\xff\xff\xff\xff\xff\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\0\0\0\0\0\0\0\0\x1\x1\xff\xff\xe0\xe0\xe0\xe0\xe0\xe0\0\0\x1\x1\xff\xff\x33\x33\x33\x33\x33\x33\0\0\x1\x1\xff\xff\0\0WW\xae\xae\0\0\x1\x1\xff\xff\xe0\xe0@@\xfb\xfb\0\0\x1\x1\xff\xff......\0\0\x1\x1\xff\xffiiiiii\0\0\x1\x1\xff\xffMMMMMM\0\0\x1\x1\xff\xffSSSSSS\0\0\x1\x1\xff\xffGGGGGG\0\0\x1\x1\xff\xff((((((\0\0\x1\x1\xff\xff\x32\x32\x32\x32\x32\x32\0\0\x1\x1\xff\xffiiiiii\0\0\x1\x1\xff\xff\xff\xff\xff\xff\xff\xff\0\0\x1\x1\xff\xffiiiiii\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\0\0\0\0\0\0\0\0\x1\x1\xff\xff\xe0\xe0\xe0\xe0\xe0\xe0\0\0\x1\x1\x66\x66\x33\x33\x33\x33\x33\x33\0\0\x1\x1\xff\xff\0\0WW\xae\xae\0\0\x1\x1\xff\xff\xe0\xe0@@\xfb\xfb\0\0\x1\x1\xff\xff......\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xffMMMMMM\0\0\x1\x1\xff\xffSSSSSS\0\0\x1\x1\xff\xffGGGGGG\0\0\x1\x1\xff\xff((((((\0\0\x1\x1\xff\xff\x32\x32\x32\x32\x32\x32\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xff\xff\xff\xff\xff\xff\xff\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\0\0\0\0\0\0\0\0\x1\x2\xff\xff\xff\xff\0\0\xdf\xdf\0\0\x1\x1\xff\xff\x33\x33\x33\x33\x33\x33\0\0\x1\x1\xff\xff\0\0WW\xae\xae\0\0\x1\x1\xff\xff\xe0\xe0@@\xfb\xfb\0\0\x1\x1\xff\xff......\0\0)
+            qt\plugindir=
+            qt\stylesheetpath=
+            qt\trpath=
+            qt\widgetstyle=kvantum
+          '';
+        };
+      };
+    };
+
     # zsh
     programs.zsh = {
       enable = true;
@@ -498,16 +698,16 @@ in {
     };
 
     # Mako
-    services.mako = {
-      enable = true;
-      backgroundColor = "#0F0F0FFF";
-      borderColor = "#E0E0E0FF";
-      borderRadius = 10;
-      borderSize = 2;
-      defaultTimeout = 5000;
-      font = "sans 12";
-      progressColor = "over #E0E0E0FF";
-    };
+    # services.mako = {
+    #   enable = true;
+    #   backgroundColor = "#0F0F0FFF";
+    #   borderColor = "#E0E0E0FF";
+    #   borderRadius = 10;
+    #   borderSize = 2;
+    #   defaultTimeout = 5000;
+    #   font = "sans 12";
+    #   progressColor = "over #E0E0E0FF";
+    # };
 
     # Wofi
     programs.wofi = {
