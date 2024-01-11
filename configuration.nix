@@ -14,6 +14,7 @@ in {
   };
  
   # Bootloader configured in device-specific.nix
+  boot.kernelPackages = pkgs.linuxPackages_latest;
    
   # Networking
   networking = {
@@ -91,6 +92,21 @@ in {
         auth include login
       '';
     };
+
+    pam.loginLimits = [
+      {
+        domain = "@audio";
+        item = "rtprio";
+        type = "hard";
+        value = 95;
+      }
+      {
+        domain = "@audio";
+        item = "memlock";
+        type = "hard";
+        value = "unlimited";
+      }
+    ];
   };
 
   # User config
@@ -99,7 +115,7 @@ in {
     gezaa = {
       isNormalUser = true;
       description = "Géza Ahsendorf";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "audio" ];
     };
   };
   
@@ -244,6 +260,7 @@ in {
     swayidle
     swaylock-effects
     swaynotificationcenter
+    swayosd
     syncthingtray-minimal
     tidal-hifi
     vsce
@@ -255,6 +272,7 @@ in {
     wl-clipboard
     wl-clip-persist
     xarchiver
+    xwaylandvideobridge
     zrythm
     zulu
     zulu8
@@ -614,10 +632,10 @@ in {
     };
 
     # Swayosd
-    services.swayosd = {
-      enable = true;
-      maxVolume = 100;
-    };
+    # services.swayosd = {
+    #   enable = true;
+    #   maxVolume = 100;
+    # };
 
     # Wlogout
     programs.wlogout = {

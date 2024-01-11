@@ -24,8 +24,10 @@
       extraConfig = ''
         monitor=,preferred,auto,1
 
+        exec-once = xwaylandvideobridge
         exec-once = wl-clip-persist --clipboard both
         exec-once = waybar
+        exec-once = swayosd-server
         exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/apollo-11-earth.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
@@ -53,8 +55,8 @@
         }
 
         general {
-          gaps_in = 3px
-          gaps_out = 6px
+          gaps_in = 3
+          gaps_out = 6
           border_size = 2
           resize_on_border = false
           col.active_border = rgba(e0e0e0ff)
@@ -135,6 +137,11 @@
         windowrule = size 60% 60%, title:^(Syncthing Tray)
         windowrule = size 60% 60%, title:(wdisplays)
         windowrule = size 60% 60%, title:(cpupower-gui)
+
+        windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
+        windowrulev2 = noanim,class:^(xwaylandvideobridge)$
+        windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
+        windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
 
         # Binds
         bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') && wl-copy < ~/Pictures/Screenshots/$(date +'%s_grim.png')

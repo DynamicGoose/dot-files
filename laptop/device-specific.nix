@@ -27,9 +27,11 @@
       extraConfig = ''
         monitor=,preferred,auto,1
 
+        exec-once = xwaylandvideobridge
         exec-once = wl-clip-persist --clipboard both
         exec-once = swayidle timeout 120 'brightnessctl -s && brightnessctl s 5%' resume 'brightnessctl -r' timeout 240 'hyprctl dispatch dpms off' timeout 3600 'hyprctl dispatch dpms on && systemctl suspend' before-sleep 'swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000'
-        exec-once = waybar
+        exec-once = waybar        
+        exec-once = swayosd-server
         exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/apollo-11-earth.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
@@ -57,8 +59,8 @@
         }
 
         general {
-          gaps_in = 3px
-          gaps_out = 6px
+          gaps_in = 3
+          gaps_out = 6
           border_size = 2
           resize_on_border = false
           col.active_border = rgba(e0e0e0ff)
@@ -140,6 +142,11 @@
         windowrule = size 60% 60%, title:(wdisplays)
         windowrule = size 60% 60%, title:(cpupower-gui)
 
+        windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
+        windowrulev2 = noanim,class:^(xwaylandvideobridge)$
+        windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
+        windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
+
         # Binds
         bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') && wl-copy < ~/Pictures/Screenshots/$(date +'%s_grim.png')
         bind = CTRL_ALT, C, exec, hyprpicker --autocopy
@@ -199,9 +206,9 @@
         bindm = ALT, mouse:273, resizewindow
 
         # Funtion keys
-        binde = , XF86AudioRaiseVolume, exec, swayosd --output-volume=raise
-        binde = , XF86AudioLowerVolume, exec, swayosd --output-volume=lower
-        bind = , XF86AudioMute, exec, swayosd --output-volume=mute-toggle
+        binde = , XF86AudioRaiseVolume, exec, swayosd-client --output-volume=raise
+        binde = , XF86AudioLowerVolume, exec, swayosd-client --output-volume=lower
+        bind = , XF86AudioMute, exec, swayosd-client --output-volume=mute-toggle
         binde = , XF86MonBrightnessUp, exec, brightnessctl s 5%+
         # swayosd --brightness=raise
         binde = , XF86MonBrightnessDown, exec, brightnessctl s 5%-
