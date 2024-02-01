@@ -267,13 +267,12 @@ in {
     vscodium
     wdisplays
     wget
-    whatsapp-for-linux
     wineWowPackages.waylandFull
     wl-clipboard
     wl-clip-persist
     xarchiver
     xwaylandvideobridge
-    zrythm
+    zapzap
     zulu
     zulu8
   ];
@@ -284,6 +283,9 @@ in {
     platformTheme = "qt5ct";
   };
 
+  # Virtualisation
+  virtualisation.libvirtd.enable = true;
+  
   # Programs
   programs = {
     steam = {
@@ -294,6 +296,7 @@ in {
     
     dconf.enable = true;
     evince.enable = true;
+    virt-manager.enable = true;
     xwayland.enable = true;
     zsh.enable = true;
     ssh.askPassword = "";
@@ -744,6 +747,14 @@ in {
     services.syncthing = {
       enable = true;
       extraOptions = [ "--gui-apikey=gezaa" ];
+    };
+
+    # Dconf
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
     };
     
     home.stateVersion = "23.05";
