@@ -41,7 +41,7 @@
         exec-once = wl-clip-persist --clipboard both
         exec-once = waybar
         exec-once = swayosd-server
-        exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/apollo-11-earth.jpg -o eDP-1
+        exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
         exec-once = sleep 1 && blueman-applet

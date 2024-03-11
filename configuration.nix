@@ -128,7 +128,7 @@ in {
         sessionPackages = [ pkgs.hyprland ];
         lightdm = {
           enable = true;
-          background = "${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/apollo-11-earth.jpg";
+          background = "${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg";
           greeters.gtk = {
             enable = true;
             theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
@@ -142,9 +142,11 @@ in {
           };
         };
       };
-      
-      layout = "de";
-      xkbVariant = "";
+
+      xkb = {
+        layout = "de";
+        variant = "";
+      };
     };
 
     pipewire = {
@@ -211,6 +213,7 @@ in {
   environment.shells = with pkgs; [ zsh bash ];
   environment.systemPackages = with pkgs; [
     adwaita-qt6
+    ani-cli
     bespokesynth
     blender
     brightnessctl
@@ -220,7 +223,7 @@ in {
     esbuild
     firefox-wayland
     gedit
-    geogebra6
+    geogebra
     gimp
     git
     glibc
@@ -274,7 +277,7 @@ in {
     xwaylandvideobridge
     zapzap
     zulu
-    zulu8
+    zulu17
   ];
 
   # QT
