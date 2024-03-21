@@ -26,13 +26,15 @@
 
         exec-once = xwaylandvideobridge
         exec-once = wl-clip-persist --clipboard both
+        exec-once = wl-paste --type text --watch cliphist store
+        exec-once = wl-paste --type image --watch cliphist store
         exec-once = waybar
         exec-once = swayosd-server
         exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
         exec-once = sleep 1 && blueman-applet
-        exec-once = sleep 3 && syncthingtray --widgets-style kvantum --platformtheme qt5ct --config-dir-path $HOME/.config/syncthingtray
+        exec-once = sleep 3 && qsyncthingtray
         exec-once = id=0
 
         input {
@@ -145,6 +147,7 @@
 
         # Binds
         bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') && wl-copy < ~/Pictures/Screenshots/$(date +'%s_grim.png')
+        bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
         bind = CTRL_ALT, C, exec, hyprpicker --autocopy
         bind = SUPER, C, exec, qalculate-gtk
         bind = ALT, X, killactive,  
@@ -363,7 +366,7 @@
                           },
                           {
                               "label": "󰌾",
-                              "command": "swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000"
+                              "command": "hyprlock"
                           },
                           {
                               "label": "󰍃",

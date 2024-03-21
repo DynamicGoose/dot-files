@@ -211,6 +211,10 @@ in {
 
   # Environment
   environment.shells = with pkgs; [ zsh bash ];
+  # electron apps should use Wayland
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
   environment.systemPackages = with pkgs; [
     adwaita-qt6
     ani-cli
@@ -219,6 +223,7 @@ in {
     brightnessctl
     btop
     cinnamon.nemo
+    cliphist
     discord
     esbuild
     firefox-wayland
@@ -230,6 +235,8 @@ in {
     gnome.cheese
     gnome.gnome-disk-utility
     grim
+    hypridle
+    hyprlock
     hyprpicker
     imv
     killall
@@ -253,6 +260,7 @@ in {
     protonup-qt
     python3
     qalculate-gtk
+    qsyncthingtray
     rustup
     sbt
     signal-desktop
@@ -264,7 +272,6 @@ in {
     swaylock-effects
     swaynotificationcenter
     swayosd
-    syncthingtray-minimal
     tidal-hifi
     vsce
     vscodium
@@ -405,91 +412,108 @@ in {
             ignored_applications=@Invalid()
           '';
         };
-        "syncthingtray" = {
+        "hyprlock" = {
           enable = true;
-          target = "syncthingtray/syncthingtray.ini";
+          target = "hypr/hyprlock.conf";
           text = ''
-            [General]
-            v=1.4.6
+            general {
+              disable_loading_bar = false
+              hide_cursor = true
+              grace = 0
+              no_fade_in = false
+            }
+            background {
+              monitor =
+              path =      
+              color = rgba(0, 0, 0, 0.4)
 
-            [startup]
-            considerForReconnect=false
-            considerLauncherForReconnect=false
-            showButton=false
-            showLauncherButton=false
-            syncthingArgs="-no-browser -no-restart -logflags=3"
-            syncthingAutostart=false
-            syncthingPath=syncthing
-            syncthingUnit=syncthing.service
-            systemUnit=false
-            tools\Process\args=
-            tools\Process\autostart=false
-            tools\Process\path=
-            useLibSyncthing=false
+              blur_passes = 0
+              blur_size = 7
+              noise = 0.0117
+              contrast = 0.8916
+              brightness = 0.8172
+              vibrancy = 0.1696
+              vibrancy_darkness = 0.0
+            }
+            input-field {
+              monitor =
+              size = 200, 50
+              outline_thickness = 2
+              dots_size = 0.2
+              dots_spacing = 0.3
+              dots_center = true
+              dots_rounding = -1
+              outer_color = rgb(240, 240, 240)
+              inner_color = rgb(24, 24, 24)
+              font_color = rgb(255, 255, 255)
+              fade_on_empty = true
+              fade_timeout = 1000
+              placeholder_text = <i>Password</i>
+              hide_input = false
+              rounding = 10
+              check_color = rgb(50, 180, 50)
+              fail_color = rgb(180, 50, 50)
+              fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
+              fail_transition = 300
+              capslock_color = -1
+              numlock_color = -1
+              bothlock_color = -1
+              invert_numlock = false
+              position = 0, -20
+              halign = center
+              valign = center
+            }
+            label {
+              monitor = 
+              text = $TIME
+              color = rgba(240, 240, 240, 1.0)
+              font_size = 48
+              font_family = Ubuntu Nerd Font Med
+              position = 0, 64
+              halign = center
+              valign = center
+            }
+          '';
+        };
 
-            [tray]
-            connections\1\apiKey=@ByteArray(gezaa)
-            connections\1\authEnabled=false
-            connections\1\autoConnect=true
-            connections\1\devStatsPollInterval=60000
-            connections\1\errorsPollInterval=30000
-            connections\1\httpsCertPath=
-            connections\1\label=Primary instance
-            connections\1\password=
-            connections\1\reconnectInterval=30000
-            connections\1\requestTimeout=0
-            connections\1\statusComputionFlags=59
-            connections\1\syncthingUrl=http://127.0.0.1:8384
-            connections\1\trafficPollInterval=5000
-            connections\1\userName=
-            connections\size=1
-            dbusNotifications=true
-            distinguishTrayIcons=false
-            frameStyle=16
-            ignoreInavailabilityAfterStart=15
-            notifyOnDisconnect=true
-            notifyOnErrors=true
-            notifyOnLauncherErrors=true
-            notifyOnLocalSyncComplete=false
-            notifyOnNewDeviceConnects=false
-            notifyOnNewDirectoryShared=false
-            notifyOnRemoteSyncComplete=false
-            positioning\assumedIconPos=@Point(0 0)
-            positioning\useAssumedIconPosition=false
-            positioning\useCursorPos=true
-            preferIconsFromTheme=false
-            showSyncthingNotifications=true
-            showTabTexts=true
-            showTraffic=true
-            statusIcons="#00000000,#00000000,#ffffffff;#00000000,#00000000,#ffffaea5;#00ffffff,#00ffffff,#fffff6a5;#00ffffff,#00ffffff,#ffffffff;#00ffffff,#00ffffff,#ffa5efff;#00ffffff,#00ffffff,#ffa5efff;#00000000,#00ffffff,#ffa7a7a7;#00000000,#00000000,#ffa7a7a7"
-            statusIconsRenderSize=@Size(32 32)
-            statusIconsStrokeWidth=1
-            tabPos=1
-            trayIcons="#00000000,#00000000,#ffffffff;#00000000,#00000000,#ffffaea5;#00ffffff,#00ffffff,#fffff6a5;#00ffffff,#00ffffff,#ffffffff;#00ffffff,#00ffffff,#ffa5efff;#00ffffff,#00ffffff,#ffa5efff;#00000000,#00ffffff,#ffa7a7a7;#00000000,#00000000,#ffa7a7a7"
-            trayIconsRenderSize=@Size(32 32)
-            trayIconsStrokeWidth=0
-            trayMenuSize=@Size(575 475)
-            windowType=2
+        "hypridle" = {
+          enable = true;
+          target = "hypr/hypridle.conf";
+          text = ''
+            general {
+              lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
+              before_sleep_cmd = loginctl lock-session    # lock before suspend.
+              after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
+          }
 
-            [webview]
-            customCommand=
-            disabled=true
-            mode=1
-            qt\customfont=false
-            qt\customicontheme=false
-            qt\customlocale=false
-            qt\custompalette=false
-            qt\customstylesheet=false
-            qt\customwidgetstyle=true
-            qt\font="Ubuntu Nerd Font,12,-1,5,50,0,0,0,0,0"
-            qt\icontheme=Papirus-Dark
-            qt\iconthemepath=
-            qt\locale=en_US
-            qt\palette=@Variant(\0\0\0\x44\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xffMMMMMM\0\0\x1\x1\xff\xffSSSSSS\0\0\x1\x1\xff\xffGGGGGG\0\0\x1\x1\xff\xff((((((\0\0\x1\x1\xff\xff\x32\x32\x32\x32\x32\x32\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xff\xff\xff\xff\xff\xff\xff\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\0\0\0\0\0\0\0\0\x1\x1\xff\xff\xe0\xe0\xe0\xe0\xe0\xe0\0\0\x1\x1\xff\xff\x33\x33\x33\x33\x33\x33\0\0\x1\x1\xff\xff\0\0WW\xae\xae\0\0\x1\x1\xff\xff\xe0\xe0@@\xfb\xfb\0\0\x1\x1\xff\xff......\0\0\x1\x1\xff\xffiiiiii\0\0\x1\x1\xff\xffMMMMMM\0\0\x1\x1\xff\xffSSSSSS\0\0\x1\x1\xff\xffGGGGGG\0\0\x1\x1\xff\xff((((((\0\0\x1\x1\xff\xff\x32\x32\x32\x32\x32\x32\0\0\x1\x1\xff\xffiiiiii\0\0\x1\x1\xff\xff\xff\xff\xff\xff\xff\xff\0\0\x1\x1\xff\xffiiiiii\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\0\0\0\0\0\0\0\0\x1\x1\xff\xff\xe0\xe0\xe0\xe0\xe0\xe0\0\0\x1\x1\x66\x66\x33\x33\x33\x33\x33\x33\0\0\x1\x1\xff\xff\0\0WW\xae\xae\0\0\x1\x1\xff\xff\xe0\xe0@@\xfb\xfb\0\0\x1\x1\xff\xff......\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xffMMMMMM\0\0\x1\x1\xff\xffSSSSSS\0\0\x1\x1\xff\xffGGGGGG\0\0\x1\x1\xff\xff((((((\0\0\x1\x1\xff\xff\x32\x32\x32\x32\x32\x32\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xff\xff\xff\xff\xff\xff\xff\0\0\x1\x1\xff\xff\xdf\xdf\xdf\xdf\xdf\xdf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\xf\xf\xf\xf\xf\xf\0\0\x1\x1\xff\xff\0\0\0\0\0\0\0\0\x1\x2\xff\xff\xff\xff\0\0\xdf\xdf\0\0\x1\x1\xff\xff\x33\x33\x33\x33\x33\x33\0\0\x1\x1\xff\xff\0\0WW\xae\xae\0\0\x1\x1\xff\xff\xe0\xe0@@\xfb\xfb\0\0\x1\x1\xff\xff......\0\0)
-            qt\plugindir=
-            qt\stylesheetpath=
-            qt\trpath=
-            qt\widgetstyle=kvantum
+          listener {
+              timeout = 150                                # 2.5min.
+              on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+              on-resume = brightnessctl -r                 # monitor backlight restor.
+          }
+
+          # turn off keyboard backlight, uncomment this section if have keyboard backlight.
+          listener { 
+              timeout = 150                                          # 2.5min.
+              on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
+              on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
+          }
+
+          listener {
+              timeout = 300                                 # 5min
+              on-timeout = loginctl lock-session            # lock screen when timeout has passed
+          }
+
+          listener {
+              timeout = 380                                 # 5.5min
+              on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
+              on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
+          }
+
+          listener {
+              timeout = 1800                                # 30min
+              on-timeout = systemctl suspend                # suspend pc
+          }
           '';
         };
       };
@@ -520,12 +544,6 @@ in {
         precmd () { vcs_info }
         export PS1='%~/''${vcs_info_msg_0_}%F{1} ❯%F{255} '
       '';
-      
-      # profileExtra = ''
-      #   if [ -z "''${DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
-      #     exec Hyprland
-      #   fi
-      # '';
     };
 
     # Cursor
@@ -544,18 +562,6 @@ in {
       theme.name = "Graphite-Dark";
       theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
     };
-
-    # Mako
-    # services.mako = {
-    #   enable = true;
-    #   backgroundColor = "#0F0F0FFF";
-    #   borderColor = "#E0E0E0FF";
-    #   borderRadius = 10;
-    #   borderSize = 2;
-    #   defaultTimeout = 5000;
-    #   font = "sans 12";
-    #   progressColor = "over #E0E0E0FF";
-    # };
 
     # Wofi
     programs.wofi = {
@@ -637,12 +643,6 @@ in {
       '';
     };
 
-    # Swayosd
-    # services.swayosd = {
-    #   enable = true;
-    #   maxVolume = 100;
-    # };
-
     # Wlogout
     programs.wlogout = {
       enable = true;
@@ -650,7 +650,7 @@ in {
       layout = [
         {
           label = "lock";
-          action = "swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000";
+          action = "hyprlock";
           text = "Lock";
           keybind = "l";
         }
