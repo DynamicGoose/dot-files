@@ -121,11 +121,11 @@ in {
   
   # Services
   services = {
+    displayManager.sessionPackages = [ pkgs.hyprland ];
     xserver = {
       enable = true;
       
       displayManager = {
-        sessionPackages = [ pkgs.hyprland ];
         lightdm = {
           enable = true;
           background = "${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg";
@@ -247,6 +247,7 @@ in {
     libreoffice
     libsForQt5.qtstyleplugin-kvantum
     lutris
+    manga-cli
     mpv
     musescore
     neofetch
@@ -269,7 +270,6 @@ in {
     spotify
     swaybg
     swayidle
-    swaylock-effects
     swaynotificationcenter
     swayosd
     tidal-hifi
@@ -283,6 +283,7 @@ in {
     xarchiver
     xwaylandvideobridge
     zapzap
+    zoom-us
     zulu
     zulu17
   ];
@@ -475,7 +476,6 @@ in {
             }
           '';
         };
-
         "hypridle" = {
           enable = true;
           target = "hypr/hypridle.conf";

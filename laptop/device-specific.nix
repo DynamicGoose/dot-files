@@ -29,6 +29,7 @@
 
         exec-once = xwaylandvideobridge
         exec-once = wl-clip-persist --clipboard both
+        exec-once = cliphist wipe
         exec-once = wl-paste --type text --watch cliphist store
         exec-once = wl-paste --type image --watch cliphist store
         exec-once = hypridle
@@ -159,7 +160,7 @@
         bind = SUPER, F, fullscreen,
         bind = CTRL_ALT, T, exec, kitty
         bind = SUPER, A, exec, wofi
-        bind = SUPER_ALT, L, exec, swaylock --screenshots --clock --indicator --effect-blur 8x8 --text-color ffffff --indicator-radius 200 --inside-color 00000000 --key-hl-color 00000000 --ring-color 00000000 --line-color 00000000 --separator-color 00000000 --text-ver-color ffffff --inside-ver-color 00000000 --ring-ver-color 00000000 --line-ver-color 00000000 --text-wrong-color cf4a4a --inside-wrong-color 00000000 --ring-wrong-color 00000000 --line-wrong-color 00000000 --text-clear-color 4acf4a --inside-clear-color 00000000 --ring-clear-color 00000000 --line-clear-color 00000000
+        bind = SUPER_ALT, L, exec, hyprlock
         bind = SUPER_ALT, P, exec, wlogout
         bind = ALT, comma, splitratio, -0.05
         bind = ALT, period, splitratio, +0.05
@@ -212,9 +213,8 @@
         binde = , XF86AudioRaiseVolume, exec, swayosd-client --output-volume=raise
         binde = , XF86AudioLowerVolume, exec, swayosd-client --output-volume=lower
         bind = , XF86AudioMute, exec, swayosd-client --output-volume=mute-toggle
-        binde = , XF86MonBrightnessUp, exec, brightnessctl s 5%+
-        # swayosd --brightness=raise
-        binde = , XF86MonBrightnessDown, exec, brightnessctl s 5%-
+        binde = , XF86MonBrightnessUp, exec, swayosd-client --brightness=raise
+        binde = , XF86MonBrightnessDown, exec, swayosd-client --brightness=lower
       '';
     };
     # Waybar
