@@ -232,6 +232,7 @@ in {
     gimp
     git
     glibc
+    gmetronome
     gnome.cheese
     gnome.gnome-disk-utility
     grim
@@ -272,6 +273,7 @@ in {
     swayidle
     swaynotificationcenter
     swayosd
+    telegram-desktop
     tidal-hifi
     vsce
     vscodium
