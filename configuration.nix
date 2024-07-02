@@ -1,12 +1,12 @@
 { inputs, config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  # home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in {
   imports =
     [
-      /etc/nixos/hardware-configuration.nix
-      /etc/nixos/device-specific.nix
-      (import "${home-manager}/nixos")
+      ./hardware-configuration.nix
+      ./device-specific.nix
+      (import "${inputs.home-manager}/nixos")
     ];
 
   nix.settings = {
@@ -79,7 +79,7 @@ in {
     };
     
     pulseaudio.enable = false;
-    opengl.enable = true;
+    graphics.enable = true;
   };
 
   # Security
@@ -224,8 +224,8 @@ in {
     btop
     cinnamon.nemo
     cliphist
-    discord
     esbuild
+    fastfetch
     firefox-wayland
     gedit
     geogebra
@@ -251,7 +251,6 @@ in {
     manga-cli
     mpv
     musescore
-    neofetch
     networkmanagerapplet
     nodePackages.typescript
     nodejs_20
@@ -275,6 +274,7 @@ in {
     swayosd
     telegram-desktop
     tidal-hifi
+    vesktop
     vsce
     vscodium
     wdisplays
@@ -284,6 +284,7 @@ in {
     wl-clip-persist
     xarchiver
     xwaylandvideobridge
+    youtube-dl
     zapzap
     zoom-us
     zulu
@@ -323,6 +324,9 @@ in {
   # Home-Manager
   home-manager.useGlobalPkgs = true;
   home-manager.users.gezaa = { pkgs, ... }: {
+    wayland.windowManager.hyprland.plugins = [
+      pkgs.hyprlandPlugins.hyprexpo
+    ];
     # XDG
     xdg = {
       enable = true;
