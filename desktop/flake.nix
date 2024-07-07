@@ -10,7 +10,7 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.tp-e490 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.desktop-gezaa = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs;

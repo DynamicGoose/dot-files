@@ -22,8 +22,8 @@
       enable = true;
 
       extraConfig = ''
-        monitor=DP-1, 1920x1080, 1920x0, 1
-        monitor=DP-2, 1920x1080, 0x0, 1
+        monitor=DP-1, 2560x1440@240, 1920x0, 1
+        monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
 
         exec-once = xwaylandvideobridge
         exec-once = cliphist wipe
@@ -744,7 +744,7 @@
                 background: @noti-bg-hover
             }
         '';
-      }
+      };
     };
   };
 }

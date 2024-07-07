@@ -163,7 +163,6 @@ in {
     '';
 
     blueman.enable = true;
-    cpupower-gui.enable = true;
     gnome.gnome-keyring.enable = true;
     gpm.enable = true;
     gvfs.enable = true;
@@ -230,7 +229,6 @@ in {
     fastfetch
     firefox-wayland
     gedit
-    geogebra
     gimp
     git
     glibc
