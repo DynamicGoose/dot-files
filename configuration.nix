@@ -81,6 +81,7 @@ in {
     pulseaudio.enable = false;
     graphics.enable = true;
   };
+  powerManagement.cpuFreqGovernor = "performance";
 
   # Security
   security = {
@@ -222,6 +223,7 @@ in {
     blender
     brightnessctl
     btop
+    cheese
     cinnamon.nemo
     cliphist
     esbuild
@@ -233,8 +235,7 @@ in {
     git
     glibc
     gmetronome
-    gnome.cheese
-    gnome.gnome-disk-utility
+    gnome-disk-utility
     grim
     hypridle
     hyprlock

@@ -125,7 +125,6 @@
         windowrule = float, title:^(Bluetooth Devices)
         windowrule = float, title:^(Network Connections)
         windowrule = float, title:^(Volume Control)
-        windowrule = float, title:^(Syncthing Tray)
         windowrule = float, title:(wdisplays)
         windowrule = float, title:(cpupower-gui)
         windowrule = float, qalculate-gtk
@@ -133,7 +132,6 @@
         windowrule = center (1), title:^(Bluetooth Devices)
         windowrule = center (1), title:^(Network Connections)
         windowrule = center (1), title:^(Volume Control)
-        windowrule = center (1), title:^(Syncthing Tray)
         windowrule = center (1), title:(wdisplays)
         windowrule = center (1), title:(cpupower-gui)
         windowrule = center (1), qalculate-gtk
@@ -141,7 +139,6 @@
         windowrule = size 60% 60%, title:^(Bluetooth Devices)
         windowrule = size 60% 60%, title:^(Network Connections)
         windowrule = size 60% 60%, title:^(Volume Control)
-        windowrule = size 60% 60%, title:^(Syncthing Tray)
         windowrule = size 60% 60%, title:(wdisplays)
         windowrule = size 60% 60%, title:(cpupower-gui)
 

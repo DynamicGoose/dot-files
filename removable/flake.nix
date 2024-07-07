@@ -1,5 +1,5 @@
 {
-  description = "Géza's NixOs flake for Laptop";
+  description = "Géza's NixOs flake for portable USB-Stick";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -10,7 +10,7 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.tp-e490 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.usb-gezaa = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs;

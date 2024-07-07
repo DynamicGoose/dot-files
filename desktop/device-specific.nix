@@ -22,7 +22,8 @@
       enable = true;
 
       extraConfig = ''
-        monitor=,preferred,auto,1
+        monitor=DP-1, 1920x1080, 1920x0, 1
+        monitor=DP-2, 1920x1080, 0x0, 1
 
         exec-once = xwaylandvideobridge
         exec-once = cliphist wipe
@@ -101,7 +102,7 @@
         }
 
         master {
-          new_is_master = true
+          new_status = inherit
         }
 
         gestures {
@@ -121,25 +122,19 @@
         windowrule = float, title:^(Bluetooth Devices)
         windowrule = float, title:^(Network Connections)
         windowrule = float, title:^(Volume Control)
-        windowrule = float, title:^(Syncthing Tray)
         windowrule = float, title:(wdisplays)
-        windowrule = float, title:(cpupower-gui)
         windowrule = float, qalculate-gtk
         
         windowrule = center (1), title:^(Bluetooth Devices)
         windowrule = center (1), title:^(Network Connections)
         windowrule = center (1), title:^(Volume Control)
-        windowrule = center (1), title:^(Syncthing Tray)
         windowrule = center (1), title:(wdisplays)
-        windowrule = center (1), title:(cpupower-gui)
         windowrule = center (1), qalculate-gtk
         
         windowrule = size 60% 60%, title:^(Bluetooth Devices)
         windowrule = size 60% 60%, title:^(Network Connections)
         windowrule = size 60% 60%, title:^(Volume Control)
-        windowrule = size 60% 60%, title:^(Syncthing Tray)
         windowrule = size 60% 60%, title:(wdisplays)
-        windowrule = size 60% 60%, title:(cpupower-gui)
 
         windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
         windowrulev2 = noanim,class:^(xwaylandvideobridge)$
@@ -147,6 +142,7 @@
         windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
 
         # Binds
+        bind = SUPER, D, hyprexpo:expo, toggle
         bind = , Print, exec, grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%s_grim.png') && wl-copy < ~/Pictures/Screenshots/$(date +'%s_grim.png')
         bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
         bind = CTRL_ALT, C, exec, hyprpicker --autocopy
@@ -211,6 +207,16 @@
         bind = , XF86AudioMute, exec, swayosd --output-volume=mute-toggle
         binde = , XF86MonBrightnessUp, exec, swayosd-client --brightness=raise
         binde = , XF86MonBrightnessDown, exec, swayosd-client --brightness=lower
+
+        plugin {
+          hyprexpo {
+            columns = 3
+            gap_size = 8
+            bg_col = rgb(000000)
+
+            enable_gesture = false # laptop touchpad        
+          }
+        }
       '';
     };
     
@@ -246,9 +252,9 @@
             "format-bluetooth" = "{icon}󰂯 {volume}%";
             "format-muted" = "";
             "format-icons" = {
-              "headphones" = "󰋋";
-              "phone" = "";
-              "default" = ["" ""];
+              "headphones" = "󰋋 ";
+              "phone" = " ";
+              "default" = [" " " "];
             };
             "on-click" = "pavucontrol";
           };
