@@ -68,9 +68,6 @@ in {
     ];
   };
 
-  # Sound
-  sound.enable = true;
-
   # Hardware
   hardware = {
     bluetooth = {
@@ -283,8 +280,8 @@ in {
     wl-clip-persist
     xarchiver
     xwaylandvideobridge
-    youtube-dl
     zapzap
+    zed-editor
     zoom-us
     zulu
     zulu17
