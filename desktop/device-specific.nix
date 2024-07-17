@@ -12,6 +12,30 @@
       device = "nodev";
     };
   };
+
+  # nix store on other device
+  fileSystems = {
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
+      neededForBoot = true;
+      options = [ "noatime" ];
+    };
+    "/run/media/gezaa/HDD01" = {
+      device = "/dev/disk/by-label/HDD01";
+      fsType = "ntfs";
+      neededForBoot = false;
+      options = [ "noatime" ];
+    };
+    "/run/media/gezaa/SSD02" = {
+      device = "/dev/disk/by-label/SSD02";
+      fsType = "ntfs";
+      neededForBoot = false;
+      options = [ "noatime" ];
+    };
+  };
+
+  nix.settings.auto-optimise-store = true;
   
   # Host name
   networking.hostName = "desktop-gezaa";
