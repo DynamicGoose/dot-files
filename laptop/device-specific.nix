@@ -16,8 +16,18 @@
   # Host name
   networking.hostName = "tp-e490";
 
+  # Power management
   services.cpupower-gui.enable = true;
   services.tlp.enable = true;
+
+  # Graphics drivers
+  hardware.graphics. extraPackages = with pkgs; [
+    intel-media-sdk
+    intel-media-driver
+    intel-vaapi-driver
+    libvdpau-va-gl
+  ];
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
   
   home-manager.users.gezaa = { pkgs, ...}: {    
     # Hyprland
@@ -28,14 +38,14 @@
         monitor=,preferred,auto,1
 
         exec-once = xwaylandvideobridge
-        exec-once = wl-clip-persist --clipboard both
+        exec-once = wl-clip-persist --clipboard regular
         exec-once = cliphist wipe
         exec-once = wl-paste --type text --watch cliphist store
         exec-once = wl-paste --type image --watch cliphist store
         exec-once = hypridle
         exec-once = waybar        
         exec-once = swayosd-server
-        exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
+        exec-once = swaybg -m fill -i ${pkgs.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
         exec-once = sleep 1 && blueman-applet

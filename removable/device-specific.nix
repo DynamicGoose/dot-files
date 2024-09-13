@@ -39,12 +39,12 @@
 
         exec-once = xwaylandvideobridge
         exec-once = cliphist wipe
-        exec-once = wl-clip-persist --clipboard both
+        exec-once = wl-clip-persist --clipboard regular
         exec-once = wl-paste --type text --watch cliphist store
         exec-once = wl-paste --type image --watch cliphist store
         exec-once = waybar
         exec-once = swayosd-server
-        exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
+        exec-once = swaybg -m fill -i ${pkgs.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
         exec-once = sleep 1 && blueman-applet

@@ -15,6 +15,7 @@ in {
  
   # Bootloader configured in device-specific.nix
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.supportedFilesystems = [ "ntfs" ];
    
   # Networking
   networking = {
@@ -93,16 +94,22 @@ in {
 
     pam.loginLimits = [
       {
-        domain = "@audio";
+        domain = "*";
         item = "rtprio";
-        type = "hard";
-        value = 95;
+        type = "-";
+        value = 99;
       }
       {
-        domain = "@audio";
+        domain = "*";
         item = "memlock";
-        type = "hard";
+        type = "-";
         value = "unlimited";
+      }
+      {
+        domain = "*";
+        item = "nofile";
+        type = "-";
+        value = "99999";
       }
     ];
   };
@@ -126,7 +133,7 @@ in {
       displayManager = {
         lightdm = {
           enable = true;
-          background = "${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg";
+          background = "${pkgs.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg";
           greeters.gtk = {
             enable = true;
             theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
@@ -153,6 +160,7 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      jack.enable = true;
     };
 
     logind.extraConfig = ''
@@ -215,27 +223,31 @@ in {
   environment.systemPackages = with pkgs; [
     adwaita-qt6
     ani-cli
+    audacity
     bespokesynth
     blender
     brightnessctl
     btop
     cheese
-    cinnamon.nemo
+    nemo
     cliphist
     esbuild
     fastfetch
     firefox-wayland
     gedit
+    geogebra6
     gimp
     git
     glibc
     gmetronome
     gnome-disk-utility
     grim
+    guitarix
     hypridle
     hyprlock
     hyprpicker
     imv
+    input-leap
     killall
     kitty
     kooha
@@ -280,9 +292,12 @@ in {
     wl-clip-persist
     xarchiver
     xwaylandvideobridge
+    yabridge
+    yabridgectl
     zapzap
     zed-editor
     zoom-us
+    zrythm
     zulu
     zulu17
   ];

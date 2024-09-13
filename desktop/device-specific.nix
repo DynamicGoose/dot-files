@@ -13,6 +13,17 @@
     };
   };
 
+  # AMD graphics drivers
+  hardware.amdgpu = {
+    initrd.enable = true;
+    opencl.enable = true;
+    amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
+      supportExperimental.enable = true;
+    };
+  };
+
   # nix store on other device
   fileSystems = {
     "/nix" = {
@@ -23,15 +34,13 @@
     };
     "/run/media/gezaa/HDD01" = {
       device = "/dev/disk/by-label/HDD01";
-      fsType = "ntfs";
-      neededForBoot = false;
-      options = [ "noatime" ];
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000" ];
     };
     "/run/media/gezaa/SSD02" = {
       device = "/dev/disk/by-label/SSD02";
-      fsType = "ntfs";
-      neededForBoot = false;
-      options = [ "noatime" ];
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000" ];
     };
   };
 
@@ -51,12 +60,12 @@
 
         exec-once = xwaylandvideobridge
         exec-once = cliphist wipe
-        exec-once = wl-clip-persist --clipboard both
+        exec-once = wl-clip-persist --clipboard regular
         exec-once = wl-paste --type text --watch cliphist store
         exec-once = wl-paste --type image --watch cliphist store
         exec-once = waybar
         exec-once = swayosd-server
-        exec-once = swaybg -m fill -i ${pkgs.budgie.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
+        exec-once = swaybg -m fill -i ${pkgs.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
         exec-once = sleep 1 && blueman-applet
