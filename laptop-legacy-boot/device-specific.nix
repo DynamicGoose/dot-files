@@ -7,31 +7,31 @@
   # Bootloader
   boot.loader = {
     efi = {
-      canTouchEfiVariables = false;
+      canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
     grub = {
       enable = true;
       efiSupport = true;
-      efiInstallAsRemovable = true;
       device = "nodev";
-      # UUID needs to be adjusted on new install
-      extraEntries = ''
-        menuentry "Netboot.xyz" {
-          insmod part_gpt
-          insmod ext2
-          insmod chain
-          search --no-floppy --fs-uuid --set root aa18d19c-9806-417e-be19-71065c50d455
-          chainloader ${pkgs.netbootxyz-efi}
-        }
-      '';
     };
   };
 
-  services.cpupower-gui.enable = true;
-
   # Host name
-  networking.hostName = "usb-gezaa";
+  networking.hostName = "dell-d830";
+
+  # Power management
+  services.cpupower-gui.enable = true;
+  services.tlp.enable = true;
+
+  # Graphics drivers
+  hardware.graphics. extraPackages = with pkgs; [
+    intel-media-sdk
+    intel-media-driver
+    intel-vaapi-driver
+    libvdpau-va-gl
+  ];
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
   home-manager.users.gezaa = {pkgs, ...}: {
     # Hyprland
@@ -41,11 +41,12 @@
       extraConfig = ''
         monitor=,preferred,auto,1
 
-        exec-once = cliphist wipe
         exec-once = wl-clip-persist --clipboard regular
+        exec-once = cliphist wipe
         exec-once = wl-paste --type text --watch cliphist store
         exec-once = wl-paste --type image --watch cliphist store
-        exec-once = sleep 1 && waybar
+        exec-once = hypridle
+        exec-once = waybar
         exec-once = swayosd-server
         exec-once = swaybg -m fill -i ${pkgs.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
         exec-once = nm-applet
@@ -220,9 +221,9 @@
         bindm = ALT, mouse:273, resizewindow
 
         # Funtion keys
-        binde = , XF86AudioRaiseVolume, exec, swayosd --output-volume=raise
-        binde = , XF86AudioLowerVolume, exec, swayosd --output-volume=lower
-        bind = , XF86AudioMute, exec, swayosd --output-volume=mute-toggle
+        binde = , XF86AudioRaiseVolume, exec, swayosd-client --output-volume=raise
+        binde = , XF86AudioLowerVolume, exec, swayosd-client --output-volume=lower
+        bind = , XF86AudioMute, exec, swayosd-client --output-volume=mute-toggle
         binde = , XF86MonBrightnessUp, exec, swayosd-client --brightness=raise
         binde = , XF86MonBrightnessDown, exec, swayosd-client --brightness=lower
 
@@ -240,7 +241,6 @@
         }
       '';
     };
-
     # Waybar
     programs.waybar = {
       enable = true;
@@ -260,6 +260,7 @@
 
           "hyprland/workspaces" = {
             "on-click" = "activate";
+            "sort-by-number" = true;
             "all-outputs" = true;
             "active-only" = false;
           };
@@ -281,7 +282,7 @@
           "pulseaudio" = {
             "format" = "{icon} {volume}%";
             "format-bluetooth" = "{icon}󰂯 {volume}%";
-            "format-muted" = "";
+            "format-muted" = "";
             "format-icons" = {
               "headphones" = "󰋋 ";
               "phone" = " ";

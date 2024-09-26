@@ -1,5 +1,5 @@
 {
-  description = "Géza's NixOs flake for Desktop";
+  description = "Géza's NixOs flake for Laptop";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -14,7 +14,7 @@
     nixpkgs,
     ...
   } @ inputs: {
-    nixosConfigurations.desktop-gezaa = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.dell-d830 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs;

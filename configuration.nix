@@ -1,22 +1,25 @@
-{ inputs, config, pkgs, ... }:
-let
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}: let
   # home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./device-specific.nix
-      (import "${inputs.home-manager}/nixos")
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./device-specific.nix
+    (import "${inputs.home-manager}/nixos")
+  ];
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
- 
+
   # Bootloader configured in device-specific.nix
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.supportedFilesystems = [ "ntfs" ];
-   
+  boot.supportedFilesystems = ["ntfs"];
+
   # Networking
   networking = {
     # Host name configured in device-specific.nix
@@ -56,11 +59,11 @@ in {
   # Fonts
   fonts = {
     fontconfig.defaultFonts = {
-      serif = [ "DejaVu Serif" ];
-      sansSerif = [ "Ubuntu Nerd Font" ];
-      monospace = [ "JetBrainsMono NF"];
+      serif = ["DejaVu Serif"];
+      sansSerif = ["Ubuntu Nerd Font"];
+      monospace = ["JetBrainsMono NF"];
     };
-    
+
     packages = with pkgs; [
       jetbrains-mono
       nerdfonts
@@ -75,7 +78,7 @@ in {
       enable = true;
       powerOnBoot = false;
     };
-    
+
     pulseaudio.enable = false;
     graphics.enable = true;
   };
@@ -120,23 +123,23 @@ in {
     gezaa = {
       isNormalUser = true;
       description = "Géza Ahsendorf";
-      extraGroups = [ "networkmanager" "wheel" "audio" ];
+      extraGroups = ["networkmanager" "wheel" "audio"];
     };
   };
-  
+
   # Services
   services = {
-    displayManager.sessionPackages = [ pkgs.hyprland ];
+    displayManager.sessionPackages = [pkgs.hyprland];
     xserver = {
       enable = true;
-      
+
       displayManager = {
         lightdm = {
           enable = true;
           background = "${pkgs.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg";
           greeters.gtk = {
             enable = true;
-            theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
+            theme.package = pkgs.graphite-gtk-theme.override {tweaks = ["black"];};
             theme.name = "Graphite-Dark";
             iconTheme.package = pkgs.papirus-icon-theme;
             iconTheme.name = "Papirus-Dark";
@@ -178,9 +181,9 @@ in {
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -205,7 +208,7 @@ in {
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
-  
+
   nixpkgs.overlays = [
     (self: super: {
       ollama = super.ollama.overrideAttrs (oldAttrs: {
@@ -215,23 +218,24 @@ in {
   ];
 
   # Environment
-  environment.shells = with pkgs; [ zsh bash ];
+  environment.shells = with pkgs; [zsh bash];
   # electron apps should use Wayland
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland;xkb";
   };
   environment.systemPackages = with pkgs; [
     adwaita-qt6
     ani-cli
     audacity
     bespokesynth
+    binsider
     blender
     brightnessctl
     btop
     cheese
     nemo
     cliphist
-    esbuild
     fastfetch
     firefox-wayland
     gedit
@@ -241,11 +245,12 @@ in {
     glibc
     gmetronome
     gnome-disk-utility
-    grim
     guitarix
+    gxplugins-lv2
     hypridle
     hyprlock
     hyprpicker
+    hyprshot
     imv
     input-leap
     killall
@@ -271,17 +276,14 @@ in {
     qalculate-gtk
     qsyncthingtray
     rustup
-    sbt
     signal-desktop
-    simple-http-server
-    slurp
     spotify
     swaybg
     swayidle
     swaynotificationcenter
     swayosd
     telegram-desktop
-    tidal-hifi
+    thunderbird
     vesktop
     vsce
     vscodium
@@ -291,11 +293,10 @@ in {
     wl-clipboard
     wl-clip-persist
     xarchiver
-    xwaylandvideobridge
     yabridge
     yabridgectl
     zapzap
-    zed-editor
+    zed-editor.fhs
     zoom-us
     zrythm
     zulu
@@ -310,7 +311,7 @@ in {
 
   # Virtualisation
   virtualisation.libvirtd.enable = true;
-  
+
   # Programs
   programs = {
     steam = {
@@ -318,9 +319,10 @@ in {
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
-    
+
     dconf.enable = true;
     evince.enable = true;
+  
     virt-manager.enable = true;
     xwayland.enable = true;
     zsh.enable = true;
@@ -334,7 +336,7 @@ in {
 
   # Home-Manager
   home-manager.useGlobalPkgs = true;
-  home-manager.users.gezaa = { pkgs, ... }: {
+  home-manager.users.gezaa = {pkgs, ...}: {
     wayland.windowManager.hyprland.plugins = [
       pkgs.hyprlandPlugins.hyprexpo
     ];
@@ -442,7 +444,7 @@ in {
             }
             background {
               monitor =
-              path =      
+              path =
               color = rgba(0, 0, 0, 0.4)
 
               blur_passes = 0
@@ -482,7 +484,7 @@ in {
               valign = center
             }
             label {
-              monitor = 
+              monitor =
               text = $TIME
               color = rgba(240, 240, 240, 1.0)
               font_size = 48
@@ -497,40 +499,40 @@ in {
           enable = true;
           target = "hypr/hypridle.conf";
           text = ''
-            general {
-              lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
-              before_sleep_cmd = loginctl lock-session    # lock before suspend.
-              after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
-          }
+              general {
+                lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
+                before_sleep_cmd = loginctl lock-session    # lock before suspend.
+                after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
+            }
 
-          listener {
-              timeout = 150                                # 2.5min.
-              on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
-              on-resume = brightnessctl -r                 # monitor backlight restor.
-          }
+            listener {
+                timeout = 150                                # 2.5min.
+                on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+                on-resume = brightnessctl -r                 # monitor backlight restor.
+            }
 
-          # turn off keyboard backlight, uncomment this section if have keyboard backlight.
-          listener { 
-              timeout = 150                                          # 2.5min.
-              on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
-              on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
-          }
+            # turn off keyboard backlight, uncomment this section if have keyboard backlight.
+            listener {
+                timeout = 150                                          # 2.5min.
+                on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
+                on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
+            }
 
-          listener {
-              timeout = 300                                 # 5min
-              on-timeout = loginctl lock-session            # lock screen when timeout has passed
-          }
+            listener {
+                timeout = 300                                 # 5min
+                on-timeout = loginctl lock-session            # lock screen when timeout has passed
+            }
 
-          listener {
-              timeout = 380                                 # 5.5min
-              on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
-              on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
-          }
+            listener {
+                timeout = 380                                 # 5.5min
+                on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
+                on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
+            }
 
-          listener {
-              timeout = 1800                                # 30min
-              on-timeout = systemctl suspend                # suspend pc
-          }
+            listener {
+                timeout = 1800                                # 30min
+                on-timeout = systemctl suspend                # suspend pc
+            }
           '';
         };
       };
@@ -543,15 +545,15 @@ in {
         size = 1000;
         save = 1000;
       };
-      
+
       autocd = true;
       defaultKeymap = "emacs";
-      
+
       shellAliases = {
         ll = "ls -l";
         ".." = "cd ..";
       };
-      
+
       initExtra = ''
         autoload -Uz vcs_info
         setopt prompt_subst
@@ -577,7 +579,7 @@ in {
       iconTheme.name = "Papirus-Dark";
       iconTheme.package = pkgs.papirus-icon-theme;
       theme.name = "Graphite-Dark";
-      theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
+      theme.package = pkgs.graphite-gtk-theme.override {tweaks = ["black"];};
     };
 
     # Wofi
@@ -644,7 +646,7 @@ in {
           margin: 0px 8px 0px 8px;
           border: none;
           color: #ffffff;
-        } 
+        }
 
         #entry:selected {
         	background-color: #e0e0e0;
@@ -678,36 +680,36 @@ in {
           keybind = "h";
         }
         {
-            label = "logout";
-            action = "loginctl terminate-user $USER";
-            text = "Logout";
-            keybind = "e";
+          label = "logout";
+          action = "loginctl terminate-user $USER";
+          text = "Logout";
+          keybind = "e";
         }
         {
-            label = "shutdown";
-            action = "systemctl poweroff";
-            text = "Shutdown";
-            keybind = "s";
+          label = "shutdown";
+          action = "systemctl poweroff";
+          text = "Shutdown";
+          keybind = "s";
         }
         {
-            label = "suspend";
-            action = "systemctl suspend";
-            text = "Suspend";
-            keybind = "u";
+          label = "suspend";
+          action = "systemctl suspend";
+          text = "Suspend";
+          keybind = "u";
         }
         {
-            label = "reboot";
-            action = "systemctl reboot";
-            text = "Reboot";
-            keybind = "r";
+          label = "reboot";
+          action = "systemctl reboot";
+          text = "Reboot";
+          keybind = "r";
         }
       ];
-      
+
       style = ''
         window {
           background-color: rgba(0, 0, 0, 0.4);
         }
-        
+
         button {
           font-size: 48px;
           color: #E0E0E0;
@@ -766,7 +768,7 @@ in {
 
     services.syncthing = {
       enable = true;
-      extraOptions = [ "--gui-apikey=gezaa" ];
+      extraOptions = ["--gui-apikey=gezaa"];
     };
 
     # Dconf
@@ -776,7 +778,7 @@ in {
         uris = ["qemu:///system"];
       };
     };
-    
+
     home.stateVersion = "23.05";
   };
 }
