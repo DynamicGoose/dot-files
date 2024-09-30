@@ -129,7 +129,6 @@ in {
 
   # Services
   services = {
-    displayManager.sessionPackages = [pkgs.hyprland];
     xserver = {
       enable = true;
 
@@ -198,7 +197,6 @@ in {
   xdg.portal = {
     enable = true;
     configPackages = [
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
   };
@@ -207,14 +205,6 @@ in {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
-  ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      ollama = super.ollama.overrideAttrs (oldAttrs: {
-        version = "0.1.8";
-      });
-    })
   ];
 
   # Environment
@@ -265,8 +255,6 @@ in {
     mpv
     musescore
     networkmanagerapplet
-    nodePackages.typescript
-    nodejs_20
     obsidian
     ollama
     prismlauncher
@@ -279,13 +267,11 @@ in {
     signal-desktop
     spotify
     swaybg
-    swayidle
     swaynotificationcenter
     swayosd
     telegram-desktop
     thunderbird
     vesktop
-    vsce
     vscodium
     wdisplays
     wget
@@ -302,6 +288,9 @@ in {
     zulu
     zulu17
   ];
+
+  # Programs
+  programs.hyprland.enable = true;
 
   # QT
   qt = {
