@@ -17,8 +17,12 @@ in {
   };
 
   # Bootloader configured in device-specific.nix
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.supportedFilesystems = ["ntfs"];
+
+  # Boot
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = ["ntfs"];
+  };
 
   # Networking
   networking = {
@@ -80,7 +84,10 @@ in {
     };
 
     pulseaudio.enable = false;
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
   powerManagement.cpuFreqGovernor = "performance";
 
@@ -135,7 +142,7 @@ in {
       displayManager = {
         lightdm = {
           enable = true;
-          background = "${pkgs.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg";
+          background = "${pkgs.budgie-backgrounds}/share/backgrounds/budgie/valley-midnight.jpg";
           greeters.gtk = {
             enable = true;
             theme.package = pkgs.graphite-gtk-theme.override {tweaks = ["black"];};
@@ -169,11 +176,28 @@ in {
       HandlePowerKey=suspend
     '';
 
+    # Printing
+    printing = {
+      enable = true;
+      drivers = with pkgs; [ gutenprint ];
+    };
+
+    # Printer autodiscovery
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    mysql = {
+      enable = true;
+      package = pkgs.mariadb;
+    };
+    
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
     gpm.enable = true;
     gvfs.enable = true;
-    printing.enable = true;
   };
 
   # Systemd
@@ -220,11 +244,10 @@ in {
     audacity
     bespokesynth
     binsider
-    blender
+    blender-hip
     brightnessctl
     btop
     cheese
-    nemo
     cliphist
     fastfetch
     firefox-wayland
@@ -255,6 +278,7 @@ in {
     mpv
     musescore
     networkmanagerapplet
+    nemo
     obsidian
     ollama
     prismlauncher

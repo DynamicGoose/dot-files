@@ -17,35 +17,23 @@
     };
   };
 
-  # AMD graphics drivers
-  hardware.amdgpu = {
-    opencl.enable = true;
-  };
+  # Host name
+  networking.hostName = "tp-e490";
 
-  # nix store on other device
-  fileSystems = {
-    "/nix" = {
-      device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
-      neededForBoot = true;
-      options = ["noatime"];
-    };
-    "/run/media/gezaa/HDD01" = {
-      device = "/dev/disk/by-label/HDD01";
-      fsType = "ntfs-3g";
-      options = ["rw" "uid=1000"];
-    };
-    "/run/media/gezaa/SSD02" = {
-      device = "/dev/disk/by-label/SSD02";
-      fsType = "ntfs-3g";
-      options = ["rw" "uid=1000"];
-    };
-  };
+  # Power management
+  services.cpupower-gui.enable = true;
+  services.tlp.enable = true;
+
+  # Graphics drivers
+  hardware.graphics.extraPackages = with pkgs; [
+    intel-media-sdk
+    intel-media-driver
+    intel-vaapi-driver
+    libvdpau-va-gl
+  ];
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
   nix.settings.auto-optimise-store = true;
-
-  # Host name
-  networking.hostName = "desktop-gezaa";
 
   home-manager.users.gezaa = {pkgs, ...}: {
     # Hyprland
@@ -53,14 +41,14 @@
       enable = true;
 
       extraConfig = ''
-        monitor=DP-1, 2560x1440@240, 1920x0, 1
-        monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
+        monitor=,preferred,auto,1
 
-        exec-once = cliphist wipe
         exec-once = wl-clip-persist --clipboard regular
+        exec-once = cliphist wipe
         exec-once = wl-paste --type text --watch cliphist store
         exec-once = wl-paste --type image --watch cliphist store
-        exec-once = sleep 1 && waybar
+        exec-once = hypridle
+        exec-once = waybar
         exec-once = swayosd-server
         exec-once = swaybg -m fill -i ${pkgs.budgie-backgrounds}/share/backgrounds/budgie/valley-midnight.jpg -o eDP-1
         exec-once = nm-applet
@@ -153,18 +141,21 @@
         windowrule = float, title:^(Network Connections)
         windowrule = float, title:^(Volume Control)
         windowrule = float, title:(wdisplays)
+        windowrule = float, title:(cpupower-gui)
         windowrule = float, qalculate-gtk
 
         windowrule = center (1), title:^(Bluetooth Devices)
         windowrule = center (1), title:^(Network Connections)
         windowrule = center (1), title:^(Volume Control)
         windowrule = center (1), title:(wdisplays)
+        windowrule = center (1), title:(cpupower-gui)
         windowrule = center (1), qalculate-gtk
 
         windowrule = size 60% 60%, title:^(Bluetooth Devices)
         windowrule = size 60% 60%, title:^(Network Connections)
         windowrule = size 60% 60%, title:^(Volume Control)
         windowrule = size 60% 60%, title:(wdisplays)
+        windowrule = size 60% 60%, title:(cpupower-gui)
 
         windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
         windowrulev2 = noanim,class:^(xwaylandvideobridge)$
@@ -232,9 +223,9 @@
         bindm = ALT, mouse:273, resizewindow
 
         # Funtion keys
-        binde = , XF86AudioRaiseVolume, exec, swayosd --output-volume=raise
-        binde = , XF86AudioLowerVolume, exec, swayosd --output-volume=lower
-        bind = , XF86AudioMute, exec, swayosd --output-volume=mute-toggle
+        binde = , XF86AudioRaiseVolume, exec, swayosd-client --output-volume=raise
+        binde = , XF86AudioLowerVolume, exec, swayosd-client --output-volume=lower
+        bind = , XF86AudioMute, exec, swayosd-client --output-volume=mute-toggle
         binde = , XF86MonBrightnessUp, exec, swayosd-client --brightness=raise
         binde = , XF86MonBrightnessDown, exec, swayosd-client --brightness=lower
 
@@ -244,12 +235,14 @@
             gap_size = 8
             bg_col = rgb(000000)
 
-            enable_gesture = false # laptop touchpad
+            enable_gesture = true # laptop touchpad
+            gesture_fingers = 3 # 3 or 4
+            gesture_distance = 300 # how far is the "max"
+            gesture_positive = true # positive = swipe down. Negative = swipe up.
           }
         }
       '';
     };
-
     # Waybar
     programs.waybar = {
       enable = true;
@@ -265,12 +258,23 @@
           "height" = 34;
           "modules-left" = ["clock" "hyprland/workspaces"];
           "modules-center" = ["hyprland/window"];
-          "modules-right" = ["tray" "pulseaudio" "custom/menu"];
+          "modules-right" = ["tray" "pulseaudio" "backlight" "battery" "custom/menu"];
 
           "hyprland/workspaces" = {
             "on-click" = "activate";
+            "sort-by-number" = true;
             "all-outputs" = true;
             "active-only" = false;
+          };
+
+          "backlight" = {
+            "format" = "{icon} {percent}%";
+            "format-icons" = ["󰃞" "󰃟" "󰃠"];
+          };
+
+          "battery" = {
+            "format" = "{icon} {capacity}%";
+            "format-icons" = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           };
 
           "clock" = {
@@ -280,7 +284,7 @@
           "pulseaudio" = {
             "format" = "{icon} {volume}%";
             "format-bluetooth" = "{icon}󰂯 {volume}%";
-            "format-muted" = "";
+            "format-muted" = "";
             "format-icons" = {
               "headphones" = "󰋋 ";
               "phone" = " ";
@@ -417,8 +421,8 @@
                               "command": "wdisplays"
                           },
                           {
-                              "label": "󰍬",
-                              "command": "amixer set Capture toggle"
+                              "label": "󱐋",
+                              "command": "cpupower-gui"
                           },
                           {
                               "label": "󰖩",
@@ -532,12 +536,12 @@
 
           .notification-action:first-child {
               border-bottom-left-radius: 6px;
-              background: #1b1b2b
+              background: @noti-bg-hover
           }
 
           .notification-action:last-child {
               border-bottom-right-radius: 6px;
-              background: #1b1b2b
+              background: @noti-bg-hover
           }
 
           .inline-reply {

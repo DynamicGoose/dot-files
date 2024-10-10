@@ -47,7 +47,7 @@
         exec-once = wl-paste --type image --watch cliphist store
         exec-once = sleep 1 && waybar
         exec-once = swayosd-server
-        exec-once = swaybg -m fill -i ${pkgs.budgie-backgrounds}/share/backgrounds/budgie/saturnian-profile.jpg -o eDP-1
+        exec-once = swaybg -m fill -i ${pkgs.budgie-backgrounds}/share/backgrounds/budgie/valley-midnight.jpg -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
         exec-once = sleep 1 && blueman-applet
@@ -402,12 +402,12 @@
                               "command": "systemctl reboot"
                           },
                           {
-                              "label": "󰌾",
-                              "command": "hyprlock"
+                              "label": "",
+                              "command": "systemctl hibernate"
                           },
                           {
                               "label": "󰍃",
-                              "command": "killall -u gezaa"
+                              "command": "loginctl terminate-user $USER"
                           },
                           {
                               "label": "󰏥",
