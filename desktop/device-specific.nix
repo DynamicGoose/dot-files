@@ -151,19 +151,19 @@
         # Window Rules
         windowrule = float, title:^(Bluetooth Devices)
         windowrule = float, title:^(Network Connections)
-        windowrule = float, title:^(Volume Control)
+        windowrule = float, title:^(Pipewire Volume Control)
         windowrule = float, title:(wdisplays)
         windowrule = float, qalculate-gtk
 
         windowrule = center (1), title:^(Bluetooth Devices)
         windowrule = center (1), title:^(Network Connections)
-        windowrule = center (1), title:^(Volume Control)
+        windowrule = center (1), title:^(Pipewire Volume Control)
         windowrule = center (1), title:(wdisplays)
         windowrule = center (1), qalculate-gtk
 
         windowrule = size 60% 60%, title:^(Bluetooth Devices)
         windowrule = size 60% 60%, title:^(Network Connections)
-        windowrule = size 60% 60%, title:^(Volume Control)
+        windowrule = size 60% 60%, title:^(Pipewire Volume Control)
         windowrule = size 60% 60%, title:(wdisplays)
 
         windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
@@ -286,7 +286,7 @@
               "phone" = " ";
               "default" = [" " " "];
             };
-            "on-click" = "pavucontrol";
+            "on-click" = "pwvucontrol";
           };
 
           "tray" = {
@@ -406,7 +406,7 @@
                           },
                           {
                               "label": "󰍃",
-                              "command": "loginctl terminate-user $USER"
+                              "command": "hyprctl dispatch exit"
                           },
                           {
                               "label": "󰏥",
@@ -466,7 +466,7 @@
 
           .notification {
               border-radius: 10px;
-              margin: 6px;
+              margin: 6px 0px 0px 0px;
               padding: 0;
               border: 2px solid @noti-border-color
           }

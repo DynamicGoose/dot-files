@@ -89,7 +89,6 @@ in {
       enable32Bit = true;
     };
   };
-  powerManagement.cpuFreqGovernor = "performance";
 
   # Security
   security = {
@@ -226,10 +225,13 @@ in {
   };
 
   # NixPkgs
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [ ];
+    };
+    overlays = [ ];
+  };
 
   # Environment
   environment.shells = with pkgs; [zsh bash];
@@ -244,7 +246,6 @@ in {
     audacity
     bespokesynth
     binsider
-    blender-hip
     brightnessctl
     btop
     cheese
@@ -252,14 +253,16 @@ in {
     fastfetch
     firefox-wayland
     gedit
-    geogebra6
     gimp
     git
     glibc
     gmetronome
     gnome-disk-utility
+    gnome-clocks
+    gnome-solanum
     guitarix
     gxplugins-lv2
+    helvum
     hypridle
     hyprlock
     hyprpicker
@@ -282,11 +285,12 @@ in {
     obsidian
     ollama
     prismlauncher
-    pavucontrol
     protonup-qt
+    pwvucontrol
     python3
     qalculate-gtk
     qsyncthingtray
+    r2modman
     rustup
     signal-desktop
     spotify
@@ -694,7 +698,7 @@ in {
         }
         {
           label = "logout";
-          action = "loginctl terminate-user $USER";
+          action = "hyprctl dispatch exit";
           text = "Logout";
           keybind = "e";
         }
