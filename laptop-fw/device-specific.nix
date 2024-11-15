@@ -14,19 +14,25 @@
       enable = true;
       efiSupport = true;
       device = "nodev";
-      timeoutStyle = "hidden";
       splashImage = null;
     };
   };
 
-  # Host name
-  networking.hostName = "fw-gezaa";
+  # AMD graphics drivers
+  hardware.amdgpu = {
+    opencl.enable = true;
+    initrd.enable = true;
+  };
 
   # Power management
   services.cpupower-gui.enable = true;
   services.tlp.enable = true;
 
   nix.settings.auto-optimise-store = true;
+
+
+  # Host name
+  networking.hostName = "fw-gezaa";
 
   home-manager.users.gezaa = {pkgs, ...}: {
     # Hyprland
@@ -93,10 +99,9 @@
             new_optimizations = true
           }
 
-          drop_shadow = false
-          shadow_range = 4
-          shadow_render_power = 3
-          col.shadow = rgba(1a1a1aee)
+          shadow {
+            enabled = false
+          }
         }
 
         animations {
