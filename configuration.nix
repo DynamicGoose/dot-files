@@ -22,16 +22,28 @@ in {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = ["ntfs"];
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
+    };
+
+    # Silent boot
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
   };
 
   # Networking
   networking = {
     # Host name configured in device-specific.nix
-
-    # Allow port 8000 for simple-http-server
-    firewall.allowedTCPPorts = [
-      8000
-    ];
 
     networkmanager = {
       enable = true;
@@ -83,23 +95,18 @@ in {
       powerOnBoot = false;
     };
 
-    pulseaudio.enable = false;
     graphics = {
       enable = true;
       enable32Bit = true;
     };
+    
+    pulseaudio.enable = false;
   };
 
   # Security
   security = {
     rtkit.enable = true;
     polkit.enable = true;
-
-    pam.services.swaylock = {
-      text = ''
-        auth include login
-      '';
-    };
 
     pam.loginLimits = [
       {
@@ -141,7 +148,7 @@ in {
       displayManager = {
         lightdm = {
           enable = true;
-          background = "${pkgs.budgie-backgrounds}/share/backgrounds/budgie/valley-midnight.jpg";
+          background = "${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png";
           greeters.gtk = {
             enable = true;
             theme.package = pkgs.graphite-gtk-theme.override {tweaks = ["black"];};
@@ -149,13 +156,13 @@ in {
             iconTheme.package = pkgs.papirus-icon-theme;
             iconTheme.name = "Papirus-Dark";
             cursorTheme.package = pkgs.graphite-cursors;
-            cursorTheme.name = "graphite-gark";
+            cursorTheme.name = "graphite-dark";
             cursorTheme.size = 24;
             indicators = [];
           };
         };
       };
-
+      
       xkb = {
         layout = "de";
         variant = "";
@@ -187,13 +194,9 @@ in {
       nssmdns4 = true;
       openFirewall = true;
     };
-
-    mysql = {
-      enable = true;
-      package = pkgs.mariadb;
-    };
     
     blueman.enable = true;
+    fprintd.enable = true;
     gnome.gnome-keyring.enable = true;
     gpm.enable = true;
     gvfs.enable = true;
@@ -214,6 +217,8 @@ in {
         TimeoutStopSec = 10;
       };
     };
+    user.extraConfig = "DefaultLimitNOFILE=524288";
+    extraConfig = "DefaultLimitNOFILE=524288";
   };
 
   # XDG
@@ -222,6 +227,13 @@ in {
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
     ];
+  };
+
+  # QT
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+    style = "kvantum";
   };
 
   # NixPkgs
@@ -239,12 +251,11 @@ in {
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     QT_QPA_PLATFORM = "wayland;xkb";
+    QT_STYLE_OVERRIDE = "kvantum";
   };
   environment.systemPackages = with pkgs; [
-    adwaita-qt6
     ani-cli
     audacity
-    bespokesynth
     binsider
     brightnessctl
     btop
@@ -263,6 +274,7 @@ in {
     guitarix
     gxplugins-lv2
     helvum
+    heroic
     hypridle
     hyprlock
     hyprpicker
@@ -275,6 +287,7 @@ in {
     krita
     libgcc
     libreoffice
+    libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
     lutris
     manga-cli
@@ -283,7 +296,7 @@ in {
     networkmanagerapplet
     nemo
     obsidian
-    ollama
+    playerctl
     prismlauncher
     protonup-qt
     pwvucontrol
@@ -320,12 +333,6 @@ in {
   # Programs
   programs.hyprland.enable = true;
 
-  # QT
-  qt = {
-    enable = true;
-    platformTheme = "qt5ct";
-  };
-
   # Virtualisation
   virtualisation.libvirtd.enable = true;
 
@@ -339,11 +346,10 @@ in {
 
     dconf.enable = true;
     evince.enable = true;
-  
+    ssh.askPassword = "";
     virt-manager.enable = true;
     xwayland.enable = true;
     zsh.enable = true;
-    ssh.askPassword = "";
   };
 
   # System
@@ -354,118 +360,35 @@ in {
   # Home-Manager
   home-manager.useGlobalPkgs = true;
   home-manager.users.gezaa = {pkgs, ...}: {
-    wayland.windowManager.hyprland.plugins = [
-      pkgs.hyprlandPlugins.hyprexpo
-    ];
     # XDG
     xdg = {
       enable = true;
       configFile = {
-        "kvantum" = {
-          enable = true;
-          target = "Kvantum/home-manager.md";
-          text = ''
-            # Theme
-            Graphite-Dark
-          '';
-          onChange = "rm -rf /home/gezaa/.config/Kvantum/Graphite && cp -rf /home/gezaa/git/dot-files/Graphite /home/gezaa/.config/Kvantum/Graphite && rm -rf /home/gezaa/.config/Kvantum/kvantum.kvconfig && touch /home/gezaa/.config/Kvantum/kvantum.kvconfig && echo -e '[General]''\ntheme=GraphiteDark' >> /home/gezaa/.config/Kvantum/kvantum.kvconfig";
-        };
-        "qt5ct" = {
-          enable = true;
-          target = "qt5ct/qt5ct.conf";
-          text = ''
-            [Appearance]
-            color_scheme_path=/nix/store/4i9q0lnzl8cr7yq0s07bd4yfbz7gc7nc-qt5ct-1.7/share/qt5ct/colors/darker.conf
-            custom_palette=true
-            icon_theme=Papirus-Dark
-            standard_dialogs=default
-            style=kvantum-dark
-
-            [Fonts]
-            fixed="Ubuntu Nerd Font,12,-1,5,50,0,0,0,0,0"
-            general="Ubuntu Nerd Font,12,-1,5,50,0,0,0,0,0"
-
-            [Interface]
-            activate_item_on_single_click=1
-            buttonbox_layout=0
-            cursor_flash_time=1000
-            dialog_buttons_have_icons=1
-            double_click_interval=400
-            gui_effects=@Invalid()
-            keyboard_scheme=2
-            menus_have_icons=true
-            show_shortcuts_in_context_menus=true
-            stylesheets=@Invalid()
-            toolbutton_style=4
-            underline_shortcut=1
-            wheel_scroll_lines=3
-
-            [SettingsWindow]
-            geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0\0\0\0\ao\0\0\x3\xff\0\0\0\0\0\0\0\0\0\0\x2\xde\0\0\x3\x1b\0\0\0\0\x2\0\0\0\a\x80\0\0\0\0\0\0\0\0\0\0\ao\0\0\x3\xff)
-
-            [Troubleshooting]
-            force_raster_widgets=1
-            ignored_applications=@Invalid()
-          '';
-        };
-        "qt6ct" = {
-          enable = true;
-          target = "qt6ct/qt6ct.conf";
-          text = ''
-            [Appearance]
-            color_scheme_path=/nix/store/2jgifi5bl6qim74h2jwpdz1jwbd4qcbm-qt6ct-0.8/share/qt6ct/colors/airy.conf
-            custom_palette=false
-            icon_theme=Papirus-Dark
-            standard_dialogs=default
-            style=Adwaita-Dark
-
-            [Fonts]
-            fixed="Ubuntu Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
-            general="Ubuntu Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
-
-            [Interface]
-            activate_item_on_single_click=1
-            buttonbox_layout=0
-            cursor_flash_time=1000
-            dialog_buttons_have_icons=1
-            double_click_interval=400
-            gui_effects=@Invalid()
-            keyboard_scheme=2
-            menus_have_icons=true
-            show_shortcuts_in_context_menus=true
-            stylesheets=@Invalid()
-            toolbutton_style=4
-            underline_shortcut=1
-            wheel_scroll_lines=3
-
-            [PaletteEditor]
-            geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\xc4\0\0\0\xd0\0\0\x3:\0\0\x2\xe0\0\0\0\xc4\0\0\0\xd0\0\0\x3:\0\0\x2\xe0\0\0\0\0\0\0\0\0\a\x80\0\0\0\xc4\0\0\0\xd0\0\0\x3:\0\0\x2\xe0)
-
-            [SettingsWindow]
-            geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0\0\0\0\x4\x12\0\0\x3\xff\0\0\0\0\0\0\0\0\0\0\x4\x12\0\0\x3\xff\0\0\0\0\0\0\0\0\a\x80\0\0\0\0\0\0\0\0\0\0\x4\x12\0\0\x3\xff)
-
-            [Troubleshooting]
-            force_raster_widgets=1
-            ignored_applications=@Invalid()
-          '';
-        };
+        # kvantum theme
+        "Kvantum/Graphite/GraphiteDark.kvconfig".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite/GraphiteDark.kvconfig";
+        "Kvantum/Graphite/GraphiteDark.svg".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite/GraphiteDark.svg";
+        "Kvantum/Graphite/Graphite.kvconfig".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite/Graphite.kvconfig";
+        "Kvantum/Graphite/Graphite.svg".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite/Graphite.svg";
+        "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=GraphiteDark";
+        
         "hyprlock" = {
           enable = true;
           target = "hypr/hyprlock.conf";
           text = ''
             general {
-              disable_loading_bar = false
               hide_cursor = true
               grace = 0
               no_fade_in = false
+              ignore_empty_input = true
+              enable_fingerprint = true              
             }
             background {
               monitor =
-              path =
-              color = rgba(0, 0, 0, 0.4)
+              path = screenshot
+              color = rgba(0, 0, 0, 1.0)
 
-              blur_passes = 0
-              blur_size = 7
+              blur_passes = 2
+              blur_size = 4
               noise = 0.0117
               contrast = 0.8916
               brightness = 0.8172
@@ -512,6 +435,7 @@ in {
             }
           '';
         };
+
         "hypridle" = {
           enable = true;
           target = "hypr/hypridle.conf";

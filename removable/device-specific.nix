@@ -47,7 +47,7 @@
         exec-once = wl-paste --type image --watch cliphist store
         exec-once = sleep 1 && waybar
         exec-once = swayosd-server
-        exec-once = swaybg -m fill -i ${pkgs.budgie-backgrounds}/share/backgrounds/budgie/valley-midnight.jpg -o eDP-1
+        exec-once = swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png -o eDP-1
         exec-once = nm-applet
         exec-once = swaync
         exec-once = sleep 1 && blueman-applet
@@ -160,7 +160,6 @@
         windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
 
         # Binds
-        bind = SUPER, D, hyprexpo:expo, toggle
         bind = , Print, exec, hyprshot -o ~/Pictures/Screenshots -m region
         bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
         bind = CTRL_ALT, C, exec, hyprpicker --autocopy
@@ -225,19 +224,9 @@
         bind = , XF86AudioMute, exec, swayosd --output-volume=mute-toggle
         binde = , XF86MonBrightnessUp, exec, swayosd-client --brightness=raise
         binde = , XF86MonBrightnessDown, exec, swayosd-client --brightness=lower
-
-        plugin {
-          hyprexpo {
-            columns = 3
-            gap_size = 8
-            bg_col = rgb(000000)
-
-            enable_gesture = true # laptop touchpad
-            gesture_fingers = 3 # 3 or 4
-            gesture_distance = 300 # how far is the "max"
-            gesture_positive = true # positive = swipe down. Negative = swipe up.
-          }
-        }
+        bind = , XF86AudioPlay, exec, playerctl play-pause
+        bind = , XF86AudioPrev, exec, playerctl previous
+        bind = , XF86AudioNext, exec, playerctl next
       '';
     };
 
