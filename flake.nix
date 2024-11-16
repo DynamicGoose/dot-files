@@ -14,7 +14,7 @@
     nixpkgs,
     ...
   } @ inputs: {
-    nixConfigurations = {
+    nixosConfigurations = {
       desktop-gezaa = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
@@ -22,7 +22,8 @@
         };
         modules = [
           ./common.nix
-          ./hosts/desktop-gezaa.nix
+          ./hosts/desktop-gezaa/config.nix
+          ./hosts/desktop-gezaa/hardware-configuration.nix
         ];
       };
     };

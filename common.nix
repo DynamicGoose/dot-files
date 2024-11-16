@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
     (import "${inputs.home-manager}/nixos")
   ];
 
@@ -383,7 +382,7 @@
           "hypridle"
           "waybar"
           "swayosd-server"
-          "swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = treu;}}/share/backgrounds/wave-Dark.png -o eDP-1"
+          "swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png -o eDP-1"
           "nm-applet"
           "swaync"
           "sleep 1 && blueman-applet"
@@ -1083,39 +1082,6 @@
       iconTheme.package = pkgs.papirus-icon-theme;
       theme.name = "Graphite-Dark";
       theme.package = pkgs.graphite-gtk-theme.override {tweaks = ["black"];};
-    };
-
-    # Waybar
-    programs.waybar = {
-      enable = true;
-      style = ''
-        * {
-          font-size: 16px;
-          font-family: "Ubuntu Nerdfont";
-          font-weight: Bold;
-          padding: 0 4px 0 4px;
-        }
-        window#waybar {
-          background: #0F0F0F;
-          color: #E0E0E0;
-          border: Solid;
-          border-radius: 10px;
-          border-width: 2px;
-          border-color: #E0E0E0;
-        }
-        #workspaces button {
-          background: #0F0F0F;
-          margin: 4px 2px 4px 2px;
-        }
-        #workspaces button.active {
-          background: #E0E0E0;
-          color: #0F0F0F;
-          margin: 4px 2px 4px 2px;
-        }
-        #tray {
-          padding: 0;
-        }
-      '';
     };
 
     # Wofi
