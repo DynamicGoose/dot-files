@@ -12,7 +12,6 @@
   outputs = {
     self,
     nixpkgs,
-    utils,
     ...
   } @ inputs: {
     nixConfigurations = {
@@ -26,28 +25,6 @@
           ./hosts/desktop-gezaa.nix
         ];
       };
-      
-      fw-gezaa = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./common.nix
-          ./hosts/fw-gezaa.nix
-        ];
-      };
-      
-      tp-gezaa = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./common.nix
-          ./hosts/tp-gezaa.nix
-        ];
-      };
     };
-  };  
+  };
 }
