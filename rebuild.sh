@@ -1,4 +1,4 @@
-#!/zsh/bin/env bash
+#!/usr/bin/env bash
 
 sudo rm -rf /etc/nixos/.
 sudo cp -rf ./. /etc/nixos/
