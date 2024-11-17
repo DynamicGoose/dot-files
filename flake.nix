@@ -26,6 +26,18 @@
           ./hosts/desktop-gezaa/hardware-configuration.nix
         ];
       };
+
+      fw-gezaa = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./common.nix
+          ./hosts/fw-gezaa/config.nix
+          ./hosts/fw-gezaa/hardware-configuration.nix
+        ];
+      };
     };
   };
 }

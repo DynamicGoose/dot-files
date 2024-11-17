@@ -23,26 +23,10 @@
     opencl.enable = true;
     initrd.enable = true;
   };
-
-  # filesystem config and nix store on other device
-  fileSystems = {
-    "/nix" = {
-      device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
-      neededForBoot = true;
-      options = ["noatime"];
-    };
-    "/run/media/gezaa/HDD01" = {
-      device = "/dev/disk/by-label/HDD01";
-      fsType = "ntfs-3g";
-      options = ["rw" "uid=1000"];
-    };
-    "/run/media/gezaa/SSD02" = {
-      device = "/dev/disk/by-label/SSD02";
-      fsType = "ntfs-3g";
-      options = ["rw" "uid=1000"];
-    };
-  };
+  
+  # Power management
+  services.cpupower-gui.enable = true;
+  services.tlp.enable = true;
 
   # Hostname
   networking.hostName = "desktop-gezaa";
@@ -53,8 +37,11 @@
     wayland.windowManager.hyprland = {
       settings = {
         monitor = [
-          "DP-1, 2560x1440@240, 1920x0, 1"
-          "HDMI-A-1, 1920x1080@60, 0x0, 1"
+          ", preferred, auto, 1"
+        ];
+
+        exec-once = [
+          "hypridle"
         ];
       };
     };
@@ -73,12 +60,23 @@
           "height" = 34;
           "modules-left" = ["clock" "hyprland/workspaces"];
           "modules-center" = ["hyprland/window"];
-          "modules-right" = ["tray" "pulseaudio" "custom/menu"];
+          "modules-right" = ["tray" "pulseaudio" "backlight" "battery" "custom/menu"];
 
           "hyprland/workspaces" = {
             "on-click" = "activate";
+            "sort-by-number" = true;
             "all-outputs" = true;
             "active-only" = false;
+          };
+
+          "backlight" = {
+            "format" = "{icon} {percent}%";
+            "format-icons" = ["󰃞" "󰃟" "󰃠"];
+          };
+
+          "battery" = {
+            "format" = "{icon} {capacity}%";
+            "format-icons" = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           };
 
           "clock" = {
@@ -88,7 +86,7 @@
           "pulseaudio" = {
             "format" = "{icon} {volume}%";
             "format-bluetooth" = "{icon}󰂯 {volume}%";
-            "format-muted" = "";
+            "format-muted" = "";
             "format-icons" = {
               "headphones" = "󰋋 ";
               "phone" = " ";
@@ -197,8 +195,8 @@
                     "command": "wdisplays"
                   },
                   {
-                    "label": "󰍬",
-                    "command": "amixer set Capture toggle"
+                    "label": "󱐋",
+                    "command": "cpupower-gui"
                   },
                   {
                     "label": "󰖩",
