@@ -707,14 +707,13 @@
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
+        # monitors configured by host
+        
         exec-once = [
-          # monitors configured by host
-          
           "wl-clip-persist --clipboard regular"
           "cliphist wipe"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
-          "hypridle"
           "waybar"
           "swayosd-server"
           "swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png -o eDP-1"
@@ -925,7 +924,7 @@
             dots_spacing = 0.3;
             dots_center = true;
             dots_rounding = -1;
-            outer_colour = "rgb(240, 240, 240)";
+            outer_color = "rgb(240, 240, 240)";
             inner_color = "rgb(24, 24, 24)";
             font_color = "rgb(255, 255, 255)";
             fade_on_empty = true;
