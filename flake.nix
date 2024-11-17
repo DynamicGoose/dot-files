@@ -21,7 +21,7 @@
           inherit inputs;
         };
         modules = [
-          ./common.nix
+          ./hosts/desktop-gezaa/config.nix
         ];
       };
 
@@ -31,7 +31,7 @@
           inherit inputs;
         };
         modules = [
-          ./common.nix
+          ./hosts/fw-gezaa/config.nix
         ];
       };
     };
