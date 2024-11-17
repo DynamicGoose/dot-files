@@ -7,29 +7,33 @@
   # Bootloader
   boot.loader = {
     efi = {
-      canTouchEfiVariables = true;
+      canTouchEfiVariables = false;
       efiSysMountPoint = "/boot";
     };
     grub = {
       enable = true;
       efiSupport = true;
+      efiInstallAsRemovable = true;
       device = "nodev";
       splashImage = null;
+      # UUID needs to be adjusted on new install
+      extraEntries = ''
+        menuentry "Netboot.xyz" {
+          insmod part_gpt
+          insmod ext2
+          insmod chain
+          search --no-floppy --fs-uuid --set root aa18d19c-9806-417e-be19-71065c50d455
+          chainloader ${pkgs.netbootxyz-efi}
+        }
+      '';
     };
-  };
-
-  # AMD graphics drivers
-  hardware.amdgpu = {
-    opencl.enable = true;
-    initrd.enable = true;
   };
   
   # Power management
   services.cpupower-gui.enable = true;
-  services.tlp.enable = true;
 
   # Hostname
-  networking.hostName = "fw-gezaa";
+  networking.hostName = "usb-gezaa";
 
   # Home-Manager
   home-manager.users.gezaa = {pkgs, ...}: {

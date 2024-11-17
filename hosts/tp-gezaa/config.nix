@@ -18,18 +18,21 @@
     };
   };
 
-  # AMD graphics drivers
-  hardware.amdgpu = {
-    opencl.enable = true;
-    initrd.enable = true;
-  };
+  # Intel graphics drivers
+  hardware.graphics.extraPackages = with pkgs; [
+    intel-media-sdk
+    intel-media-driver
+    intel-vaapi-driver
+    libvdpau-va-gl
+  ];
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
   
   # Power management
   services.cpupower-gui.enable = true;
   services.tlp.enable = true;
 
   # Hostname
-  networking.hostName = "fw-gezaa";
+  networking.hostName = "tp-gezaa";
 
   # Home-Manager
   home-manager.users.gezaa = {pkgs, ...}: {
