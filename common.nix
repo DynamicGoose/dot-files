@@ -5,6 +5,8 @@
   ...
 }: {
   imports = [
+    ./hosts/${config.networking.hostName}/hardware-configuration.nix
+    ./hosts/${config.networking.hostName}/config.nix
     (import "${inputs.home-manager}/nixos")
   ];
 

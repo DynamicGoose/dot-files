@@ -22,8 +22,6 @@
         };
         modules = [
           ./common.nix
-          ./hosts/desktop-gezaa/config.nix
-          ./hosts/desktop-gezaa/hardware-configuration.nix
         ];
       };
 
@@ -34,8 +32,6 @@
         };
         modules = [
           ./common.nix
-          ./hosts/fw-gezaa/config.nix
-          ./hosts/fw-gezaa/hardware-configuration.nix
         ];
       };
     };
