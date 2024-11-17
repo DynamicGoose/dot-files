@@ -345,7 +345,7 @@
 
   # System
   system = {
-    stateVersion = "24.05";
+    stateVersion = "25.05";
   };
 
   # Home-Manager
@@ -1270,6 +1270,6 @@
       };
     };
 
-    home.stateVersion = "23.05";
+    home.stateVersion = "25.05";
   };
 }
