@@ -4,6 +4,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    (import "${inputs.home-manager}/nixos")
+  ];
+
   # Bootloader
   boot.loader = {
     efi = {
