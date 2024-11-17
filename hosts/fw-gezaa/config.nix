@@ -6,6 +6,7 @@
 }: {
   imports = [
     (import "${inputs.home-manager}/nixos")
+    ./hardware-configuration.nix
   ];
 
   # Bootloader
