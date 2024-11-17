@@ -779,7 +779,7 @@
           kb_layout = "de";
           scroll_method = "2fg";
           follow_mouse = 1;
-          numblock_by_default = true;
+          numlock_by_default = true;
           sensitivity = 0.5;
 
           touchpad = {
