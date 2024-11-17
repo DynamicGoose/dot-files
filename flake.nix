@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -21,7 +21,10 @@
           inherit inputs;
         };
         modules = [
+          ./common.nix
           ./hosts/desktop-gezaa/config.nix
+          ./hosts/desktop-gezaa/hardware-configuration.nix
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
 
@@ -31,7 +34,10 @@
           inherit inputs;
         };
         modules = [
+          ./common.nix
           ./hosts/fw-gezaa/config.nix
+          ./hosts/fw-gezaa/hardware-configuration.nix
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
     };
