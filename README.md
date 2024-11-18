@@ -25,10 +25,11 @@ Then create the appropriate files in `hosts/new_host/` (`hardware-configuration.
 > `flakes` and `nix-command` have to be enabled to rebuild the system using flakes.
 > `nix.settings.experimental-features = ["nix-command" "flakes"];`
 
-Afterwards, Just run `rebuild.sh`:
+Afterwards, Just run `copy_config.sh`:
 ```bash
-./rebuild.sh
+./copy_config.sh
 ```
+and the system is ready to be rebuild.
 
 > [!TIP]
 > NixOS channels can be removed, because flakes don't rely on them. (`nix-channel`)

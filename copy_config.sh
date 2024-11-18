@@ -2,4 +2,3 @@
 
 sudo rm -rf /etc/nixos/*
 sudo cp -rf ./. /etc/nixos/
-sudo nixos-rebuild switch
