@@ -54,6 +54,19 @@
         ];
       };
 
+      dl-gezaa = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./common.nix
+          ./hosts/dl-gezaa/config.nix
+          ./hosts/dl-gezaa/hardware-configuration.nix
+          inputs.home-manager.nixosModules.home-manager
+        ];
+      };
+
       usb-gezaa = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
