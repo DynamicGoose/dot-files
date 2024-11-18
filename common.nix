@@ -40,9 +40,6 @@
       enable = true;
       wifi.backend = "iwd";
     };
-
-    # SSH port
-    firewall.allowedTCPPorts = [ 22 ];
   };
 
   # Set time zone
@@ -176,6 +173,13 @@
       HandlePowerKey=suspend
     '';
 
+    openssh = {
+      enable = true;
+      # Only run when needed, bc this is not a server
+      startWhenNeeded = true;
+      openFirewall = true;      
+    };
+    
     # Printing
     printing = {
       enable = true;
@@ -195,7 +199,6 @@
     gnome.gnome-keyring.enable = true;
     gpm.enable = true;
     gvfs.enable = true;
-    openssh.enable = true;
   };
 
   # Systemd
