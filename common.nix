@@ -191,6 +191,7 @@
     gnome.gnome-keyring.enable = true;
     gpm.enable = true;
     gvfs.enable = true;
+    openssh.enable = true;
   };
 
   # Systemd
@@ -293,7 +294,6 @@
     pwvucontrol
     python3
     qalculate-gtk
-    qsyncthingtray
     r2modman
     rustup
     signal-desktop
@@ -301,6 +301,7 @@
     swaybg
     swaynotificationcenter
     swayosd
+    syncthingtray
     telegram-desktop
     thunderbird
     vesktop
@@ -716,7 +717,7 @@
           "nm-applet"
           "swaync"
           "sleep 1 && blueman-applet"
-          "sleep 3 && qsyncthingtray"
+          "sleep 3 && syncthingtray"
           "id=0"
         ];
 
@@ -800,18 +801,21 @@
         windowrule = [
           "float, title:^(Bluetooth Devices)"
           "float, title:^(Network Connections)"
+          "float, title:^(Syncthing Tray)"
           "float, title:^(Pipewire Volume Control)"
           "float, title:(wdisplays)"
           "float, title:(cpupower-gui)"
           "float, qalculate-gtk"
           "center (1), title:^(Bluetooth Devices)"
           "center (1), title:^(Network Connections)"
+          "center (1), title:^(Syncthing Tray)"
           "center (1), title:^(Pipewire Volume Control)"
           "center (1), title:(wdisplays)"
           "center (1), title:(cpupower-gui)"
           "center (1), qalculate-gtk"
           "size 60% 60%, title:^(Bluetooth Devices)"
           "size 60% 60%, title:^(Network Connections)"
+          "size 60% 60%, title:^(Syncthing Tray)"
           "size 60% 60%, title:^(Pipewire Volume Control)"
           "size 60% 60%, title:(wdisplays)"
           "size 60% 60%, title:(cpupower-gui)"
