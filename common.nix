@@ -285,7 +285,7 @@
     mpv
     musescore
     networkmanagerapplet
-    nemo
+    nemo-with-extensions
     obsidian
     playerctl
     prismlauncher
@@ -314,7 +314,7 @@
     yabridge
     yabridgectl
     zapzap
-    zed-editor.fhs
+    zed-editor
     zoom-us
     zrythm
     zulu
