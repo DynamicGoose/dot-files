@@ -40,6 +40,9 @@
       enable = true;
       wifi.backend = "iwd";
     };
+
+    # SSH port
+    firewall.allowedTCPPorts = [ 22 ];
   };
 
   # Set time zone
@@ -187,6 +190,7 @@
     };
     
     blueman.enable = true;
+    fail2ban.enable = true;
     fprintd.enable = true;
     gnome.gnome-keyring.enable = true;
     gpm.enable = true;
