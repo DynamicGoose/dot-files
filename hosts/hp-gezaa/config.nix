@@ -30,7 +30,7 @@
   services.tlp.enable = true;
 
   # Hostname
-  networking.hostName = "fw-gezaa";
+  networking.hostName = "hp-gezaa";
 
   # Home-Manager
   home-manager.users.gezaa = {pkgs, ...}: {
@@ -46,7 +46,7 @@
         ];
 
         # Better performance on old Laptop
-        decoration.blur.enable = lib.mkDefault false;
+        decoration.blur.enabled = lib.mkDefault false;
       };
     };
 

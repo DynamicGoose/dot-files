@@ -356,6 +356,7 @@
 
   # Home-Manager
   home-manager.useGlobalPkgs = true;
+  home-manager.backupFileExtension = "backup";
   home-manager.users.gezaa = {pkgs, ...}: {
     # XDG
     xdg = {
