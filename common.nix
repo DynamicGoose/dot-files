@@ -329,9 +329,6 @@
     zulu17
   ];
 
-  # Programs
-  programs.hyprland.enable = true;
-
   # Virtualisation
   virtualisation.libvirtd.enable = true;
 
@@ -345,6 +342,7 @@
 
     dconf.enable = true;
     evince.enable = true;
+    hyprland.enable = true;
     ssh.askPassword = "";
     virt-manager.enable = true;
     xwayland.enable = true;
