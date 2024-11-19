@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }: {
   # Bootloader
@@ -43,6 +44,9 @@
         exec-once = [
           "hypridle"
         ];
+
+        # Better performance on old Laptop
+        decoration.blur.enable = lib.mkDefault false;
       };
     };
 

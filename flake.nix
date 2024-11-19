@@ -54,6 +54,19 @@
         ];
       };
 
+      hp-gezaa = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./common.nix
+          ./hosts/hp-gezaa/config.nix
+          ./hosts/hp-gezaa/hardware-configuration.nix
+          inputs.home-manager.nixosModules.home-manager
+        ];
+      };
+      
       dl-gezaa = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
