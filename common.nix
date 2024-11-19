@@ -1064,7 +1064,7 @@
         zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
         precmd () { vcs_info }
         export PS1='%~/''${vcs_info_msg_0_}%F{1} ❯%F{255} '
-        export MANPAGER='hx +Man!'
+        export PAGER='hx'
       '';
     };
 
