@@ -305,6 +305,7 @@
     rustup
     signal-desktop
     spotify
+    stc-cli
     swaybg
     swaynotificationcenter
     swayosd
