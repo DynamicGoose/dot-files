@@ -29,6 +29,7 @@
     "rd.udev.log_level=3"
     "udev.log_priority=3"
     "acpi_backlight=vendor"
+    "acpi_osi=linux"
   ];
   
   # AMD graphics drivers
