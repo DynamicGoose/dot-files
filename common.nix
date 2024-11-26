@@ -324,7 +324,7 @@
     yabridge
     yabridgectl
     zapzap
-    zed-editor
+    zed-editor.fhs
     zoom-us
     zrythm
     zulu
