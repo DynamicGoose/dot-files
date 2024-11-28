@@ -26,7 +26,7 @@
   
   environment.systemPackages = with pkgs; [
     lact
-  ]
+  ];
 
   # filesystem config and nix store on other device
   fileSystems = {
