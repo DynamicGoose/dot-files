@@ -26,8 +26,16 @@
   
   # LACT (amdgpu control-panel)
   environment.systemPackages = with pkgs; [ lact ];
-  systemd.packages = with pkgs; [ lact ];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
+  # lactd service
+  systemd.services.lact = {
+    description = "AMDGPU Control Daemon";
+    after = ["multi-user.target"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+    };
+    enable = true;
+  };
   # overclocking (kernel param)
   boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
   
