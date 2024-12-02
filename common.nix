@@ -73,7 +73,9 @@
 
     packages = with pkgs; [
       jetbrains-mono
-      nerdfonts
+      dejavu_fonts
+      nerd-fonts.ubuntu
+      nerd-fonts.jetbrains-mono
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
     ];
