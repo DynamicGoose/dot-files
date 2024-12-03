@@ -262,6 +262,7 @@
     btop
     cheese
     cliphist
+    discord-canary
     fastfetch
     firefox-wayland
     gedit
@@ -315,7 +316,7 @@
     tealdeer
     telegram-desktop
     thunderbird
-    vesktop
+    # vesktop
     vscodium
     wdisplays
     wget
