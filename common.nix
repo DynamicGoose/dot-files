@@ -265,6 +265,7 @@
     discord-canary
     fastfetch
     firefox-wayland
+    gamemode
     gedit
     gimp
     git
