@@ -32,8 +32,17 @@
   
   # Power management
   services.cpupower-gui.enable = true;
-  services.tlp.enable = true;
-
+  services.tlp = {
+    enable = true;
+    settings = {
+      # battery care
+      START_CHARGE_THRESH_BAT0 = 75;
+      STOP_CHARGE_THRESH_BAT0 = 80;
+      # disable adaptive backlight brightness
+      AMDGPU_ABM_LEVEL_ON_BAT = 0;
+    };
+  };
+  
   # Hostname
   networking.hostName = "fw-gezaa";
 
