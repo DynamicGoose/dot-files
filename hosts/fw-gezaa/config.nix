@@ -35,9 +35,6 @@
   services.tlp = {
     enable = true;
     settings = {
-      # battery care
-      START_CHARGE_THRESH_BAT1 = 75;
-      STOP_CHARGE_THRESH_BAT1 = 80;
       # disable adaptive backlight brightness
       AMDGPU_ABM_LEVEL_ON_BAT = 0;
     };
