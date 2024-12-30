@@ -278,7 +278,7 @@
     guitarix
     gxplugins-lv2
     helvum
-    heroic
+    # heroic READD WHEN 368966 IS MERGED
     hypridle
     hyprlock
     hyprpicker

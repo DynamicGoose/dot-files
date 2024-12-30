@@ -21,7 +21,7 @@
   
   # AMD graphics drivers
   hardware.amdgpu = {
-    # opencl.enable = true;
+    # opencl.enable = true; REENABLE WHEN FIXED
     initrd.enable = true;
   };
   
