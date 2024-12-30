@@ -18,15 +18,10 @@
       splashImage = null;
     };
   };
-
-  boot.kernelParams = [
-    "acpi_backlight=native"
-    # "acpi_osi=linux"
-  ];
   
   # AMD graphics drivers
   hardware.amdgpu = {
-    opencl.enable = true;
+    # opencl.enable = true;
     initrd.enable = true;
   };
   
