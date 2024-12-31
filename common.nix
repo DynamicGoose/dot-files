@@ -814,21 +814,18 @@
         windowrule = [
           "float, .blueman-manager-wrapped"
           "float, nm-connection-editor"
-          "float, title:Syncthing Tray"
           "float, com.saivert.pwvucontrol"
           "float, wdisplays"
           "float, cpupower-gui"
           "float, qalculate-gtk"
           "center (1), .blueman-manager-wrapped"
           "center (1), nm-connection-editor"
-          "center (1), title:Syncthing Tray"
           "center (1), com.saivert.pwvucontrol"
           "center (1), wdisplays"
           "center (1), cpupower-gui"
           "center (1), qalculate-gtk"
           "size 60% 60%, .blueman-manager-wrapped"
           "size 60% 60%, nm-connection-editor"
-          "size 60% 60%, title:Syncthing Tray"
           "size 60% 60%, com.saivert.pwvucontrol"
           "size 60% 60%, wdisplays"
           "size 60% 60%, cpupower-gui"
@@ -839,6 +836,9 @@
           "noanim, class:^(xwaylandvideobridge)$"
           "nofocus, class:^(xwaylandvideobridge)$"
           "noinitialfocus, class:^(xwaylandvideobridge)$"
+          "float, title:(Syncthing Tray)"
+          "center (1), title:(Syncthing Tray)"
+          "size 60% 60%, title:(Syncthing Tray)"
         ];
 
         bind = [          
