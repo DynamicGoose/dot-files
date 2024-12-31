@@ -4,7 +4,10 @@ My multi-host NixOS flake!
 
 ## Usage
 
-When setting up a host, that doesn't have a config yet, add a new entry to `nixosConfigurations` in `flake.nix`.
+> [!IMPORTANT]
+> If you want to adapt these dot files for yourself be sure to change the default user in `common.nix` and configure your own hosts.
+
+When setting up a host that doesn't have a config yet, add a new entry to `nixosConfigurations` in `flake.nix`.
 The entry should probably look like this:
 ```nix
 new-host = nixpkgs.lib.nixosSystem {
