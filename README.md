@@ -36,3 +36,7 @@ and the system is ready to be rebuild.
 
 > [!TIP]
 > NixOS channels can be removed, because flakes don't rely on them. (`nix-channel`)
+
+## Shells
+
+In the `nix-shells` directory, there are also a couple of nix shells for different usecases
