@@ -915,8 +915,6 @@
           hide_cursor = true;
           grace = 0;
           no_fade_in = false;
-          ignore_empty_input = true;
-          enable_fingerprint = true;
         };
 
         background = [
