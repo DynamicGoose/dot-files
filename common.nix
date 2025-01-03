@@ -93,8 +93,6 @@
       enable = true;
       enable32Bit = true;
     };
-    
-    pulseaudio.enable = false;
   };
 
   # Security
@@ -202,6 +200,7 @@
     gnome.gnome-keyring.enable = true;
     gpm.enable = true;
     gvfs.enable = true;
+    pulseaudio.enable = false;
   };
 
   # Systemd
