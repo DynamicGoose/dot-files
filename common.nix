@@ -893,15 +893,19 @@
         ];
 
         binde = [
-        ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume=raise"
-        ", XF86AudioLowerVolume, exec, swayosd-client --output-volume=lower"
-        ", XF86MonBrightnessUp, exec, swayosd-client --brightness=raise"
-        ", XF86MonBrightnessDown, exec, swayosd-client --brightness=lower"
+          ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume=raise"
+          ", XF86AudioLowerVolume, exec, swayosd-client --output-volume=lower"
+          ", XF86MonBrightnessUp, exec, swayosd-client --brightness=raise"
+          ", XF86MonBrightnessDown, exec, swayosd-client --brightness=lower"
         ];
 
         bindm = [
           "ALT, mouse:272, movewindow"
           "ALT, mouse:273, resizewindow"
+        ];
+
+        bindr = [
+          ", SUPER_L, exec, swaync-client -t"
         ];
       };
     };
