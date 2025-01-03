@@ -905,7 +905,7 @@
         ];
 
         bindr = [
-          ", SUPER_L, exec, swaync-client -t"
+          "SUPER, SUPER_L, exec, swaync-client -t"
         ];
       };
     };
