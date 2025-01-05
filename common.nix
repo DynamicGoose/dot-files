@@ -835,6 +835,7 @@
           "noanim, class:^(xwaylandvideobridge)$"
           "nofocus, class:^(xwaylandvideobridge)$"
           "noinitialfocus, class:^(xwaylandvideobridge)$"
+          "float, title:(Steam Settings)"
           "float, title:(Syncthing Tray)"
           "center (1), title:(Syncthing Tray)"
           "size 60% 60%, title:(Syncthing Tray)"
