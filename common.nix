@@ -58,7 +58,7 @@
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
-  };
+Moverio  };
 
   # Console keymap
   console.keyMap = "de";
@@ -307,6 +307,7 @@
     qalculate-gtk
     r2modman
     rustup
+    sidequest
     signal-desktop
     spotify
     stc-cli
