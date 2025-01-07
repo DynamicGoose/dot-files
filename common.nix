@@ -340,6 +340,11 @@
 
   # Programs
   programs = {
+    alvr = {
+      enable = true;
+      openFirewall = true;
+    };
+    
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
