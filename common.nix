@@ -331,7 +331,7 @@
     zapzap
     zed-editor.fhs
     zoom-us
-    # zrythm
+    zrythm
     zulu
     zulu17
   ];
