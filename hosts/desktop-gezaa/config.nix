@@ -23,6 +23,12 @@
     opencl.enable = true;
     initrd.enable = true;
   };
+  hardware.graphics.extraPackages = with pkgs; [
+    amdvlk
+  ];
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "radeonsi";
+  };
   
   # LACT (amdgpu control-panel)
   environment.systemPackages = with pkgs; [ lact ];
