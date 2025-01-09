@@ -23,9 +23,6 @@
     opencl.enable = true;
     initrd.enable = true;
   };
-  hardware.graphics.extraPackages = with pkgs; [
-    amdvlk
-  ];
     
   # LACT (amdgpu control-panel)
   environment.systemPackages = with pkgs; [ lact ];
