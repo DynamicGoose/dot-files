@@ -124,7 +124,7 @@
 
           "custom/config" = {
             "format" = "";
-            "on-click" "nixos-conf-editor";
+            "on-click" = "nixos-conf-editor";
           };
         }
       ];
