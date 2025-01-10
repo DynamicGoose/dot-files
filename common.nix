@@ -283,7 +283,7 @@
     hyprpicker
     hyprshot
     imv
-    input-leap
+    inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor
     killall
     kitty
     kooha
