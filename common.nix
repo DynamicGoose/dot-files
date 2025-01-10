@@ -295,6 +295,7 @@
     libsForQt5.qtstyleplugin-kvantum
     lutris
     manga-cli
+    mission-center
     mpv
     musescore
     networkmanagerapplet
