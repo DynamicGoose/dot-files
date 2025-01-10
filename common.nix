@@ -366,16 +366,16 @@
   # System
   system = {
     stateVersion = "25.05";
+    activationScripts = {
+      dot-files.text = ''
+        ./${pkgs.git}/bin/git -C /etc/nixos add .
+        ./${pkgs.git}/bin/git -c "user.name=Géza Ahsendorf" -c "user.email=gezaahs@gmail.com" -C /etc/nixos commit -m "cofig update"
+        rm -rf /home/gezaa/git/dot-files/*
+        cp -rf /etc/nixos/. /home/gezaa/git/dot-files
+        chown -R gezaa /home/gezaa/git/dot-files
+      '';
+    };
   };
-  system.activationScripts = {
-  dot-files.text = 
-    ''
-      ./${pkgs.git}/bin/git -C /etc/nixos add .
-      ./${pkgs.git}/bin/git -c "user.name=Géza Ahsendorf" -c "user.email=gezaahs@gmail.com" -C /etc/nixos commit -m "cofig update"
-      rm -rf /home/gezaa/git/dot-files/*
-      cp -rf /etc/nixos/. /home/gezaa/git/dot-files
-    '';
-};
 
   # Home-Manager
   home-manager.useGlobalPkgs = true;
