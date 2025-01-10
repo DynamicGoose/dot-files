@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
-    nix-software-center.url = "github:snowfallorg/nix-software-center";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

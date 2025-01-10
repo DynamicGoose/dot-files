@@ -283,8 +283,6 @@
     hyprpicker
     hyprshot
     imv
-    inputs.nix-software-center.packages.${system}.nix-software-center
-    inputs.nixos-conf-editor.packages.${system}.nixos-conf-editor
     killall
     kitty
     kooha
@@ -366,15 +364,6 @@
   # System
   system = {
     stateVersion = "25.05";
-    activationScripts = {
-      dot-files.text = ''
-        ./${pkgs.git}/bin/git -C /etc/nixos add .
-        ./${pkgs.git}/bin/git -c "user.name=Géza Ahsendorf" -c "user.email=gezaahs@gmail.com" -C /etc/nixos commit -m "cofig update"
-        rm -rf /home/gezaa/git/dot-files/*
-        cp -rf /etc/nixos/. /home/gezaa/git/dot-files
-        chown -R gezaa /home/gezaa/git/dot-files
-      '';
-    };
   };
 
   # Home-Manager
@@ -834,20 +823,17 @@
           "float, wdisplays"
           "float, cpupower-gui"
           "float, qalculate-gtk"
-          "float, dev.vlinkz.NixosConfEditor"
           "center (1), .blueman-manager-wrapped"
           "center (1), nm-connection-editor"
           "center (1), com.saivert.pwvucontrol"
           "center (1), wdisplays"
           "center (1), cpupower-gui"
           "center (1), qalculate-gtk"
-          "center (1), dev.vlinkz.NixosConfEditor"
           "size 60% 60%, .blueman-manager-wrapped"
           "size 60% 60%, nm-connection-editor"
           "size 60% 60%, com.saivert.pwvucontrol"
           "size 60% 60%, wdisplays"
           "size 60% 60%, cpupower-gui"
-          "size 60% 60%, dev.vlinkz.NixosConfEditor"
         ];
 
         windowrulev2 = [

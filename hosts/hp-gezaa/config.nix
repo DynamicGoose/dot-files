@@ -64,7 +64,7 @@
           "height" = 34;
           "modules-left" = ["clock" "hyprland/workspaces"];
           "modules-center" = ["hyprland/window"];
-          "modules-right" = ["tray" "pulseaudio" "backlight" "battery" "custom/config" "custom/menu"];
+          "modules-right" = ["tray" "pulseaudio" "backlight" "battery" "custom/menu"];
 
           "hyprland/workspaces" = {
             "on-click" = "activate";
@@ -108,12 +108,6 @@
             "format" = "";
             "on-click" = "swaync-client -t";
             "tooltip-format" = "Menu";
-          };
-
-          "custom/config" = {
-            "format" = "";
-            "on-click" = "nixos-conf-editor";
-            "tooltip-format" = "config";
           };
         }
       ];
