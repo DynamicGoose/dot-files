@@ -120,11 +120,13 @@
           "custom/menu" = {
             "format" = "";
             "on-click" = "swaync-client -t";
+            "tooltip-format" = "Menu";
           };
 
           "custom/config" = {
             "format" = "";
             "on-click" = "nixos-conf-editor";
+            "tooltip-format" = "config";
           };
         }
       ];
