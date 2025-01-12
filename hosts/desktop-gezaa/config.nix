@@ -9,6 +9,9 @@
     ../../modules/graphics/amd.nix
     ../../modules/home-manager/desktop.nix
   ];
+
+  # CpuFreqGov performance mode
+  powerManagement.cpuFreqGovernor = "performance";
  
   # filesystem config and nix store on other device
   fileSystems = {
