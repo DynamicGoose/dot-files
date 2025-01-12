@@ -5,25 +5,10 @@
   lib,
   ...
 }: {
-  # Bootloader
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/sda";
-    splashImage = null;
-  };
-
-  # Graphics
-  hardware.graphics.extraPackages = with pkgs; [
-    intel-media-sdk
-    intel-media-driver
-    intel-vaapi-driver
-    libvdpau-va-gl
+  imports = [
+    ../../modules/bootloader/grub_legacy.nix
+    ../../modules/graphics/intel.nix
   ];
-  
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-    WLR_DRM_NO_ATOMIC = 1;
-  };
 
   # Disable lightdm
   services.xserver.displayManager.lightdm.enable = lib.mkDefault false;
