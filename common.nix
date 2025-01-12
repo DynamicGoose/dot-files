@@ -196,7 +196,6 @@
     
     blueman.enable = true;
     fail2ban.enable = true;
-    fprintd.enable = true;
     gnome.gnome-keyring.enable = true;
     gpm.enable = true;
     gvfs.enable = true;
@@ -735,7 +734,7 @@
           "nm-applet"
           "swaync"
           "sleep 1 && blueman-applet"
-          "sleep 3 && syncthingtray"
+          "sleep 3 && syncthingtray --wait"
           "id=0"
         ];
 
