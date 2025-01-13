@@ -53,6 +53,7 @@
 
           "clock" = {
             "format" = "󱑇 {:%H:%M}";
+            "tooltip" = false;
           };
 
           "pulseaudio" = {
