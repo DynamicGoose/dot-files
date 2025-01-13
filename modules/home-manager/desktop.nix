@@ -155,7 +155,7 @@
                   },
                   {
                     "label": "󰍬",
-                    "command": "amixer set Capture toggle"
+                    "command": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
                   },
                   {
                     "label": "󰖩",
