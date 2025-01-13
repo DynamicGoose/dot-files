@@ -319,6 +319,7 @@
     thunderbird
     # vesktop
     vscodium
+    waylogout
     wdisplays
     wget
     wineWowPackages.waylandFull
@@ -857,7 +858,7 @@
           "CTRL_ALT, T, exec, kitty"
           "SUPER, A, exec, wofi"
           "SUPER_ALT, L, exec, hyprlock"
-          "SUPER_ALT, P, exec, wlogout"
+          "SUPER_ALT, P, exec, waylogout"
           "ALT, comma, splitratio, -0.05"
           "ALT, period, splitratio, +0.05"
           "ALT, left, movefocus, l"
@@ -1180,76 +1181,6 @@
         	background-color: #e0e0e0;
         	color: #000000;
         	font-weight: normal;
-        }
-      '';
-    };
-
-    # Wlogout
-    programs.wlogout = {
-      enable = true;
-
-      layout = [
-        {
-          label = "lock";
-          action = "hyprlock";
-          text = "Lock";
-          keybind = "l";
-        }
-        {
-          label = "hibernate";
-          action = "systemctl hibernate";
-          text = "Hibernate";
-          keybind = "h";
-        }
-        {
-          label = "logout";
-          action = "hyprctl dispatch exit";
-          text = "Logout";
-          keybind = "e";
-        }
-        {
-          label = "shutdown";
-          action = "systemctl poweroff";
-          text = "Shutdown";
-          keybind = "s";
-        }
-        {
-          label = "suspend";
-          action = "systemctl suspend";
-          text = "Suspend";
-          keybind = "u";
-        }
-        {
-          label = "reboot";
-          action = "systemctl reboot";
-          text = "Reboot";
-          keybind = "r";
-        }
-      ];
-
-      style = ''
-        window {
-          background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        button {
-          font-size: 48px;
-          color: #E0E0E0;
-          background-color: #0F0F0F;
-          border-style: solid;
-          border-radius: 10px;
-          border-width: 2px;
-          margin: 4px;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 25%;
-        }
-
-        button:focus, button:active, button:hover {
-          font-size: 48px;
-          color: #0F0F0F;
-          background-color: #E0E0E0;
-          outline-style: none;
         }
       '';
     };
