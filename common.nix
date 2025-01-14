@@ -150,7 +150,7 @@
             cursorTheme.package = pkgs.graphite-cursors;
             cursorTheme.name = "graphite-dark";
             cursorTheme.size = 24;
-            indicators = [];
+            indicators = [ "~session" ];
           };
         };
       };
@@ -344,6 +344,11 @@
       enable = true;
       openFirewall = true;
     };
+
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    }
     
     steam = {
       enable = true;
@@ -353,7 +358,6 @@
 
     dconf.enable = true;
     evince.enable = true;
-    hyprland.enable = true;
     ssh.askPassword = "";
     virt-manager.enable = true;
     xwayland.enable = true;
@@ -720,6 +724,7 @@
     # Hyprland
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = false;
       settings = {
         # monitors configured by host
         
