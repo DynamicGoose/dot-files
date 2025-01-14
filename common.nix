@@ -150,7 +150,7 @@
             cursorTheme.package = pkgs.graphite-cursors;
             cursorTheme.name = "graphite-dark";
             cursorTheme.size = 24;
-            indicators = [ ];
+            indicators = [];
           };
         };
       };
