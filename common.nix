@@ -150,7 +150,7 @@
             cursorTheme.package = pkgs.graphite-cursors;
             cursorTheme.name = "graphite-dark";
             cursorTheme.size = 24;
-            indicators = [ "~session" ];
+            indicators = [ ];
           };
         };
       };
@@ -193,6 +193,8 @@
       nssmdns4 = true;
       openFirewall = true;
     };
+
+    dbus.implementation = "broker";
     
     blueman.enable = true;
     fail2ban.enable = true;
@@ -252,6 +254,7 @@
     NIXOS_OZONE_WL = "1";
     QT_QPA_PLATFORM = "wayland;xkb";
     QT_STYLE_OVERRIDE = "kvantum";
+    id = 0;
   };
   environment.systemPackages = with pkgs; [
     ani-cli
@@ -358,6 +361,7 @@
 
     dconf.enable = true;
     evince.enable = true;
+    uwsm.enable = true;
     ssh.askPassword = "";
     virt-manager.enable = true;
     xwayland.enable = true;
@@ -729,18 +733,17 @@
         # monitors configured by host
         
         exec-once = [
-          "wl-clip-persist --clipboard regular"
+          "uwsm app -- wl-clip-persist --clipboard regular"
           "cliphist wipe"
-          "wl-paste --type text --watch cliphist store"
-          "wl-paste --type image --watch cliphist store"
-          "waybar"
-          "swayosd-server"
-          "swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png -o eDP-1"
-          "nm-applet"
-          "swaync"
-          "sleep 1 && blueman-applet"
-          "sleep 3 && syncthingtray --wait"
-          "id=0"
+          "uwsm app -- wl-paste --type text --watch cliphist store"
+          "uwsm app -- wl-paste --type image --watch cliphist store"
+          "uswm app -- waybar"
+          "uwsm app -- swayosd-server"
+          "uwsm app -- swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png -o eDP-1"
+          "uwsm app -- nm-applet"
+          "uwsm app -- swaync"
+          "sleep 1 && uwsm app -- blueman-applet"
+          "sleep 3 && uwsm app -- syncthingtray --wait"
         ];
 
         general = {
