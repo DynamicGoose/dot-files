@@ -194,6 +194,8 @@
       openFirewall = true;
     };
 
+    dbus.implementation = "broker";
+    
     blueman.enable = true;
     fail2ban.enable = true;
     gnome.gnome-keyring.enable = true;
