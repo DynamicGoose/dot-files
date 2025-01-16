@@ -321,12 +321,12 @@
     thunderbird
     # vesktop
     vscodium
-    waylogout
     wdisplays
     wget
     wineWowPackages.waylandFull
     wl-clipboard
     wl-clip-persist
+    wofi-power-menu
     xarchiver
     yabridge
     yabridgectl
@@ -383,6 +383,35 @@
         "Kvantum/Graphite/Graphite.svg".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite/Graphite.svg";
         "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=GraphiteDark";
 
+        "wofi-power-menu.toml".text = ''
+          [wofi]
+            extra_args = "--allow-markup --columns=1 --hide-scroll --height=256"
+
+          [menu.shutdown]
+            cmd = "systemctl poweroff"
+            requires_confirmation = "true"
+
+          [menu.reboot]
+            cmd = "systemctl reboot"
+            requires_confirmation = "true"
+
+          [menu.suspend]
+            cmd = "systemctl suspend"
+            requires_confirmation = "false"
+
+          [menu.hibernate]
+            cmd = "systemctl hibernate"
+            requires_confirmation = "true"
+
+          [menu.logout]
+            cmd = "hyprctl dispatch exit"
+            requires_confirmation = "true"
+
+          [menu.lock-screen]
+            cmd = "hyprlock"
+            requires_confirmation = "false"
+        '';
+        
         # Swaync style
         "swaync/style.css".text = ''
           @define-color cc-bg rgba(15, 15, 15, 1);
@@ -860,7 +889,7 @@
           "CTRL_ALT, T, exec, kitty"
           "SUPER, A, exec, wofi"
           "SUPER_ALT, L, exec, hyprlock"
-          "SUPER_ALT, P, exec, waylogout"
+          "SUPER_ALT, P, exec, wofi-power-menu"
           "ALT, comma, splitratio, -0.05"
           "ALT, period, splitratio, +0.05"
           "ALT, left, movefocus, l"
