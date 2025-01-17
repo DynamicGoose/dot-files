@@ -389,11 +389,11 @@
 
           [menu.shutdown]
             cmd = "systemctl poweroff"
-            requires_confirmation = "true"
+            requires_confirmation = "false"
 
           [menu.reboot]
             cmd = "systemctl reboot"
-            requires_confirmation = "true"
+            requires_confirmation = "false"
 
           [menu.suspend]
             cmd = "systemctl suspend"
@@ -401,18 +401,140 @@
 
           [menu.hibernate]
             cmd = "systemctl hibernate"
-            requires_confirmation = "true"
+            requires_confirmation = "false"
 
           [menu.logout]
             cmd = "hyprctl dispatch exit"
-            requires_confirmation = "true"
+            requires_confirmation = "false"
 
           [menu.lock-screen]
             cmd = "hyprlock"
             requires_confirmation = "false"
         '';
         
-        # Swaync style
+        # Swaync
+        "swaync/config.json".text = ''
+          {
+            "$schema": "/etc/xdg/swaync/configSchema.json",
+            "positionX": "right",
+            "positionY": "top",
+            "control-center-margin-top": 6,
+            "control-center-margin-bottom": 6,
+            "control-center-margin-right": 6,
+            "control-center-margin-left": 6,
+            "notification-icon-size": 64,
+            "notification-body-image-height": 100,
+            "notification-body-image-width": 200,
+            "timeout": 10,
+            "timeout-low": 5,
+            "timeout-critical": 0,
+            "fit-to-screen": true,
+            "notification-window-width": 500,
+            "keyboard-shortcuts": true,
+            "image-visibility": "when-available",
+            "transition-time": 200,
+            "hide-on-clear": false,
+            "hide-on-action": true,
+            "script-fail-notify": true,
+            "widgets": [
+              "menubar",
+              "buttons-grid",
+              "mpris",
+              "volume",
+              "backlight",
+              "title",
+              "dnd",
+              "notifications"
+            ],
+            "widget-config": {
+              "title": {
+                "text": "Notifications",
+                "clear-all-button": true,
+                "button-text": "Clear All"
+              },
+              "dnd": {
+                "text": "Do Not Disturb"
+              },
+              "label": {
+                "max-lines": 1,
+                "text": "Notification Center"
+              },
+              "mpris": {
+                "image-size": 96,
+                "image-radius": 8
+              },
+              "volume": {
+                "label": "󰕾 "
+              },
+              "backlight": {
+                "label": "󰃟 "
+              },
+              "buttons-grid": {
+                "actions": [
+                  {
+                    "label": "",
+                    "command": "wofi"
+                  },
+                  {
+                    "label": "󰍺",
+                    "command": "wdisplays"
+                  },
+                  {
+                    "label": "",
+                    "command": "kooha"
+                  }
+                ]
+              },
+              "menubar": {
+                "menu#power-buttons": {
+                  "label": "",
+                  "position": "left",
+                  "actions": [
+                    {
+                      "label": " Shut down",
+                      "command": "wofi-power-menu -d reboot -d suspend -d hibernate -d logout -d lock-screen"
+                    },
+                    {
+                      "label": "󰜉 Reboot",
+                      "command": "wofi-power-menu -d shutdown -d suspend -d hibernate -d logout -d lock-screen"
+                    },
+                    {
+                      "label": "󰒲 Suspend",
+                      "command": "wofi-power-menu -d shutdown -d reboot -d hibernate -d logout -d lock-screen"
+                    },
+                    {
+                      "label": "󰋊 Hibernate",
+                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d logout -d lock-screen"
+                    },
+                    {
+                      "label": "󰍃 Logout",
+                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d hibernate -d lock-screen"
+                    },
+                    {
+                      "label": "󰌾 Lock Screen",
+                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d hibernate -d logout"
+                    }
+                  ]
+                },
+                "menu#power-profiles": {
+                  "label": "󱐋",
+                  "position": "left",
+                  "actions": [
+                    {
+                      "label": "󰡴 Performance",
+                      "command": "cpupower-gui -p"
+                    },
+                    {
+                      "label": "󰡳 Power-Saver",
+                      "command": "cpupower-gui -b"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        '';
+        
         "swaync/style.css".text = ''
           @define-color cc-bg rgba(15, 15, 15, 1);
           @define-color noti-border-color rgba(224, 224, 224, 1);
@@ -606,8 +728,8 @@
             color: @text-color;
             text-shadow: none;
             background: @noti-bg;
-            border: 2px solid @noti-border-color;
             box-shadow: none;
+            border: none;
             border-radius: 10px
           }
 
@@ -623,7 +745,7 @@
 
           .widget-dnd>switch {
             font-size: initial;
-            border-radius: 10px;
+            border-radius: 15px;
             background: @noti-bg;
             border: 2px solid @noti-border-color;
             box-shadow: none
@@ -670,23 +792,40 @@
 
           .widget-buttons-grid {
             font-size: x-large;
-            padding: 8px;
-            margin: 0px;
             background: @noti-bg-darker;
           }
 
+          .widget-menubar>box {
+            border: 2px solid @noti-border-color;
+            border-radius: 7px 7px 10px 10px;
+            background: @noti-border-color
+          }
+
+          .widget-menubar>box>.menu-button-bar>button {
+            color: @noti-bg
+          }
+
+          .power-buttons>button {
+            color: @noti-bg
+          }
+
+          .power-profiles>button {
+            color: @noti-bg
+          }
+        
           .widget-buttons-grid>flowbox>flowboxchild>button {
-            margin: 8px;
-            background: @noti-bg;
+            padding: 6px 56px;
+            background: transparent;
             border-radius: 10px;
+            background: @noti-bg;
             color: @text-color
           }
-
+          
           .widget-buttons-grid>flowbox>flowboxchild>button:hover {
+            color: @noti-border-color;
             background: @noti-bg-hover;
-            color: @noti-border-color
           }
-
+                    
           .widget-menubar>box>.menu-button-bar>button {
             border: none;
             background: transparent
@@ -703,7 +842,7 @@
             margin: 0px;
             border-radius: 10px;
             font-size: x-large;
-            color: @noti-border-color
+            color: @noti-border-color 
           }
 
           .widget-volume>box>button {
@@ -889,7 +1028,7 @@
           "CTRL_ALT, T, exec, kitty"
           "SUPER, A, exec, wofi"
           "SUPER_ALT, L, exec, hyprlock"
-          "SUPER_ALT, P, exec, wofi-power-menu"
+          "SUPER_ALT, P, exec, wofi-power-menu -c shutdown -c reboot -c logout -c hibernate"
           "ALT, comma, splitratio, -0.05"
           "ALT, period, splitratio, +0.05"
           "ALT, left, movefocus, l"
