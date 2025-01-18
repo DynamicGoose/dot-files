@@ -384,9 +384,6 @@
         "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=GraphiteDark";
 
         "wofi-power-menu.toml".text = ''
-          [wofi]
-            extra_args = "--allow-markup --columns=1 --hide-scroll --height=256"
-
           [menu.shutdown]
             cmd = "systemctl poweroff"
             requires_confirmation = "false"
@@ -944,6 +941,8 @@
           bezier = [
             "overshot, 0.05, 0.9, 0.1, 1.05"
             "fade, 0, 0, 0, 1"
+            "layersin, 0.215, 0.61, 0.355, 1"
+            "layersout, 0.55, 0.055, 0.675, 0.19"
           ];
 
           animation = [
@@ -952,6 +951,8 @@
             "border, 1, 10, default"
             "fade, 1, 7, fade"
             "workspaces, 1, 6, default"
+            "layersIn, 1, 4, layersin"
+            "layersOut, 1, 4, layersout"
           ];
         };
 
@@ -1083,6 +1084,11 @@
 
         bindr = [
           "SUPER, SUPER_L, exec, swaync-client -t"
+        ];
+
+        layerrule = [
+          "animation slide right, swaync-control-center"
+          "animation slide right, swaync-notification-window"
         ];
       };
     };
@@ -1304,23 +1310,9 @@
         }
 
         #input {
-          margin: 8px;
           border-radius: 8px;
           color: #ffffff;
           background-color: #181818;
-        }
-
-        #input image {
-        	color: #303030;
-        }
-
-        #inner-box {
-          margin: 0px 8px 0px 0px;
-          border: none;
-          padding-left: 8px;
-          padding-right: 8px;
-          border-radius: 8px;
-          background-color: #0f0f0f;
         }
 
         #outer-box {
@@ -1329,12 +1321,7 @@
           background-color: #0f0f0f;
           border-radius: 8px;
         }
-
-        #scroll {
-          margin: 0px;
-          border: none;
-        }
-
+        
         #text {
           margin: 0px 8px 0px 8px;
           border: none;
