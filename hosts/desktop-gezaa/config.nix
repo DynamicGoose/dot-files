@@ -7,6 +7,7 @@
   imports = [
     ../../modules/bootloader/grub_uefi.nix
     ../../modules/graphics/amd.nix
+    ../../modules/power-management/gui_only.nix
     ../../modules/home-manager/desktop.nix
   ];
 

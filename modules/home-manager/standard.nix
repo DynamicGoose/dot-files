@@ -11,9 +11,43 @@
         monitor = [
           ", preferred, auto, 1"
         ];
+      };
+    };
 
-        exec-once = [
-          "hypridle"
+    # Hypridle
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || hyprlock";
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+        };
+
+        listener = [
+          {
+            timeout = 150;
+            on-timeout = "brightnessctl -s set 10";
+            on-resume = "brightnessctl -r";
+          }
+          {
+            timeout = 150;
+            on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
+            on-resume = "brightnessctl -rd rgb:kbd_backlight";
+          }
+          {
+            timeout = 300;
+            on-timeout = "loginctl lock-session";
+          }
+          {
+            timeout = 380;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+          {
+            timeout = 1800;
+            on-timeout = "systemctl suspend";
+          }
         ];
       };
     };
@@ -53,6 +87,7 @@
 
           "clock" = {
             "format" = "󱑇 {:%H:%M}";
+            "tooltip" = false;
           };
 
           "pulseaudio" = {
@@ -79,116 +114,6 @@
           };
         }
       ];
-    };
-
-    # Swaync
-    xdg.configFile = {
-      "swaync-config" = {
-        enable = true;
-        target = "swaync/config.json";
-        text = ''
-          {
-            "$schema": "/etc/xdg/swaync/configSchema.json",
-            "positionX": "right",
-            "positionY": "top",
-            "control-center-margin-top": 6,
-            "control-center-margin-bottom": 6,
-            "control-center-margin-right": 6,
-            "control-center-margin-left": 6,
-            "notification-icon-size": 64,
-            "notification-body-image-height": 100,
-            "notification-body-image-width": 200,
-            "timeout": 10,
-            "timeout-low": 5,
-            "timeout-critical": 0,
-            "fit-to-screen": true,
-            "notification-window-width": 500,
-            "keyboard-shortcuts": true,
-            "image-visibility": "when-available",
-            "transition-time": 200,
-            "hide-on-clear": false,
-            "hide-on-action": true,
-            "script-fail-notify": true,
-            "widgets": [
-              "buttons-grid",
-              "mpris",
-              "volume",
-              "backlight",
-              "title",
-              "dnd",
-              "notifications"
-            ],
-            "widget-config": {
-              "title": {
-                "text": "Notifications",
-                "clear-all-button": true,
-                "button-text": "Clear All"
-              },
-              "dnd": {
-                "text": "Do Not Disturb"
-              },
-              "label": {
-                "max-lines": 1,
-                "text": "Notification Center"
-              },
-              "mpris": {
-                "image-size": 96,
-                "image-radius": 8
-              },
-              "volume": {
-                "label": "󰕾 "
-              },
-              "backlight": {
-                "label": "󰃟 "
-              },
-              "buttons-grid": {
-                "actions": [
-                  {
-                    "label": "󰐥",
-                    "command": "systemctl poweroff"
-                  },
-                  {
-                    "label": "󰜉",
-                    "command": "systemctl reboot"
-                  },
-                  {
-                    "label": "",
-                    "command": "systemctl hibernate"
-                  },
-                  {
-                    "label": "󰍃",
-                    "command": "hyprctl dispatch exit"
-                  },
-                  {
-                    "label": "󰏥",
-                    "command": "systemctl suspend"
-                  },
-                  {
-                    "label": "󰍺",
-                    "command": "wdisplays"
-                  },
-                  {
-                    "label": "󱐋",
-                    "command": "cpupower-gui"
-                  },
-                  {
-                    "label": "󰖩",
-                    "command": "nm-connection-editor"
-                  },
-                  {
-                    "label": "󰂯",
-                    "command": "blueman-manager"
-                  },
-                  {
-                    "label": "",
-                    "command": "kooha"
-                  }
-                ]
-              }
-            }
-          }
-        '';
-      };
     };
   };
 }

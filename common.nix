@@ -326,6 +326,7 @@
     wineWowPackages.waylandFull
     wl-clipboard
     wl-clip-persist
+    wofi-power-menu
     xarchiver
     yabridge
     yabridgectl
@@ -382,7 +383,155 @@
         "Kvantum/Graphite/Graphite.svg".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite/Graphite.svg";
         "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=GraphiteDark";
 
-        # Swaync style
+        "wofi-power-menu.toml".text = ''
+          [menu.shutdown]
+            cmd = "systemctl poweroff"
+            requires_confirmation = "false"
+
+          [menu.reboot]
+            cmd = "systemctl reboot"
+            requires_confirmation = "false"
+
+          [menu.suspend]
+            cmd = "systemctl suspend"
+            requires_confirmation = "false"
+
+          [menu.hibernate]
+            cmd = "systemctl hibernate"
+            requires_confirmation = "false"
+
+          [menu.logout]
+            cmd = "hyprctl dispatch exit"
+            requires_confirmation = "false"
+
+          [menu.lock-screen]
+            cmd = "hyprlock"
+            requires_confirmation = "false"
+        '';
+        
+        # Swaync
+        "swaync/config.json".text = ''
+          {
+            "$schema": "/etc/xdg/swaync/configSchema.json",
+            "positionX": "right",
+            "positionY": "top",
+            "control-center-margin-top": 6,
+            "control-center-margin-bottom": 6,
+            "control-center-margin-right": 6,
+            "control-center-margin-left": 6,
+            "notification-icon-size": 64,
+            "notification-body-image-height": 100,
+            "notification-body-image-width": 200,
+            "timeout": 10,
+            "timeout-low": 5,
+            "timeout-critical": 0,
+            "fit-to-screen": true,
+            "notification-window-width": 500,
+            "keyboard-shortcuts": true,
+            "image-visibility": "when-available",
+            "transition-time": 200,
+            "hide-on-clear": false,
+            "hide-on-action": true,
+            "script-fail-notify": true,
+            "widgets": [
+              "menubar",
+              "buttons-grid",
+              "mpris",
+              "volume",
+              "backlight",
+              "title",
+              "dnd",
+              "notifications"
+            ],
+            "widget-config": {
+              "title": {
+                "text": "Notifications",
+                "clear-all-button": true,
+                "button-text": "Clear All"
+              },
+              "dnd": {
+                "text": "Do Not Disturb"
+              },
+              "label": {
+                "max-lines": 1,
+                "text": "Notification Center"
+              },
+              "mpris": {
+                "image-size": 96,
+                "image-radius": 8
+              },
+              "volume": {
+                "label": "󰕾 "
+              },
+              "backlight": {
+                "label": "󰃟 "
+              },
+              "buttons-grid": {
+                "actions": [
+                  {
+                    "label": "",
+                    "command": "wofi"
+                  },
+                  {
+                    "label": "󰍺",
+                    "command": "wdisplays"
+                  },
+                  {
+                    "label": "",
+                    "command": "kooha"
+                  }
+                ]
+              },
+              "menubar": {
+                "menu#power-buttons": {
+                  "label": "",
+                  "position": "left",
+                  "actions": [
+                    {
+                      "label": " Shut down",
+                      "command": "wofi-power-menu -d reboot -d suspend -d hibernate -d logout -d lock-screen"
+                    },
+                    {
+                      "label": "󰜉 Reboot",
+                      "command": "wofi-power-menu -d shutdown -d suspend -d hibernate -d logout -d lock-screen"
+                    },
+                    {
+                      "label": "󰒲 Suspend",
+                      "command": "wofi-power-menu -d shutdown -d reboot -d hibernate -d logout -d lock-screen"
+                    },
+                    {
+                      "label": "󰋊 Hibernate",
+                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d logout -d lock-screen"
+                    },
+                    {
+                      "label": "󰍃 Logout",
+                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d hibernate -d lock-screen"
+                    },
+                    {
+                      "label": "󰌾 Lock Screen",
+                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d hibernate -d logout"
+                    }
+                  ]
+                },
+                "menu#power-profiles": {
+                  "label": "󱐋",
+                  "position": "left",
+                  "actions": [
+                    {
+                      "label": "󰡴 Performance",
+                      "command": "cpupower-gui -p"
+                    },
+                    {
+                      "label": "󰡳 Power-Saver",
+                      "command": "cpupower-gui -b"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        '';
+        
         "swaync/style.css".text = ''
           @define-color cc-bg rgba(15, 15, 15, 1);
           @define-color noti-border-color rgba(224, 224, 224, 1);
@@ -576,8 +725,8 @@
             color: @text-color;
             text-shadow: none;
             background: @noti-bg;
-            border: 2px solid @noti-border-color;
             box-shadow: none;
+            border: none;
             border-radius: 10px
           }
 
@@ -593,7 +742,7 @@
 
           .widget-dnd>switch {
             font-size: initial;
-            border-radius: 10px;
+            border-radius: 15px;
             background: @noti-bg;
             border: 2px solid @noti-border-color;
             box-shadow: none
@@ -640,23 +789,40 @@
 
           .widget-buttons-grid {
             font-size: x-large;
-            padding: 8px;
-            margin: 0px;
             background: @noti-bg-darker;
           }
 
+          .widget-menubar>box {
+            border: 2px solid @noti-border-color;
+            border-radius: 7px 7px 10px 10px;
+            background: @noti-border-color
+          }
+
+          .widget-menubar>box>.menu-button-bar>button {
+            color: @noti-bg
+          }
+
+          .power-buttons>button {
+            color: @noti-bg
+          }
+
+          .power-profiles>button {
+            color: @noti-bg
+          }
+        
           .widget-buttons-grid>flowbox>flowboxchild>button {
-            margin: 8px;
-            background: @noti-bg;
+            padding: 6px 56px;
+            background: transparent;
             border-radius: 10px;
+            background: @noti-bg;
             color: @text-color
           }
-
+          
           .widget-buttons-grid>flowbox>flowboxchild>button:hover {
+            color: @noti-border-color;
             background: @noti-bg-hover;
-            color: @noti-border-color
           }
-
+                    
           .widget-menubar>box>.menu-button-bar>button {
             border: none;
             background: transparent
@@ -673,7 +839,7 @@
             margin: 0px;
             border-radius: 10px;
             font-size: x-large;
-            color: @noti-border-color
+            color: @noti-border-color 
           }
 
           .widget-volume>box>button {
@@ -775,6 +941,8 @@
           bezier = [
             "overshot, 0.05, 0.9, 0.1, 1.05"
             "fade, 0, 0, 0, 1"
+            "layersin, 0.215, 0.61, 0.355, 1"
+            "layersout, 0.55, 0.055, 0.675, 0.19"
           ];
 
           animation = [
@@ -783,6 +951,8 @@
             "border, 1, 10, default"
             "fade, 1, 7, fade"
             "workspaces, 1, 6, default"
+            "layersIn, 1, 4, layersin"
+            "layersOut, 1, 4, layersout"
           ];
         };
 
@@ -859,7 +1029,7 @@
           "CTRL_ALT, T, exec, kitty"
           "SUPER, A, exec, wofi"
           "SUPER_ALT, L, exec, hyprlock"
-          "SUPER_ALT, P, exec, wlogout"
+          "SUPER_ALT, P, exec, wofi-power-menu -c shutdown -c reboot -c logout -c hibernate"
           "ALT, comma, splitratio, -0.05"
           "ALT, period, splitratio, +0.05"
           "ALT, left, movefocus, l"
@@ -914,6 +1084,11 @@
 
         bindr = [
           "SUPER, SUPER_L, exec, swaync-client -t"
+        ];
+
+        layerrule = [
+          "animation slide right, swaync-control-center"
+          "animation slide right, swaync-notification-window"
         ];
       };
     };
@@ -983,44 +1158,6 @@
             position = "0, 64";
             halign = "center";
             valign = "center";
-          }
-        ];
-      };
-    };
-
-    # Hypridle
-    services.hypridle = {
-      enable = true;
-      settings = {
-        general = {
-          lock_cmd = "pidof hyprlock || hyprlock";
-          before_sleep_cmd = "loginctl lock-session";
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-        };
-
-        listener = [
-          {
-            timeout = 150;
-            on-timeout = "brightnessctl -s set 10";
-            on-resume = "brightnessctl -r";
-          }
-          {
-            timeout = 150;
-            on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
-            on-resume = "brightnessctl -rd rgb:kbd_backlight";
-          }
-          {
-            timeout = 300;
-            on-timeout = "loginctl lock-session";
-          }
-          {
-            timeout = 380;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
-          {
-            timeout = 1800;
-            on-timeout = "systemctl suspend";
           }
         ];
       };
@@ -1135,23 +1272,9 @@
         }
 
         #input {
-          margin: 8px;
-          border-radius: 8px;
+        border-radius: 8px;
           color: #ffffff;
           background-color: #181818;
-        }
-
-        #input image {
-        	color: #303030;
-        }
-
-        #inner-box {
-          margin: 0px 8px 0px 0px;
-          border: none;
-          padding-left: 8px;
-          padding-right: 8px;
-          border-radius: 8px;
-          background-color: #0f0f0f;
         }
 
         #outer-box {
@@ -1160,12 +1283,7 @@
           background-color: #0f0f0f;
           border-radius: 8px;
         }
-
-        #scroll {
-          margin: 0px;
-          border: none;
-        }
-
+        
         #text {
           margin: 0px 8px 0px 8px;
           border: none;
@@ -1182,76 +1300,6 @@
         	background-color: #e0e0e0;
         	color: #000000;
         	font-weight: normal;
-        }
-      '';
-    };
-
-    # Wlogout
-    programs.wlogout = {
-      enable = true;
-
-      layout = [
-        {
-          label = "lock";
-          action = "hyprlock";
-          text = "Lock";
-          keybind = "l";
-        }
-        {
-          label = "hibernate";
-          action = "systemctl hibernate";
-          text = "Hibernate";
-          keybind = "h";
-        }
-        {
-          label = "logout";
-          action = "hyprctl dispatch exit";
-          text = "Logout";
-          keybind = "e";
-        }
-        {
-          label = "shutdown";
-          action = "systemctl poweroff";
-          text = "Shutdown";
-          keybind = "s";
-        }
-        {
-          label = "suspend";
-          action = "systemctl suspend";
-          text = "Suspend";
-          keybind = "u";
-        }
-        {
-          label = "reboot";
-          action = "systemctl reboot";
-          text = "Reboot";
-          keybind = "r";
-        }
-      ];
-
-      style = ''
-        window {
-          background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        button {
-          font-size: 48px;
-          color: #E0E0E0;
-          background-color: #0F0F0F;
-          border-style: solid;
-          border-radius: 10px;
-          border-width: 2px;
-          margin: 4px;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 25%;
-        }
-
-        button:focus, button:active, button:hover {
-          font-size: 48px;
-          color: #0F0F0F;
-          background-color: #E0E0E0;
-          outline-style: none;
         }
       '';
     };
