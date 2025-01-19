@@ -8,6 +8,9 @@
     # Hyprland
     wayland.windowManager.hyprland = {
       settings = {
+        exec-once = [
+          "hypridle"
+        ];
         monitor = [
           ", preferred, auto, 1"
         ];
