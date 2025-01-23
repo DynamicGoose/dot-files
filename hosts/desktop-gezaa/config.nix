@@ -29,8 +29,7 @@
     };
     "/run/media/gezaa/SSD02" = {
       device = "/dev/disk/by-label/SSD02";
-      fsType = "ntfs-3g";
-      options = ["rw" "uid=1000"];
+      fsType = "ext4";
     };
   };
 
