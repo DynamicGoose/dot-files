@@ -4,7 +4,7 @@
   ...
 }: {
   hardware.amdgpu = {
-    opencl.enable = true;
+    # opencl.enable = true;
     initrd.enable = true;
   };
 
