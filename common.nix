@@ -80,6 +80,8 @@
       noto-fonts-cjk-serif
       comic-mono
     ];
+
+    enableDefaultPackages = true;
   };
 
   # Hardware
