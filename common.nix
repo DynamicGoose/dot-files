@@ -172,10 +172,8 @@
       jack.enable = true;
     };
 
-    logind.extraConfig = ''
-      HandlePowerKey=suspend
-    '';
-
+    logind.powerKey = "ignore";
+    
     openssh = {
       enable = true;
       # Only run when needed, bc this is not a server
@@ -491,27 +489,27 @@
                   "actions": [
                     {
                       "label": " Shut down",
-                      "command": "wofi-power-menu -d reboot -d suspend -d hibernate -d logout -d lock-screen"
+                      "command": "systemctl poweroff"
                     },
                     {
                       "label": "󰜉 Reboot",
-                      "command": "wofi-power-menu -d shutdown -d suspend -d hibernate -d logout -d lock-screen"
+                      "command": "systemctl reboot"
                     },
                     {
                       "label": "󰒲 Suspend",
-                      "command": "wofi-power-menu -d shutdown -d reboot -d hibernate -d logout -d lock-screen"
+                      "command": "systemctl suspend"
                     },
                     {
                       "label": "󰋊 Hibernate",
-                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d logout -d lock-screen"
+                      "command": "systemctl hibernate"
                     },
                     {
                       "label": "󰍃 Logout",
-                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d hibernate -d lock-screen"
+                      "command": "hyprctl dispatch exit"
                     },
                     {
                       "label": "󰌾 Lock Screen",
-                      "command": "wofi-power-menu -d shutdown -d reboot -d suspend -d hibernate -d logout"
+                      "command": "hyprlock"
                     }
                   ]
                 },
@@ -1029,9 +1027,9 @@
           "ALT, F, togglefloating,"
           "SUPER, F, fullscreen,"
           "CTRL_ALT, T, exec, kitty"
-          "SUPER, A, exec, wofi"
+          "SUPER, A, exec, pidof wofi || wofi"
           "SUPER_ALT, L, exec, hyprlock"
-          "SUPER_ALT, P, exec, wofi-power-menu -c shutdown -c reboot -c logout -c hibernate"
+          "SUPER_ALT, P, exec, pidof wofi-power-menu || wofi-power-menu"
           "ALT, comma, splitratio, -0.05"
           "ALT, period, splitratio, +0.05"
           "ALT, left, movefocus, l"
@@ -1066,6 +1064,7 @@
           "ALT_CTRL, 0, movetoworkspace, 10"
           "ALT, mouse_down, workspace, e+1"
           "ALT, mouse_up, workspace, e-1"
+          ", XF86PowerOff, exec, pidof wofi-power-menu || wofi-power-menu"
           ", XF86AudioMute, exec, swayosd-client --output-volume=mute-toggle"
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
