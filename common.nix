@@ -305,6 +305,7 @@
     protonup-qt
     pwvucontrol
     python3
+    python3Packages.jedi-language-server
     qalculate-gtk
     r2modman
     ruff
