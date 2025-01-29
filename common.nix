@@ -307,6 +307,7 @@
     python3
     qalculate-gtk
     r2modman
+    ruff
     rustup
     sidequest
     signal-desktop
