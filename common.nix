@@ -358,7 +358,8 @@
 
     dconf.enable = true;
     evince.enable = true;
-    hyprland.enable = true;
+    # hyprland.enable = true;
+    niri.enable = true;
     ssh.askPassword = "";
     virt-manager.enable = true;
     xwayland.enable = true;
