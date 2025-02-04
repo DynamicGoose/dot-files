@@ -245,7 +245,7 @@
       allowUnfree = true;
       permittedInsecurePackages = [ ];
     };
-    overlays = [ ];
+    overlays = [ inputs.niri.overlays.niri ];
   };
 
   # Environment
@@ -889,6 +889,17 @@
       };
     };
 
+    # Niri
+    programs.niri = {
+      settings = {
+        inputs = {
+          keyboard.xkb = {
+            layout = "de";
+          };
+        };
+      };
+    };
+    
     # Hyprland
     wayland.windowManager.hyprland = {
       enable = true;
