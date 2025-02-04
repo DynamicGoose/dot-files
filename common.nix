@@ -892,7 +892,7 @@
     # Niri
     programs.niri = {
       settings = {
-        inputs = {
+        input = {
           keyboard.xkb = {
             layout = "de";
           };
