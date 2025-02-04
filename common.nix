@@ -76,6 +76,7 @@
       dejavu_fonts
       nerd-fonts.ubuntu
       nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       comic-mono
@@ -152,7 +153,7 @@
             cursorTheme.package = pkgs.graphite-cursors;
             cursorTheme.name = "graphite-dark";
             cursorTheme.size = 24;
-            indicators = [];
+            indicators = ["~sessions"];
           };
         };
       };
@@ -358,7 +359,7 @@
 
     dconf.enable = true;
     evince.enable = true;
-    # hyprland.enable = true;
+    hyprland.enable = true;
     niri.enable = true;
     ssh.askPassword = "";
     virt-manager.enable = true;
