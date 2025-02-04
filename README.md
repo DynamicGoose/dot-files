@@ -15,11 +15,9 @@ new-host = nixpkgs.lib.nixosSystem {
   specialArgs = {
     inherit inputs;
   };
-  modules = [
-    ./common.nix
+  modules = common-modules ++ [
     ./hosts/new-host/config.nix
     ./hosts/new-host/hardware-configuration.nix
-    inputs.home-manager.nixosModules.home-manager
   ];
 };
 ```
