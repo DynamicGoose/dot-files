@@ -324,6 +324,7 @@
     thunderbird
     # vesktop
     vscodium
+    xwayland-satellite
     wdisplays
     wget
     wineWowPackages.waylandFull
@@ -375,7 +376,7 @@
   # Home-Manager
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "backup";
-  home-manager.users.gezaa = {pkgs, ...}: {
+  home-manager.users.gezaa = {pkgs, config, ...}: {
     # XDG
     xdg = {
       enable = true;
@@ -892,11 +893,108 @@
     # Niri
     programs.niri = {
       settings = {
+        prefer-no-csd = true;
+
+        environment = {
+          DISPLAY = ":1";
+          ELM_DISPLAY = "wl";
+          GDK_BACKEND = "wayland,x11";
+          MOZ_ENABLE_WAYLAND = "1";
+          QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+          SDL_VIDEODRIVER = "wayland";
+          CLUTTER_BACKEND = "wayland";
+        };
+        
+        spawn-at-startup = [
+          { command = ["wl-clip-persist" "--clipboard" "regular"]; }
+          { command = ["cliphist" "wipe"]; }
+          { command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"]; }
+          { command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"]; }
+          { command = ["waybar"]; }
+          { command = ["swayosd-server"]; }
+          { command = ["swaybg" "-m" "fill" "-i" "${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png" "-o" "eDP-1"]; }
+          { command = ["nm-applet"]; }
+          { command = ["swaync"]; }
+          { command = ["sh" "-c" "sleep 1 && blueman-applet"]; }
+          { command = ["sh" "-c" "sleep 3 && syncthingtray --wait"]; }
+          { command = ["sh" "-c" "id=0"]; }
+          { command = ["xwayland-satellite"]; }
+        ];
+        
         input = {
+          power-key-handling.enable = false;
+          warp-mouse-to-focus = true;
+
+          mouse = {
+            accel-speed = 0.5;
+          };
+          
+          touchpad = {
+            accel-profile = "flat";
+            accel-speed = 0.5;
+          };
+          
           keyboard.xkb = {
             layout = "de";
           };
+
+          focus-follows-mouse = {
+            enable = true;
+            max-scroll-amount = "0%";
+          };
         };
+
+        binds = with config.lib.niri.actions; let
+          sh = spawn "sh" "-c";
+        in {
+          "Alt+X".action = close-window;
+          "Alt+F".action = toggle-window-floating;
+          "Super+F".action = fullscreen-window;
+          
+          "Print".action = sh "pidof hyprshot || hyprshot -o ~/Pictures/Screenshots -m region";
+          "Super+V".action = sh "cliphist list | wofi --dmenu | cliphist decode | wl-copy";
+          "Ctrl+Alt+C".action = sh "pidof hyprpicker || hyprpicker --autocopy";
+          "Super+C".action = spawn "qalculate-gtk";
+          "Ctrl+Alt+T".action = spawn "kitty";
+          "Super+A".action = sh "pidof wofi || wofi";
+          "Super+Alt+L".action = spawn "hyprlock";
+          "Super+Alt+P".action = sh "pidof wofi-power-menu || wofi-power-menu";
+          "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
+          "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
+          "XF86AudioPlay".action = sh "playerctl play-pause";
+          "XF86AudioPrev".action = sh "playerctl previous";
+          "XF86AudioNext".action = sh "playerctl next";
+          "XF86AudioRaiseVolume".action = sh "swayosd-client --output-volume=raise";
+          "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume=lower";
+          "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
+          "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
+        };
+
+        layout = {
+          border.enable = false;
+          gaps = 8;
+          focus-ring = {
+            enable = true;
+            width = 2;
+            active = { color = "#e0e0e0ff"; };
+            inactive = { color = "#00000000"; };
+          };
+        };
+
+        window-rules = [
+          {
+            geometry-corner-radius = let
+              radius = 8.0;
+            in {
+              bottom-left = radius;
+              bottom-right = radius;
+              top-left = radius;
+              top-right = radius;
+            };
+            clip-to-geometry = true;
+            draw-border-with-background = false;
+          }
+        ];
       };
     };
     
@@ -1193,7 +1291,7 @@
           padding: 0 4px 0 4px;
         }
         window#waybar {
-          background: #0F0F0F;
+          background: rgba(15, 15, 15, 0.999);
           color: #E0E0E0;
           border: Solid;
           border-radius: 10px;
