@@ -24,7 +24,7 @@
           refresh = 240.0;
         };
         position = {
-          x = programs.niri.settings.outputs."HDMI-A-1".mode.width;
+          x = 1920;
           y = 0;
         };
       };
