@@ -153,7 +153,7 @@
             cursorTheme.package = pkgs.graphite-cursors;
             cursorTheme.name = "graphite-dark";
             cursorTheme.size = 24;
-            indicators = ["~session"];
+            indicators = [];
           };
         };
       };
@@ -360,7 +360,7 @@
 
     dconf.enable = true;
     evince.enable = true;
-    hyprland.enable = true;
+    hyprland.enable = false;
     niri.enable = true;
     ssh.askPassword = "";
     virt-manager.enable = true;
@@ -406,7 +406,7 @@
             requires_confirmation = "false"
 
           [menu.logout]
-            cmd = "hyprctl dispatch exit"
+            cmd = "niri msg action quit -s"
             requires_confirmation = "false"
 
           [menu.lock-screen]
@@ -894,6 +894,7 @@
     programs.niri = {
       settings = {
         prefer-no-csd = true;
+        hotkey-overlay.skip-at-startup = true;
 
         environment = {
           DISPLAY = ":1";
@@ -930,7 +931,6 @@
           };
           
           touchpad = {
-            accel-profile = "flat";
             accel-speed = 0.5;
           };
           
@@ -951,12 +951,40 @@
           "Alt+F".action = toggle-window-floating;
           "Super+F".action = fullscreen-window;
           
+          "Alt+Right".action = focus-column-or-monitor-right;
+          "Alt+Left".action = focus-column-or-monitor-left;
+          "Alt+Up".action = focus-window-or-monitor-up;
+          "Alt+Down".action = focus-window-or-monitor-down;
+
+          "Ctrl+Alt+Right".action = consume-or-expel-window-right;
+          "Ctrl+Alt+Left".action = consume-or-expel-window-left;
+          "Ctrl+Alt+Up".action = move-window-up;
+          "Ctrl+Alt+Down".action = move-window-down;
+
+          "Ctrl+Alt+Q".action = switch-preset-column-width;
+          "Ctrl+Alt+A".action = switch-preset-window-height;
+          "Ctrl+Alt+W".action = maximize-column;
+
+          "Alt+Super+Up".action = focus-workspace-up;
+          "Alt+Super+Down".action = focus-workspace-down;
+          "Alt+1".action = focus-workspace 1;
+          "Alt+2".action = focus-workspace 2;
+          "Alt+3".action = focus-workspace 3;
+          "Alt+4".action = focus-workspace 4;
+          "Alt+5".action = focus-workspace 5;
+          "Alt+6".action = focus-workspace 6;
+          "Alt+7".action = focus-workspace 7;
+          "Alt+8".action = focus-workspace 8;
+          "Alt+9".action = focus-workspace 9;
+          "Alt+0".action = focus-workspace 10;
+
           "Print".action = sh "pidof hyprshot || hyprshot -o ~/Pictures/Screenshots -m region";
           "Super+V".action = sh "cliphist list | wofi --dmenu | cliphist decode | wl-copy";
           "Ctrl+Alt+C".action = sh "pidof hyprpicker || hyprpicker --autocopy";
           "Super+C".action = spawn "qalculate-gtk";
           "Ctrl+Alt+T".action = spawn "kitty";
           "Super+A".action = sh "pidof wofi || wofi";
+          "Super+S".action = sh "swaync-client -t";
           "Super+Alt+L".action = spawn "hyprlock";
           "Super+Alt+P".action = sh "pidof wofi-power-menu || wofi-power-menu";
           "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
@@ -973,6 +1001,21 @@
         layout = {
           border.enable = false;
           gaps = 8;
+          default-column-width.proportion = 0.5;
+          insert-hint.display = { color = "rgba(224, 224, 224, 30%)"; };
+
+          preset-column-widths = [
+            { proportion = 1.0 / 3.0; }
+            { proportion = 0.5; }
+            { proportion = 2.0 / 3.0; }
+          ];
+
+          preset-window-heights = [
+            { proportion = 1.0 / 3.0; }
+            { proportion = 0.5; }
+            { proportion = 2.0 / 3.0; }
+          ];
+           
           focus-ring = {
             enable = true;
             width = 2;
@@ -1000,7 +1043,7 @@
     
     # Hyprland
     wayland.windowManager.hyprland = {
-      enable = true;
+      enable = false;
       settings = {
         # monitors configured by host
         
@@ -1301,10 +1344,11 @@
         #workspaces button {
           background: #0F0F0F;
           margin: 4px 2px 4px 2px;
+          padding: 0;
         }
         #workspaces button.active {
-          background: #E0E0E0;
-          color: #0F0F0F;
+          background: #0F0F0F;
+          color: #E0E0E0;
           margin: 4px 2px 4px 2px;
         }
         #tray {
@@ -1376,11 +1420,11 @@
       };
 
       style = ''
-        window {
+        #window {
           margin: 0px;
           border: 2px solid #e0e0e0;
           border-radius: 10px;
-          background-color: #0f0f0f;
+          background: rgba(15, 15, 15, 0.999);
           font-size: 16px;
           font-weight: Bold;
         }
@@ -1414,6 +1458,18 @@
         	background-color: #e0e0e0;
         	color: #000000;
         	font-weight: normal;
+        }
+
+        #expander-box {
+          backgorund: #e0e0e0;
+          color: #000000;
+          font-weight: normal;
+        }
+
+        #expander-box:selected {
+          background: #e0e0e0;
+          color: #000000;
+          font-weight: normal;
         }
       '';
     };

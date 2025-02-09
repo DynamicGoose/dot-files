@@ -27,16 +27,25 @@
           "margin-left" = 6;
           "margin-right" = 6;
           "height" = 34;
-          "modules-left" = ["clock" "hyprland/workspaces"];
-          "modules-center" = ["hyprland/window"];
+          "modules-left" = ["clock" "niri/workspaces"];
+          "modules-center" = ["niri/window"];
           "modules-right" = ["tray" "pulseaudio" "custom/menu"];
 
-          "hyprland/workspaces" = {
+          "niri/workspaces" = {
             "on-click" = "activate";
-            "all-outputs" = true;
+            "all-outputs" = false;
             "active-only" = false;
+            "format" = "{icon}";
+            "format-icons" = {
+              "default" = "";
+              "active" = "";
+            };
           };
 
+          "niri/window" = {
+            "icon" = true;
+          };
+          
           "clock" = {
             "format" = "󱑇 {:%H:%M}";
             "tooltip" = false;
