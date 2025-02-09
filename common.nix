@@ -958,8 +958,8 @@
 
           "Ctrl+Alt+Right".action = consume-or-expel-window-right;
           "Ctrl+Alt+Left".action = consume-or-expel-window-left;
-          "Ctrl+Alt+Up".action = move-window-up-or-workspace-up;
-          "Ctrl+Alt+Down".action = move-window-down-or-workspace-down;
+          "Ctrl+Alt+Up".action = move-window-up-or-to-workspace-up;
+          "Ctrl+Alt+Down".action = move-window-down-or-to-workspace-down;
 
           "Ctrl+Alt+Q".action = switch-preset-column-width;
           "Ctrl+Alt+A".action = switch-preset-window-height;
