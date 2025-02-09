@@ -15,6 +15,32 @@
       };
     };
 
+    # Niri
+    programs.niri.settings.outputs = {
+      "DP-1" = {
+        mode = {
+          width = 2560;
+          height = 1440;
+          refresh = 240.0;
+        };
+        position = {
+          x = cfg."HDMI-A-1".mode.width;
+          y = 0;
+        };
+      };
+      "HDMI-A-1" = {
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 60.0;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+      };
+    };
+
     # Waybar
     programs.waybar = {
       settings = [

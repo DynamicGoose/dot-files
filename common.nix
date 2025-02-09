@@ -68,7 +68,7 @@
     fontconfig.defaultFonts = {
       serif = ["DejaVu Serif"];
       sansSerif = ["Ubuntu Nerd Font"];
-      monospace = ["JetBrainsMono NF"];
+      monospace = ["FiraCode Nerd Font"];
     };
 
     packages = with pkgs; [
@@ -220,6 +220,7 @@
         TimeoutStopSec = 10;
       };
     };
+    user.systemd.user.services.niri-flake-polkit.enable = false;
     user.extraConfig = "DefaultLimitNOFILE=524288";
     extraConfig = "DefaultLimitNOFILE=524288";
   };
@@ -227,8 +228,9 @@
   # XDG
   xdg.portal = {
     enable = true;
-    configPackages = [
-      pkgs.xdg-desktop-portal-gtk
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
     ];
   };
 
@@ -909,11 +911,10 @@
         spawn-at-startup = [
           { command = ["wl-clip-persist" "--clipboard" "regular"]; }
           { command = ["cliphist" "wipe"]; }
-          { command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"]; }
-          { command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"]; }
+          { command = ["sh" "-c" "wl-paste --watch cliphist store"]; }
           { command = ["waybar"]; }
           { command = ["swayosd-server"]; }
-          { command = ["swaybg" "-m" "fill" "-i" "${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png" "-o" "eDP-1"]; }
+          { command = ["swaybg" "-m" "fill" "-i" "${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png"]; }
           { command = ["nm-applet"]; }
           { command = ["swaync"]; }
           { command = ["sh" "-c" "sleep 1 && blueman-applet"]; }
@@ -964,6 +965,7 @@
           "Ctrl+Alt+Q".action = switch-preset-column-width;
           "Ctrl+Alt+A".action = switch-preset-window-height;
           "Ctrl+Alt+W".action = maximize-column;
+          "Ctrl+Alt+Tab".action = move-window-to-monitor-next;
 
           "Alt+Super+Up".action = focus-workspace-up;
           "Alt+Super+Down".action = focus-workspace-down;
@@ -979,7 +981,7 @@
           "Alt+0".action = focus-workspace 10;
 
           "Print".action = sh "pidof hyprshot || hyprshot -o ~/Pictures/Screenshots -m region";
-          "Super+V".action = sh "cliphist list | wofi --dmenu | cliphist decode | wl-copy";
+          "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
           "Ctrl+Alt+C".action = sh "pidof hyprpicker || hyprpicker --autocopy";
           "Super+C".action = spawn "qalculate-gtk";
           "Ctrl+Alt+T".action = spawn "kitty";
