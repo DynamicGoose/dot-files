@@ -220,7 +220,7 @@
         TimeoutStopSec = 10;
       };
     };
-    user.systemd.user.services.niri-flake-polkit.enable = false;
+    user.services.niri-flake-polkit.enable = false;
     user.extraConfig = "DefaultLimitNOFILE=524288";
     extraConfig = "DefaultLimitNOFILE=524288";
   };
