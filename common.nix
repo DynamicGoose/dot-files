@@ -270,6 +270,7 @@
     fastfetch
     firefox-wayland
     gamemode
+    gamescope
     gedit
     gimp
     git
@@ -1345,6 +1346,7 @@
         }
         #workspaces button {
           background: #0F0F0F;
+          color: #E0E0E0;
           margin: 4px 2px 4px 2px;
           padding: 0;
         }
