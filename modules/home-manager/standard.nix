@@ -5,6 +5,11 @@
   ...
 }: {
   home-manager.users.gezaa = {pkgs, ...}: {
+    # Niri
+    programs.niri.settings.spawn-at-startup = [
+      { command = ["hypridle"]; }
+    ];
+
     # Hyprland
     wayland.windowManager.hyprland = {
       settings = {
