@@ -413,7 +413,7 @@
             requires_confirmation = "false"
 
           [menu.lock-screen]
-            cmd = "hyprlock"
+            cmd = "niri msg action do-screen-transition --delay-ms 500 && hyprlock"
             requires_confirmation = "false"
         '';
         
@@ -517,7 +517,7 @@
                     },
                     {
                       "label": "󰌾 Lock Screen",
-                      "command": "hyprlock"
+                      "command": "niri msg action do-screen-transition --delay-ms 500 && hyprlock"
                     }
                   ]
                 },
@@ -988,7 +988,7 @@
           "Ctrl+Alt+T".action = spawn "kitty";
           "Super+A".action = sh "pidof wofi || wofi";
           "Super+S".action = sh "swaync-client -t";
-          "Super+Alt+L".action = spawn "hyprlock";
+          "Super+Alt+L".action = spawn "niri msg action do-screen-transition --delay-ms 500 && hyprlock";
           "Super+Alt+P".action = sh "pidof wofi-power-menu || wofi-power-menu";
           "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
           "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
