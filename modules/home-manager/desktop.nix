@@ -40,6 +40,20 @@
         };
       };
     };
+    
+    # Hypridle
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+        };
+
+        listener = [];
+      };
+    };
 
     # Waybar
     programs.waybar = {
