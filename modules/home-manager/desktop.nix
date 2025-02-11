@@ -15,6 +15,46 @@
       };
     };
 
+    # Niri
+    programs.niri.settings.outputs = {
+      "DP-1" = {
+        mode = {
+          width = 2560;
+          height = 1440;
+          refresh = 240.0;
+        };
+        position = {
+          x = 1920;
+          y = 0;
+        };
+      };
+      "HDMI-A-1" = {
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 60.0;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+      };
+    };
+    
+    # Hypridle
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+        };
+
+        listener = [];
+      };
+    };
+
     # Waybar
     programs.waybar = {
       settings = [
@@ -27,16 +67,25 @@
           "margin-left" = 6;
           "margin-right" = 6;
           "height" = 34;
-          "modules-left" = ["clock" "hyprland/workspaces"];
-          "modules-center" = ["hyprland/window"];
+          "modules-left" = ["clock" "niri/workspaces"];
+          "modules-center" = ["niri/window"];
           "modules-right" = ["tray" "pulseaudio" "custom/menu"];
 
-          "hyprland/workspaces" = {
+          "niri/workspaces" = {
             "on-click" = "activate";
-            "all-outputs" = true;
+            "all-outputs" = false;
             "active-only" = false;
+            "format" = "{icon}";
+            "format-icons" = {
+              "default" = "";
+              "active" = "";
+            };
           };
 
+          "niri/window" = {
+            "icon" = true;
+          };
+          
           "clock" = {
             "format" = "󱑇 {:%H:%M}";
             "tooltip" = false;

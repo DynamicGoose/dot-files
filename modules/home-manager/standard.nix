@@ -5,6 +5,11 @@
   ...
 }: {
   home-manager.users.gezaa = {pkgs, ...}: {
+    # Niri
+    programs.niri.settings.spawn-at-startup = [
+      { command = ["hypridle"]; }
+    ];
+
     # Hyprland
     wayland.windowManager.hyprland = {
       settings = {
@@ -22,7 +27,7 @@
       enable = true;
       settings = {
         general = {
-          lock_cmd = "pidof hyprlock || hyprlock";
+          lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
@@ -67,15 +72,23 @@
           "margin-left" = 6;
           "margin-right" = 6;
           "height" = 34;
-          "modules-left" = ["clock" "hyprland/workspaces"];
-          "modules-center" = ["hyprland/window"];
+          "modules-left" = ["clock" "niri/workspaces"];
+          "modules-center" = ["niri/window"];
           "modules-right" = ["tray" "pulseaudio" "backlight" "battery" "custom/menu"];
 
-          "hyprland/workspaces" = {
+          "niri/workspaces" = {
             "on-click" = "activate";
-            "sort-by-number" = true;
-            "all-outputs" = true;
+            "all-outputs" = false;
             "active-only" = false;
+            "format" = "{icon}";
+            "format-icons" = {
+              "default" = "";
+              "active" = "";
+            };
+          };
+
+          "niri/window" = {
+            "icon" = true;
           };
 
           "backlight" = {
