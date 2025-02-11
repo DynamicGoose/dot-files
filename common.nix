@@ -326,6 +326,7 @@
     telegram-desktop
     thunderbird
     # vesktop
+    uwsm
     vscodium
     xwayland-satellite
     wdisplays
@@ -908,20 +909,22 @@
           SDL_VIDEODRIVER = "wayland";
           CLUTTER_BACKEND = "wayland";
         };
-        
-        spawn-at-startup = [
-          { command = ["wl-clip-persist" "--clipboard" "regular"]; }
-          { command = ["cliphist" "wipe"]; }
-          { command = ["sh" "-c" "wl-paste --watch cliphist store"]; }
-          { command = ["waybar"]; }
-          { command = ["swayosd-server"]; }
-          { command = ["swaybg" "-m" "fill" "-i" "${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png"]; }
-          { command = ["nm-applet"]; }
-          { command = ["swaync"]; }
-          { command = ["sh" "-c" "sleep 1 && blueman-applet"]; }
-          { command = ["sh" "-c" "sleep 3 && syncthingtray --wait"]; }
-          { command = ["sh" "-c" "id=0"]; }
-          { command = ["xwayland-satellite"]; }
+
+        spawn-at-startup = let
+          sh = ["sh" "-c"];
+        in [
+          { command = sh ++ ["uwsm app -- wl-clip-persist --clipboard regular"]; }
+          { command = sh ++ ["cliphist wipe"]; }
+          { command = sh ++ ["uwsm app -- wl-paste --watch cliphist store"]; }
+          { command = sh ++ ["uwsm app -- waybar"]; }
+          { command = sh ++ ["uwsm app -- swayosd-server"]; }
+          { command = sh ++ ["uwsm app -- swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png"]; }
+          { command = sh ++ ["uwsm app -- nm-applet"]; }
+          { command = sh ++ ["uwsm app -- swaync"]; }
+          { command = sh ++ ["uwsm app -- sleep 1 && blueman-applet"]; }
+          { command = sh ++ ["uwsm app -- sleep 3 && syncthingtray --wait"]; }
+          { command = sh ++ ["id=0"]; }
+          { command = sh ++ ["uwsm app -- xwayland-satellite"]; }
         ];
         
         input = {
@@ -1039,6 +1042,17 @@
             };
             clip-to-geometry = true;
             draw-border-with-background = false;
+          }
+          {
+            matches = [
+              { app-id = ".blueman-manager-wrapped"; }
+              { app-id = "nm-connection-editor"; }
+              { app-id = "com.saivert.pwvucontrol"; }
+              { app-id = "wdisplays"; }
+              { app-id = "qalculate-gtk"; }
+              { title = "Syncthing Tray"; }
+            ];
+            open-floating = true;
           }
         ];
       };
