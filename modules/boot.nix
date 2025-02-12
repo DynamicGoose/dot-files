@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }: {
   options.modules.boot.deviceType = lib.mkOption {
-    type = lib.types.string;
+    type = lib.types.str;
     default = "uefi";
   };
 
