@@ -13,7 +13,7 @@
       initrd.enable = true;
     };
     # Lact (amdgpu control-panel)
-    environment.systemPackages = lib.mkIf (type = "amd") [pkgs.lact];
+    environment.systemPackages = lib.mkIf (type == "amd") [pkgs.lact];
     systemd.services.lact = lib.mkIf (type == "amd") {
       description = "AMDGPU Control Daemon";
       after = ["multi-user.target"];
