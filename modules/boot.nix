@@ -46,7 +46,6 @@
       };
     };
   in {
-    # Boot
     boot = {
       kernelPackages = pkgs.linuxPackages_latest;
       supportedFilesystems = ["ntfs"];
@@ -55,7 +54,7 @@
         theme = "bgrt";
       };
 
-      # Silent boot
+      # Silent boot for plymouth
       consoleLogLevel = 0;
       initrd.verbose = false;
       kernelParams = [

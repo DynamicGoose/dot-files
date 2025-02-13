@@ -7,7 +7,7 @@
 }: {
   imports = [
     ../../modules/boot.nix
-    ../../modules/graphics/amd.nix
+    ../../modules/graphics.nix
     ../../modules/power-management/with_tlp.nix
     ../../modules/home-manager/standard.nix
   ];
