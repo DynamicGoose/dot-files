@@ -7,6 +7,11 @@
   config = let
     type = config.modules.graphics.type;
   in {
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    
     # AMD
     hardware.amdgpu = lib.mkIf (type == "amd") {
       opencl.enable = true;
