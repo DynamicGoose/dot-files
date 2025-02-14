@@ -1,4 +1,4 @@
-{ config, inputs, ... }: {
+{ config, pkgs, inputs, ... }: {
   home-manager.users.gezaa = { config, ... }: {
     home.pointerCursor = {
       name = "graphite-dark";

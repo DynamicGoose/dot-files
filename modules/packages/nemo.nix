@@ -1,8 +1,8 @@
 { config, pkgs, ... }: {
   environment.systemPackages = [
     pkgs.nemo-with-extensions
-    pkgs.xarchiever
+    pkgs.xarchiver
   ];
 
-  programs.gvfs.enable = true;
+  services.gvfs.enable = true;
 }

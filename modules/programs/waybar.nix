@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, ... }: {
   options.modules.programs.waybar.desktop = lib.mkEnableOption "desktop config";
 
-  config.home-manager.users.gezaa = { config, lib, ... }: let
+  config = let
     waybarSettings = if (config.modules.programs.waybar.desktop) then [
       {
         "spacing" = 4;
@@ -128,41 +128,43 @@
       }      
     ];
   in {
-    programs.waybar = {
-      enable = true;
+    home-manager.users.gezaa = { config, lib, ... }: {
+      programs.waybar = {
+        enable = true;
 
-      settings = waybarSettings;
+        settings = waybarSettings;
       
-      style = ''
-        * {
-          font-size: 16px;
-          font-family: "Ubuntu Nerdfont";
-          font-weight: Bold;
-          padding: 0 4px 0 4px;
-        }
-        window#waybar {
-          background: rgba(15, 15, 15, 0.999);
-          color: #E0E0E0;
-          border: Solid;
-          border-radius: 10px;
-          border-width: 2px;
-          border-color: #E0E0E0;
-        }
-        #workspaces button {
-          background: #0F0F0F;
-          color: #E0E0E0;
-          margin: 4px 2px 4px 2px;
-          padding: 0;
-        }
-        #workspaces button.active {
-          background: #0F0F0F;
-          color: #E0E0E0;
-          margin: 4px 2px 4px 2px;
-        }
-        #tray {
-          padding: 0;
-        }
-      '';      
+        style = ''
+          * {
+            font-size: 16px;
+            font-family: "Ubuntu Nerdfont";
+            font-weight: Bold;
+            padding: 0 4px 0 4px;
+          }
+          window#waybar {
+            background: rgba(15, 15, 15, 0.999);
+            color: #E0E0E0;
+            border: Solid;
+            border-radius: 10px;
+            border-width: 2px;
+            border-color: #E0E0E0;
+          }
+          #workspaces button {
+            background: #0F0F0F;
+            color: #E0E0E0;
+            margin: 4px 2px 4px 2px;
+            padding: 0;
+          }
+          #workspaces button.active {
+            background: #0F0F0F;
+            color: #E0E0E0;
+            margin: 4px 2px 4px 2px;
+          }
+          #tray {
+            padding: 0;
+          }
+        '';      
+      };
     };
   };
 }

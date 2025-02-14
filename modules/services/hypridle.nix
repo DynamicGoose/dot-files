@@ -1,7 +1,7 @@
 { config, lib, inputs, ... }: {
   options.modules.services.hypridle.desktop = lib.mkEnableOption "hypridle desktop config";
 
-  config.home-manager.users.gezaa = { config, ... }: let
+  config = let
     hypridleSettings = if (config.modules.services.hypridle.desktop) then {
       general = {
         lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
@@ -44,9 +44,11 @@
       listener = [];
     };
   in {
-    services.hypridle = {
-      enable = true;
-      settings = hypridleSettings;
+    home-manager.users.gezaa = { config, ... }: {
+      services.hypridle = {
+        enable = true;
+        settings = hypridleSettings;
+      };
     };
   };
 }

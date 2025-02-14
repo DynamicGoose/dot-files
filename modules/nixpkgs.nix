@@ -1,3 +1,3 @@
-{ config, ... }: {
-  nixpkgs.allowUnfree = true;
+{ config, pkgs, ... }: {
+  nixpkgs.config = { allowUnfree = true; };
 }

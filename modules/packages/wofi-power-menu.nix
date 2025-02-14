@@ -27,5 +27,5 @@
         cmd = "loginctl lock-session"
         requires_confirmation = "false"
     '';
-  }
+  };
 }

@@ -3,7 +3,8 @@
     disable = lib.mkEnableOption "disable ssh";
     server = lib.mkEnableOption "always run ssh in background";
   };
-  services.openssh = lib.mkIf (!config.modules.services.ssh.disable) {
+  
+  config.services.openssh = lib.mkIf (!config.modules.services.ssh.disable) {
     enable = true;
     # only start when needed (if not server)
     startWhenNeeded = !config.modules.services.ssh.server;

@@ -39,4 +39,6 @@
     ./modules/programs/evince.nix
     ./modules/programs/helix.nix
   ];
+
+  system.stateVersion = "25.05";
 }
