@@ -86,6 +86,7 @@
             { command = sh ++ ["uwsm app -- wl-clip-persist --clipboard regular"]; }
             { command = sh ++ ["cliphist wipe"]; }
             { command = sh ++ ["uwsm app -- wl-paste --watch cliphist store"]; }
+            { command = sh ++ ["uwsm app -- hypridle"]; }
             { command = sh ++ ["uwsm app -- waybar"]; }
             { command = sh ++ ["uwsm app -- swayosd-server"]; }
             { command = sh ++ ["uwsm app -- swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png"]; }

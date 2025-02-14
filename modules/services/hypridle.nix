@@ -2,7 +2,7 @@
   options.modules.services.hypridle.desktop = lib.mkEnableOption "hypridle desktop config";
 
   config = let
-    hypridleSettings = if (config.modules.services.hypridle.desktop) then {
+    hypridleSettings = if (!config.modules.services.hypridle.desktop) then {
       general = {
         lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
         before_sleep_cmd = "loginctl lock-session";
