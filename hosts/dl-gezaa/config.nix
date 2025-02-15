@@ -5,6 +5,8 @@
   lib,
   ...
 }: {
+  # DEPRECATED
+
   imports = [
     ../../modules/bootloader/grub_legacy.nix
     ../../modules/graphics/intel.nix

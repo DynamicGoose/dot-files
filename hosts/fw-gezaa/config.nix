@@ -2,20 +2,13 @@
   inputs,
   config,
   pkgs,
-  lib,
   ...
 }: {
-  imports = [
-    ../../modules/bootloader/grub_uefi.nix
-    ../../modules/graphics/amd.nix
-    ../../modules/power-management/with_tlp.nix
-    ../../modules/home-manager/standard.nix
-  ];
-  
+  modules.powerManagement.tlp.enable = true;
   services.fprintd.enable = true;
   networking.hostName = "fw-gezaa";
 
-  home-manager.users.gezaa = {pkgs, ...}: {
+  home-manager.users.${config.modules.users.username} = { pkgs, ... }: {
     programs.niri.settings = {
       outputs."eDP-1".scale = 1.0;
     };
