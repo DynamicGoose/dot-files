@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, fetchFromGitHub, ... }: {
   nixpkgs = {
     config = { allowUnfree = true; };
     overlays = [
