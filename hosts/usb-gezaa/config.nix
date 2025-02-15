@@ -4,11 +4,10 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ../../modules/bootloader/grub_removable.nix
-    ../../modules/power-management/gui_only.nix
-    ../../modules/home-manager/standard.nix
-  ];
+  modules = {
+    boot.deviceType = "removable";
+    graphics.enable = false;
+  };
 
   networking.hostName = "usb-gezaa";
 }

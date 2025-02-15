@@ -11,6 +11,13 @@ possible values: `"uefi"`, `"removable"`, `"legacy"`
   
 Sets the boot configuration to be compatible with the desired device.
 
+### `modules.graphics.enable`
+type: `boolean`
+default: `true`
+possible values: `true`, `false`
+
+Enables graphics configuration.
+
 ### `modules.graphics.type`
 type: `string`  
 default: `"amd"`  

@@ -1,12 +1,18 @@
 { config, pkgs, lib, ...}: {
-  options.modules.graphics.type = lib.mkOption {
-    type = lib.types.str;
-    default = "amd";
+  options.modules.graphics = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
+    type = lib.mkOption {
+      type = lib.types.str;
+      default = "amd";
+    };
   };
 
   config = let
     type = config.modules.graphics.type;
-  in {
+  in lib.mkIf (config.modules.graphics.enable) {
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
