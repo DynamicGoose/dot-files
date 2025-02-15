@@ -36,7 +36,7 @@
 
   home-manager.users.${config.modules.users.username} = { pkgs, ... }: {
     programs.niri.settings = {
-      spawn-at-startup = [{ command = ["cpupower-gui -p"]; }];
+      spawn-at-startup = [{ command = ["cpupower-gui" "-p"]; }];
     };
   };
 }
