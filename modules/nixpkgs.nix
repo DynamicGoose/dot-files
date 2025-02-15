@@ -13,6 +13,8 @@
             tag = "v${version}";
             hash = "sha256-nq7bouXQXaaPPo/E+Jbq+wNHnatD4dY8OxSrRqzvy6s=";
           };
+
+          cargoHash = "sha256-1tt7YNornw9U9FRdsRkdWx3Al3FZtvtCBXn9Pln+gk4=";
         });
       })
     ];
