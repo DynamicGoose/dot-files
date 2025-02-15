@@ -9,7 +9,7 @@
     programs.virt-manager.enable = !config.modules.virtualisation.virt-manager.disable;
     programs.dconf.enable = true;
     
-    home-manager.users.gezaa = { config, ... }: {
+    home-manager.users.${config.modules.users.username} = { config, ... }: {
       dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
           autoconnect = ["qemu:///system"];

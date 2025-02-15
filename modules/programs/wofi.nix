@@ -1,5 +1,5 @@
 { config, inputs, ... }: {
-  home-manager.users.gezaa = { config, ... }: {
+  home-manager.users.${config.modules.users.username} = { config, ... }: {
     programs.wofi = {
       enable = true;
 

@@ -128,7 +128,7 @@
       }      
     ];
   in {
-    home-manager.users.gezaa = { config, lib, ... }: {
+    home-manager.users.${config.modules.users.username} = { config, lib, ... }: {
       programs.waybar = {
         enable = true;
 

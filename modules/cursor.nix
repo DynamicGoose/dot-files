@@ -1,5 +1,5 @@
 { config, pkgs, inputs, ... }: {
-  home-manager.users.gezaa = { config, ... }: {
+  home-manager.users.${config.modules.users.username} = { config, ... }: {
     home.pointerCursor = {
       name = "graphite-dark";
       package = pkgs.graphite-cursors;

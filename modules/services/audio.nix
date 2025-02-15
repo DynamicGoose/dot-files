@@ -1,7 +1,10 @@
 { config, lib, ... }: {
-  options.modules.services.audio.disable = lib.mkEnableOption "disable audio config";
+  options.modules.services.audio.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+  };
 
-  config = lib.mkIf (!config.modules.services.audio.disable) {
+  config = lib.mkIf (config.modules.services.audio.enable) {
     services = {
       pipewire = {
         enable = true;

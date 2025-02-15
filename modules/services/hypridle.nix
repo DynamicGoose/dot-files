@@ -48,7 +48,7 @@
 
     systemd.user.services.hypridle.wantedBy = ["graphical-session.target"];
     
-    home-manager.users.gezaa = { config, ... }: {
+    home-manager.users.${config.modules.users.username} = { config, ... }: {
       services.hypridle = {
         enable = true;
         settings = hypridleSettings;

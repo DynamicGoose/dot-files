@@ -56,7 +56,7 @@
       xwayland.enable = true;
     };
 
-    home-manager.users.gezaa = { config, ... }: {
+    home-manager.users.${config.modules.users.username} = { config, ... }: {
       programs = {
         waybar.enable = true;
         wofi.enable = true;

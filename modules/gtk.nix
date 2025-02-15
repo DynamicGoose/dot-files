@@ -1,5 +1,5 @@
 { config, pkgs, inputs, ... }: {
-  home-manager.users.gezaa = { config, ... }: {
+  home-manager.users.${config.modules.users.username} = { config, ... }: {
     gtk = {
       enable = true;
       iconTheme.name = "Papirus-Dark";

@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }: {
   environment.systemPackages = [pkgs.hyprlock];
 
-  home-manager.users.gezaa = { config, ... }: {
+  home-manager.users.${config.modules.users.username} = { config, ... }: {
     programs.hyprlock = {
       enable = true;
       settings = {

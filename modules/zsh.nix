@@ -2,7 +2,7 @@
   environment.shells = with pkgs; [zsh bash];
   programs.zsh.enable = true;
 
-  home-manager.users.gezaa = { config, ... }: {
+  home-manager.users.${config.modules.users.username} = { config, ... }: {
     programs.zsh = {
       enable = true;
       history = {

@@ -6,7 +6,7 @@
     wofi
   ];
 
-  home-manager.users.gezaa = { config, ... }: {
+  home-manager.users.${config.modules.users.username} = { config, ... }: {
     xdg.configFile = {
       # Swaync
       "swaync/config.json".text = ''

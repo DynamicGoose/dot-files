@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }: {
   environment.systemPackages = [pkgs.wofi-power-menu];
 
-  home-manager.users.gezaa = { config, ... }: {
+  home-manager.users.${config.modules.users.username} = { config, ... }: {
     xdg.configFile."wofi-power-menu.toml".text = ''
       [menu.shutdown]
         cmd = "systemctl poweroff"

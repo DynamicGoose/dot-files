@@ -62,7 +62,7 @@
     xwayland.enable = true;
   };
 
-  home-manager.users.gezaa = { pkgs, config, ... }: {
+  home-manager.users.${config.modules.users.username} = { pkgs, config, ... }: {
     services.hypridle.enable = true;
     programs = {
       waybar.enable = true;

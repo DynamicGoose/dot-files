@@ -15,7 +15,7 @@
     pkgs.libsForQt5.qtstyleplugin-kvantum
   ];
 
-  home-manager.users.gezaa = { config, pkgs, ... }: {
+  home-manager.users.${config.modules.users.username} = { config, pkgs, ... }: {
     xdg.configFile = {
       # kvantum theme
       "Kvantum/Graphite/GraphiteDark.kvconfig".source = "${pkgs.graphite-kde-theme}/share/Kvantum/Graphite/GraphiteDark.kvconfig";
