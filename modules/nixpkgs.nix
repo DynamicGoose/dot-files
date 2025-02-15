@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, fetchFromGitHub, ... }: {
   nixpkgs = {
     config = { allowUnfree = true; };
     overlays = [
@@ -7,7 +7,7 @@
         xwayland-satellite = prev.xwayland-satellite.overrideAttrs (_:rec {
           version = "0.5";
 
-          src = prev.fetchFromGitHub {
+          src = fetchFromGitHub {
             owner = "Supreeeme";
             repo = "xwayland-satellite";
             tag = "v${version}";
