@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, ... }: {
   options.modules.services.hypridle.desktop = lib.mkEnableOption "hypridle desktop config";
 
   config = let
@@ -44,6 +44,10 @@
       listener = [];
     };
   in {
+    environment.systemPackages = lib.mkIf (!config.modules.services.hypridle.desktop) [pkgs.brightnessctl];
+
+    systemd.user.services.hypridle.wantedBy = ["graphical-session.target"];
+    
     home-manager.users.gezaa = { config, ... }: {
       services.hypridle = {
         enable = true;

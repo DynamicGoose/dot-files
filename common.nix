@@ -1,8 +1,8 @@
 { config, pkgs, ... }: {
   imports = [
+    ./modules/users.nix
     ./modules/niri.nix
     ./modules/qt.nix
-    ./modules/users.nix
     ./modules/graphics.nix
     ./modules/security.nix
     ./modules/power-management.nix

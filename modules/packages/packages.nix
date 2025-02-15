@@ -3,7 +3,6 @@
     ani-cli
     audacity
     binsider
-    brightnessctl
     btop
     cheese
     discord-canary
