@@ -38,7 +38,6 @@
     cliphist
     hypridle
     hyprlock
-    hyprpicker
     hyprshot
     kitty
     networkmanagerapplet
@@ -51,6 +50,7 @@
     uwsm
     wl-clipboard
     wl-clip-persist
+    wl-color-picker
     wofi-power-menu
     xwayland-satellite
   ];
@@ -159,7 +159,7 @@
 
             "Print".action = sh "pidof hyprshot || hyprshot -o ~/Pictures/Screenshots -m region";
             "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
-            "Ctrl+Alt+C".action = sh "pidof hyprpicker || hyprpicker --autocopy";
+            "Ctrl+Alt+C".action = sh "pidof wl-color-picker || wl-color-picker";
             "Super+C".action = spawn "qalculate-gtk";
             "Ctrl+Alt+T".action = spawn "kitty";
             "Super+A".action = sh "pidof wofi || wofi";
