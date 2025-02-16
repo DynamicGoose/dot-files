@@ -21,9 +21,51 @@ Enables graphics configuration.
 ### `modules.graphics.type`
 type: `string`  
 default: `"amd"`  
-possible values: `"amd"`, `"intel"`  
+possible values: `"amd"`, `"intel"`, `"nvidia"`  
   
 Sets the type of graphics card.
+
+### `modules.graphics.nvidia.driverPackage`
+type: `package`  
+default: `config.boot.kernelPackages.nvidiaPackages.latest`  
+possible values: see [here](https://nixos.wiki/wiki/Nvidia#Determining_the_Correct_Driver_Version)  
+  
+Sets the Nvidia GPU driver package.
+
+### `modules.graphics.nvidia.rtx20`
+type: `boolean`  
+default: `true`  
+possible values: `true`, `false`  
+  
+Set to `false`, if your GPU is older than RTX 20-Series.
+
+### `modules.graphics.nvidia.hybrid.enable`
+type: `boolean`  
+default: `false`  
+possible values: `true`, `false`  
+  
+Enables Nvidia Optimus PRIME hybrid graphics for laptops.
+
+### `modules.graphics.nvidia.hybrid.intelBusId`
+type: `string`  
+default: `""`  
+possible values: see [here](https://nixos.wiki/wiki/Nvidia#Configuring_Optimus_PRIME:_Bus_ID_Values_.28Mandatory.29)  
+  
+Set Intel graphics bus ID.
+
+### `modules.graphics.nvidia.hybrid.nvidiaBusId`
+type: `string`  
+default: `""`  
+possible values: see [here](https://nixos.wiki/wiki/Nvidia#Configuring_Optimus_PRIME:_Bus_ID_Values_.28Mandatory.29)  
+  
+Set Nvidia graphics bus ID.
+
+### `modules.graphics.nvidia.hybrid.amdBusId`
+type: `string`  
+default: `""`  
+possible values: see [here](https://nixos.wiki/wiki/Nvidia#Configuring_Optimus_PRIME:_Bus_ID_Values_.28Mandatory.29)  
+  
+Set AMD graphics bus ID.
 
 ### `modules.powerManagement.tlp.enable`
 type: `boolean`  
@@ -31,6 +73,13 @@ default: `false`
 possible values: `true`, `false`  
   
 Enables tlp (for laptop power-management).
+
+### `modules.powerManagement.ppd.enable`
+type: `boolean`  
+default: `false`  
+possible values: `true`, `false`  
+  
+Enables power-profiles-daemon (for laptop power-management).
 
 ### `modules.users.username`
 type: `string`  
