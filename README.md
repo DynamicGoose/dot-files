@@ -5,7 +5,7 @@ My multi-host NixOS flake!
 ## Usage
 
 > [!IMPORTANT]
-> If you want to adapt these dot files for yourself be sure to change the default user in `common.nix` and configure your own hosts.
+> If you want to adapt these dot files for yourself be sure to set the default user name with `modules.users.username` and `modules.users.fullName` and configure your own hosts.
 
 When setting up a host that doesn't have a config yet, add a new entry to `nixosConfigurations` in `flake.nix`.
 The entry should probably look like this:
@@ -22,6 +22,9 @@ new-host = nixpkgs.lib.nixosSystem {
 };
 ```
 Then create the appropriate files in `hosts/new_host/` (`hardware-configuration.nix`, `config.nix`).
+
+Have a look at [`options.md`](https://codeberg.org/DynamicGoose/dot-files/src/branch/main/options.md) for my custom configuration options.
+
 > [!IMPORTANT]
 > `flakes` and `nix-command` have to be enabled to rebuild the system using flakes.
 > `nix.settings.experimental-features = ["nix-command" "flakes"];`
