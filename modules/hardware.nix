@@ -1,0 +1,3 @@
+{ config, ... }: {
+  hardware.enableRedistributableFirmware = true;
+}
