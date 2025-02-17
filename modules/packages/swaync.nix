@@ -1,10 +1,48 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, ... }: let
+  powerSettings = if (config.modules.powerManagement.ppd.enable) then ''
+    "menu#power-profiles": {
+            "label": "󱐋",
+            "position": "left",
+            "actions": [
+              {
+                "label": "󰓅 Performance",
+                "command": "sh -c 'cpupower-gui -p && powerprofilesctl set performance'"
+              },
+              {
+                "label": "󰾅 Balanced",
+                "command": "sh -c 'cpupower-gui -p && powerprofilesctl set balanced'"
+              },
+              {
+                "label": "󰾆 Power-Saver",
+                "command": "sh -c 'cpupower-gui -b && powerprofilesctl set power-saver'"
+              }
+            ]
+          }
+  '' else if (config.modules.powerManagement.tlp.enable) then ''
+    "menu#power-profiles": {
+            "label": "󱐋",
+            "position": "left",
+            "actions": [
+              {
+                "label": "󰓅 Performance",
+                "command": "cpupower-gui -p"
+              },
+              {
+                "label": "󰾆 Power-Saver",
+                "command": "cpupower-gui -b"
+              }
+            ]
+          }
+  '' else "";
+in {
   environment.systemPackages = with pkgs; [
     swaynotificationcenter
     wdisplays
     kooha
     wofi
   ];
+
+  services.cpupower-gui.enable = true;
 
   home-manager.users.${config.modules.users.username} = { config, ... }: {
     xdg.configFile = {
@@ -112,20 +150,7 @@
                   }
                 ]
               },
-              "menu#power-profiles": {
-                "label": "󱐋",
-                "position": "left",
-                "actions": [
-                  {
-                    "label": "󰡴 Performance",
-                    "command": "cpupower-gui -p"
-                  },
-                  {
-                    "label": "󰡳 Power-Saver",
-                    "command": "cpupower-gui -b"
-                  }
-                ]
-              }
+              ${powerSettings}
             }
           }
         }

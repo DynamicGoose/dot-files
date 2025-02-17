@@ -5,7 +5,6 @@
   };
 
   config = {
-    services.cpupower-gui.enable = true;
     services.tlp = lib.mkIf (config.modules.powerManagement.tlp.enable) {
       enable = true;
       settings = {
