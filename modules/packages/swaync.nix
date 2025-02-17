@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }: let
   powerSettings = if (config.modules.powerManagement.ppd.enable) then ''
-    "menu#power-profiles": {
+    ,
+          "menu#power-profiles": {
             "label": "󱐋",
             "position": "left",
             "actions": [
@@ -19,7 +20,8 @@
             ]
           }
   '' else if (config.modules.powerManagement.tlp.enable) then ''
-    "menu#power-profiles": {
+    ,
+          "menu#power-profiles": {
             "label": "󱐋",
             "position": "left",
             "actions": [
@@ -149,8 +151,7 @@ in {
                     "command": "loginctl lock-session"
                   }
                 ]
-              },
-              ${powerSettings}
+              }${powerSettings}
             }
           }
         }
