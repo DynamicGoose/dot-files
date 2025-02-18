@@ -97,7 +97,7 @@
             { command = sh ++ ["uwsm app -- sleep 1 && blueman-applet"]; }
             { command = sh ++ ["uwsm app -- sleep 3 && syncthingtray --wait"]; }
             { command = sh ++ ["id=0"]; }
-            { command = sh ++ ["uwsm app -- xwayland-satellite"]; }
+            { command = ["xwayland-satellite"]; }
           ];
         
           input = {
