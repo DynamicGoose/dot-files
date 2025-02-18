@@ -25,6 +25,8 @@
       inputs.niri.nixosModules.niri
     ];
   in {
+    # custom packages
+    packages = import ./packages nixpkgs.legacyPackages.x86_64-linux;
     nixosConfigurations = {
       desktop-gezaa = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
