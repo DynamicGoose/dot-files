@@ -15,6 +15,7 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       comic-mono
+      dancing-script
     ];
 
     enableDefaultPackages = true;
