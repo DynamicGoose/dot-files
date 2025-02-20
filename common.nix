@@ -12,6 +12,7 @@
     ./modules/niri.nix
     ./modules/nix.nix
     ./modules/nixpkgs.nix
+    ./modules/plasma.nix
     ./modules/power-management.nix
     ./modules/qt.nix
     ./modules/security.nix
