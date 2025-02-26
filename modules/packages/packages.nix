@@ -3,6 +3,7 @@
     ani-cli
     audacity
     binsider
+    blender-hip
     btop
     cheese
     discord-canary
