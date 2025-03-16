@@ -58,6 +58,7 @@
   programs = {
     dconf.enable = true;
     niri.enable = true;
+    niri.package = pkgs.niri; # niri-stable broken rn
     ssh.askPassword = "";
     xwayland.enable = true;
   };
