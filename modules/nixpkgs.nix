@@ -8,6 +8,7 @@
           plasma-framework = pkgs.libsForQt5.plasma-framework;
           plasma-workspace = pkgs.libsForQt5.plasma-workspace;
         };
+        bdp-fonts = prev.callPackage ../packages/bdp-fonts.nix { };
       })
     ];
   };
