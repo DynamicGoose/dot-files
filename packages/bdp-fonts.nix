@@ -10,7 +10,7 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchzip {
     url = "https://meinbdp.de/download/attachments/60719504/BdP_CorporateDesign_Schriftarten_V1.zip";
-    sha256 = "sha256";
+    sha256 = "sha256-DJLScCPygdxG6CQ2sx6ppUpeplV41ezSnD+uTjsttb8=";
     stripRoot = false;
   };
 
