@@ -31,6 +31,7 @@
   };
 
   nixpkgs.overlays = [inputs.niri.overlays.niri];
+  niri-flake.cache.enable = false;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -56,9 +57,12 @@
   ];
   
   programs = {
+    niri = {
+      enable = true;
+      package = pkgs.niri;
+    };
+    
     dconf.enable = true;
-    niri.enable = true;
-    niri.package = pkgs.niri; # niri-stable broken rn
     ssh.askPassword = "";
     xwayland.enable = true;
   };
@@ -194,6 +198,7 @@
               { proportion = 1.0 / 3.0; }
               { proportion = 0.5; }
               { proportion = 2.0 / 3.0; }
+              { proportion = 1.0; }
             ];
            
             focus-ring = {
