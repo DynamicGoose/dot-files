@@ -6,20 +6,41 @@
   };
 
   systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = ["graphical-session.target"];
-      wants = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
+    user.services = {
+      # Polkit
+      polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
+        wantedBy = ["graphical-session.target"];
+        wants = ["graphical-session.target"];
+        after = ["graphical-session.target"];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
+      niri-flake-polkit.enable = false;
+
+      cliphist = {
+        description = "wl-paste + cliphist service";
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
+          Restart = "on-failure";
+        };
+      };
+      
+      swaybg = {
+        description = "swaybg service";
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.swaybg}/bin/.swaybg-wrapped -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png";
+          Restart = "on-failure";
+        };
       };
     };
-    user.services.niri-flake-polkit.enable = false;
   };
 
   xdg.portal = {
@@ -44,11 +65,9 @@
     networkmanagerapplet
     playerctl
     qalculate-gtk
-    swaybg
     swaynotificationcenter
     swayosd
     syncthingtray
-    uwsm
     wl-clipboard
     wl-clip-persist
     wl-color-picker
@@ -90,19 +109,19 @@
           spawn-at-startup = let
             sh = ["sh" "-c"];
           in [
-            { command = sh ++ ["uwsm app -- wl-clip-persist --clipboard regular"]; }
+            { command = sh ++ ["wl-clip-persist --clipboard regular"]; }
             { command = sh ++ ["cliphist wipe"]; }
-            { command = sh ++ ["uwsm app -- wl-paste --watch cliphist store"]; }
+            { command = sh ++ ["systemctl --user start cliphist.service"]; }
             { command = sh ++ ["systemctl --user start hypridle.service"]; }
-            { command = sh ++ ["uwsm app -- waybar"]; }
-            { command = sh ++ ["uwsm app -- swayosd-server"]; }
-            { command = sh ++ ["uwsm app -- swaybg -m fill -i ${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png"]; }
-            { command = sh ++ ["uwsm app -- nm-applet"]; }
-            { command = sh ++ ["uwsm app -- swaync"]; }
-            { command = sh ++ ["uwsm app -- sleep 1 && blueman-applet"]; }
-            { command = sh ++ ["uwsm app -- sleep 3 && syncthingtray --wait"]; }
+            { command = sh ++ ["systemctl --user start waybar.service"]; }
+            { command = sh ++ ["systemctl --user start xwayland-satellite.service"]; }
+            { command = sh ++ ["systemctl --user start swaybg.service"]; }
+            { command = sh ++ ["systemctl --user start swaync.service"]; }
+            { command = sh ++ ["sleep 1 && blueman-applet"]; }
+            { command = sh ++ ["sleep 3 && syncthingtray --wait"]; }
             { command = sh ++ ["id=0"]; }
-            { command = ["xwayland-satellite"]; }
+            { command = ["swayosd-server"]; }
+            { command = ["nm-applet"]; }
           ];
         
           input = {
