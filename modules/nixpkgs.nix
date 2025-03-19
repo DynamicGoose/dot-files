@@ -9,7 +9,6 @@
           plasma-workspace = pkgs.libsForQt5.plasma-workspace;
         };
         bdp-fonts = prev.callPackage ../packages/bdp-fonts.nix { };
-        cascadia-code-test = prev.callPackage ../packages/cascadia-code-test.nix { };
       })
     ];
   };

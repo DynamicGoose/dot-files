@@ -8,7 +8,6 @@
 
     packages = with pkgs; [
       jetbrains-mono
-      cascadia-code-test
       dejavu_fonts
       nerd-fonts.ubuntu
       nerd-fonts.jetbrains-mono
