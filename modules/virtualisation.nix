@@ -1,12 +1,16 @@
 { config, lib, inputs, ... }: {
   options.modules.virtualisation = {
-    disable = lib.mkEnableOption "disable virtualisation";
-    virt-manager.disable = lib.mkEnableOption "disable virt-manager";
+    enable = lib.mkEnableOption "enable virtualisation" {
+      default = true;
+    };
+    virt-manager.enable = lib.mkEnableOption "enable virt-manager" {
+      default = true;
+    };
   };
 
-  config = lib.mkIf (!config.modules.virtualisation.disable) {
+  config = lib.mkIf (config.modules.virtualisation.enable) {
     virtualisation.libvirtd.enable = true;
-    programs.virt-manager.enable = !config.modules.virtualisation.virt-manager.disable;
+    programs.virt-manager.enable = config.modules.virtualisation.virt-manager.enable;
     programs.dconf.enable = true;
     
     home-manager.users.${config.modules.users.username} = { config, ... }: {

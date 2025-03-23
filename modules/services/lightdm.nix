@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }: {
-  options.modules.displayManagers.lightdm.enable = lib.mkOption {
-    type = lib.types.bool;
+  options.modules.displayManagers.lightdm.enable = lib.mkEnableOption "enable lightdm" {
     default = true;
   };
   

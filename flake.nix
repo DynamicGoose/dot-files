@@ -20,7 +20,7 @@
   } @ inputs:
   let
     common-modules = [
-      ./common.nix
+      ./default.nix
       inputs.home-manager.nixosModules.home-manager
       inputs.niri.nixosModules.niri
     ];
