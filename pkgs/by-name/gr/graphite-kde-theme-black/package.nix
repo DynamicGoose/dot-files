@@ -1,10 +1,8 @@
 {
   stdenv,
   lib,
+  pkgs,
   fetchFromGitHub,
-  kdeclarative,
-  plasma-framework,
-  plasma-workspace,
   gitUpdater,
 }:
 
@@ -22,9 +20,9 @@ stdenv.mkDerivation rec {
   # Propagate sddm theme dependencies to user env otherwise sddm does
   # not find them. Putting them in buildInputs is not enough.
   propagatedUserEnvPkgs = [
-    kdeclarative.bin
-    plasma-framework
-    plasma-workspace
+    pkgs.libsForQt5.kdeclarative.bin
+    pkgs.libsForQt5.plasma-framework
+    pkgs.libsForQt5.plasma-workspace
   ];
 
   postPatch = ''
