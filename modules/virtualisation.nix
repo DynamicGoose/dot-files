@@ -1,9 +1,11 @@
 { config, lib, inputs, ... }: {
   options.modules.virtualisation = {
-    enable = lib.mkEnableOption "enable virtualisation" {
+    enable = lib.mkOption {
+      type = lib.types.bool;
       default = true;
     };
-    virt-manager.enable = lib.mkEnableOption "enable virt-manager" {
+    virt-manager.enable = lib.mkOption {
+      type = lib.types.bool;
       default = true;
     };
   };

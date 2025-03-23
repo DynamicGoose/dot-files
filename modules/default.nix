@@ -11,5 +11,5 @@
     ./programs
     ./pkgs
     ./desktop
-  ]
+  ];
 }

@@ -1,9 +1,10 @@
 { config, pkgs, lib, ... }: {
-  options.modules.displayManagers.lightdm.enable = lib.mkEnableOption "enable lightdm" {
+  options.modules.displayManager.lightdm.enable = lib.mkOption {
+    type = lib.types.bool;
     default = true;
   };
   
-  config.services.xserver.displayManager.lightdm = lib.mkIf (config.modules.displayManagers.lightdm.enable) {
+  config.services.xserver.displayManager.lightdm = lib.mkIf (config.modules.displayManager.lightdm.enable) {
     enable = true;
     background = "${pkgs.graphite-gtk-theme.override {wallpapers = true;}}/share/backgrounds/wave-Dark.png";
     greeters.gtk = {
