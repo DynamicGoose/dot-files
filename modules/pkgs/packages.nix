@@ -2,7 +2,6 @@
   environment.systemPackages = with pkgs; [
     ani-cli
     audacity
-    baobab
     binsider
     blender-hip
     btop
