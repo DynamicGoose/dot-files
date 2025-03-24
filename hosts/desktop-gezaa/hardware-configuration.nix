@@ -13,17 +13,34 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/03845850-bc3e-4453-89d5-120c8f5aaecf";
-      fsType = "ext4";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/root";
+      fsType = "btrfs";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BBDB-4488";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/BBDB-4488";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
-
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = ["noatime"];
+    };
+    "/run/media/gezaa/HDD01" = {
+      device = "/dev/disk/by-label/HDD01";
+      fsType = "ntfs-3g";
+      options = ["rw" "uid=1000"];
+    };
+    "/run/media/gezaa/SSD02" = {
+      device = "/dev/disk/by-label/SSD02";
+      fsType = "ext4";
+    };
+  };
+  
   swapDevices =
     [ { device = "/dev/disk/by-uuid/3717d05a-e8e0-4a04-966f-addd247014fb"; }
     ];
