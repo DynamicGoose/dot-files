@@ -3,10 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    preservation.url = "github:nix-community/preservation";
+    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,6 +25,7 @@
   let
     common-modules = [
       ./default.nix
+      inputs.preservation.nixosModules.preservation
       inputs.home-manager.nixosModules.home-manager
       inputs.niri.nixosModules.niri
     ];
