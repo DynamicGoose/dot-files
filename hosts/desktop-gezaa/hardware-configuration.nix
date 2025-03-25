@@ -12,11 +12,37 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.initrd.postResumeCommands = lib.mkAfter ''
+    mkdir /mnt
+    mount /dev/disk/by-label/nixos /mnt
 
+    if [[ -e /mnt/nixos ]]; then
+      mkdir -p /mnt/old_roots
+      timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+      mv /mnt/root "/mnt/old_roots/$timestamp"
+    fi
+
+    delete_subvolume_recursively() {
+      IFS=$'\n'
+      for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+        delete_subvolume_recursively "/mnt/$i"
+      done
+      btrfs subvolume delete "$1"
+    }
+
+    for i in $(find /mnt/old_roots/ -maxdepth 1 -mtime +30); do
+      delete_subvolume_recursively "$i"
+    done
+
+    btrfs subvolume create /mnt/root
+    umount /mnt
+  '';
+  
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/82a90dce-1328-4530-b069-704cfc54ab01";
       fsType = "btrfs";
+      options = ["subvol=root"];
     };
 
     "/boot" = {
