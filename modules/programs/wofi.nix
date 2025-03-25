@@ -1,5 +1,5 @@
-{ config, inputs, ... }: {
-  home-manager.users.${config.modules.users.username} = { config, ... }: {
+{ config, inputs, username, ... }: {
+  home-manager.users.${username} = { config, ... }: {
     programs.wofi = {
       enable = true;
 

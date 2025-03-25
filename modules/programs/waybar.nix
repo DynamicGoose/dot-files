@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, username, ... }: {
   options.modules.programs.waybar.desktop = lib.mkEnableOption "desktop config";
 
   config = let
@@ -128,7 +128,7 @@
       }      
     ];
   in {
-    home-manager.users.${config.modules.users.username} = { config, lib, ... }: {
+    home-manager.users.${username} = { config, lib, ... }: {
       programs.waybar = {
         enable = true;
 

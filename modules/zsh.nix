@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, username, ... }: {
   environment.shells = with pkgs; [zsh bash];
   programs.zsh.enable = true;
 

@@ -1,5 +1,5 @@
-{ config, pkgs, inputs, ... }: {
-  home-manager.users.${config.modules.users.username} = { config, ... }: {
+{ config, pkgs, inputs, username, ... }: {
+  home-manager.users.${username} = { config, ... }: {
     programs.helix = {
       enable = true;
       settings = {

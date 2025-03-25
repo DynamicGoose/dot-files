@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, username, ... }: {
   config = {
     services = {
       blueman.enable = true;
@@ -56,7 +56,7 @@
       xwayland.enable = true;
     };
 
-    home-manager.users.${config.modules.users.username} = { config, ... }: {
+    home-manager.users.${username} = { config, ... }: {
       programs = {
         waybar.enable = true;
         wofi.enable = true;

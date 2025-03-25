@@ -81,20 +81,6 @@ possible values: `true`, `false`
   
 Enables power-profiles-daemon (for laptop power-management).
 
-### `modules.users.username`
-type: `string`  
-default: `"gezaa"`  
-possible values: anything  
-  
-Sets the username of the default user.
-
-### `modules.users.fullName`
-type: `string`  
-default: `"Géza Ahsendorf"`  
-possible values: anything  
-  
-Sets the name displayed on display managers etc..
-
 ### `modules.porgrams.waybar.desktop`
 type: `boolean`  
 default: `false`  

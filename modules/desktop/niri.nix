@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, username, ... }: {
   services = {
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -86,7 +86,7 @@
     xwayland.enable = true;
   };
 
-  home-manager.users.${config.modules.users.username} = { pkgs, config, ... }: {
+  home-manager.users.${username} = { pkgs, config, ... }: {
     services.hypridle.enable = true;
     programs = {
       waybar.enable = true;

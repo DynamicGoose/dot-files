@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  username,
   ...
 }: {
   # DEPRECATED
@@ -19,11 +20,8 @@
   # enable Cage
   services.cage.enable = true;
 
-  # Hostname
-  networking.hostName = "dl-gezaa";
-
   # Home-Manager
-  home-manager.users.gezaa = {pkgs, ...}: {
+  home-manager.users.${username} = {pkgs, ...}: {
     # Disable Hyprland hm module
     wayland.windowManager.hyprland.enable = lib.mkDefault false;
     
