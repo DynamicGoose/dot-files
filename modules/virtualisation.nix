@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }: {
+{ config, lib, inputs, username, ... }: {
   options.modules.virtualisation = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -15,7 +15,7 @@
     programs.virt-manager.enable = config.modules.virtualisation.virt-manager.enable;
     programs.dconf.enable = true;
     
-    home-manager.users.${config.modules.users.username} = { config, ... }: {
+    home-manager.users.${username} = { config, ... }: {
       dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
           autoconnect = ["qemu:///system"];

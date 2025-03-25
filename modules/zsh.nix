@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, username, ... }: {
   environment.shells = with pkgs; [zsh bash];
   programs.zsh.enable = true;
 
-  home-manager.users.${config.modules.users.username} = { config, ... }: {
+  home-manager.users.${username} = { config, ... }: {
     programs.zsh = {
       enable = true;
       history = {

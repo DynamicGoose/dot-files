@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ config, pkgs, lib, inputs, username, ... }: {
   options.modules.services.hypridle.desktop = lib.mkEnableOption "hypridle desktop config";
 
   config = let
@@ -48,7 +48,7 @@
 
     systemd.user.services.hypridle.wantedBy = ["graphical-session.target"];
     
-    home-manager.users.${config.modules.users.username} = { config, ... }: {
+    home-manager.users.${username} = { config, ... }: {
       services.hypridle = {
         enable = true;
         settings = hypridleSettings;

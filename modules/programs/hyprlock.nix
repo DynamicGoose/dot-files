@@ -1,7 +1,7 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, username, ... }: {
   environment.systemPackages = [pkgs.hyprlock];
 
-  home-manager.users.${config.modules.users.username} = { config, ... }: {
+  home-manager.users.${username} = { config, ... }: {
     programs.hyprlock = {
       enable = true;
       settings = {

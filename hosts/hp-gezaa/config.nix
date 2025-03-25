@@ -6,5 +6,4 @@
   ...
 }: {
   modules.powerManagement.tlp.enable = true;
-  networking.hostName = "hp-gezaa";
 }

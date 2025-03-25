@@ -12,13 +12,12 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-
+  
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/82a90dce-1328-4530-b069-704cfc54ab01";
       fsType = "btrfs";
     };
-
     "/boot" = {
       device = "/dev/disk/by-uuid/B1A0-C6FD";
       fsType = "vfat";

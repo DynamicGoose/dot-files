@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, username, ... }: {
   qt = {
     enable = true;
     platformTheme = "qt5ct";
@@ -15,7 +15,7 @@
     pkgs.libsForQt5.qtstyleplugin-kvantum
   ];
 
-  home-manager.users.${config.modules.users.username} = { config, pkgs, ... }: {
+  home-manager.users.${username} = { config, pkgs, ... }: {
     xdg.configFile = {
       # kvantum theme
       "Kvantum/Graphite/GraphiteDark.kvconfig".source = "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/GraphiteDark.kvconfig";

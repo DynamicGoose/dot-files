@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  username,
   ...
 }: {
   modules = {
@@ -12,10 +13,7 @@
   # CpuFreqGov performance mode
   powerManagement.cpuFreqGovernor = "performance";
  
-  # Hostname
-  networking.hostName = "desktop-gezaa";
-
-  home-manager.users.${config.modules.users.username} = { pkgs, ... }: {
+  home-manager.users.${username} = { pkgs, ... }: {
     programs.niri.settings = {
       spawn-at-startup = [{ command = ["cpupower-gui" "-p"]; }];
     };

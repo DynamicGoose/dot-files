@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: let
+{ config, pkgs, inputs, username, ... }: let
   powerSettings = if (config.modules.powerManagement.ppd.enable) then ''
     ,
           "menu#power-profiles": {
@@ -46,7 +46,7 @@ in {
 
   services.cpupower-gui.enable = true;
 
-  home-manager.users.${config.modules.users.username} = { config, ... }: {
+  home-manager.users.${username} = { config, ... }: {
     xdg.configFile = {
       # Swaync
       "swaync/config.json".text = ''
