@@ -49,6 +49,7 @@
     tealdeer
     telegram-desktop
     thunderbird
+    vdhcoapp
     vscodium
     wget
     wineWowPackages.waylandFull
