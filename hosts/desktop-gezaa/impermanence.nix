@@ -1,7 +1,7 @@
 { config, lib, inputs, username, ... }: {
   environment.persistence."/nix/persistent" = {
     enable = true;
-    hieMounts = true;
+    hideMounts = true;
     directories = [
       "/var/log"
       "/var/lib/bluetooth"
