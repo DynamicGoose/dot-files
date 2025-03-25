@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    preservation.url = "github:nix-community/preservation";
+    impermanence.url = "github:nix-community/impermanence";
     
     home-manager = {
       url = "github:nix-community/home-manager";

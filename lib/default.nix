@@ -4,7 +4,6 @@
     hostname ? hostDir,
     username ? "user",
     userDescription ? "Default User",
-    extraModules ? [],
   }: inputs.nixpkgs.lib.nixosSystem {
     system = arch;
     specialArgs = {
@@ -17,7 +16,7 @@
         ;
     };
     modules = [
-      inputs.preservation.nixosModules.preservation
+      inputs.impermanence.nixosModules.impermanence
       inputs.home-manager.nixosModules.home-manager
       inputs.niri.nixosModules.niri
 
