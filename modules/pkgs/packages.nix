@@ -56,7 +56,6 @@
     yabridge
     yabridgectl
     zapzap
-    zed-editor.fhs
     zoom-us
     zrythm
     zulu
