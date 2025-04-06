@@ -8,7 +8,7 @@
 
   # set default passwords for vm builds
   virtualisation.vmVariant = {
-    users.users. = {
+    users.users = {
       root.initialPassword = "root";
       ${username}.initialPassword = username;
     };
