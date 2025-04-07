@@ -30,10 +30,11 @@
         zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
         precmd () { vcs_info }
 
+        NEWLINE=$'\n'
         if [[ -n $IN_NIX_SHELL ]]; then
-          PS1='%F{2}[nix-shell]%F{255} %~/''${vcs_info_msg_0_}%F{1} ❯%F{255} '
+          PS1='┌ %F{2}[nix-shell]%F{255} %~/''${vcs_info_msg_0_}''${NEWLINE}%F{255}└ %F{1}❯%F{255} '
         else
-          PS1='%~/''${vcs_info_msg_0_}%F{1} ❯%F{255} '
+          PS1='┌ %~/''${vcs_info_msg_0_}''${NEWLINE}%F{255}└ %F{1}❯%F{255} '
         fi
       '';
     };
