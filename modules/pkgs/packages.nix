@@ -53,8 +53,6 @@
     vscodium
     wget
     wineWowPackages.waylandFull
-    yabridge
-    yabridgectl
     zapzap
     zoom-us
     zrythm
