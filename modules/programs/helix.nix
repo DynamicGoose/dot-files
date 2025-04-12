@@ -1,7 +1,4 @@
 {
-  config,
-  pkgs,
-  inputs,
   username,
   ...
 }:
@@ -38,6 +35,14 @@
             max-indent-retain = 0;
             wrap-indicator = "▷ ";
           };
+        };
+        languages = {
+          language = [
+            {
+              name = "rust";
+              formatter.command = "nixfmt";
+            }
+          ];
         };
       };
     };

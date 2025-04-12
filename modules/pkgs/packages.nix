@@ -34,6 +34,7 @@
     mission-center
     mpv
     musescore
+    nil
     obsidian
     prismlauncher
     protonup-qt
