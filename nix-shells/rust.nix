@@ -1,9 +1,14 @@
-{pkgs ? import <nixpkgs> {}}:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 let
-  libPath = with pkgs; lib.makeLibraryPath [
-    # add dependencies
-  ];
-in pkgs.mkShell {
+  libPath =
+    with pkgs;
+    lib.makeLibraryPath [
+      # add dependencies
+    ];
+in
+pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     rustc
     cargo
@@ -20,4 +25,3 @@ in pkgs.mkShell {
   LD_LIBRARY_PATH = "${libPath}";
   RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 }
-

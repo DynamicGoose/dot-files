@@ -1,11 +1,22 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   nixpkgs = {
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+    };
     overlays = [
-      (final: prev: lib.packagesFromDirectoryRecursive {
+      (
+        final: prev:
+        lib.packagesFromDirectoryRecursive {
           callPackage = prev.callPackage;
           directory = ../../pkgs;
-        })
+        }
+      )
     ];
   };
 }

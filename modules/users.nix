@@ -1,9 +1,21 @@
-{ config, pkgs, lib, username, userDescription, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  userDescription,
+  ...
+}:
+{
   users.defaultUserShell = pkgs.zsh;
   users.users.${username} = {
     isNormalUser = true;
     description = userDescription;
-    extraGroups = ["networkmanager" "wheel" "audio"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "audio"
+    ];
   };
 
   # set default passwords for vm builds

@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   services = {
     xserver.enable = true;
     displayManager.sddm.enable = true;

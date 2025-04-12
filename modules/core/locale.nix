@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   time.timeZone = "Europe/Berlin";
 
   # Locale settings

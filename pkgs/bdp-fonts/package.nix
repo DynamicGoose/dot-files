@@ -30,7 +30,7 @@ stdenvNoCC.mkDerivation rec {
     description = "Corporate fonts of the BdP";
     homepage = "https://meinbdp.de/spaces/OeArbeit/pages/60719504/Schriften+und+Farbe";
     license = licenses.ofl;
-    maintainers = [];
+    maintainers = [ ];
     platforms = platforms.all;
   };
 }

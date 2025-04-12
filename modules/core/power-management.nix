@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   options.modules.powerManagement = {
     tlp.enable = lib.mkEnableOption "enable tlp";
     ppd.enable = lib.mkEnableOption "enable power-profiles-daemon";

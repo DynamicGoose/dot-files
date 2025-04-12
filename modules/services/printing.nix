@@ -1,8 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   services = {
     printing = {
       enable = true;
-      drivers = [pkgs.gutenprint];
+      drivers = [ pkgs.gutenprint ];
     };
 
     # autodiscovery

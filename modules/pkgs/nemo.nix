@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   environment.systemPackages = [
     pkgs.nemo-with-extensions
     pkgs.xarchiver

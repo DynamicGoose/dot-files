@@ -1,9 +1,10 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   fonts = {
     fontconfig.defaultFonts = {
-      serif = ["DejaVu Serif"];
-      sansSerif = ["Ubuntu Nerd Font"];
-      monospace = ["FiraCode Nerd Font"];
+      serif = [ "DejaVu Serif" ];
+      sansSerif = [ "Ubuntu Nerd Font" ];
+      monospace = [ "FiraCode Nerd Font" ];
     };
 
     packages = with pkgs; [

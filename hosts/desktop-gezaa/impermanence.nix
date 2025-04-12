@@ -1,4 +1,11 @@
-{ config, lib, inputs, username, ... }: {
+{
+  config,
+  lib,
+  inputs,
+  username,
+  ...
+}:
+{
   environment.persistence."/nix/persistent" = {
     enable = true;
     hideMounts = true;
@@ -9,11 +16,21 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
-      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+      {
+        directory = "/var/lib/colord";
+        user = "colord";
+        group = "colord";
+        mode = "u=rwx,g=rx,o=";
+      }
     ];
     files = [
       "/etc/machine-id"
-      { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+      {
+        file = "/var/keys/secret_file";
+        parentDirectory = {
+          mode = "u=rwx,g=,o=";
+        };
+      }
     ];
     users.${username} = {
       directories = [
@@ -21,7 +38,7 @@
         ".cache/mozilla"
         ".cache/tealdear"
         ".cache/thunderbird"
-        
+
         ".config/discordcanary"
         ".config/gedit"
         ".config/nemo"
@@ -34,7 +51,7 @@
         ".local/share"
         ".local/state/syncthing"
         ".local/state/wireplumber"
-        
+
         ".games"
         ".gnupg"
         ".heroic"
@@ -47,7 +64,7 @@
         ".vst3"
         ".wine"
         ".zoom"
-        
+
         "Desktop"
         "Documents"
         "Downloads"

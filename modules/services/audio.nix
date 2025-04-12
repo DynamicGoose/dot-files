@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   options.modules.services.audio.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;

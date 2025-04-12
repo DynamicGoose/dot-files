@@ -54,6 +54,6 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/DynamicGoose/Graphite-kde-theme-black";
     license = licenses.gpl3Only;
     platforms = platforms.all;
-    maintainers = [];
+    maintainers = [ ];
   };
 }

@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   options.modules.services.ssh = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -6,7 +7,7 @@
     };
     server = lib.mkEnableOption "always run ssh in background";
   };
-  
+
   config.services.openssh = lib.mkIf (config.modules.services.ssh.enable) {
     enable = true;
     # only start when needed (if not server)

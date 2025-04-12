@@ -1,10 +1,16 @@
-{ config, pkgs, username, ... }: {
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
+{
   qt = {
     enable = true;
     platformTheme = "qt5ct";
     style = "kvantum";
   };
-  
+
   environment.sessionVariables = {
     QT_QPA_PLATFORM = "wayland;xkb";
     QT_STYLE_OVERRIDE = "kvantum";
@@ -15,14 +21,20 @@
     pkgs.libsForQt5.qtstyleplugin-kvantum
   ];
 
-  home-manager.users.${username} = { config, pkgs, ... }: {
-    xdg.configFile = {
-      # kvantum theme
-      "Kvantum/Graphite/GraphiteDark.kvconfig".source = "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/GraphiteDark.kvconfig";
-      "Kvantum/Graphite/GraphiteDark.svg".source = "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/GraphiteDark.svg";
-      "Kvantum/Graphite/Graphite.kvconfig".source = "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/Graphite.kvconfig";
-      "Kvantum/Graphite/Graphite.svg".source = "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/Graphite.svg";
-      "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=GraphiteDark";
+  home-manager.users.${username} =
+    { config, pkgs, ... }:
+    {
+      xdg.configFile = {
+        # kvantum theme
+        "Kvantum/Graphite/GraphiteDark.kvconfig".source =
+          "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/GraphiteDark.kvconfig";
+        "Kvantum/Graphite/GraphiteDark.svg".source =
+          "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/GraphiteDark.svg";
+        "Kvantum/Graphite/Graphite.kvconfig".source =
+          "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/Graphite.kvconfig";
+        "Kvantum/Graphite/Graphite.svg".source =
+          "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/Graphite.svg";
+        "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=GraphiteDark";
+      };
     };
-  };
 }

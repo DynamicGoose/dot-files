@@ -1,3 +1,4 @@
-{ config, ... }: {
+{ config, ... }:
+{
   programs.evince.enable = true;
 }

@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   networking.networkmanager = {
     enable = true;
     wifi.backend = "iwd";

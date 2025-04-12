@@ -1,7 +1,15 @@
-{ config, inputs, username, ... }: {
+{
+  config,
+  inputs,
+  username,
+  ...
+}:
+{
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "backup";
-  home-manager.users.${username} = { config, ... }: {
-    home.stateVersion = "25.05";
-  };
+  home-manager.users.${username} =
+    { config, ... }:
+    {
+      home.stateVersion = "25.05";
+    };
 }
