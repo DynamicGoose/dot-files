@@ -39,8 +39,11 @@
         languages = {
           language = [
             {
-              name = "rust";
-              formatter.command = "nixfmt";
+              name = "nix";
+              formatter = {
+                command = "nixfmt";
+              };
+              auto-format = true;
             }
           ];
         };

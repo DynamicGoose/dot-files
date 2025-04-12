@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   nix.settings = {
     experimental-features = [
