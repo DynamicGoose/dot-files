@@ -13,7 +13,7 @@
     gamemode
     gamescope
     gedit
-    gimp
+    gimp3-with-plugins
     git
     glibc
     gmetronome
