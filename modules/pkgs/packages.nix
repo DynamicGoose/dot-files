@@ -3,8 +3,10 @@
   environment.systemPackages = with pkgs; [
     ani-cli
     audacity
+    baobab
     binsider
     blender-hip
+    brasero
     btop
     cheese
     discord-canary
@@ -32,7 +34,6 @@
     lutris
     manga-cli
     mission-center
-    mpv
     musescore
     nil
     obsidian
@@ -42,6 +43,7 @@
     python3
     python3Packages.jedi-language-server
     r2modman
+    rhythmbox
     ruff
     rustup
     sidequest
@@ -51,6 +53,7 @@
     tealdeer
     telegram-desktop
     thunderbird
+    totem
     vdhcoapp
     vscodium
     wget
