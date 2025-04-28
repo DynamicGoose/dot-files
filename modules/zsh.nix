@@ -32,7 +32,7 @@
           ".." = "cd ..";
         };
 
-        initExtra = ''
+        initContent = ''
           autoload -Uz vcs_info
           setopt prompt_subst
           zstyle ':vcs_info:*' actionformats ' %F{3}-> %F{4}%f%F{4}%s%F{255}:%F{5}%b|%F{4}%a%F{3}%u%f'
