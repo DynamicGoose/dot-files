@@ -80,7 +80,7 @@
       environment.sessionVariables = lib.mkIf (type == "intel") { LIBVA_DRIVER_NAME = "iHD"; };
 
       # Nvidia
-      services.xserver.videoDrivers = [ "nvidia" ];
+      services.xserver.videoDrivers = lib.mkIf (type == "nvidia") [ "nvidia" ];
       hardware.nvidia = lib.mkIf (type == "nvidia") {
         modesetting.enable = true;
         open = config.modules.graphics.nvidia.rtx20;
