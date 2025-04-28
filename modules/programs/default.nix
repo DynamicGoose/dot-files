@@ -1,7 +1,6 @@
 {
   imports = [
     ./alvr.nix
-    ./droidcam.nix
     ./evince.nix
     ./helix.nix
     ./hyprlock.nix
