@@ -9,7 +9,6 @@
     brasero
     btop
     cheese
-    discord-canary
     fastfetch
     firefox-wayland
     gamemode
@@ -55,6 +54,7 @@
     thunderbird
     totem
     vdhcoapp
+    vesktop
     vscodium
     wget
     wineWowPackages.waylandFull
