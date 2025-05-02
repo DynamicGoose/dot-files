@@ -151,9 +151,7 @@
                 accel-speed = 0.5;
               };
 
-              keyboard.xkb = {
-                layout = "de";
-              };
+              keyboard.xkb.layout = "de";
 
               focus-follows-mouse = {
                 enable = true;
