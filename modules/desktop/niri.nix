@@ -178,11 +178,12 @@
                 "Ctrl+Alt+Left".action = consume-or-expel-window-left;
                 "Ctrl+Alt+Up".action = move-window-up-or-to-workspace-up;
                 "Ctrl+Alt+Down".action = move-window-down-or-to-workspace-down;
+                "Ctrl+Alt+Return".action = move-window-to-monitor-next;
 
                 "Ctrl+Alt+Q".action = switch-preset-column-width;
                 "Ctrl+Alt+A".action = switch-preset-window-height;
                 "Ctrl+Alt+W".action = maximize-column;
-                "Ctrl+Alt+Tab".action = move-window-to-monitor-next;
+                "Ctrl+Alt+Tab".action = toggle-column-tabbed-display;
 
                 "Alt+Super+Up".action = focus-workspace-up;
                 "Alt+Super+Down".action = focus-workspace-down;
@@ -218,7 +219,6 @@
               };
 
             layout = {
-              border.enable = false;
               gaps = 8;
               default-column-width.proportion = 0.5;
               insert-hint.display = {
@@ -238,6 +238,8 @@
                 { proportion = 1.0; }
               ];
 
+              border.enable = false;
+
               focus-ring = {
                 enable = true;
                 width = 2;
@@ -247,6 +249,23 @@
                 inactive = {
                   color = "#00000000";
                 };
+              };
+
+              tab-indicator = {
+                enable = true;
+                place-within-column = true;
+                width = 8;
+                corner-radius = 8;
+                gap = 8;
+                gaps-between-tabs = 8;
+                position = "top";
+                active = {
+                  color = "rgba(224, 224, 224, 100%)";
+                };
+                inactive = {
+                  color = "rgba(224, 224, 224, 30%)";
+                };
+                length.total-proportion = 1.0;
               };
             };
 
