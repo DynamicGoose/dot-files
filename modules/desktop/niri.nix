@@ -57,6 +57,11 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
     ];
+    config = {
+      common = {
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      };
+    };
   };
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
