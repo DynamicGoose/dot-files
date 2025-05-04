@@ -36,6 +36,7 @@
     musescore
     nil
     obsidian
+    pandoc
     prismlauncher
     protonup-qt
     pwvucontrol
