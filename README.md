@@ -46,6 +46,13 @@ Afterwards, you can run `sudo nixos-rebuild switch|boot|etc.` like normal.
 > [!TIP]
 > NixOS channels can be removed, because flakes don't rely on them. (`nix-channel`)
 
-### Shells
+### Development Shells
 
-In the `nix-shells` directory, there are also a couple of nix shells for different usecases
+In the `shells` directory, there are also a couple of nix shells for different usecases. You can enter the default dev shell with `nix develop`.  
+Other shells can be invoked as you would expect. E.g.:
+```shell
+nix develop .#nix
+```
+
+> [!WARNING]
+> These shells cannot be used through `nix-shell`. This was a conscious decision because I wanted them to always be as reproducable as the rest of the system.
