@@ -1,6 +1,4 @@
-{
-  pkgs ? import <nixpkgs> { },
-}:
+{ pkgs }:
 pkgs.mkShell {
   packages = with pkgs; [
     nixfmt-tree
@@ -9,6 +7,7 @@ pkgs.mkShell {
   ];
   shellHook = ''
     export IN_NIX_DEVELOP=1
-    zsh
+    ${pkgs.zsh}/bin/zsh
+    exit
   '';
 }

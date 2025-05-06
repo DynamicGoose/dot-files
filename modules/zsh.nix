@@ -41,10 +41,10 @@
           precmd () { vcs_info }
 
           NEWLINE=$'\n'
-          if [[ -n $IN_NIX_SHELL ]]; then
-            PS1='┌ %F{2}[nix-shell]%F{255} %~/''${vcs_info_msg_0_}''${NEWLINE}%F{255}└ %F{1}❯%F{255} '
-          elif [[ -n $IN_NIX_DEVELOP ]]; then
+          if [[ -n $IN_NIX_DEVELOP ]]; then
             PS1='┌ %F{2}[nix develop]%F{255} %~/''${vcs_info_msg_0_}''${NEWLINE}%F{255}└ %F{1}❯%F{255} '
+          elif [[ -n $IN_NIX_SHELL ]]; then
+            PS1='┌ %F{2}[nix-shell]%F{255} %~/''${vcs_info_msg_0_}''${NEWLINE}%F{255}└ %F{1}❯%F{255} '
           else
             PS1='┌ %~/''${vcs_info_msg_0_}''${NEWLINE}%F{255}└ %F{1}❯%F{255} '
           fi

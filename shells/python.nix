@@ -1,6 +1,4 @@
-let
-  pkgs = import <nixpkgs> { };
-in
+{ pkgs }:
 pkgs.mkShell {
   buildInputs = [
     pkgs.python3
@@ -13,5 +11,10 @@ pkgs.mkShell {
     export PYTHONPATH="$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH"
     export PATH="$PIP_PREFIX/bin:$PATH"
     unset SOURCE_DATE_EPOCH
+
+    # start zsh
+    export IN_NIX_DEVELOP=1
+    ${pkgs.zsh}/bin/zsh
+    exit    
   '';
 }

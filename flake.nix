@@ -68,7 +68,7 @@
 
       devShells = nixpkgs.lib.genAttrs systems (
         system:
-        import ./nix-shells/. {
+        import ./shells/. {
           pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
