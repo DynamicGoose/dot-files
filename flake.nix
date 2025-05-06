@@ -60,7 +60,7 @@
       };
 
       # Development shells in ./shells
-      devShells = lib.eachSystem (pkgs: import ./shells/. { inherit pkgs; });
+      devShells = lib.eachSystem (pkgs: import ./shells { inherit pkgs; });
 
       # Library functions for external use
       lib = lib;
