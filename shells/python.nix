@@ -12,8 +12,9 @@ pkgs.mkShell {
     export PATH="$PIP_PREFIX/bin:$PATH"
     unset SOURCE_DATE_EPOCH
 
-    # start zsh
+    # start zsh with custom env vars
     export IN_NIX_DEVELOP=1
+    export NIX_ENV_NAME=python
     ${pkgs.zsh}/bin/zsh
     exit    
   '';

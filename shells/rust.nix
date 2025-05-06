@@ -22,6 +22,7 @@ pkgs.mkShell {
 
   shellHook = ''
     export IN_NIX_DEVELOP=1
+    export NIX_ENV_NAME=rust
     ${pkgs.zsh}/bin/zsh
     exit
   '';
