@@ -56,3 +56,13 @@ nix develop .#nix
 
 > [!WARNING]
 > These shells cannot be used through `nix-shell`. This was a conscious decision because I wanted them to always be as reproducable as the rest of the system.
+
+> [!TIP]
+> You can set `NIX_ENV_NAME` in your own shell's `shellHook` to display a name in the zsh prompt.
+> If you want to use zsh in your own flake devShells paste this in their `shellHook`:
+> ```shell
+> export IN_NIX_DEVELOP=1
+> export NIX_ENV_NAME=dot-files
+> ${pkgs.zsh}/bin/zsh
+> exit
+> ```
