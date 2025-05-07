@@ -80,7 +80,6 @@
     cliphist
     hypridle
     hyprlock
-    hyprshot
     kitty
     networkmanagerapplet
     playerctl
@@ -118,6 +117,7 @@
           settings = {
             prefer-no-csd = true;
             hotkey-overlay.skip-at-startup = true;
+            screenshot-path = "~Pictures/Screenshots/%Y-%m-%d-%H%M%S.png";
 
             environment = {
               DISPLAY = ":1";
@@ -210,7 +210,8 @@
                 "Alt+9".action = focus-workspace 9;
                 "Alt+0".action = focus-workspace 10;
 
-                "Print".action = sh "pidof hyprshot || hyprshot -o ~/Pictures/Screenshots -m region";
+                "Print".action = screenshot { show-pointer = true; };
+
                 "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
                 "Ctrl+Alt+C".action = sh "pidof wl-color-picker || wl-color-picker";
                 "Super+C".action = spawn "qalculate-gtk";
