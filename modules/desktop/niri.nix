@@ -210,7 +210,7 @@
                 "Alt+9".action = focus-workspace 9;
                 "Alt+0".action = focus-workspace 10;
 
-                "Print".action = screenshot { show-pointer = true; };
+                "Print".action = screenshot;
 
                 "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
                 "Ctrl+Alt+C".action = sh "pidof wl-color-picker || wl-color-picker";
