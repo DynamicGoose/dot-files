@@ -117,7 +117,7 @@
           settings = {
             prefer-no-csd = true;
             hotkey-overlay.skip-at-startup = true;
-            screenshot-path = "~Pictures/Screenshots/%Y-%m-%d-%H%M%S.png";
+            screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png";
 
             environment = {
               DISPLAY = ":1";
