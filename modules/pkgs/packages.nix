@@ -21,8 +21,6 @@
     gnome-disk-utility
     gnome-clocks
     gnome-solanum
-    guitarix
-    gxplugins-lv2
     helvum
     heroic
     imv
@@ -32,20 +30,13 @@
     libreoffice
     lutris
     manga-cli
-    mission-center
     musescore
-    nil
     obsidian
-    pandoc
     prismlauncher
     protonup-qt
     pwvucontrol
-    python3
-    python3Packages.jedi-language-server
     r2modman
     rhythmbox
-    ruff
-    rustup
     sidequest
     signal-desktop
     spotify
@@ -56,7 +47,6 @@
     totem
     vdhcoapp
     vesktop
-    vscodium
     wget
     wineWowPackages.waylandFull
     zapzap

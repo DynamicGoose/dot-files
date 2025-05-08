@@ -1,8 +1,10 @@
 { pkgs }:
 pkgs.mkShell {
-  buildInputs = [
-    pkgs.python3
-    pkgs.python3.pkgs.pip
+  buildInputs = with pkgs; [
+    python3
+    python3.pkgs.pip
+    python3Packages.jedi-language-server
+    ruff
   ];
   shellHook = ''
     # Tells pip to put packages into $PIP_PREFIX instead of the usual locations.
