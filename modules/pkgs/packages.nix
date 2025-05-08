@@ -9,6 +9,7 @@
     brasero
     btop
     cheese
+    decibels
     fastfetch
     firefox-wayland
     gamemode
