@@ -100,7 +100,7 @@ type: `boolean`
 default: `false`  
 possible values: `true`, `false`  
   
-Sets the desktop config for hypridle (disables brightness changes and susped)
+Sets the desktop config for hypridle (disables brightness changes and suspend)
 
 ### `modules.services.ssh.enable`
 type: `boolean`  
