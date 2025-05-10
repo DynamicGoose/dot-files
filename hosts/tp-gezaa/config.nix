@@ -7,6 +7,7 @@
     graphics.type = "intel";
     powerManagement.tlp.enable = true;
     displayManager.lightdm.enable = false;
+    displayManager.sddm.enable = true;
     desktop.plasma.enable = true;
   };
 
