@@ -53,7 +53,7 @@ in
   environment.systemPackages = with pkgs; [
     swaynotificationcenter
     wdisplays
-    kooha
+    gpu-screen-recorder-gtk
     wofi
   ];
 
@@ -132,7 +132,7 @@ in
                   },
                   {
                     "label": "",
-                    "command": "kooha"
+                    "command": "gpu-screen-recorder-gtk"
                   }
                 ]
               },
