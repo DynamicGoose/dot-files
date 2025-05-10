@@ -11,6 +11,20 @@ possible values: `"uefi"`, `"removable"`, `"legacy"`
   
 Sets the boot configuration to be compatible with the desired device.
 
+### `modules.desktop.plasma.enable`
+type: `boolean`  
+default: `false`  
+possible values: `true`, `false`  
+
+Enables the Plasma6 Desktop environment as well as SDDM.
+
+### `modules.displayManager.lightdm.enable`
+type: `boolean`  
+default: `true`  
+possible values: `true`, `false`  
+
+Enables LightDM display manager.
+
 ### `modules.graphics.enable`
 type: `boolean`  
 default: `true`  
