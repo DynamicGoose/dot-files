@@ -5,5 +5,6 @@
     ./gtk.nix
     ./qt.nix
     ./niri.nix
+    ./plasma.nix
   ];
 }
