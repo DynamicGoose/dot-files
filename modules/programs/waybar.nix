@@ -56,16 +56,25 @@
               "pulseaudio" = {
                 "format" = "{icon} {volume}%";
                 "format-bluetooth" = "{icon}󰂯 {volume}%";
-                "format-muted" = "";
+                "format-muted" = "";
                 "format-icons" = {
                   "headphones" = "󰋋 ";
                   "phone" = " ";
                   "default" = [
+                    ""
                     " "
                     " "
                   ];
                 };
                 "on-click" = "pwvucontrol";
+                "menu" = "on-click-right";
+                "menu-file" = "~/.config/waybar/audio_menu.xml";
+                "menu-actions" = {
+                  "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
+                  "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
+                  "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
+                  "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
+                };
               };
 
               "tray" = {
@@ -157,11 +166,20 @@
                   "headphones" = "󰋋 ";
                   "phone" = " ";
                   "default" = [
+                    ""
                     " "
                     " "
                   ];
                 };
                 "on-click" = "pwvucontrol";
+                "menu" = "on-click-right";
+                "menu-file" = "~/.config/waybar/audio_menu.xml";
+                "menu-actions" = {
+                  "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
+                  "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
+                  "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
+                  "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
+                };
               };
 
               "tray" = {
@@ -180,12 +198,42 @@
     {
       environment.systemPackages = with pkgs; [
         pwvucontrol
+        helvum
         swaynotificationcenter
       ];
 
       home-manager.users.${username} =
         { config, lib, ... }:
         {
+          xdg.configFile = {
+            "waybar/audio_menu.xml".text = ''
+              <?xml version="1.0" encoding="UTF-8"?>
+              <interface>
+                <object class="GtkMenu" id="menu">
+                  <child>
+                    <object class="GtkMenuItem" id="toggle-input">
+                      <property name="label">Toggle Input</property>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkMenuItem" id="toggle-output">
+                      <property name="label">Toggle Output</property>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkMenuItem" id="settings">
+                      <property name="label">Settings</property>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkMenuItem" id="patchbay">
+                      <property name="label">Patchbay</property>
+                    </object>
+                  </child>
+                </object>
+            '';
+          };
+
           programs.waybar = {
             enable = true;
 

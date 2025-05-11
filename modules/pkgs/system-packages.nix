@@ -20,7 +20,6 @@
     gnome-disk-utility
     gnome-clocks
     gnome-solanum
-    helvum
     heroic
     imv
     killall

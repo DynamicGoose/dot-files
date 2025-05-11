@@ -302,6 +302,7 @@
                   { app-id = ".blueman-manager-wrapped"; }
                   { app-id = "nm-connection-editor"; }
                   { app-id = "com.saivert.pwvucontrol"; }
+                  { app-id = "org.pipewire.Helvum"; }
                   { app-id = "wdisplays"; }
                   { app-id = "qalculate-gtk"; }
                   { title = "Syncthing Tray"; }
