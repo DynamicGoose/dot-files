@@ -83,9 +83,27 @@
               };
 
               "custom/menu" = {
-                "format" = "";
-                "on-click" = "swaync-client -t";
-                "tooltip-format" = "Menu";
+                "format" = "{icon}";
+                "tooltip" = true;
+                "format-icons" = {
+                  "notification" = "<span foreground='red'><sup></sup></span>";
+                  "none" = "";
+                  "dnd-notification" = "<span foreground='red'><sup></sup></span>";
+                  "dnd-none" = "";
+                  "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                  "inhibited-none" = "";
+                  "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                  "dnd-inhibited-none" = "";
+                };
+                "exec" = "swaync-client -swb";
+                "return-type" = "json";
+                "on-click" = "swaync-client -t -sw";
+                "menu" = "on-click-right";
+                "menu-file" = "~/.config/waybar/notify_menu.xml";
+                "menu-actions" = {
+                  "toggle-dnd" = "swaync-client -d -sw";
+                  "clear-all" = "swaync-client -C -sw";
+                };
               };
             }
           ]
@@ -188,9 +206,27 @@
               };
 
               "custom/menu" = {
-                "format" = "";
-                "on-click" = "swaync-client -t";
-                "tooltip-format" = "Menu";
+                "format" = "{icon}";
+                "tooltip" = true;
+                "format-icons" = {
+                  "notification" = "<span foreground='red'><sup></sup></span>";
+                  "none" = "";
+                  "dnd-notification" = "<span foreground='red'><sup></sup></span>";
+                  "dnd-none" = "";
+                  "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                  "inhibited-none" = "";
+                  "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                  "dnd-inhibited-none" = "";
+                };
+                "exec" = "swaync-client -swb";
+                "return-type" = "json";
+                "on-click" = "swaync-client -t -sw";
+                "menu" = "on-click-right";
+                "menu-file" = "~/.config/waybar/notify_menu.xml";
+                "menu-actions" = {
+                  "toggle-dnd" = "swaync-client -d -sw";
+                  "clear-all" = "swaync-client -C -sw";
+                };
               };
             }
           ];
@@ -228,6 +264,22 @@
                   <child>
                     <object class="GtkMenuItem" id="patchbay">
                       <property name="label">Patchbay</property>
+                    </object>
+                  </child>
+                </object>
+            '';
+            "waybar/notify_menu.xml".text = ''
+              <?xml version="1.0" encoding="UTF-8"?>
+              <interface>
+                <object class="GtkMenu" id="menu">
+                  <child>
+                    <object class="GtkMenuItem" id="toggle-dnd">
+                      <property name="label">Toggle Do Not Disturb</property>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkMenuItem" id="clear-all">
+                      <property name="label">Clear All Notifications</property>
                     </object>
                   </child>
                 </object>
