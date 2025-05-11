@@ -4,7 +4,6 @@
     ani-cli
     audacity
     baobab
-    binsider
     blender-hip
     brasero
     btop
@@ -17,7 +16,7 @@
     gedit
     gimp3-with-plugins
     git
-    glibc
+    # glibc
     gmetronome
     gnome-disk-utility
     gnome-clocks
@@ -27,22 +26,18 @@
     imv
     killall
     krita
-    libgcc
+    # libgcc
     libreoffice
-    lutris
     manga-cli
     musescore
     obsidian
     prismlauncher
-    protonup-qt
     pwvucontrol
     r2modman
     rhythmbox
-    sidequest
     signal-desktop
     spotify
     stc-cli
-    tealdeer
     telegram-desktop
     thunderbird
     totem
@@ -50,7 +45,7 @@
     vesktop
     wget
     whatsie
-    wineWowPackages.waylandFull
+    # wineWowPackages.waylandFull
     zoom-us
     zrythm
     zulu
