@@ -108,6 +108,11 @@
   home-manager.users.${username} =
     { pkgs, config, ... }:
     {
+      dconf.settings."org/blueman/general".plugin-list = [
+        "StatusIcon"
+        "ShowConnected"
+        "!ExitItem"
+      ];
       services.hypridle.enable = true;
       programs = {
         waybar.enable = true;

@@ -268,6 +268,15 @@
               #tray {
                 padding: 0;
               }
+              menu {
+                border: none;
+                margin: 0;
+                padding: 4px;
+              }
+              menuitem {
+                padding: 6px;
+                margin: 0;
+              }
             '';
           };
         };
