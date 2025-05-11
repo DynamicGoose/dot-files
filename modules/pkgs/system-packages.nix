@@ -16,7 +16,6 @@
     gedit
     gimp3-with-plugins
     git
-    # glibc
     gmetronome
     gnome-disk-utility
     gnome-clocks
@@ -26,13 +25,11 @@
     imv
     killall
     krita
-    # libgcc
     libreoffice
     manga-cli
     musescore
     obsidian
     prismlauncher
-    pwvucontrol
     r2modman
     rhythmbox
     signal-desktop
@@ -45,7 +42,6 @@
     vesktop
     wget
     whatsie
-    # wineWowPackages.waylandFull
     zoom-us
     zrythm
     zulu

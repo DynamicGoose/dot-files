@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   username,
   ...
 }:
@@ -177,6 +178,11 @@
           ];
     in
     {
+      environment.systemPackages = with pkgs; [
+        pwvucontrol
+        swaynotificationcenter
+      ];
+
       home-manager.users.${username} =
         { config, lib, ... }:
         {
