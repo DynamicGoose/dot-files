@@ -2,6 +2,7 @@
   imports = [
     ./audio.nix
     ./dbus.nix
+    ./journald.nix
     ./xserver.nix
     ./ssh.nix
     ./printing.nix
