@@ -40,7 +40,7 @@
     vdhcoapp
     vesktop
     wget
-    whatsie
+    zapzap
     zoom-us
     zrythm
     zulu
