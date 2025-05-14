@@ -53,6 +53,11 @@
           userDescription = "Géza Ahsendorf";
         };
 
+        cyberdeck-gezaa = {
+          username = "gezaa";
+          userDescription = "Géza Ahsendorf";
+        };
+
         usb-gezaa = {
           username = "gezaa";
           userDescription = "Géza Ahsendorf";
