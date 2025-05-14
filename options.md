@@ -28,7 +28,7 @@ Enables LightDM display manager.
 ### `modules.displayManager.sddm.enable`
 type: `boolean`  
 default: `false`  
-possible values: `false`, `true`  
+possible values: `true`, `true`  
 
 Enables SDDM display manager.
 
@@ -136,3 +136,17 @@ default: `false`
 possible values: `true`, `false`  
   
 Determines if ssh should always be running, or only start when needed (true means always running).
+
+### `modules.virtualisation.enable`
+type: `boolean`  
+default: `true`  
+possible values: `true`, `false`  
+
+Enables virtualisation support with libvirtd and virt-manager.
+
+### `modules.virtualisation.waydroid.enable`
+type: `boolean`  
+default: `false`  
+possible values: `true`, `false`  
+
+Enables Waydroid, whcih can be configured through `waydroid-helper`.
