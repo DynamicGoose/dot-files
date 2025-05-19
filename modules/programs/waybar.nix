@@ -86,13 +86,13 @@
                 "format" = "{icon}";
                 "tooltip" = true;
                 "format-icons" = {
-                  "notification" = "<span foreground='red'><sup></sup></span>";
+                  "notification" = "<span foreground='#E02525'><sup></sup></span>";
                   "none" = "";
-                  "dnd-notification" = "<span foreground='red'><sup></sup></span>";
+                  "dnd-notification" = "<span foreground='#E02525'><sup></sup></span>";
                   "dnd-none" = "";
-                  "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                  "inhibited-notification" = "<span foreground='#E02525'><sup></sup></span>";
                   "inhibited-none" = "";
-                  "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                  "dnd-inhibited-notification" = "<span foreground='#E02525'><sup></sup></span>";
                   "dnd-inhibited-none" = "";
                 };
                 "exec" = "swaync-client -swb";
@@ -209,13 +209,13 @@
                 "format" = "{icon}";
                 "tooltip" = true;
                 "format-icons" = {
-                  "notification" = "<span foreground='red'><sup></sup></span>";
+                  "notification" = "<span foreground='#E02525'><sup></sup></span>";
                   "none" = "";
-                  "dnd-notification" = "<span foreground='red'><sup></sup></span>";
+                  "dnd-notification" = "<span foreground='#E02525'><sup></sup></span>";
                   "dnd-none" = "";
-                  "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                  "inhibited-notification" = "<span foreground='#E02525'><sup></sup></span>";
                   "inhibited-none" = "";
-                  "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+                  "dnd-inhibited-notification" = "<span foreground='#E02525'><sup></sup></span>";
                   "dnd-inhibited-none" = "";
                 };
                 "exec" = "swaync-client -swb";

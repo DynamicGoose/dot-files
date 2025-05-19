@@ -314,6 +314,29 @@
                 ];
                 open-floating = true;
               }
+              {
+                matches = [
+                  { is-window-cast-target = true; }
+                ];
+
+                focus-ring = {
+                  active = {
+                    color = "rgba(224, 37, 37, 100%)";
+                  };
+                  inactive = {
+                    color = "rgba(224, 37, 37, 30%)";
+                  };
+                };
+
+                tab-indicator = {
+                  active = {
+                    color = "rgba(224, 37, 37, 100%)";
+                  };
+                  inactive = {
+                    color = "rgba(224, 37, 37, 30%)";
+                  };
+                };
+              }
             ];
           };
         };
