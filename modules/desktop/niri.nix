@@ -202,6 +202,8 @@
                 "Ctrl+Alt+W".action = maximize-column;
                 "Ctrl+Alt+Tab".action = toggle-column-tabbed-display;
 
+                "Super+Q".action = toggle-overview;
+
                 "Alt+Super+Up".action = focus-workspace-up;
                 "Alt+Super+Down".action = focus-workspace-down;
                 "Alt+1".action = focus-workspace 1;
@@ -286,6 +288,8 @@
                 length.total-proportion = 1.0;
               };
             };
+
+            overview.backdrop-color = "#0f0f0f";
 
             window-rules = [
               {
