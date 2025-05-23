@@ -325,19 +325,19 @@
 
                 focus-ring = {
                   active = {
-                    color = "rgba(224, 37, 37, 100%)";
+                    color = "rgba(224, 53, 53, 100%)";
                   };
                   inactive = {
-                    color = "rgba(224, 37, 37, 30%)";
+                    color = "rgba(224, 53, 53, 30%)";
                   };
                 };
 
                 tab-indicator = {
                   active = {
-                    color = "rgba(224, 37, 37, 100%)";
+                    color = "rgba(224, 53, 53, 100%)";
                   };
                   inactive = {
-                    color = "rgba(224, 37, 37, 30%)";
+                    color = "rgba(224, 53, 53, 30%)";
                   };
                 };
               }
