@@ -238,6 +238,8 @@
                 "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
               };
 
+            gestures.hot-corners.enable = false;
+
             layout = {
               gaps = 8;
               default-column-width.proportion = 0.5;
