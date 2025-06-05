@@ -9,6 +9,8 @@
     btop
     cheese
     decibels
+    # delfin (jellyfin client)
+    easytag
     fastfetch
     firefox-wayland
     gamemode
@@ -30,8 +32,10 @@
     obsidian
     prismlauncher
     r2modman
-    rhythmbox
+    recordbox
+    resources
     signal-desktop
+    sound-juicer
     spotify
     stc-cli
     telegram-desktop

@@ -74,6 +74,7 @@
                   "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
                   "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
                   "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
+                  "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
                 };
               };
 
@@ -197,6 +198,7 @@
                   "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
                   "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
                   "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
+                  "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
                 };
               };
 
@@ -233,6 +235,7 @@
     in
     {
       environment.systemPackages = with pkgs; [
+        easyeffects
         pwvucontrol
         helvum
         swaynotificationcenter
@@ -264,6 +267,11 @@
                   <child>
                     <object class="GtkMenuItem" id="patchbay">
                       <property name="label">Patchbay</property>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkMenuItem" id="effects">
+                      <property name="label">Effects</property>
                     </object>
                   </child>
                 </object>

@@ -314,6 +314,7 @@
                   { app-id = "nm-connection-editor"; }
                   { app-id = "com.saivert.pwvucontrol"; }
                   { app-id = "org.pipewire.Helvum"; }
+                  { app-id = "com.github.wwmm.easyeffects"; }
                   { app-id = "wdisplays"; }
                   { app-id = "qalculate-gtk"; }
                   { title = "Syncthing Tray"; }
