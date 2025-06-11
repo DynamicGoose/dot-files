@@ -29,11 +29,20 @@
       };
       niri-flake-polkit.enable = false;
 
-      cliphist = {
-        description = "wl-paste + cliphist service";
+      cliphist-text = {
+        description = "wl-paste + cliphist service for text";
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store & ${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store";
+          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store";
+          Restart = "on-failure";
+        };
+      };
+
+      cliphist-image = {
+        description = "wl-paste + cliphist service for text";
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store";
           Restart = "on-failure";
         };
       };
@@ -143,7 +152,8 @@
               [
                 { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; }
                 { command = sh ++ [ "cliphist wipe" ]; }
-                { command = sh ++ [ "systemctl --user start cliphist.service" ]; }
+                { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
+                { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
                 { command = sh ++ [ "systemctl --user start waybar.service" ]; }
                 { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
