@@ -18,6 +18,7 @@
     gedit
     gimp3-with-plugins
     git
+    gitui
     gmetronome
     gnome-disk-utility
     gnome-clocks
@@ -41,6 +42,7 @@
     telegram-desktop
     thunderbird
     totem
+    uutils-coreutils-noprefix
     vdhcoapp
     vesktop
     wget

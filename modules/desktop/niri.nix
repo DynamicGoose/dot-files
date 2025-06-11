@@ -33,7 +33,7 @@
         description = "wl-paste + cliphist service";
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
+          ExecStart = "${pkgs.wl-clipboard-rs}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
           Restart = "on-failure";
         };
       };
@@ -168,7 +168,10 @@
                 accel-speed = 0.5;
               };
 
-              keyboard.xkb.layout = "de";
+              keyboard = {
+                numlock = true;
+                xkb.layout = "de";
+              };
 
               focus-follows-mouse = {
                 enable = true;
