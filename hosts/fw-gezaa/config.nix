@@ -1,9 +1,15 @@
 {
+  pkgs,
   username,
   ...
 }:
 {
-  modules.powerManagement.ppd.enable = true;
+  modules = {
+    powerManagement.ppd.enable = true;
+    services.clight.enable = true;
+  };
+
+  environment.systemPackages = [ pkgs.framework-tool ];
 
   services.fprintd.enable = true;
 
