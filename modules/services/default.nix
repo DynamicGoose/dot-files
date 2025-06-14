@@ -1,7 +1,7 @@
 {
   imports = [
     ./audio.nix
-    ./clight.nix
+    ./wluma.nix
     ./dbus.nix
     ./journald.nix
     ./xserver.nix

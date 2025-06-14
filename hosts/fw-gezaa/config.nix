@@ -6,7 +6,7 @@
 {
   modules = {
     powerManagement.ppd.enable = true;
-    services.clight.enable = true;
+    services.wluma.enable = true;
   };
 
   environment.systemPackages = [ pkgs.framework-tool ];
