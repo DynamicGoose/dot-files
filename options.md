@@ -137,6 +137,13 @@ possible values: `true`, `false`
   
 Determines if ssh should always be running, or only start when needed (true means always running).
 
+### `modules.services.wluma.enable`
+type `boolean`  
+default: `false`  
+possiblr values: `true`, `false`  
+
+Enables wluma for automatically adjusting display brightness.
+
 ### `modules.virtualisation.enable`
 type: `boolean`  
 default: `true`  
