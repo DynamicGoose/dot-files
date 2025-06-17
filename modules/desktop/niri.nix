@@ -195,30 +195,25 @@
                 sh = spawn "sh" "-c";
               in
               {
-                "Alt+X".action = close-window;
-                "Alt+F".action = toggle-window-floating;
-                "Super+F".action = fullscreen-window;
-
+                "Alt+Tab".action = toggle-overview;
                 "Alt+Right".action = focus-column-or-monitor-right;
                 "Alt+Left".action = focus-column-or-monitor-left;
-                "Alt+Up".action = focus-window-or-monitor-up;
-                "Alt+Down".action = focus-window-or-monitor-down;
+                "Alt+Up".action = focus-window-or-workspace-up;
+                "Alt+Down".action = focus-window-or-workspace-down;
 
+                "Ctrl+Alt+D".action = toggle-window-floating;
+                "Ctrl+Alt+F".action = fullscreen-window;
                 "Ctrl+Alt+Right".action = consume-or-expel-window-right;
                 "Ctrl+Alt+Left".action = consume-or-expel-window-left;
                 "Ctrl+Alt+Up".action = move-window-up-or-to-workspace-up;
                 "Ctrl+Alt+Down".action = move-window-down-or-to-workspace-down;
                 "Ctrl+Alt+Return".action = move-window-to-monitor-next;
-
                 "Ctrl+Alt+Q".action = switch-preset-column-width;
                 "Ctrl+Alt+A".action = switch-preset-window-height;
                 "Ctrl+Alt+W".action = maximize-column;
+                "Ctrl+Alt+S".action = expand-column-to-available-width;
                 "Ctrl+Alt+Tab".action = toggle-column-tabbed-display;
 
-                "Super+Q".action = toggle-overview;
-
-                "Alt+Super+Up".action = focus-workspace-up;
-                "Alt+Super+Down".action = focus-workspace-down;
                 "Alt+1".action = focus-workspace 1;
                 "Alt+2".action = focus-workspace 2;
                 "Alt+3".action = focus-workspace 3;
@@ -231,15 +226,6 @@
                 "Alt+0".action = focus-workspace 10;
 
                 "Print".action = screenshot;
-
-                "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
-                "Ctrl+Alt+C".action = sh "pidof wl-color-picker || wl-color-picker";
-                "Super+C".action = spawn "qalculate-gtk";
-                "Ctrl+Alt+T".action = spawn "kitty";
-                "Super+A".action = sh "pidof wofi || wofi";
-                "Super+S".action = sh "swaync-client -t";
-                "Super+Alt+L".action = sh "loginctl lock-session";
-                "Super+Alt+P".action = sh "pidof wofi-power-menu || wofi-power-menu";
                 "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
                 "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
                 "XF86AudioPlay".action = sh "playerctl play-pause";
@@ -249,6 +235,16 @@
                 "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume=lower";
                 "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
                 "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
+
+                "Super+X".action = close-window;
+                "Super+A".action = sh "pidof wofi || wofi"; # launcher
+                "Super+L".action = sh "loginctl lock-session"; # lock screen
+                "Super+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
+                "Super+Y".action = sh "swaync-client -t"; # notification hub
+                "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
+                "Super+T".action = spawn "kitty"; # terminal
+                "Super+C".action = spawn "qalculate-gtk"; # calculator
+                "Super+B".action = sh "pidof wl-color-picker || wl-color-picker"; # color-picker
               };
 
             gestures.hot-corners.enable = false;
