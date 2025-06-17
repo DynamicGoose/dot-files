@@ -168,7 +168,7 @@
 
             input = {
               power-key-handling.enable = false;
-              warp-mouse-to-focus = true;
+              warp-mouse-to-focus.enable = true;
 
               mouse = {
                 accel-speed = 0.5;
