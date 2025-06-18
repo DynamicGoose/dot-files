@@ -6,9 +6,7 @@ pkgs.mkShell {
     nil
   ];
   shellHook = ''
-    export IN_NIX_DEVELOP=1
-    export NIX_ENV_NAME=nix
-    ${pkgs.zsh}/bin/zsh
+    ${pkgs.nushell}/bin/nu
     exit
   '';
 }

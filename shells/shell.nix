@@ -5,10 +5,4 @@ pkgs.mkShell {
     nixfmt-rfc-style
     nil
   ];
-  shellHook = ''
-    export IN_NIX_DEVELOP=1
-    export NIX_ENV_NAME=dot-files
-    ${pkgs.zsh}/bin/zsh
-    exit
-  '';
 }

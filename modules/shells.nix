@@ -9,6 +9,8 @@
     bash
   ];
 
+  progrmams.bash.interactiveShellInit = "eval \"$(starship init bash)\"";
+
   home-manager.users.${username} =
     { config, pkgs, ... }:
     {
@@ -47,18 +49,19 @@
         };
       };
 
-      carapace = {
+      programs.carapace = {
         enable = true;
         enableNushellIntegration = true;
       };
 
-      starship = {
+      programs.starshiship = {
         enable = true;
         settings = {
-          add_newline = true;
+          add_newline = false;
+          format = "┌ $all";
           character = {
-            success_symbol = "[->](bold green)";
-            error_symbol = "[->](bold red)";
+            success_symbol = "└ [❯](bold green)";
+            error_symbol = "└ [❯](bold red)";
           };
         };
       };
