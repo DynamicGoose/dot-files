@@ -5,7 +5,7 @@
   ...
 }:
 {
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.nushell;
   users.users.${username} = {
     isNormalUser = true;
     description = userDescription;

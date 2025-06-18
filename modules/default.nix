@@ -5,7 +5,7 @@
     ./graphics.nix
     ./virtualisation.nix
     ./home-manager.nix
-    ./zsh.nix
+    ./nushell.nix
     ./core
     ./services
     ./programs
