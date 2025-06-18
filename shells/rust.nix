@@ -7,6 +7,8 @@ let
     ];
 in
 pkgs.mkShell {
+  name = "rust-dev";
+
   nativeBuildInputs = with pkgs; [
     rustc
     cargo
@@ -19,13 +21,6 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     pkg-config
   ];
-
-  shellHook = ''
-    export IN_NIX_DEVELOP=1
-    export NIX_ENV_NAME=rust
-    ${pkgs.zsh}/bin/zsh
-    exit
-  '';
 
   LD_LIBRARY_PATH = "${libPath}";
   RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";

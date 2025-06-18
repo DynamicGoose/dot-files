@@ -9,7 +9,7 @@
     bash
   ];
 
-  progrmams.bash.interactiveShellInit = "eval \"$(starship init bash)\"";
+  programs.bash.interactiveShellInit = "eval \"$(starship init bash)\"";
 
   home-manager.users.${username} =
     { config, pkgs, ... }:
@@ -54,14 +54,17 @@
         enableNushellIntegration = true;
       };
 
-      programs.starshiship = {
+      programs.starship = {
         enable = true;
         settings = {
           add_newline = false;
-          format = "┌ $all";
+          format = "[┌](white) $all";
           character = {
-            success_symbol = "└ [❯](bold green)";
-            error_symbol = "└ [❯](bold red)";
+            success_symbol = "[└](white) [❯](bold green)";
+            error_symbol = "[└](white) [❯](bold red)";
+          };
+          nix_shell = {
+            symbol = "󱄅 ";
           };
         };
       };

@@ -1,5 +1,6 @@
 { pkgs }:
 pkgs.mkShell {
+  name = "python-dev";
   buildInputs = with pkgs; [
     python3
     python3.pkgs.pip
@@ -13,11 +14,5 @@ pkgs.mkShell {
     export PYTHONPATH="$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH"
     export PATH="$PIP_PREFIX/bin:$PATH"
     unset SOURCE_DATE_EPOCH
-
-    # start zsh with custom env vars
-    export IN_NIX_DEVELOP=1
-    export NIX_ENV_NAME=python
-    ${pkgs.zsh}/bin/zsh
-    exit    
   '';
 }
