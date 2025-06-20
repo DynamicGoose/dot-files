@@ -35,6 +35,18 @@
                 completer: $carapace_completer # check 'carapace_completer' 
               }
             }
+            keybindings: [
+              {
+                name: interactive_cd
+                modifier: control
+                keycode: char_f
+                mode: emacs
+                event: {
+                  send: executehostcommand
+                  cmd: zi
+                }
+              }
+            ]
           } 
           $env.PATH = ($env.PATH | 
           split row (char esep) |
