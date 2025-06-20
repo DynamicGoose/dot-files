@@ -9,5 +9,6 @@
     ./steam.nix
     ./waybar.nix
     ./wofi.nix
+    ./zoxide.nix
   ];
 }
