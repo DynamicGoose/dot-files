@@ -47,6 +47,7 @@
     vdhcoapp
     vesktop
     wget
+    wineWowPackages.waylandFull
     zapzap
     zoom-us
     zrythm
