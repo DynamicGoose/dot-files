@@ -50,7 +50,7 @@
     wineWowPackages.waylandFull
     zapzap
     zoom-us
-    zrythm
+    # zrythm
     zulu
     zulu17
   ];
