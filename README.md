@@ -57,12 +57,59 @@ nix develop .#nix
 > [!WARNING]
 > These shells cannot be used through `nix-shell`. This was a conscious decision because I wanted them to always be as reproducable as the rest of the system.
 
-> [!TIP]
-> You can set `NIX_ENV_NAME` in your own shell's `shellHook` to display a name in the zsh prompt.
-> If you want to use zsh in your own flake devShells paste this in their `shellHook`:
-> ```shell
-> export IN_NIX_DEVELOP=1
-> export NIX_ENV_NAME=dot-files
-> ${pkgs.zsh}/bin/zsh
-> exit
-> ```
+### Library Functions
+
+This flake also provides library function similar to `lib` in nixpkgs. These can be used in other flakes.
+
+**Currently, these functions are provided:**
+- `lib.mkHost`: for more easily defining new hosts using this flake
+- `lib.genHosts`: used in `flake.nix` and maps attribute sets onto `lib.mkHost`
+- `lib.eachSystem`: defining stuff for all architectures
+
+#### Usage Example
+
+> This is taken from the `flake.nix` from [another of my projects](https://codeberg.org/DynamicGoose/magma-ecs).
+
+```nix
+{
+  description = "Magma-ECS dev shell";
+
+  inputs = {
+    dot-files.url = "git+https://codeberg.org/DynamicGoose/dot-files.git";
+  };
+
+  outputs =
+    { self, dot-files }:
+    {
+      devShells = dot-files.lib.eachSystem (pkgs: {
+        default =
+          let
+            libPath =
+              with pkgs;
+              lib.makeLibraryPath [
+                vulkan-loader
+              ];
+          in
+          pkgs.mkShell {
+            name = "magma-ecs";
+            nativeBuildInputs = with pkgs; [
+              rustc
+              cargo
+              gcc
+              rust-analyzer
+              rustfmt
+              clippy
+            ];
+
+            buildInputs = with pkgs; [
+              pkg-config
+            ];
+
+            LD_LIBRARY_PATH = "${libPath}";
+            RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+          };
+      });
+    };
+}
+
+```
