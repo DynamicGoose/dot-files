@@ -29,10 +29,6 @@ nixosConfigurations = lib.genHosts = {
 
 ### Building the System
 
-> [!IMPORTANT]
-> `flakes` and `nix-command` have to be enabled to rebuild the system using flakes.
-> `nix.settings.experimental-features = ["nix-command" "flakes"];`
-
 1. After setting up your hosts run `copy_config.sh`:
 ```shell
 ./copy_config.sh
@@ -42,9 +38,6 @@ nixosConfigurations = lib.genHosts = {
 sudo nixos-rebuild boot --install-bootloader --flake /etc/nixos#<config-you-want-to-build>
 ```
 Afterwards, you can run `sudo nixos-rebuild switch|boot|etc.` like normal.
-
-> [!TIP]
-> NixOS channels can be removed, because flakes don't rely on them. (`nix-channel`)
 
 ### Development Shells
 
