@@ -137,12 +137,12 @@ possible values: `true`, `false`
   
 Determines if ssh should always be running, or only start when needed (true means always running).
 
-### `modules.services.wluma.enable`
+### `modules.services.illuminanced.enable`
 type `boolean`  
 default: `false`  
 possiblr values: `true`, `false`  
 
-Enables wluma for automatically adjusting display brightness.
+Enables illuminanced service to control display brightness based on ALS. This needs a device-specific config file `/home/<user>/.config/illuminanced.toml`
 
 ### `modules.virtualisation.enable`
 type: `boolean`  
