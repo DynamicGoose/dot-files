@@ -9,6 +9,8 @@
     bash
   ];
 
+  environment.systemPackages = [ pkgs.carapace ];
+
   programs.bash.interactiveShellInit = "eval \"$(starship init bash)\"";
 
   home-manager.users.${username} =
@@ -32,7 +34,7 @@
                 enable: true 
                 # set to lower can improve completion performance at the cost of omitting some options
                 max_results: 100 
-                completer: $carapace_completer # check 'carapace_completer' 
+                completer: { $carapace_completer } # check 'carapace_completer' 
               }
             }
             keybindings: [
@@ -59,11 +61,6 @@
           ll = "ls -l";
           ".." = "cd ..";
         };
-      };
-
-      programs.carapace = {
-        enable = true;
-        enableNushellIntegration = true;
       };
 
       programs.starship = {
