@@ -1,7 +1,7 @@
 {
   imports = [
     ./audio.nix
-    ./wluma.nix
+    ./illuminanced.nix
     ./dbus.nix
     ./journald.nix
     ./xserver.nix
