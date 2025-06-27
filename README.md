@@ -43,7 +43,7 @@ Afterwards, you can run `sudo nixos-rebuild switch|boot|etc.` like normal.
 
 After the first build you can also use `nh`:
 
-1. Set `modules.programs.nh.configPath` to your `/path/to/nixos-config` before your first rebuild. (default is `~/git/dot-files`)
+1. Set `modules.programs.nh.configPath` to your `/path/to/nixos-config` before your first rebuild. (default is `/home/${username}/git/dot-files`)
 2. Rebuild the system with `nh os switch|boot|etc`.
 
 ### Development Shells

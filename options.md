@@ -111,7 +111,7 @@ Sets the desktop config for waybar.
 
 ### `modules.programs.configPath`
 type: `string`  
-default: `"~/git/dot-files"`  
+default: `"/home/${username}/git/dot-files"`  
 possible values: `"/path/to/your/config/files"`  
 
 Sets the path where `nh` and other utils look for your config.

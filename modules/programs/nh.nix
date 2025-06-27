@@ -1,16 +1,17 @@
 {
   config,
   lib,
+  username,
   ...
 }:
 {
   options.modules.programs.nh.configPath = lib.mkOption {
     type = lib.types.str;
-    default = "~/git/dot-files";
+    default = "/home/${username}/git/dot-files";
   };
 
   config.programs.nh = {
     enable = true;
-    flake = config.modules.configPath;
+    flake = config.modules.programs.nh.configPath;
   };
 }
