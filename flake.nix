@@ -63,10 +63,20 @@
           userDescription = "Géza Ahsendorf";
         };
       };
-
       # Development shells in ./shells
       devShells = lib.eachSystem (pkgs: import ./shells { inherit pkgs; });
+      # Easily run as VM with `nix run`
+      apps = lib.eachSystem (pkgs: rec {
+        default = usb-gezaa;
 
+        desktop-gezaa = lib.mkVMApp "desktop-gezaa";
+        fw-gezaa = lib.mkVMApp "fw-gezaa";
+        tp-gezaa = lib.mkVMApp "tp-gezaa";
+        hp-gezaa = lib.mkVMApp "hp-gezaa";
+        dl-gezaa = lib.mkVMApp "dl-gezaa";
+        cyberdeck-gezaa = lib.mkVMApp "cyberdeck-gezaa";
+        usb-gezaa = lib.mkVMApp "usb-gezaa";
+      });
       # Library functions for external use
       lib = lib;
     };

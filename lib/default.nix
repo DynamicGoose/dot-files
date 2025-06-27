@@ -7,8 +7,12 @@ let
   systems = import ./systems.nix {
     nixpkgs = inputs.nixpkgs;
   };
+  vm = import ./vm.nix {
+    inputs = inputs;
+  };
 in
 {
   inherit (hosts) mkHost genHosts;
   inherit (systems) eachSystem;
+  inherit (vm) mkVMApp;
 }
