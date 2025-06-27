@@ -4,13 +4,6 @@ These are options that can be set in your own config to change some stuff for di
 
 ## Options
 
-### `modules.configPath`
-type: `string`  
-default: `"~/git/dot-files"`  
-possible values: `"/path/to/your/config/files"`  
-
-Sets the path where `nh` and other utils look for your config.
-
 ### `modules.boot.deviceType`
 type: `string`  
 default: `"uefi"`  
@@ -109,12 +102,19 @@ possible values: `true`, `false`
   
 Enables power-profiles-daemon (for laptop power-management).
 
-### `modules.porgrams.waybar.desktop`
+### `modules.programs.waybar.desktop`
 type: `boolean`  
 default: `false`  
 possible values: `true`, `false`  
   
 Sets the desktop config for waybar.
+
+### `modules.programs.configPath`
+type: `string`  
+default: `"~/git/dot-files"`  
+possible values: `"/path/to/your/config/files"`  
+
+Sets the path where `nh` and other utils look for your config.
 
 ### `modules.services.audio.enable`
 type: `boolean`  

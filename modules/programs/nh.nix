@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.modules.configPath = lib.mkOption {
+  options.modules.programs.nh.configPath = lib.mkOption {
     type = lib.types.str;
     default = "~/git/dot-files";
   };

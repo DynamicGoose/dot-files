@@ -39,6 +39,13 @@ sudo nixos-rebuild boot --install-bootloader --flake /etc/nixos#<config-you-want
 ```
 Afterwards, you can run `sudo nixos-rebuild switch|boot|etc.` like normal.
 
+#### nh
+
+After the first build you can also use `nh`:
+
+1. Set `modules.programs.nh.configPath` to your `/path/to/nixos-config` before your first rebuild. (default is `~/git/dot-files`)
+2. Rebuild the system with `nh os switch|boot|etc`.
+
 ### Development Shells
 
 In the `shells` directory, there are also a couple of nix shells for different usecases. You can enter the default dev shell with `nix develop`.  
