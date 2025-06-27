@@ -4,6 +4,13 @@ These are options that can be set in your own config to change some stuff for di
 
 ## Options
 
+### `modules.configPath`
+type: `string`  
+default: `"~/git/dot-files"`  
+possible values: `"/path/to/your/config/files"`  
+
+Sets the path where `nh` and other utils look for your config.
+
 ### `modules.boot.deviceType`
 type: `string`  
 default: `"uefi"`  
