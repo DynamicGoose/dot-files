@@ -5,6 +5,7 @@
     ./gpu-screen-recorder.nix
     ./helix.nix
     ./hyprlock.nix
+    ./nh.nix
     ./obs-studio.nix
     ./steam.nix
     ./waybar.nix
