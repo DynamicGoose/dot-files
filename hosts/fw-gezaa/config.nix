@@ -39,7 +39,7 @@
         [general]
         check_period_in_seconds = 1
         light_steps = 10
-        min_backlight = 70
+        min_backlight = 64
         step_barrier = 0.1
         max_backlight_file = "/sys/class/backlight/amdgpu_bl1/max_brightness"
         backlight_file = "/sys/class/backlight/amdgpu_bl1/brightness"
