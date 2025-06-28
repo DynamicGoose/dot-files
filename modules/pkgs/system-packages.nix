@@ -51,6 +51,6 @@
     zapzap
     zoom-us
     # zrythm
-    zulu24
+    temurin-bin-24
   ];
 }
