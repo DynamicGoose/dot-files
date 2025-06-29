@@ -13,6 +13,7 @@
     easytag
     fastfetch
     firefox-wayland
+    gajim
     gamemode
     gamescope
     gedit
