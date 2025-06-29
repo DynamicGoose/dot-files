@@ -70,8 +70,10 @@
                 "menu" = "on-click-right";
                 "menu-file" = "~/.config/waybar/audio_menu.xml";
                 "menu-actions" = {
-                  "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
-                  "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
+                  "toggle-input" =
+                    "wpctl set-mute @DEFAULT_SOURCE@ toggle && if [[ $(wpctl get-volume @DEFAULT_SOURCE@ | grep '[MUTED]') == '' ]] ; then ${pkgs.libnotify}/bin/notify-send -a internal 'Audio-Input enabled' ; else ${pkgs.libnotify}/bin/notify-send -a internal 'Audio-Input disabled ' ; fi";
+                  "toggle-output" =
+                    "wpctl set-mute @DEFAULT_SINK@ toggle && if [[ $(wpctl get-volume @DEFAULT_SINK@ | grep '[MUTED]') == '' ]] ; then ${pkgs.libnotify}/bin/notify-send -a internal 'Audio-Output enabled' ; else ${pkgs.libnotify}/bin/notify-send -a internal 'Audio-Output disabled ' ; fi";
                   "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
                   "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
                   "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
@@ -102,8 +104,10 @@
                 "menu" = "on-click-right";
                 "menu-file" = "~/.config/waybar/notify_menu.xml";
                 "menu-actions" = {
-                  "toggle-dnd" = "swaync-client -d -sw";
-                  "clear-all" = "swaync-client -C -sw";
+                  "toggle-dnd" =
+                    "if [[ $(swaync-client -d) == true ]] ; then ${pkgs.libnotify}/bin/notify-send -a internal -u critical 'Do Not Disturb enabled' ; else ${pkgs.libnotify}/bin/notify-send -a internal 'Do Not Disturb disabled' ; fi";
+                  "clear-all" =
+                    "${pkgs.libnotify}/bin/notify-send -a internal 'cleared all notifications' && sleep 2 && swaync-client -C -sw";
                 };
               };
             }
@@ -194,8 +198,10 @@
                 "menu" = "on-click-right";
                 "menu-file" = "~/.config/waybar/audio_menu.xml";
                 "menu-actions" = {
-                  "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
-                  "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
+                  "toggle-input" =
+                    "wpctl set-mute @DEFAULT_SOURCE@ toggle && if [[ $(wpctl get-volume @DEFAULT_SOURCE@ | grep '[MUTED]') == '' ]] ; then ${pkgs.libnotify}/bin/notify-send -a internal 'Audio-Input enabled' ; else ${pkgs.libnotify}/bin/notify-send -a internal 'Audio-Input disabled ' ; fi";
+                  "toggle-output" =
+                    "wpctl set-mute @DEFAULT_SINK@ toggle && if [[ $(wpctl get-volume @DEFAULT_SINK@ | grep '[MUTED]') == '' ]] ; then ${pkgs.libnotify}/bin/notify-send -a internal 'Audio-Output enabled' ; else ${pkgs.libnotify}/bin/notify-send -a internal 'Audio-Output disabled ' ; fi";
                   "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
                   "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
                   "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
@@ -226,8 +232,10 @@
                 "menu" = "on-click-right";
                 "menu-file" = "~/.config/waybar/notify_menu.xml";
                 "menu-actions" = {
-                  "toggle-dnd" = "swaync-client -d -sw";
-                  "clear-all" = "swaync-client -C -sw";
+                  "toggle-dnd" =
+                    "if [[ $(swaync-client -d) == true ]] ; then ${pkgs.libnotify}/bin/notify-send -a internal -u critical 'Do Not Disturb enabled' ; else ${pkgs.libnotify}/bin/notify-send -a internal 'Do Not Disturb disabled' ; fi";
+                  "clear-all" =
+                    "${pkgs.libnotify}/bin/notify-send -a internal 'cleared all notifications' && sleep 2 && swaync-client -C -sw";
                 };
               };
             }
