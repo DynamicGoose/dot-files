@@ -53,5 +53,6 @@
     zoom-us
     # zrythm
     temurin-bin-24
+    zulu8
   ];
 }
