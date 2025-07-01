@@ -10,6 +10,7 @@
     cheese
     decibels
     # delfin (jellyfin client)
+    dino
     easytag
     fastfetch
     firefox-wayland
