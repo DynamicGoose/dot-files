@@ -12,6 +12,7 @@
     # delfin (jellyfin client)
     dino
     easytag
+    element-desktop
     fastfetch
     firefox-wayland
     gamemode
