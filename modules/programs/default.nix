@@ -6,6 +6,7 @@
     ./helix.nix
     ./hyprlock.nix
     ./nh.nix
+    ./nix-ld.nix
     ./obs-studio.nix
     ./steam.nix
     ./waybar.nix
