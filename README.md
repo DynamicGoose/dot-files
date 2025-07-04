@@ -18,7 +18,7 @@ My multi-host NixOS flake!
 - Compositor: [**`Niri`**](https://github.com/YaLTeR/niri)
 - Bar: [**`Waybar`**](https://github.com/Alexays/Waybar)
 - Theme: [**`Graphite (black variant)`**](https://github.com/vinceliuice/Graphite-gtk-theme)
-- Icons: [**`Papirus-Dark`**](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+- Icons: [**`Papirus-Dark**](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - Shell - [**`Nushell`**](https://www.nushell.sh/)
 - Promt - [**`Starship`**](https://starship.rs/)
 - Terminal: [**`Kitty`**](https://sw.kovidgoyal.net/kitty/)
