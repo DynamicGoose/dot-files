@@ -2,6 +2,28 @@
 
 My multi-host NixOS flake!
 
+## Features
+
+- Flakes: dependency version management
+- Home Manager: user software configuration
+- nix-ld: run dynamically linked binaries
+- nh: nice NixOS cli helper with rebuild dependency graph
+- development shells: built-in shells for some development environments
+- multi-host config: configure multiple hosts easily through the custom config options, described in [`options.md`](./options.md)
+- lib: lib module with some useful functions
+
+## Sofware
+
+- OS: [**`NixOS`**](https://nixos.org/)
+- Compositor: [**`Niri`**](https://github.com/YaLTeR/niri)
+- Bar: [**`Waybar`**](https://github.com/Alexays/Waybar)
+- Theme: [**`Graphite (black variant)`**](https://github.com/vinceliuice/Graphite-gtk-theme)
+- Icons: [**`Papirus-Dark**](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+- Shell - [**`Nushell`**](https://www.nushell.sh/)
+- Promt - [**`Starship`**](https://starship.rs/)
+- Terminal: [**`Kitty`**](https://sw.kovidgoyal.net/kitty/)
+- Editor: [**`Helix`**](https://helix-editor.com/)
+
 ## Usage
 
 ### Setting up a new host
@@ -65,6 +87,7 @@ This flake also provides library function similar to `lib` in nixpkgs. These can
 - `lib.mkHost`: for more easily defining new hosts using this flake
 - `lib.genHosts`: used in `flake.nix` and maps attribute sets onto `lib.mkHost`
 - `lib.eachSystem`: defining stuff for all architectures
+- `lib.mkVMApp`: making a vm app from a configuration
 
 #### Usage Example
 
