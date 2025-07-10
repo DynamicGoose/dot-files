@@ -21,6 +21,17 @@
   config = lib.mkIf (config.modules.virtualisation.enable) {
     virtualisation.libvirtd.enable = true;
     virtualisation.waydroid.enable = config.modules.virtualisation.waydroid.enable;
+
+    virtualisation.vmVariant.virtualisation = {
+      qemu.options = [
+        "-device virtio-vga-gl"
+        "-display gtk,gl=on"
+      ];
+
+      memorySize = 4096;
+      cores = 4;
+    };
+        
     programs.virt-manager.enable = config.modules.virtualisation.virt-manager.enable;
     programs.dconf.enable = true;
 
