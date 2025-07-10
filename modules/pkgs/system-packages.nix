@@ -31,8 +31,7 @@
     krita
     libreoffice
     manga-cli
-    # musescore wait for fix https://github.com/NixOS/nixpkgs/issues/343456
-    musescore-appimage
+    musescore
     obsidian
     prismlauncher
     r2modman
