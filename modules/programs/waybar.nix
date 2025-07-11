@@ -50,7 +50,25 @@
 
               "clock" = {
                 "format" = "󱑇 {:%H:%M}";
-                "tooltip" = false;
+                "tooltip-format" = "<tt>{calendar}</tt>";
+                "calendar" = {
+                  "mode-month-col" = 3;
+                  "weeks-pos" = "left";
+                  "on-scroll" = 1;
+                  "on-click-right" = "mode";
+                  "format" = {
+                    "months" = "<span color='#ffffff'><b>{}</b></span>";
+                    "days" = "<span color='#ffffff'>{}</span>";
+                    "weeks" = "<span color='#383838'><b>W{}</b></span>";
+                    "weekdays" = "<span color='#383838'><b>{}</b></span>";
+                    "today" = "<span color='#e03535'><b><u>{}</u></b></span>";
+                  };
+                };
+                "actions" = {
+                  "on-click-right" = "mode";
+                  "on-scroll-up" = "shift_up";
+                  "on-scroll-down" = "shift_down";
+                };
               };
 
               "pulseaudio" = {
@@ -178,7 +196,25 @@
 
               "clock" = {
                 "format" = "󱑇 {:%H:%M}";
-                "tooltip" = false;
+                "tooltip-format" = "<tt>{calendar}</tt>";
+                "calendar" = {
+                  "mode-month-col" = 3;
+                  "weeks-pos" = "left";
+                  "on-scroll" = 1;
+                  "on-click-right" = "mode";
+                  "format" = {
+                    "months" = "<span color='#ffffff'><b>{}</b></span>";
+                    "days" = "<span color='#ffffff'>{}</span>";
+                    "weeks" = "<span color='#383838'><b>W{}</b></span>";
+                    "weekdays" = "<span color='#383838'><b>{}</b></span>";
+                    "today" = "<span color='#e03535'><b><u>{}</u></b></span>";
+                  };
+                };
+                "actions" = {
+                  "on-click-right" = "mode";
+                  "on-scroll-up" = "shift_up";
+                  "on-scroll-down" = "shift_down";
+                };
               };
 
               "pulseaudio" = {
@@ -313,6 +349,17 @@
                 font-family: "Ubuntu Nerdfont";
                 font-weight: Bold;
                 padding: 0 4px 0 4px;
+              }
+              tooltip {
+                background: #121212;
+                border: Solid;
+                border-radius: 10px;
+                border-width: 2px;
+                border-color: #E0E0E0;
+              }
+              tooltip label {
+                font-weight: Normal;
+                margin: 4px;
               }
               window#waybar {
                 background: rgba(15, 15, 15, 0.999);
