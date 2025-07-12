@@ -11,6 +11,5 @@
     ./sddm.nix
     ./syncthing.nix
     ./hypridle.nix
-    ./swayosd.nix
   ];
 }
