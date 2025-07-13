@@ -57,7 +57,9 @@ in
     wofi
   ];
 
-  services.cpupower-gui.enable = true;
+  services.cpupower-gui.enable = (
+    config.modules.powerManagement.ppd.enable || config.modules.powerManagement.tlp.enable
+  );
 
   home-manager.users.${username} =
     { config, ... }:
