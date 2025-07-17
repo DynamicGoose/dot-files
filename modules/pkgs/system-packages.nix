@@ -5,7 +5,7 @@
     audacity
     baobab
     blender-hip
-    brasero
+    # brasero - broken bc of dvdauthor build failure
     btop
     cheese
     decibels
@@ -38,7 +38,7 @@
     recordbox
     resources
     signal-desktop
-    sound-juicer
+    # sound-juicer - broken bc of dvdauthor build failure
     spotify
     stc-cli
     telegram-desktop
