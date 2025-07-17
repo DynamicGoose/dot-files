@@ -14,9 +14,10 @@
     lib.mkIf (config.modules.displayManager.lightdm.enable)
       {
         enable = true;
-        background = "${
-          pkgs.graphite-gtk-theme.override { wallpapers = true; }
-        }/share/backgrounds/wave-Dark.png";
+        # wait for fix https://github.com/NixOS/nixpkgs/pull/425616
+        # background = "${
+        #   pkgs.graphite-gtk-theme.override { wallpapers = true; }
+        # }/share/backgrounds/wave-Dark.png";
         greeters.gtk = {
           enable = true;
           theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
