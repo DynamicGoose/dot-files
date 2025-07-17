@@ -33,7 +33,14 @@
     manga-cli
     musescore
     obsidian
-    prismlauncher
+    (prismlauncher.override {
+      jdks = [
+        temurin-jre-bin-8
+        temurin-jre-bin-17
+        temurin-bin
+        temurin-bin-24
+      ];
+    })
     r2modman
     recordbox
     resources
@@ -52,7 +59,5 @@
     zapzap
     zoom-us
     # zrythm
-    temurin-bin-24
-    zulu8
   ];
 }
