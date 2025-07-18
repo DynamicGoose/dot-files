@@ -190,6 +190,7 @@ in
 
           .notification {
             border-radius: 10px;
+            background: @noti-bg;
             margin: 6px 0px 0px 0px;
             padding: 0;
             border: 2px solid @noti-border-color
@@ -197,8 +198,39 @@ in
 
           .notification-content {
             background: transparent;
+            border-radius: 10px;
+            padding: 0;
+          }
+
+          .notification-default-action {
             padding: 8px;
-            border-radius: 10px
+            margin: 0;
+            box-shadow: none;
+            border: none;
+            background: @noti-bg;
+            color: @text-color;
+            transition all .15s ease-in-out;
+          }
+
+          .notification-default-action:not(:only-child) {
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+          }
+
+          .notification-default-action:hover {
+            -gtk-icon-filter: none;
+            background: @noti-bg-hover;
+          }
+
+          .notification-action {
+            margin: 4px;
+            padding: 0;
+            border-radius: 8px
+          }
+
+          .notification-action>button {
+            border-radius: 8px;
+            margin: 0;
           }
 
           .close-button {
@@ -221,48 +253,6 @@ in
             color: @noti-bg;
             transition: all .15s ease-in-out;
             border: none
-          }
-
-          .notification-default-action,
-          .notification-action {
-            padding: 4px;
-            margin: 0;
-            box-shadow: none;
-            background: @noti-bg;
-            border: none;
-            color: @text-color;
-            transition: all .15s ease-in-out
-          }
-
-          .notification-default-action:hover,
-          .notification-action:hover {
-            -gtk-icon-effect: none;
-            background: @noti-bg-hover
-          }
-
-          .notification-default-action {
-            border-radius: 10px
-          }
-
-          .notification-default-action:not(:only-child) {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0
-          }
-
-          .notification-action {
-            border-radius: 0;
-            border-top: none;
-            border-right: none
-          }
-
-          .notification-action:first-child {
-            border-bottom-left-radius: 6px;
-            background: #1b1b2b
-          }
-
-          .notification-action:last-child {
-            border-bottom-right-radius: 6px;
-            background: #1b1b2b
           }
 
           .inline-reply {
