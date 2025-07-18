@@ -188,16 +188,6 @@ in
           @define-color text-color-disabled rgb(150, 150, 150);
           @define-color bg-selected rgb(224, 224, 224);
 
-          .control-center .notification-row:focus,
-          .control-center .notification-row:hover {
-            opacity: 1;
-            background: @noti-bg-darker
-          }
-
-          .notification-row {
-            outline: none;
-          }
-
           .notification {
             border-radius: 10px;
             margin: 6px 0px 0px 0px;
