@@ -198,7 +198,7 @@ in
 
           .notification-content {
             background: transparent;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 0;
           }
 
@@ -207,6 +207,7 @@ in
             margin: 0;
             box-shadow: none;
             border: none;
+            border-radius: 8px;
             background: @noti-bg;
             color: @text-color;
             transition all .15s ease-in-out;
