@@ -89,6 +89,7 @@ in
             "hide-on-clear": false,
             "hide-on-action": true,
             "script-fail-notify": true,
+            "cssPriority": "user",
             "widgets": [
               "menubar",
               "buttons-grid",
@@ -181,8 +182,8 @@ in
           @define-color noti-bg-darker rgb(15, 15, 15);
           @define-color noti-bg-hover rgb(34, 34, 34);
           @define-color noti-bg-focus rgba(56, 56, 56, 1);
-          @define-color noti-close-bg rgba(56, 56, 56, 1);
-          @define-color noti-close-bg-hover rgba(75, 75, 75, 1);
+          @define-color noti-close-bg rgba(0, 0, 0, 0);
+          @define-color noti-close-bg-hover rgba(224, 224, 224, 1);
           @define-color text-color rgba(255, 255, 255, 1);
           @define-color text-color-disabled rgb(150, 150, 150);
           @define-color bg-selected rgb(224, 224, 224);
@@ -212,11 +213,11 @@ in
 
           .close-button {
             background: @noti-close-bg;
-            color: @text-color;
+            color: @text-color-disabled;
             text-shadow: none;
             padding: 0;
             border-radius: 100%;
-            margin-top: 10px;
+            margin-top: 15px;
             margin-right: 10px;
             box-shadow: none;
             border: none;
@@ -227,6 +228,7 @@ in
           .close-button:hover {
             box-shadow: none;
             background: @noti-close-bg-hover;
+            color: @noti-bg;
             transition: all .15s ease-in-out;
             border: none
           }
@@ -409,24 +411,9 @@ in
           }
 
           .widget-mpris {
-            color: @text-color;
-            background: @noti-bg-darker;
             padding: 8px;
             margin: 0px;
-          }
-
-          .widget-mpris-player {
-            padding: 8px;
-            margin: 8px
-          }
-
-          .widget-mpris-title {
-            font-weight: 700;
-            font-size: 1.25rem
-          }
-
-          .widget-mpris-subtitle {
-            font-size: 1.1rem
+            border-radius: 10px;
           }
 
           .widget-buttons-grid {
@@ -436,27 +423,46 @@ in
 
           .widget-menubar>box {
             border: 2px solid @noti-border-color;
-            border-radius: 7px 7px 10px 10px;
+            border-radius: 6px 6px 10px 10px;
             background: @noti-border-color
           }
 
-          .widget-menubar>box>.menu-button-bar>button {
+          .widget-menubar>.menu-button-bar>.start {
+            margin-left: 0;
+            margin-top: 4px;
+            margin-bottom: 4px;
+          }
+
+          .widget-menubar>.menu-button-bar>.widget-menubar-container button {
             color: @noti-bg
           }
 
-          .power-buttons>button {
+          .widget-menubar>.menu-button-bar>.widget-menubar-container button:hover {
             color: @noti-bg
+          }
+          
+          .power-buttons>button {
+            border-radius: 10px;
+            background: transparent
+          }
+
+          .power-buttons>button:hover {
+            background: @noti-bg-hover
           }
 
           .power-profiles>button {
-            color: @noti-bg
+            border-radius: 10px;
+            background: transparent
+          }
+
+          .power-profiles>button:hover {
+            background: @noti-bg-hover
           }
 
           .widget-buttons-grid>flowbox>flowboxchild>button {
             padding: 6px 56px;
             background: transparent;
             border-radius: 10px;
-            background: @noti-bg;
             color: @text-color
           }
 
