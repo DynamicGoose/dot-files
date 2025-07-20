@@ -51,11 +51,9 @@
         description = "swaybg service";
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.swaybg}/bin/.swaybg-wrapped -c 333333"; # temp fix
-          # wait for fix https://github.com/NixOS/nixpkgs/pull/425616
-          # ExecStart = "${pkgs.swaybg}/bin/.swaybg-wrapped -m fill -i ${
-          #   pkgs.graphite-gtk-theme.override { wallpapers = true; }
-          # }/share/backgrounds/wave-Dark.png";
+          ExecStart = "${pkgs.swaybg}/bin/.swaybg-wrapped -m fill -i ${
+            pkgs.graphite-gtk-theme.override { wallpapers = true; }
+          }/share/backgrounds/wave-Dark.jpg";
           Restart = "on-failure";
         };
       };
