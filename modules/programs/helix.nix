@@ -1,13 +1,20 @@
 {
+  config,
   username,
   ...
 }:
 {
+  environment.variables = {
+    EDITOR = "hx";
+    VISUAL = "hx";
+  };
+  
   home-manager.users.${username} =
     { config, ... }:
     {
       programs.helix = {
         enable = true;
+        defaultEditor = true;
         settings = {
           theme = "dark_high_contrast";
 
@@ -44,6 +51,16 @@
                 command = "nixfmt";
               };
               auto-format = true;
+            }
+          ];
+
+          grammar = [
+            {
+              name = "nu";
+              source = {
+                git = "https://github.com/nushell/tree-sitter-nu";
+                rev = "6544c4383643cf8608d50def2247a7af8314e148";
+              };
             }
           ];
         };
