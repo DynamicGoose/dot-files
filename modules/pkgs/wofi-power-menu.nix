@@ -10,6 +10,8 @@
     { config, ... }:
     {
       xdg.configFile."wofi-power-menu.toml".text = ''
+        [wofi]
+          extra_args = "-m -j --location=center --width=256 --lines=6"
         [menu.shutdown]
           cmd = "systemctl poweroff"
           requires_confirmation = "false"
