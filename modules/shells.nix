@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   username,
   ...
 }:
@@ -17,22 +18,31 @@
       programs.nushell = {
         enable = true;
         configFile.text = ''
+          # carapce completions
           let carapace_completer = {|spans: list<string>|
-            ${pkgs.carapace}/bin/carapace $spans.0 nushell ...$spans
+            carapace $spans.0 nushell ...$spans
             | from json
-            | if ($in | default [] | where vaue == $"($spans | last)ERR" | is-empty) { $in } else { null }
+            | if ($in | default [] | where value == $"($spans | last)ERR" | is-empty) { $in } else { null }
           }
+          # some completions are only available through a bridge
+          $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 
+          # fish completions
           let fish_completer = {|spans|
-            ${pkgs.fish}/bin/fish --command $"complete '--do-complete=($spans | str replace --all "'" "\\'" | str join ' ')'"
-            | from tsv --flexible --noheaders --no-infer
-            | rename value description
-            | update value {
-              if ($in | path exists) {$'"($in | path expand --no-symlink | str replace --all "\"" "\\\"" )"'} else {$in}
-            }
+            ${lib.getExe pkgs.fish} --command $'complete "--do-complete=($spans | str join " ")"'
+            | $"value(char tab)description(char newline)" + $in
+            | from tsv --flexible --no-infer
           }
 
-          let external_completer = {|spans|
+          # zoxide completions
+          let zoxide_completer = {|spans|
+              $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
+          }
+
+          # multiple completions
+          # the default will be carapace, but you can also switch to fish
+          let multiple_completers = {|spans|
+            ## alias fixer start
             let expanded_alias = scope aliases
             | where name == $spans.0
             | get -o 0.expansion
@@ -44,12 +54,10 @@
             } else {
               $spans
             }
+            ## alias fixer end
 
             match $spans.0 {
-              # carapace completions are incorrect for nu
-              nu => $fish_completer
-              # fish completes commits and branch names in a nicer way
-              git => $fish_completer
+              __zoxide_z | __zoxide_zi => $zoxide_completer
               _ => $carapace_completer
             } | do $in $spans
           }
@@ -58,15 +66,15 @@
             show_banner: false,
             completions: {
               case_sensitive: false # case-sensitive completions
-              quick: true    # set to false to prevent auto-selecting completions
-              partial: true    # set to false to prevent partial filling of the prompt
+              quick: true           # set to false to prevent auto-selecting completions
+              partial: true         # set to false to prevent partial filling of the prompt
               algorithm: "fuzzy"    # prefix or fuzzy
               external: {
                 # set to false to prevent nushell looking into $env.PATH to find more suggestions
                 enable: true 
                 # set to lower can improve completion performance at the cost of omitting some options
                 max_results: 100 
-                completer: $external_completer # check 'carapace_completer' 
+                completer: $multiple_completers
               }
             }
             keybindings: [
@@ -93,6 +101,11 @@
           ll = "ls -l";
           ".." = "cd ..";
         };
+      };
+
+      programs.carapace = {
+        enable = true;
+        enableNushellIntegration = true;
       };
 
       programs.starship = {
