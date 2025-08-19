@@ -121,6 +121,7 @@
             format = "via [$symbol(\\($name\\)) ]($style)";
             symbol = "󱄅 ";
           };
+          battery.disabled = true;
         };
       };
     };
