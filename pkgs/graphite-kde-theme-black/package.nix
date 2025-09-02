@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
   propagatedUserEnvPkgs = [
     pkgs.libsForQt5.kdeclarative.bin
     pkgs.libsForQt5.plasma-framework
-    pkgs.libsForQt5.plasma-workspace
+    pkgs.kdePackages.plasma-workspace
   ];
 
   postPatch = ''
