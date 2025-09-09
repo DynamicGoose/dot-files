@@ -100,7 +100,6 @@
     wl-clip-persist
     wl-color-picker
     wofi-power-menu
-    xwayland-satellite
   ];
 
   programs = {
@@ -115,7 +114,12 @@
   };
 
   home-manager.users.${username} =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     {
       dconf.settings."org/blueman/general".plugin-list = [
         "StatusIcon"
@@ -132,9 +136,9 @@
             prefer-no-csd = true;
             hotkey-overlay.skip-at-startup = true;
             screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png";
+            xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
             environment = {
-              DISPLAY = ":1";
               ELM_DISPLAY = "wl";
               GDK_BACKEND = "wayland,x11";
               QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
@@ -156,7 +160,6 @@
                 { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
                 { command = sh ++ [ "systemctl --user start waybar.service" ]; }
-                { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
                 { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
                 { command = sh ++ [ "systemctl --user start swaync.service" ]; }
                 { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
