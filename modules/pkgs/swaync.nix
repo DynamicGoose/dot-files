@@ -314,7 +314,7 @@ in
             font-weight: 400;
             background: transparent;
             color: @text-color;
-            text-shadow: none
+            text-shadow: none;
           }
 
           .control-center {
@@ -337,6 +337,10 @@ in
 
           .blank-window {
             background: alpha(black, 0)
+          }
+
+          .widget {
+            margin: 0;
           }
 
           .widget-title {
@@ -404,7 +408,7 @@ in
 
           .widget-menubar>box {
             border: 2px solid @noti-border-color;
-            border-radius: 6px 6px 10px 10px;
+            border-radius: 8px;
             background: @noti-border-color
           }
 
@@ -414,6 +418,10 @@ in
             margin-bottom: 4px;
           }
 
+          .widget-notifications {
+            padding: 0;
+          }
+
           .widget-menubar>.menu-button-bar>.widget-menubar-container button {
             color: @noti-bg
           }
@@ -421,7 +429,7 @@ in
           .widget-menubar>.menu-button-bar>.widget-menubar-container button:hover {
             color: @noti-bg
           }
-          
+
           .power-buttons>button {
             border-radius: 10px;
             background: transparent
