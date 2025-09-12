@@ -3,7 +3,10 @@
   services = {
     printing = {
       enable = true;
-      drivers = [ pkgs.gutenprint ];
+      drivers = [
+        pkgs.gutenprint
+        pkgs.epson-escpr2
+      ];
     };
 
     # autodiscovery
