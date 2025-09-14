@@ -46,6 +46,7 @@
 
               "niri/window" = {
                 "icon" = true;
+                "tooltip" = false;
               };
 
               "clock" = {
@@ -167,6 +168,7 @@
 
               "niri/window" = {
                 "icon" = true;
+                "tooltip" = false;
               };
 
               "backlight" = {
