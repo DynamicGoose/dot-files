@@ -10,13 +10,11 @@
     cheese
     decibels
     # delfin (jellyfin client)
-    dino
     easytag
     element-desktop
     fastfetch
     firefox-wayland
     gamemode
-    gamescope
     gedit
     gimp3-with-plugins
     git
@@ -24,10 +22,8 @@
     gmetronome
     gnome-disk-utility
     gnome-clocks
-    gnome-solanum
     heroic
     imv
-    killall
     krita
     libreoffice
     manga-cli
@@ -47,7 +43,6 @@
     signal-desktop
     sound-juicer
     spotify
-    stc-cli
     telegram-desktop
     thunderbird
     totem
