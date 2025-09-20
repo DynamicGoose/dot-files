@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./alvr.nix - broken (wait for fix)
+    ./alvr.nix
     ./evince.nix
     ./gpu-screen-recorder.nix
     ./helix.nix
