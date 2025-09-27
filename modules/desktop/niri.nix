@@ -142,7 +142,7 @@
               ELM_DISPLAY = "wl";
               GDK_BACKEND = "wayland,x11";
               QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-              SDL_VIDEODRIVER = "wayland";
+              SDL_VIDEODRIVER = "wayland,x11";
               CLUTTER_BACKEND = "wayland";
             };
 
