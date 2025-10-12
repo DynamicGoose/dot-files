@@ -34,7 +34,7 @@
         temurin-jre-bin-8
         temurin-jre-bin-17
         temurin-bin
-        temurin-bin-24
+        temurin-bin-25
       ];
     })
     r2modman

@@ -12,15 +12,6 @@
   };
 
   systemd = {
-    services.kbd_mode = {
-      description = "fix for alt+arrow tty switching";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.kbd}/bin/kbd_mode -s";
-      };
-    };
     user.services = {
       # Polkit
       polkit-gnome-authentication-agent-1 = {
