@@ -228,7 +228,7 @@
                 "Alt+9".action = focus-workspace 9;
                 "Alt+0".action = focus-workspace 10;
 
-                "Print".action = screenshot;
+                "Print".action.screenshot = [ ];
                 "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
                 "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
                 "XF86AudioPlay".action = sh "playerctl play-pause";
