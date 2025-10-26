@@ -27,7 +27,7 @@
     krita
     libreoffice
     manga-cli
-    # musescore
+    musescore
     obsidian
     (prismlauncher.override {
       jdks = [
