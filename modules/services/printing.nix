@@ -6,6 +6,7 @@
       drivers = [
         pkgs.gutenprint
         pkgs.epson-escpr2
+        pkgs.epsonscan2
       ];
     };
 
