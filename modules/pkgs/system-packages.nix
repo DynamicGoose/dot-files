@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    ani-cli
+    # ani-cli
     audacity
     baobab
     blender-hip
@@ -10,10 +10,10 @@
     cheese
     decibels
     # delfin (jellyfin client)
-    easytag
-    element-desktop
+    # easytag
+    # element-desktop
     fastfetch
-    firefox-wayland
+    firefox
     gamemode
     gedit
     gimp3-with-plugins
@@ -24,9 +24,9 @@
     gnome-clocks
     heroic
     imv
-    krita
+    # krita
     libreoffice
-    manga-cli
+    # manga-cli
     musescore
     obsidian
     (prismlauncher.override {
@@ -41,7 +41,7 @@
     recordbox
     resources
     signal-desktop
-    sound-juicer
+    # sound-juicer
     spotify
     telegram-desktop
     thunderbird
