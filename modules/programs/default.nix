@@ -11,6 +11,7 @@
     ./steam.nix
     ./waybar.nix
     ./wofi.nix
+    ./zoom.nix
     ./zoxide.nix
   ];
 }

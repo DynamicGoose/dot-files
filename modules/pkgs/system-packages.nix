@@ -54,7 +54,6 @@
     (yabridge.override { wine = wineWowPackages.waylandFull; })
     (yabridgectl.override { wine = wineWowPackages.waylandFull; })
     zapzap
-    zoom-us
     zrythm
   ];
 }
