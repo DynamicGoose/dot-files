@@ -40,6 +40,7 @@
     r2modman
     recordbox
     resources
+    sidequest
     signal-desktop
     # sound-juicer
     spotify
