@@ -11,5 +11,6 @@
     ./sddm.nix
     ./syncthing.nix
     ./hypridle.nix
+    ./wivrn.nix
   ];
 }
