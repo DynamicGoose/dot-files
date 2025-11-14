@@ -22,6 +22,7 @@ let
       modules = [
         inputs.home-manager.nixosModules.home-manager
         inputs.niri.nixosModules.niri
+        inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
 
         "${self}/default.nix"
         "${self}/hosts/${hostDir}"
