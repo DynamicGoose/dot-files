@@ -52,6 +52,7 @@
     vesktop
     wget
     wineWowPackages.waylandFull
+    wlx-overlay-s
     (yabridge.override { wine = wineWowPackages.waylandFull; })
     (yabridgectl.override { wine = wineWowPackages.waylandFull; })
     zapzap
