@@ -448,6 +448,10 @@ in
             background: @noti-bg-hover
           }
 
+          .widget-buttons-grid>flowbox>flowboxchild:hover {
+            background: transparent;
+          }
+
           .widget-buttons-grid>flowbox>flowboxchild>button {
             padding: 6px 56px;
             background: transparent;
@@ -456,18 +460,23 @@ in
           }
 
           .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-            color: @noti-border-color;
+            color: @text-color;
             background: @noti-bg-hover;
           }
                   
+          .widget-buttons-grid>flowbox>flowboxchild>button:active {
+            color: @text-color;
+            background: @noti-bg-focus;
+          }
+
           .widget-menubar>box>.menu-button-bar>button {
             border: none;
-            background: transparent
+            background: transparent;
           }
 
           .topbar-buttons>button {
             border: none;
-            background: transparent
+            background: transparent;
           }
 
           .widget-volume {
