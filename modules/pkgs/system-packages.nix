@@ -42,7 +42,7 @@
     resources
     sidequest
     signal-desktop
-    # sound-juicer
+    sound-juicer
     spotify
     telegram-desktop
     thunderbird
