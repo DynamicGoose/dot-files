@@ -198,7 +198,7 @@
                 sh = spawn "sh" "-c";
               in
               {
-                "Alt+Tab".action = toggle-overview;
+                "Alt+Return".action = toggle-overview;
                 "Alt+Right".action = focus-column-or-monitor-right;
                 "Alt+Left".action = focus-column-or-monitor-left;
                 "Alt+Up".action = focus-window-or-workspace-up;
