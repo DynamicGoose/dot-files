@@ -12,5 +12,6 @@
     ./syncthing.nix
     ./hypridle.nix
     ./wivrn.nix
+    ./envfs.nix
   ];
 }
