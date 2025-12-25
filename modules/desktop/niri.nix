@@ -89,6 +89,7 @@
     cliphist
     hypridle
     hyprlock
+    hyprpicker
     kitty
     networkmanagerapplet
     playerctl
@@ -98,7 +99,6 @@
     syncthingtray
     wl-clipboard
     wl-clip-persist
-    wl-color-picker
     wofi-power-menu
   ];
 
@@ -247,7 +247,7 @@
                 "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
                 "Super+T".action = spawn "kitty"; # terminal
                 "Super+C".action = spawn "qalculate-gtk"; # calculator
-                "Super+B".action = sh "pidof wl-color-picker || wl-color-picker"; # color-picker
+                "Super+B".action = sh "pidof hyprpicker || hyprpicker -lar"; # color-picker
               };
 
             gestures.hot-corners.enable = false;
