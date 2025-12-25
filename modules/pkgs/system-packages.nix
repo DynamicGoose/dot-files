@@ -24,6 +24,7 @@
     gnome-clocks
     heroic
     imv
+    kicad
     # krita
     libreoffice
     # manga-cli
