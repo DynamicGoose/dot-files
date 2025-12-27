@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    alsa-scarlett-gui
     # ani-cli
     audacity
     baobab
@@ -41,6 +42,7 @@
     r2modman
     recordbox
     resources
+    scarlett2
     sidequest
     signal-desktop
     sound-juicer
