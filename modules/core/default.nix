@@ -1,12 +1,15 @@
 {
   imports = [
+    ./nix.nix
     ./nixpkgs.nix
     ./boot.nix
-    ./firmware.nix
     ./security.nix
     ./systemd.nix
     ./networking.nix
-    ./power-management.nix
     ./locale.nix
+    ./users.nix
+    ./shells.nix
+    ./home-manager.nix
+    ./virtualisation.nix
   ];
 }

@@ -13,5 +13,6 @@
     ./hypridle.nix
     ./wivrn.nix
     ./envfs.nix
+    ./power-management.nix
   ];
 }
