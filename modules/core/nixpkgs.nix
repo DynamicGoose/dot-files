@@ -1,5 +1,6 @@
 {
   lib,
+  inputs,
   ...
 }:
 {
@@ -15,6 +16,7 @@
           directory = ../../pkgs;
         }
       )
+      inputs.nix-cachyos-kernel.overlays.pinned
       # fix kicad theming
       (final: prev: {
         kicad = prev.kicad.overrideAttrs (oldAttrs: {

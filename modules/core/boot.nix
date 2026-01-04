@@ -61,7 +61,7 @@
     in
     {
       boot = {
-        kernelPackages = pkgs.linuxPackages_latest;
+        kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
         supportedFilesystems = [ "ntfs" ];
         plymouth = {
           enable = true;

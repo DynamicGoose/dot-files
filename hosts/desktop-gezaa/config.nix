@@ -1,4 +1,6 @@
 {
+  lib,
+  pkgs,
   username,
   ...
 }:
@@ -10,6 +12,9 @@
 
   # CpuFreqGov performance mode
   powerManagement.cpuFreqGovernor = "performance";
+
+  # zen4/5 optimized cachyos kernel
+  boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
 
   home-manager.users.${username} =
     { pkgs, ... }:
