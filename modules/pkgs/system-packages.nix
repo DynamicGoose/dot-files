@@ -15,6 +15,7 @@
     # element-desktop
     fastfetch
     firefox
+    freecad
     gamemode
     gedit
     gimp3-with-plugins
