@@ -54,6 +54,7 @@
     uutils-coreutils-noprefix
     vdhcoapp
     vesktop
+    vial
     wget
     wineWowPackages.waylandFull
     wlx-overlay-s
