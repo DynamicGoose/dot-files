@@ -244,7 +244,7 @@
                 "Super+L".action = sh "loginctl lock-session"; # lock screen
                 "Super+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
                 "Super+Y".action = sh "swaync-client -t"; # notification hub
-                "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
+                "Super+V".action = sh "pidof wofi || cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
                 "Super+T".action = spawn "kitty"; # terminal
                 "Super+C".action = spawn "qalculate-gtk"; # calculator
                 "Super+B".action = sh "pidof hyprpicker || hyprpicker -lar"; # color-picker
