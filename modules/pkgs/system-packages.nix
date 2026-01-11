@@ -5,7 +5,6 @@
     # ani-cli
     audacity
     baobab
-    blender-hip
     brasero
     btop
     cheese
@@ -32,6 +31,7 @@
     # manga-cli
     musescore
     obsidian
+      pkgsRocm.blender
     (prismlauncher.override {
       jdks = [
         temurin-jre-bin-8
