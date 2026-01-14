@@ -8,6 +8,7 @@
   modules = {
     programs.waybar.desktop = true;
     services.hypridle.desktop = true;
+    powerManagement.hdparm.enable = true;
   };
 
   # CpuFreqGov performance mode

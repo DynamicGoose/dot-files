@@ -10,5 +10,6 @@
     ./waybar.nix
     ./wofi.nix
     ./zoxide.nix
+    ./k3b.nix
   ];
 }
