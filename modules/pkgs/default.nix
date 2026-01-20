@@ -5,5 +5,6 @@
     ./wofi-power-menu.nix
     ./nemo.nix
     ./via.nix
+    ./ardour.nix
   ];
 }
