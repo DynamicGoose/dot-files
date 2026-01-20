@@ -31,7 +31,7 @@
     # manga-cli
     musescore
     obsidian
-      pkgsRocm.blender
+    pkgsRocm.blender
     (prismlauncher.override {
       jdks = [
         temurin-jre-bin-8
@@ -56,7 +56,6 @@
     vesktop
     wget
     wineWowPackages.waylandFull
-    wlx-overlay-s
     (yabridge.override { wine = wineWowPackages.waylandFull; })
     (yabridgectl.override { wine = wineWowPackages.waylandFull; })
     zapzap

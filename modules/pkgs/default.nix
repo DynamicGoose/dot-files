@@ -4,7 +4,6 @@
     ./swaync.nix
     ./wofi-power-menu.nix
     ./nemo.nix
-    ./wayvr-dashboard.nix
     ./via.nix
   ];
 }
