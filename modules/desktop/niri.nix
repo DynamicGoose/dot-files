@@ -39,7 +39,7 @@
       };
 
       cliphist-image = {
-        description = "wl-paste + cliphist service for text";
+        description = "wl-paste + cliphist service for image";
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store";

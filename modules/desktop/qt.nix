@@ -4,21 +4,9 @@
   ...
 }:
 {
-  qt = {
-    enable = true;
-    platformTheme = "qt5ct";
-    style = "kvantum";
-  };
-
   environment.sessionVariables = {
     QT_QPA_PLATFORM = "wayland;xkb";
-    QT_STYLE_OVERRIDE = "kvantum";
   };
-
-  environment.systemPackages = [
-    pkgs.libsForQt5.qt5ct
-    pkgs.libsForQt5.qtstyleplugin-kvantum
-  ];
 
   home-manager.users.${username} =
     { config, pkgs, ... }:
@@ -34,6 +22,14 @@
         "Kvantum/Graphite/Graphite.svg".source =
           "${pkgs.graphite-kde-theme-black}/share/Kvantum/Graphite/Graphite.svg";
         "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=GraphiteDark";
+      };
+
+      qt = {
+        enable = true;
+        platformTheme = {
+          name = "gtk3";
+        };
+        style.name = "kvantum";
       };
     };
 }
