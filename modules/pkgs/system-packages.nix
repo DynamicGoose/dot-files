@@ -54,11 +54,11 @@
     uutils-coreutils-noprefix
     vdhcoapp
     vesktop
+    wasistlos
     wget
     wineWowPackages.waylandFull
     (yabridge.override { wine = wineWowPackages.waylandFull; })
     (yabridgectl.override { wine = wineWowPackages.waylandFull; })
-    zapzap
     zrythm
   ];
 }
