@@ -14,5 +14,6 @@ in
 {
   inherit (hosts) mkHost genHosts;
   inherit (systems) eachSystem;
+  inherit (systems) pkgsFor;
   inherit (vm) mkVMApp;
 }

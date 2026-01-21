@@ -1,6 +1,13 @@
 { nixpkgs }:
+let
+  eachSystem = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
+in
 {
-  eachSystem =
-    f:
-    nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: f nixpkgs.legacyPackages.${system});
+  eachSystem = eachSystem;
+  pkgsFor = eachSystem (
+    system:
+    import nixpkgs {
+      inherit system;
+    }
+  );
 }

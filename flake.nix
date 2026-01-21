@@ -65,8 +65,16 @@
           userDescription = "Géza Ahsendorf";
         };
       };
+
       # Development shells in ./shells
-      devShells = lib.eachSystem (pkgs: import ./shells { inherit pkgs; });
+      devShells = lib.eachSystem (
+        system:
+        let
+          pkgs = lib.pkgsFor.${system};
+        in
+        import ./shells { inherit pkgs; }
+      );
+
       # Easily run as VM with `nix run`
       apps = lib.eachSystem (pkgs: rec {
         default = usb-gezaa;
