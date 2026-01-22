@@ -183,7 +183,7 @@
 
               keyboard = {
                 numlock = true;
-                xkb.layout = "de";
+                xkb.layout = "eu";
               };
 
               focus-follows-mouse = {
@@ -199,17 +199,17 @@
               in
               {
                 "Alt+Return".action = toggle-overview;
-                "Alt+Right".action = focus-column-or-monitor-right;
-                "Alt+Left".action = focus-column-or-monitor-left;
-                "Alt+Up".action = focus-window-or-workspace-up;
-                "Alt+Down".action = focus-window-or-workspace-down;
+                "Alt+H".action = focus-column-or-monitor-left;
+                "Alt+J".action = focus-window-or-workspace-down;
+                "Alt+K".action = focus-window-or-workspace-up;
+                "Alt+L".action = focus-column-or-monitor-right;
 
                 "Ctrl+Alt+D".action = toggle-window-floating;
                 "Ctrl+Alt+F".action = fullscreen-window;
-                "Ctrl+Alt+Right".action = consume-or-expel-window-right;
-                "Ctrl+Alt+Left".action = consume-or-expel-window-left;
-                "Ctrl+Alt+Up".action = move-window-up-or-to-workspace-up;
-                "Ctrl+Alt+Down".action = move-window-down-or-to-workspace-down;
+                "Ctrl+Alt+L".action = consume-or-expel-window-right;
+                "Ctrl+Alt+H".action = consume-or-expel-window-left;
+                "Ctrl+Alt+K".action = move-window-up-or-to-workspace-up;
+                "Ctrl+Alt+J".action = move-window-down-or-to-workspace-down;
                 "Ctrl+Alt+Return".action = move-window-to-monitor-next;
                 "Ctrl+Alt+Q".action = switch-preset-column-width;
                 "Ctrl+Alt+A".action = switch-preset-window-height;
