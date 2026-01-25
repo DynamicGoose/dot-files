@@ -4,7 +4,8 @@
     enable = true;
     openFirewall = true;
     defaultRuntime = true;
-    autoStart = true;
+    autoStart = false;
+    highPriority = true;
     steam.importOXRRuntimes = true;
     config = {
       enable = true;

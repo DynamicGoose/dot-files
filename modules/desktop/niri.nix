@@ -183,7 +183,7 @@
 
               keyboard = {
                 numlock = true;
-                xkb.layout = "eu";
+                xkb.layout = "de";
               };
 
               focus-follows-mouse = {
