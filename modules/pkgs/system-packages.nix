@@ -39,7 +39,6 @@
     telegram-desktop
     thunderbird
     totem
-    vdhcoapp
     vesktop
     wasistlos
     wget
