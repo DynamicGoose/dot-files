@@ -223,8 +223,8 @@
                 "Alt+0".action = focus-workspace 10;
 
                 "Print".action.screenshot = [ ];
-                "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
-                "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
+                "XF86PowerOff".action = sh "goose-shell ipc call panelService togglePowerMenu";
+                "XF86AudioMute".action = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && goose-shell ipc call panelService showOSD volume";
                 "XF86AudioPlay".action = sh "playerctl play-pause";
                 "XF86AudioPrev".action = sh "playerctl previous";
                 "XF86AudioNext".action = sh "playerctl next";
@@ -235,7 +235,7 @@
                 "XF86MonBrightnessUp".action =
                   sh "brightnessctl s +5% && goose-shell ipc call panelService showOSD brightness";
                 "XF86MonBrightnessDown".action =
-                  sh "brightnessctl s -5% && goose-shell ipc call panelService showOSD brightness";
+                  sh "brightnessctl s 5%- && goose-shell ipc call panelService showOSD brightness";
 
                 "Super+X".action = close-window;
                 "Super+A".action = sh "goose-shell ipc call panelService toggleLauncher"; # launcher
