@@ -91,14 +91,8 @@
     hyprlock
     hyprpicker
     kitty
-    # networkmanagerapplet
     playerctl
-    # swaynotificationcenter
-    # swayosd
-    # syncthingtray
-    # wl-clipboard
     wl-clip-persist
-    wofi-power-menu
     goose-shell
     brightnessctl
   ];
@@ -235,9 +229,9 @@
                 "XF86AudioPrev".action = sh "playerctl previous";
                 "XF86AudioNext".action = sh "playerctl next";
                 "XF86AudioRaiseVolume".action =
-                  sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ +5% && goose-shell ipc call panelService showOSD volume";
+                  sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && goose-shell ipc call panelService showOSD volume";
                 "XF86AudioLowerVolume".action =
-                  sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ -5% && goose-shell ipc call panelService showOSD volume";
+                  sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && goose-shell ipc call panelService showOSD volume";
                 "XF86MonBrightnessUp".action =
                   sh "brightnessctl s +5% && goose-shell ipc call panelService showOSD brightness";
                 "XF86MonBrightnessDown".action =
