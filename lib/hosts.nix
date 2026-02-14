@@ -3,13 +3,13 @@ let
   mkHost =
     hostDir:
     {
-      arch ? "x86_64-linux",
+      system ? "x86_64-linux",
       hostname ? hostDir,
       username ? "user",
       userDescription ? "Default User",
     }:
     inputs.nixpkgs.lib.nixosSystem {
-      system = arch;
+      system = system;
       specialArgs = {
         inherit
           inputs
@@ -17,6 +17,7 @@ let
           hostname
           username
           userDescription
+          system
           ;
       };
       modules = [

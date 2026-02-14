@@ -6,7 +6,7 @@
 }:
 {
   services = {
-    blueman.enable = true;
+    # blueman.enable = true;
     gnome.gnome-keyring.enable = true;
     logind.settings.Login.HandlePowerKey = "ignore";
   };
@@ -91,15 +91,16 @@
     hyprlock
     hyprpicker
     kitty
-    networkmanagerapplet
+    # networkmanagerapplet
     playerctl
-    qalculate-gtk
-    swaynotificationcenter
-    swayosd
-    syncthingtray
-    wl-clipboard
+    # swaynotificationcenter
+    # swayosd
+    # syncthingtray
+    # wl-clipboard
     wl-clip-persist
     wofi-power-menu
+    goose-shell
+    brightnessctl
   ];
 
   programs = {
@@ -121,15 +122,15 @@
       ...
     }:
     {
-      dconf.settings."org/blueman/general".plugin-list = [
-        "StatusIcon"
-        "ShowConnected"
-        "!ExitItem"
-      ];
+      # dconf.settings."org/blueman/general".plugin-list = [
+      #   "StatusIcon"
+      #   "ShowConnected"
+      #   "!ExitItem"
+      # ];
       services.hypridle.enable = true;
       programs = {
-        waybar.enable = true;
-        wofi.enable = true;
+        # waybar.enable = true;
+        # wofi.enable = true;
 
         niri = {
           settings = {
@@ -159,14 +160,13 @@
                 { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
                 { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
-                { command = sh ++ [ "systemctl --user start waybar.service" ]; }
                 { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
-                { command = sh ++ [ "systemctl --user start swaync.service" ]; }
-                { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
-                { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
+                { command = [ "goose-shell" ]; }
+                # { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
+                # { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
                 { command = sh ++ [ "id=0" ]; }
-                { command = [ "swayosd-server" ]; }
-                { command = [ "nm-applet" ]; }
+                # { command = [ "swayosd-server" ]; }
+                # { command = [ "nm-applet" ]; }
               ];
 
             input = {
@@ -234,20 +234,24 @@
                 "XF86AudioPlay".action = sh "playerctl play-pause";
                 "XF86AudioPrev".action = sh "playerctl previous";
                 "XF86AudioNext".action = sh "playerctl next";
-                "XF86AudioRaiseVolume".action = sh "swayosd-client --output-volume=raise";
-                "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume=lower";
-                "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
-                "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
+                "XF86AudioRaiseVolume".action =
+                  sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ +5% && goose-shell ipc call panelService showOSD volume";
+                "XF86AudioLowerVolume".action =
+                  sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ -5% && goose-shell ipc call panelService showOSD volume";
+                "XF86MonBrightnessUp".action =
+                  sh "brightnessctl s +5% && goose-shell ipc call panelService showOSD brightness";
+                "XF86MonBrightnessDown".action =
+                  sh "brightnessctl s -5% && goose-shell ipc call panelService showOSD brightness";
 
                 "Super+X".action = close-window;
-                "Super+A".action = sh "pidof wofi || wofi"; # launcher
+                "Super+A".action = sh "goose-shell ipc call panelService toggleLauncher"; # launcher
                 "Super+L".action = sh "loginctl lock-session"; # lock screen
-                "Super+P".action = sh "pidof wofi-power-menu || wofi-power-menu"; # power options
-                "Super+Y".action = sh "swaync-client -t"; # notification hub
-                "Super+V".action = sh "pidof wofi || cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
+                "Super+P".action = sh "goose-shell ipc call panelService togglePowerMenu"; # power options
+                "Super+S".action = sh "goose-shell ipc call panelService toggleControlCenter"; # notification hub
+                # "Super+V".action = sh "pidof wofi || cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
                 "Super+T".action = spawn "kitty"; # terminal
-                "Super+C".action = spawn "qalculate-gtk"; # calculator
-                "Super+B".action = sh "pidof hyprpicker || hyprpicker -lar"; # color-picker
+                # "Super+C".action = spawn "qalculate-gtk"; # calculator
+                "Super+C".action = sh "pidof hyprpicker || hyprpicker -lar"; # color-picker
               };
 
             gestures.hot-corners.enable = false;
@@ -322,14 +326,12 @@
               }
               {
                 matches = [
-                  { app-id = ".blueman-manager-wrapped"; }
-                  { app-id = "nm-connection-editor"; }
+                  { app-id = "io.github.kaii_lb.Overskride"; }
+                  { app-id = "com.network.manager"; }
                   { app-id = "com.saivert.pwvucontrol"; }
                   { app-id = "org.pipewire.Helvum"; }
                   { app-id = "com.github.wwmm.easyeffects"; }
                   { app-id = "wdisplays"; }
-                  { app-id = "qalculate-gtk"; }
-                  { title = "Syncthing Tray"; }
                 ];
                 open-floating = true;
               }

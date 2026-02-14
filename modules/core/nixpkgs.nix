@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  system,
   ...
 }:
 {
@@ -16,6 +17,7 @@
           directory = ../../pkgs;
         }
       )
+      inputs.goose-shell.overlays.${system}.default
       inputs.nix-cachyos-kernel.overlays.pinned
       # fix kicad theming
       (final: prev: {

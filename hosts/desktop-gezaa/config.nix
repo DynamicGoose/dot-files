@@ -6,7 +6,7 @@
 }:
 {
   modules = {
-    programs.waybar.desktop = true;
+    # programs.waybar.desktop = true;
     services.hypridle.desktop = true;
     powerManagement.hdparm.enable = true;
   };
