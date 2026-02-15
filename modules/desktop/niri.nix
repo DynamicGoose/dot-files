@@ -78,7 +78,6 @@
     hyprpicker
     kitty
     playerctl
-    syncthingtray
     wl-clip-persist
     goose-shell
   ];
