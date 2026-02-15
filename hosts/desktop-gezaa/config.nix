@@ -6,7 +6,6 @@
 }:
 {
   modules = {
-    # programs.waybar.desktop = true;
     services.hypridle.desktop = true;
     powerManagement.hdparm.enable = true;
   };
@@ -38,6 +37,9 @@
               "cpupower-gui"
               "-p"
             ];
+          }
+          {
+            command = [ "sleep 1 && goose-shell ipc call networking setWifiEnabled false" ];
           }
         ];
       };

@@ -78,6 +78,7 @@
     hyprpicker
     kitty
     playerctl
+    syncthingtray
     wl-clip-persist
     goose-shell
   ];
@@ -132,6 +133,7 @@
                 { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
                 { command = [ "goose-shell" ]; }
+                { command = sh ++ [ "sleep 1 && goose-shell ipc call networking setBluetoothEnabled false" ]; } # disable bluetooth on startup
                 { command = sh ++ [ "id=0" ]; }
               ];
 
