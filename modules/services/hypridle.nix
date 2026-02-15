@@ -14,9 +14,9 @@
         if (!config.modules.services.hypridle.desktop) then
           {
             general = {
-              lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
+              lock_cmd = "goose-shell ipc call session lock";
               before_sleep_cmd = "loginctl lock-session";
-              after_sleep_cmd = "hyprctl dispatch dpms on";
+              after_sleep_cmd = "niri msg action power-on-monitors";
             };
 
             listener = [
@@ -36,8 +36,8 @@
               }
               {
                 timeout = 380;
-                on-timeout = "hyprctl dispatch dpms off";
-                on-resume = "hyprctl dispatch dpms on";
+                on-timeout = "niri msg action power-off-monitors";
+                on-resume = "niri msg action power-on-monitors";
               }
               {
                 timeout = 1800;
@@ -48,9 +48,9 @@
         else
           {
             general = {
-              lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
+              lock_cmd = "goose-shell ipc call session lock";
               before_sleep_cmd = "loginctl lock-session";
-              after_sleep_cmd = "hyprctl dispatch dpms on";
+              after_sleep_cmd = "niri msg action power-on-monitors";
             };
 
             listener = [ ];

@@ -3,12 +3,12 @@
     ./evince.nix
     ./gpu-screen-recorder.nix
     ./helix.nix
-    ./hyprlock.nix
+    # ./hyprlock.nix
     ./nh.nix
     ./nix-ld.nix
     ./steam.nix
     # ./waybar.nix
-    ./wofi.nix
+    # ./wofi.nix
     ./zoxide.nix
     ./k3b.nix
   ];

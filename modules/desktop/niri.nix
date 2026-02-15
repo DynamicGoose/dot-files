@@ -6,7 +6,6 @@
 }:
 {
   services = {
-    # blueman.enable = true;
     gnome.gnome-keyring.enable = true;
     logind.settings.Login.HandlePowerKey = "ignore";
   };
@@ -46,17 +45,6 @@
           Restart = "on-failure";
         };
       };
-
-      swaybg = {
-        description = "swaybg service";
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.swaybg}/bin/.swaybg-wrapped -m fill -i ${
-            pkgs.graphite-gtk-theme.override { wallpapers = true; }
-          }/share/backgrounds/wave-Dark.jpg";
-          Restart = "on-failure";
-        };
-      };
     };
   };
 
@@ -87,14 +75,11 @@
 
   environment.systemPackages = with pkgs; [
     cliphist
-    hypridle
-    hyprlock
     hyprpicker
     kitty
     playerctl
     wl-clip-persist
     goose-shell
-    brightnessctl
   ];
 
   programs = {
@@ -116,16 +101,8 @@
       ...
     }:
     {
-      # dconf.settings."org/blueman/general".plugin-list = [
-      #   "StatusIcon"
-      #   "ShowConnected"
-      #   "!ExitItem"
-      # ];
       services.hypridle.enable = true;
       programs = {
-        # waybar.enable = true;
-        # wofi.enable = true;
-
         niri = {
           settings = {
             prefer-no-csd = true;
@@ -154,13 +131,8 @@
                 { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
                 { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
-                { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
                 { command = [ "goose-shell" ]; }
-                # { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
-                # { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
                 { command = sh ++ [ "id=0" ]; }
-                # { command = [ "swayosd-server" ]; }
-                # { command = [ "nm-applet" ]; }
               ];
 
             input = {
@@ -224,27 +196,20 @@
 
                 "Print".action.screenshot = [ ];
                 "XF86PowerOff".action = sh "goose-shell ipc call panelService togglePowerMenu";
-                "XF86AudioMute".action = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && goose-shell ipc call panelService showOSD volume";
+                "XF86AudioMute".action = sh "goose-shell ipc call volume toggleMuted";
                 "XF86AudioPlay".action = sh "playerctl play-pause";
                 "XF86AudioPrev".action = sh "playerctl previous";
                 "XF86AudioNext".action = sh "playerctl next";
-                "XF86AudioRaiseVolume".action =
-                  sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && goose-shell ipc call panelService showOSD volume";
-                "XF86AudioLowerVolume".action =
-                  sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && goose-shell ipc call panelService showOSD volume";
-                "XF86MonBrightnessUp".action =
-                  sh "brightnessctl s +5% && goose-shell ipc call panelService showOSD brightness";
-                "XF86MonBrightnessDown".action =
-                  sh "brightnessctl s 5%- && goose-shell ipc call panelService showOSD brightness";
-
+                "XF86AudioRaiseVolume".action = sh "goose-shell ipc call volume increase 5";
+                "XF86AudioLowerVolume".action = sh "goose-shell ipc call volume decrease 5";
+                "XF86MonBrightnessUp".action = sh "ipc call brightness increase 5";
+                "XF86MonBrightnessDown".action = sh "goose-shell ipc call brightness decrease 5";
                 "Super+X".action = close-window;
                 "Super+A".action = sh "goose-shell ipc call panelService toggleLauncher"; # launcher
-                "Super+L".action = sh "loginctl lock-session"; # lock screen
+                "Super+L".action = sh "goose-shell ipc call session lock"; # lock screen
                 "Super+P".action = sh "goose-shell ipc call panelService togglePowerMenu"; # power options
                 "Super+S".action = sh "goose-shell ipc call panelService toggleControlCenter"; # notification hub
-                # "Super+V".action = sh "pidof wofi || cliphist list | wofi -S dmenu | cliphist decode | wl-copy"; # clipboard history
                 "Super+T".action = spawn "kitty"; # terminal
-                # "Super+C".action = spawn "qalculate-gtk"; # calculator
                 "Super+C".action = sh "pidof hyprpicker || hyprpicker -lar"; # color-picker
               };
 

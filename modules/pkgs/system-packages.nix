@@ -8,6 +8,7 @@
     decibels
     # delfin (jellyfin client)
     # easytag
+    easyeffects
     fastfetch
     firefox
     freecad
