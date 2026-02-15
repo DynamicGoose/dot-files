@@ -202,7 +202,7 @@
                 "XF86AudioNext".action = sh "playerctl next";
                 "XF86AudioRaiseVolume".action = sh "goose-shell ipc call volume increase 5";
                 "XF86AudioLowerVolume".action = sh "goose-shell ipc call volume decrease 5";
-                "XF86MonBrightnessUp".action = sh "ipc call brightness increase 5";
+                "XF86MonBrightnessUp".action = sh "goose-shell ipc call brightness increase 5";
                 "XF86MonBrightnessDown".action = sh "goose-shell ipc call brightness decrease 5";
                 "Super+X".action = close-window;
                 "Super+A".action = sh "goose-shell ipc call panelService toggleLauncher"; # launcher
