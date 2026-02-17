@@ -26,5 +26,5 @@
       }
     ];
   };
-  services.fail2ban.enable = true;
+  # services.fail2ban.enable = true; # eats up nearly 300MB of memory
 }
