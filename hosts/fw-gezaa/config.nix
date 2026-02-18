@@ -7,6 +7,7 @@
 {
   modules = {
     powerManagement.ppd.enable = true;
+    powerManagement.auto-cpufreq.enable = true;
     services.illuminanced.enable = true;
   };
 

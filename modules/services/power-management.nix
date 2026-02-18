@@ -9,6 +9,7 @@
     tlp.enable = lib.mkEnableOption "enable tlp";
     ppd.enable = lib.mkEnableOption "enable power-profiles-daemon";
     hdparm.enable = lib.mkEnableOption "enable HDD power-saving";
+    auto-cpufreq.enable = lib.mkEnableOption "enable auto-cpufreq, don't use with tlp";
   };
 
   config = {
@@ -25,6 +26,7 @@
     '';
 
     services.power-profiles-daemon.enable = config.modules.powerManagement.ppd.enable;
+    services.auto-cpufreq.enable = config.modules.powerManagement.auto-cpufreq.enable;
 
     services.upower.enable =
       config.modules.powerManagement.tlp.enable || config.modules.powerManagement.ppd.enable;

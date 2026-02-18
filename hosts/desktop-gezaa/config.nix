@@ -33,12 +33,6 @@
         };
         spawn-at-startup = [
           {
-            command = [
-              "cpupower-gui"
-              "-p"
-            ];
-          }
-          {
             command = [ "sleep 1 && goose-shell ipc call networking setWifiEnabled false" ];
           }
         ];
