@@ -55,20 +55,11 @@
       hardware.amdgpu = lib.mkIf (type == "amd") {
         opencl.enable = true;
         initrd.enable = true;
+        # overclocking
+        overdrive.enable = true;
       };
       # Lact (amdgpu control-panel)
-      environment.systemPackages = lib.mkIf (type == "amd") [ pkgs.lact ];
-      systemd.services.lact = lib.mkIf (type == "amd") {
-        description = "AMDGPU Control Daemon";
-        after = [ "multi-user.target" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          ExecStart = "${pkgs.lact}/bin/lact daemon";
-        };
-        enable = true;
-      };
-      # overclocking kernel param
-      boot.kernelParams = lib.mkIf (type == "amd") [ "amdgpu.ppfeaturemask=0xffffffff" ];
+      services.lact.enable = type == "amd";
 
       # Intel
       hardware.graphics.extraPackages = lib.mkIf (type == "intel") [
