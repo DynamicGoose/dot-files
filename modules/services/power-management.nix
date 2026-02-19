@@ -29,6 +29,8 @@
     services.auto-cpufreq.enable = config.modules.powerManagement.auto-cpufreq.enable;
 
     services.upower.enable =
-      config.modules.powerManagement.tlp.enable || config.modules.powerManagement.ppd.enable;
+      config.modules.powerManagement.tlp.enable
+      || config.modules.powerManagement.ppd.enable
+      || config.modules.powerManagement.auto-cpufreq.enable;
   };
 }
