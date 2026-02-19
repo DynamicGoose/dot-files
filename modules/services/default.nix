@@ -14,5 +14,6 @@
     ./wivrn.nix
     ./envfs.nix
     ./power-management.nix
+    ./greetd.nix
   ];
 }

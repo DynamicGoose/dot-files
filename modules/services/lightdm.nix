@@ -7,7 +7,7 @@
 {
   options.modules.displayManager.lightdm.enable = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = false;
   };
 
   config.services.xserver.displayManager.lightdm =
