@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     alsa-scarlett-gui
@@ -19,6 +24,7 @@
     gitui
     gnome-disk-utility
     imv
+    inputs.better-soundcloud.packages.${system}.default
     kicad
     libreoffice
     musescore

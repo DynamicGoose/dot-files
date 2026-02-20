@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "better-soundcloud": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764550373,
+        "narHash": "sha256-Ud+8lQBfCwtFAZeixwPRPCmwCrKJ04lorGUwNHhAncY=",
+        "owner": "AlirezaKJ",
+        "repo": "BetterSoundCloud",
+        "rev": "9e0a58df2773590959d63eaf6fc3379d618b5571",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AlirezaKJ",
+        "repo": "BetterSoundCloud",
+        "type": "github"
+      }
+    },
     "cachyos-kernel": {
       "flake": false,
       "locked": {
@@ -180,6 +201,24 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "git-hooks-nix": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -214,11 +253,11 @@
         "qml-niri": "qml-niri"
       },
       "locked": {
-        "lastModified": 1771286371,
-        "narHash": "sha256-QFvp49r6xekpDc0eeIvFJijYLHVOMYNW7trxomVP9KM=",
+        "lastModified": 1771546565,
+        "narHash": "sha256-LJ6D4PBqDinVYZ0u/R5nMcFGsTp30udvFr8GpH1wXcg=",
         "ref": "refs/heads/main",
-        "rev": "0f9c651e2a593531e17273cd47ac8afde6b3fb26",
-        "revCount": 64,
+        "rev": "1f2735b7a412d428537dbd1b8b08653f0445b568",
+        "revCount": 70,
         "type": "git",
         "url": "https://codeberg.org/DynamicGoose/goose-shell"
       },
@@ -538,12 +577,28 @@
     },
     "root": {
       "inputs": {
+        "better-soundcloud": "better-soundcloud",
         "determinate": "determinate",
         "goose-shell": "goose-shell",
         "home-manager": "home-manager",
         "niri": "niri",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_4"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
       }
     },
     "treefmt-nix": {
