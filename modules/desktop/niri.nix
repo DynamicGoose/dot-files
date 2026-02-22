@@ -132,7 +132,7 @@
                 { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
                 { command = [ "goose-shell" ]; }
-                { command = sh ++ [ "sleep 1 && goose-shell ipc call networking setBluetoothEnabled false" ]; } # disable bluetooth on startup
+                { command = sh ++ [ "sleep 4 && goose-shell ipc call networking setBluetoothEnabled false && goose-shell ipc call networking setBluetoothEnabled false" ]; } # disable bluetooth on startup, call 2 times warum auch immer
                 { command = sh ++ [ "id=0" ]; }
               ];
 
