@@ -253,11 +253,11 @@
         "qml-niri": "qml-niri"
       },
       "locked": {
-        "lastModified": 1771774788,
-        "narHash": "sha256-e4HpXm7+yPqOLaE1xBoh2G5NM+duSVPBdPrfx9am9v8=",
+        "lastModified": 1771776655,
+        "narHash": "sha256-axh0rhC+Rr/3Dq1Gg1KBfvH3IaY7GYn4NBmqpSYRv0k=",
         "ref": "refs/heads/main",
-        "rev": "0f4e9fb89cfbbc675da3d94a30d577eebfcb6e05",
-        "revCount": 73,
+        "rev": "191b5395c959ef7acf51ad26b1e49a3fc5a70361",
+        "revCount": 74,
         "type": "git",
         "url": "https://codeberg.org/DynamicGoose/goose-shell"
       },
