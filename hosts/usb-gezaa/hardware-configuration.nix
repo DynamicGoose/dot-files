@@ -28,6 +28,7 @@
     "kvm-amd"
   ];
   boot.extraModulePackages = [ ];
+  boot.loader.grub.device = lib.mkForce "/dev/disk/by-id/ata-DataTraveler_Max_204479A6A68111A52106";
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/aa18d19c-9806-417e-be19-71065c50d455";
