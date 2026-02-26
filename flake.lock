@@ -250,14 +250,15 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "qml-niri": "qml-niri"
+        "qml-niri": "qml-niri",
+        "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1771888314,
-        "narHash": "sha256-/CiFv47D1dqOlzJfmsKlNEGhlJLVMqQYuo1Fs/k+5GM=",
+        "lastModified": 1772147033,
+        "narHash": "sha256-geYfkC3zEFaAjIDTuiBWNDVA+r7d5c6HWhzAqSiZ7r0=",
         "ref": "refs/heads/main",
-        "rev": "365a79fb0976dafc7e0e8ab2f02a9e5eca232ec2",
-        "revCount": 75,
+        "rev": "bdc76f95486b7566d4ac9dc8acc4e81127bd9122",
+        "revCount": 76,
         "type": "git",
         "url": "https://codeberg.org/DynamicGoose/goose-shell"
       },
@@ -535,7 +536,10 @@
           "goose-shell",
           "nixpkgs"
         ],
-        "quickshell": "quickshell",
+        "quickshell": [
+          "goose-shell",
+          "quickshell"
+        ],
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -557,16 +561,15 @@
       "inputs": {
         "nixpkgs": [
           "goose-shell",
-          "qml-niri",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1761897390,
-        "narHash": "sha256-er4gYrIoThYLjlsOMTysoRfn67d1Gci+ZpqDrtQxrA0=",
+        "lastModified": 1771926182,
+        "narHash": "sha256-QbXuSLhiSxOq6ydBL3+KGe1aiYWBW+e3J6qjJZaRMq0=",
         "ref": "refs/heads/master",
-        "rev": "fc704e6b5d445899a1565955268c91942a4f263f",
-        "revCount": 700,
+        "rev": "cddb4f061bab495f4473ca5f2c571b6c710efef7",
+        "revCount": 744,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
