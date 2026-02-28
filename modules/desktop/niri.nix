@@ -153,7 +153,11 @@
             warp-mouse-to-focus = [ ];
             focus-follows-mouse._props.max-scroll-amount = "25%";
             mouse.accel-speed = 0.5;
-            touchpad.accel-speed = 0.5;
+            touchpad = {
+              tap = [ ];
+              natural-scroll = [ ];
+              accel-speed = 0.5;
+            };
             keyboard = {
               numlock = [ ];
               xkb.layout = "de";
