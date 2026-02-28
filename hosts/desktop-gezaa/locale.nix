@@ -9,6 +9,6 @@
   home-manager.users.${username} =
     { lib, config, ... }:
     {
-      programs.niri.settings.input.keyboard.xkb.layout = lib.mkForce "eu";
+      wayland.windowManager.niri.settings.input.keyboard.xkb.layout = lib.mkForce "eu";
     };
 }

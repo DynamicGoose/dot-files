@@ -24,8 +24,13 @@
   home-manager.users.${username} =
     { pkgs, ... }:
     {
-      programs.niri.settings = {
-        outputs."eDP-1".scale = 1.0;
+      wayland.windowManager.niri.settings = {
+        output = [
+          {
+            _args = [ "eDP-1" ];
+            scale = 1.0;
+          }
+        ];
       };
     };
 }

@@ -22,7 +22,6 @@ let
       };
       modules = [
         inputs.home-manager.nixosModules.home-manager
-        inputs.niri.nixosModules.niri
         inputs.determinate.nixosModules.default
 
         "${self}/default.nix"

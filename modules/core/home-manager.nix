@@ -1,5 +1,6 @@
 {
   username,
+  inputs,
   ...
 }:
 {
@@ -9,5 +10,8 @@
     { config, ... }:
     {
       home.stateVersion = "25.05";
+      imports = [
+        inputs.niri-nix.homeModules.default
+      ];
     };
 }
