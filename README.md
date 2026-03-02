@@ -6,7 +6,7 @@ My multi-host NixOS flake!
 
 - **Flakes:** dependency version management
 - **Home Manager:** user software configuration
-- **nix-ld:** run dynamically linked binaries
+- **Security:** sandboxing through nix-bwrapper, immutable user config, minimized setuid wrappers
 - **nh:** nice NixOS cli helper with rebuild dependency graph
 - **development shells:** built-in shells for some development environments
 - **multi-host config:** configure multiple hosts easily through the custom config options, described in [`options.md`](./options.md)
@@ -16,7 +16,7 @@ My multi-host NixOS flake!
 
 - OS: [**`NixOS`**](https://nixos.org/)
 - Compositor: [**`Niri`**](https://github.com/YaLTeR/niri)
-- Bar: [**`Waybar`**](https://github.com/Alexays/Waybar)
+- Shell: [**`Quickshell Config (goose-shell)`**](https://codeberg.org/DynamicGoose/goose-shell)
 - Theme: [**`Graphite (black variant)`**](https://github.com/vinceliuice/Graphite-gtk-theme)
 - Icons: [**`Papirus-Dark`**](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - Shell: [**`Nushell`**](https://www.nushell.sh/)
@@ -48,6 +48,14 @@ nixosConfigurations = lib.genHosts = {
 ```
 2. Create `default.nix` in `hosts/new-host/`. Import modules like `hardware-configuration.nix` or `config.nix` from there.
 3. Have a look at [`options.md`](./options.md) for my custom configuration options.
+
+### Setting Up Passwords
+
+1. create password hash
+```
+mkpasswd --method=yescrypt <password> >> /home/<user>/secrets/<root|admin|user>
+```
+2. Path to hashed passwords can be changed in [`modules/core/users.nix`](./modules/core/users.nix).
 
 ### Building the System
 

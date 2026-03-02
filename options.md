@@ -102,12 +102,12 @@ possible values: `true`, `false`
   
 Enables power-profiles-daemon (for laptop power-management).
 
-### `modules.programs.waybar.desktop`
+### `modules.powerManagement.auto-cpufreq.enable`
 type: `boolean`  
 default: `false`  
 possible values: `true`, `false`  
   
-Sets the desktop config for waybar.
+Enables auto-cpufreq (for laptop power-management). Can't be used together with tlp or ppd.
 
 ### `modules.programs.configPath`
 type: `string`  
