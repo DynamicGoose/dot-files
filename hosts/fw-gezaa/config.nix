@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   username,
   ...
@@ -10,9 +9,6 @@
     powerManagement.auto-cpufreq.enable = true;
     services.illuminanced.enable = true;
   };
-
-  # zen4/5 optimized cachyos kernel
-  boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
 
   environment.systemPackages = [ pkgs.framework-tool ];
 
