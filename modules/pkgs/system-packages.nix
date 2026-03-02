@@ -27,6 +27,9 @@
     inputs.better-soundcloud.packages.${system}.default
     kicad
     libreoffice-fresh
+    (mkBwrapper {
+      app.package = vesktop;
+    })
     musescore
     obsidian
     pkgsRocm.blender
@@ -46,7 +49,6 @@
     telegram-desktop
     thunderbird
     totem
-    vesktop
     wasistlos
     wget
     wineWow64Packages.waylandFull

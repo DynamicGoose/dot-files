@@ -18,7 +18,6 @@
         }
       )
       inputs.goose-shell.overlays.${system}.default
-      inputs.nix-cachyos-kernel.overlays.pinned
       # fix kicad theming
       (final: prev: {
         kicad = prev.kicad.overrideAttrs (oldAttrs: {
