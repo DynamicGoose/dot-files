@@ -22,7 +22,6 @@ let
       };
       modules = [
         inputs.home-manager.nixosModules.home-manager
-        inputs.determinate.nixosModules.default
 
         "${self}/default.nix"
         "${self}/hosts/${hostDir}"

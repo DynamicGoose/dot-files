@@ -26,7 +26,7 @@
     imv
     inputs.better-soundcloud.packages.${system}.default
     kicad
-    libreoffice
+    libreoffice-fresh
     musescore
     obsidian
     pkgsRocm.blender

@@ -15,8 +15,8 @@
           {
             general = {
               lock_cmd = "goose-shell ipc call session lock";
-              before_sleep_cmd = "loginctl lock-session";
-              after_sleep_cmd = "niri msg action power-on-monitors";
+              before_sleep_cmd = "niri msg action power-off-monitors";
+              after_sleep_cmd = "loginctl lock-session && niri msg action power-on-monitors";
             };
 
             listener = [
@@ -49,8 +49,8 @@
           {
             general = {
               lock_cmd = "goose-shell ipc call session lock";
-              before_sleep_cmd = "loginctl lock-session";
-              after_sleep_cmd = "niri msg action power-on-monitors";
+              before_sleep_cmd = "niri msg action power-off-monitors";
+              after_sleep_cmd = "loginctl lock-session && niri msg action power-on-monitors";
             };
 
             listener = [ ];

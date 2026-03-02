@@ -1,9 +1,18 @@
+{ lib, ... }:
 {
   security = {
+    run0.enableSudoAlias = true;
     sudo.enable = false;
-    sudo-rs.enable = true;
     rtkit.enable = true;
     polkit.enable = true;
+
+    wrappers = {
+      su.enable = lib.mkForce false;
+      sudoedit.enable = lib.mkForce false;
+      sg.enable = lib.mkForce false;
+      pkexec.setuid = lib.mkForce false;
+      newgrp.setuid = lib.mkForce false;
+    };
 
     pam.loginLimits = [
       {
@@ -26,5 +35,4 @@
       }
     ];
   };
-  # services.fail2ban.enable = true; # eats up nearly 300MB of memory
 }

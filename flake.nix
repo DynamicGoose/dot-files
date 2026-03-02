@@ -5,11 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
-    determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
