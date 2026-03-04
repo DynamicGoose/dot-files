@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   system,
@@ -28,9 +29,6 @@
     kicad
     libreoffice-fresh
     librewolf
-    (mkBwrapper {
-      app.package = vesktop;
-    })
     musescore
     obsidian
     pkgsRocm.blender
@@ -50,6 +48,7 @@
     telegram-desktop
     thunderbird
     totem
+    vesktop
     wasistlos
     wget
     wineWow64Packages.waylandFull
