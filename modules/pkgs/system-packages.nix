@@ -25,6 +25,7 @@
     gnome-disk-utility
     imv
     inputs.better-soundcloud.packages.${system}.default
+    keepassxc
     kicad
     libreoffice-fresh
     (mkBwrapper {
