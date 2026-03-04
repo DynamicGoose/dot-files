@@ -15,7 +15,6 @@
     # easytag
     easyeffects
     fastfetch
-    firefox
     freecad
     gamemode
     gedit
@@ -28,6 +27,7 @@
     keepassxc
     kicad
     libreoffice-fresh
+    librewolf
     (mkBwrapper {
       app.package = vesktop;
     })
