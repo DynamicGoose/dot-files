@@ -142,11 +142,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1772575596,
-        "narHash": "sha256-iVFGgm/d4iwDBd7zO4NNaOk56AF1nhzuwDYfwcqPTYU=",
+        "lastModified": 1772583202,
+        "narHash": "sha256-a4hqVX+VdX2vHO2Pb7p6OUV0DTYEU2iMw0Sm69JV78w=",
         "ref": "refs/heads/main",
-        "rev": "fdf2ad9766e274cc4b9a4083df2730561aa821d6",
-        "revCount": 78,
+        "rev": "bba8bda8668f6fff64d801ce9aa328ac324253f0",
+        "revCount": 79,
         "type": "git",
         "url": "https://codeberg.org/DynamicGoose/goose-shell"
       },
@@ -415,11 +415,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771926182,
-        "narHash": "sha256-QbXuSLhiSxOq6ydBL3+KGe1aiYWBW+e3J6qjJZaRMq0=",
+        "lastModified": 1772527236,
+        "narHash": "sha256-wc8tI7VKoH9f2GqAC4jnRWBrhgda/VnY5NAEqRcgeqg=",
         "ref": "refs/heads/master",
-        "rev": "cddb4f061bab495f4473ca5f2c571b6c710efef7",
-        "revCount": 744,
+        "rev": "a849a88893c71d409aecef0b999e6cc3d9b50034",
+        "revCount": 746,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
