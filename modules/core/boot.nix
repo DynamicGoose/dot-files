@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  username,
   ...
 }:
 {
@@ -43,6 +44,7 @@
                   chainloader ${pkgs.netbootxyz-efi}
                 }
               '';
+              users.root.hashedPasswordFile = "/home/${username}/secrets/grub";
             };
           }
         else
@@ -56,6 +58,7 @@
               efiSupport = true;
               device = "nodev";
               splashImage = null;
+              users.root.hashedPasswordFile = "/home/${username}/secrets/grub";
             };
           };
     in

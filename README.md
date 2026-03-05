@@ -58,6 +58,11 @@ mkpasswd --method=yescrypt <password> >> /home/<user>/secrets/<root|admin|user>
 ```
 2. Path to hashed passwords can be changed in [`modules/core/users.nix`](./modules/core/users.nix).
 
+#### GRUB Password
+
+1. Run `nix-shell -p grub2 --run 'grub-mkpasswd-pbkdf2'` and type in password.
+2. Copy password hash to file: `/home/<user>/secrets/grub`. Hash should look like this: `grub.pbkdf2.sha512.10000.674DFFDEF76E13EA...2CC972B102CF4355`.
+
 ### Building the System
 
 1. After setting up your hosts run `copy_config.sh`:

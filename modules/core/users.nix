@@ -6,7 +6,7 @@
   ...
 }:
 {
-  # place password hash files in /home/${username}/secrets/
+  # place password hash files in /home/${username}/secrets/ (including grub password)
 
   # admin user for system management
   users.defaultUserShell = pkgs.nushell;
@@ -43,12 +43,16 @@
     };
   };
 
+  environment.etc."/security/pwquality.conf".text = ''
+    minlen=8
+  '';
+
   # .cache tmpfs
   fileSystems."home/${username}/.cache" = {
     device = "none";
     fsType = "tmpfs";
     options = [
-      "sie=4G"
+      "size=4G"
       "mode=777"
     ];
   };
