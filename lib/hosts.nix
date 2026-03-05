@@ -1,12 +1,17 @@
 { self, inputs, ... }:
 let
   mkHost =
-    hostDir:
+    hostName:
     {
       system ? "x86_64-linux",
-      hostname ? hostDir,
+      hostDir ? hostName,
       username ? "user",
       userDescription ? "Default User",
+      includeModules ? [
+        inputs.home-manager.nixosModules.home-manager
+        "${self}/default.nix"
+        "${self}/hosts/${hostDir}"
+      ],
     }:
     inputs.nixpkgs.lib.nixosSystem {
       system = system;
@@ -14,18 +19,14 @@ let
         inherit
           inputs
           self
-          hostname
+          hostName
+          hostDir
           username
           userDescription
           system
           ;
       };
-      modules = [
-        inputs.home-manager.nixosModules.home-manager
-
-        "${self}/default.nix"
-        "${self}/hosts/${hostDir}"
-      ];
+      modules = includeModules;
     };
 in
 {

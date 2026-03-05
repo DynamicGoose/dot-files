@@ -1,5 +1,5 @@
 {
-  hostname,
+  hostName,
   ...
 }:
 {
@@ -7,7 +7,7 @@
     ./modules
   ];
 
-  networking.hostName = hostname;
+  networking.hostName = hostName;
 
   system.stateVersion = "25.05";
 }

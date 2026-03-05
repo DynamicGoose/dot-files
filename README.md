@@ -35,18 +35,19 @@ My multi-host NixOS flake!
 ```nix
 # ...
 nixosConfigurations = lib.genHosts = {
-  new-host = {
-    username = "new-host-user";
+  <hostName> = {
+    username = "user";
     userDescription = "probably your name (for display-manager)";
     # Other options you may want to change:
-    # arch (default: "x86_64-linux")
-    # hostname (default: config name)
+    # system (default: "x86_64-linux")
+    # hostDir (default: hostName)
+    # includeModules (default: homeManager, ${self}/default.nix, ${self}/hosts/${hostDir})
   };
   # ...
 };
 # ...
 ```
-2. Create `default.nix` in `hosts/new-host/`. Import modules like `hardware-configuration.nix` or `config.nix` from there.
+2. Create `default.nix` in `hosts/${hostName}/`. Import modules like `hardware-configuration.nix` or `config.nix` from there.
 3. Have a look at [`options.md`](./options.md) for my custom configuration options.
 
 ### Setting Up Passwords
