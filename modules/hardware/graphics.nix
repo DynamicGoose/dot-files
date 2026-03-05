@@ -16,6 +16,7 @@
     };
     nvidia = {
       driverPackage = lib.mkOption {
+        type = lib.types.package;
         default = config.boot.kernelPackages.nvidiaPackages.latest;
       };
       rtx20 = lib.mkOption {

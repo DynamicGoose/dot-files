@@ -1,166 +1,215 @@
-# Config Options
+# NixOS Module Options
 
-These are options that can be set in your own config to change some stuff for different hosts.
 
-## Options
+## [`options.modules.graphics.enable`](modules/hardware/graphics.nix#L9)
 
-### `modules.boot.deviceType`
-type: `string`  
-default: `"uefi"`  
-possible values: `"uefi"`, `"removable"`, `"legacy"`  
-  
-Sets the boot configuration to be compatible with the desired device.
+**Type:** `lib.types.bool`
 
-### `modules.desktop.plasma.enable`
-type: `boolean`  
-default: `false`  
-possible values: `true`, `false`  
+**Default:** `true`
 
-Enables the Plasma6 Desktop environment.
+## [`options.modules.graphics.type`](modules/hardware/graphics.nix#L13)
 
-### `modules.displayManager.lightdm.enable`
-type: `boolean`  
-default: `true`  
-possible values: `true`, `false`  
+**Type:** `lib.types.str`
 
-Enables LightDM display manager.
+**Default:** `"amd"`
 
-### `modules.displayManager.sddm.enable`
-type: `boolean`  
-default: `false`  
-possible values: `true`, `true`  
+## [`options.modules.graphics.nvidia.driverPackage`](modules/hardware/graphics.nix#L18)
 
-Enables SDDM display manager.
+**Type:** `lib.types.package`
 
-### `modules.graphics.enable`
-type: `boolean`  
-default: `true`  
-possible values: `true`, `false`  
-  
-Enables graphics configuration.
+**Default:** `config.boot.kernelPackages.nvidiaPackages.latest`
 
-### `modules.graphics.type`
-type: `string`  
-default: `"amd"`  
-possible values: `"amd"`, `"intel"`, `"nvidia"`  
-  
-Sets the type of graphics card.
+## [`options.modules.graphics.nvidia.rtx20`](modules/hardware/graphics.nix#L22)
 
-### `modules.graphics.nvidia.driverPackage`
-type: `package`  
-default: `config.boot.kernelPackages.nvidiaPackages.latest`  
-possible values: see [here](https://nixos.wiki/wiki/Nvidia#Determining_the_Correct_Driver_Version)  
-  
-Sets the Nvidia GPU driver package.
+**Type:** `lib.types.bool`
 
-### `modules.graphics.nvidia.rtx20`
-type: `boolean`  
-default: `true`  
-possible values: `true`, `false`  
-  
-Set to `false`, if your GPU is older than RTX 20-Series.
+**Default:** `true`
 
-### `modules.graphics.nvidia.hybrid.enable`
-type: `boolean`  
-default: `false`  
-possible values: `true`, `false`  
-  
-Enables Nvidia Optimus PRIME hybrid graphics for laptops.
+## [`options.modules.graphics.nvidia.hybrid.enable`](modules/hardware/graphics.nix#L27)
 
-### `modules.graphics.nvidia.hybrid.intelBusId`
-type: `string`  
-default: `""`  
-possible values: see [here](https://nixos.wiki/wiki/Nvidia#Configuring_Optimus_PRIME:_Bus_ID_Values_.28Mandatory.29)  
-  
-Set Intel graphics bus ID.
+enable hyprid mode for laptops
 
-### `modules.graphics.nvidia.hybrid.nvidiaBusId`
-type: `string`  
-default: `""`  
-possible values: see [here](https://nixos.wiki/wiki/Nvidia#Configuring_Optimus_PRIME:_Bus_ID_Values_.28Mandatory.29)  
-  
-Set Nvidia graphics bus ID.
+**Type:** `boolean`
 
-### `modules.graphics.nvidia.hybrid.amdBusId`
-type: `string`  
-default: `""`  
-possible values: see [here](https://nixos.wiki/wiki/Nvidia#Configuring_Optimus_PRIME:_Bus_ID_Values_.28Mandatory.29)  
-  
-Set AMD graphics bus ID.
+**Default:** `false`
 
-### `modules.powerManagement.tlp.enable`
-type: `boolean`  
-default: `false`  
-possible values: `true`, `false`  
-  
-Enables tlp (for laptop power-management).
+**Example:** `true`
 
-### `modules.powerManagement.ppd.enable`
-type: `boolean`  
-default: `false`  
-possible values: `true`, `false`  
-  
-Enables power-profiles-daemon (for laptop power-management).
+## [`options.modules.graphics.nvidia.hybrid.intelBusId`](modules/hardware/graphics.nix#L29)
 
-### `modules.powerManagement.auto-cpufreq.enable`
-type: `boolean`  
-default: `false`  
-possible values: `true`, `false`  
-  
-Enables auto-cpufreq (for laptop power-management). Can't be used together with tlp or ppd.
+**Type:** `lib.types.str`
 
-### `modules.programs.configPath`
-type: `string`  
-default: `"/home/${username}/git/dot-files"`  
-possible values: `"/path/to/your/config/files"`  
+**Default:** `""`
 
-Sets the path where `nh` and other utils look for your config.
+## [`options.modules.graphics.nvidia.hybrid.nvidiaBusId`](modules/hardware/graphics.nix#L33)
 
-### `modules.services.audio.enable`
-type: `boolean`  
-default: `true`  
-possible values: `true`, `false`  
-  
-Enables audio (pipewire).
+**Type:** `lib.types.str`
 
-### `modules.services.hypridle.desktop`
-type: `boolean`  
-default: `false`  
-possible values: `true`, `false`  
-  
-Sets the desktop config for hypridle (disables brightness changes and suspend)
+**Default:** `""`
 
-### `modules.services.ssh.enable`
-type: `boolean`  
-default: `true`  
-possible values: `true`, `false`  
-  
-Enables ssh.
+## [`options.modules.graphics.nvidia.hybrid.amdBusId`](modules/hardware/graphics.nix#L37)
 
-### `modules.services.ssh.server` 
-type: `boolean`  
-default: `false`  
-possible values: `true`, `false`  
-  
-Determines if ssh should always be running, or only start when needed (true means always running).
+**Type:** `lib.types.str`
 
-### `modules.services.illuminanced.enable`
-type `boolean`  
-default: `false`  
-possiblr values: `true`, `false`  
+**Default:** `""`
 
-Enables illuminanced service to control display brightness based on ALS. This needs a device-specific config file `/home/<user>/.config/illuminanced.toml`
+## [`options.modules.desktop.plasma.enable`](modules/desktop/plasma.nix#L3)
 
-### `modules.virtualisation.enable`
-type: `boolean`  
-default: `true`  
-possible values: `true`, `false`  
+Enable KDE Plasma 6 Desktop
 
-Enables virtualisation support with libvirtd and virt-manager.
+**Type:** `boolean`
 
-### `modules.virtualisation.waydroid.enable`
-type: `boolean`  
-default: `false`  
-possible values: `true`, `false`  
+**Default:** `false`
 
-Enables Waydroid, whcih can be configured through `waydroid-helper`.
+**Example:** `true`
+
+## [`options.modules.boot.deviceType`](modules/core/boot.nix#L8)
+
+**Type:** `lib.types.str`
+
+**Default:** `"uefi"`
+
+## [`options.modules.virtualisation.enable`](modules/core/virtualisation.nix#L10)
+
+**Type:** `lib.types.bool`
+
+**Default:** `true`
+
+## [`options.modules.virtualisation.virt-manager.enable`](modules/core/virtualisation.nix#L14)
+
+**Type:** `lib.types.bool`
+
+**Default:** `true`
+
+## [`options.modules.virtualisation.waydroid.enable`](modules/core/virtualisation.nix#L18)
+
+Enable Waydroid
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.services.illuminanced.enable`](modules/services/illuminanced.nix#L9)
+
+Enable illuminanced ALS service
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.displayManager.lightdm.enable`](modules/services/lightdm.nix#L8)
+
+**Type:** `lib.types.bool`
+
+**Default:** `true`
+
+## [`options.modules.powerManagement.tlp.enable`](modules/services/power-management.nix#L9)
+
+enable tlp
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.powerManagement.ppd.enable`](modules/services/power-management.nix#L10)
+
+enable power-profiles-daemon
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.powerManagement.hdparm.enable`](modules/services/power-management.nix#L11)
+
+enable HDD power-saving
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.powerManagement.auto-cpufreq.enable`](modules/services/power-management.nix#L12)
+
+enable auto-cpufreq, don't use with tlp
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.displayManager.greetd.enable`](modules/services/greetd.nix#L8)
+
+**Type:** `lib.types.bool`
+
+**Default:** `false`
+
+## [`options.modules.services.ssh.enable`](modules/services/ssh.nix#L4)
+
+**Type:** `lib.types.bool`
+
+**Default:** `true`
+
+## [`options.modules.services.ssh.server`](modules/services/ssh.nix#L8)
+
+always run ssh in background
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.displayManager.sddm.enable`](modules/services/sddm.nix#L7)
+
+enable SDDM
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.services.hypridle.desktop`](modules/services/hypridle.nix#L9)
+
+hypridle desktop config
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.services.audio.enable`](modules/services/audio.nix#L8)
+
+**Type:** `lib.types.bool`
+
+**Default:** `true`
+
+## [`options.modules.programs.waybar.desktop`](modules/programs/waybar-UNUSED.nix#L9)
+
+desktop config
+
+**Type:** `boolean`
+
+**Default:** `false`
+
+**Example:** `true`
+
+## [`options.modules.programs.nh.configPath`](modules/programs/nh.nix#L8)
+
+**Type:** `lib.types.str`
+
+**Default:** `"/home/${username}/git/dot-files"`
+
+---
+*Generated with [nix-options-doc](https://github.com/Thunderbottom/nix-options-doc)*

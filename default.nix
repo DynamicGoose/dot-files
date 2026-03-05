@@ -1,7 +1,4 @@
-{
-  hostName,
-  ...
-}:
+{ hostName, ... }:
 {
   imports = [
     ./modules

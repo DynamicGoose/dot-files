@@ -84,7 +84,7 @@
       );
 
       # Easily run as VM with `nix run`
-      apps = lib.eachSystem (pkgs: rec {
+      apps = lib.eachSystem (system: rec {
         default = usb-gezaa;
 
         desktop-gezaa = lib.mkVMApp "desktop-gezaa";
@@ -94,6 +94,14 @@
         dl-gezaa = lib.mkVMApp "dl-gezaa";
         cyberdeck-gezaa = lib.mkVMApp "cyberdeck-gezaa";
         usb-gezaa = lib.mkVMApp "usb-gezaa";
+
+        # generate option documentation using https://github.com/Thunderbottom/nix-options-doc
+        gen-docs = {
+          type = "app";
+          program = "${lib.pkgsFor.${system}.writeShellScript "gen-docs"
+            "nix run github:Thunderbottom/nix-options-doc -- -p ${self} -o options.md"
+          }";
+        };
       });
       # Library functions for external use
       lib = lib;
