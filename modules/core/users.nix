@@ -42,4 +42,14 @@
       ${username}.password = username;
     };
   };
+
+  # .cache tmpfs
+  fileSystems."home/${username}/.cache" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [
+      "sie=4G"
+      "mode=777"
+    ];
+  };
 }
