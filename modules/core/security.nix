@@ -1,8 +1,14 @@
 { lib, ... }:
 {
   security = {
+    # Kernel
+    protectKernelImage = true;
+    allowUserNamespaces = true;
+
+    # run0
     run0.enableSudoAlias = true;
     sudo.enable = false;
+
     rtkit.enable = true;
     polkit.enable = true;
 
@@ -33,6 +39,16 @@
         type = "-";
         value = "99999";
       }
+      # "disable" kernel coredumps (set their maximum size to 0)
+      {
+        domain = "*";
+        item = "core";
+        type = "-";
+        value = "0";
+      }
     ];
+
+    # apparmor
+    apparmor.enable = true;
   };
 }

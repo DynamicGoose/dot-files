@@ -14,5 +14,7 @@
     ./wivrn.nix
     ./envfs.nix
     ./power-management.nix
+    ./clamav.nix
+    ./usbguard.nix
   ];
 }
