@@ -65,15 +65,11 @@ mkpasswd --method=yescrypt <password> >> /home/<user>/secrets/<root|admin|user>
 
 ### Building the System
 
-1. After setting up your hosts run `copy_config.sh`:
+1. For the first rebuild with this config rebuild like this:
 ```shell
-./copy_config.sh
+sudo nixos-rebuild boot --install-bootloader --flake ./path/to/flake#<config-you-want-to-build>
 ```
-2. For the first rebuild with this config rebuild like this:
-```shell
-sudo nixos-rebuild boot --install-bootloader --flake /etc/nixos#<config-you-want-to-build>
-```
-Afterwards, you can run `sudo nixos-rebuild switch|boot|etc.` like normal.
+2. Afterwards, you can run `sudo nixos-rebuild switch|boot|etc. --flake ./path/to/flake#` like normal.
 
 #### nh
 

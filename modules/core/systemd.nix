@@ -9,87 +9,6 @@
 
     # imporve service security
     services = {
-      "user@".serviceConfig = {
-        ProtectSystem = "strict";
-        ProtectClock = true;
-        ProtectHostname = true;
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-        ProtectKernelLogs = true;
-        ProtectProc = "invisible";
-        PrivateTmp = true;
-        PrivateNetwork = true;
-        MemoryDenyWriteExecute = false;
-        RestrictAddressFamilies = [
-          "AF_UNIX"
-          "AF_NETLINK"
-          "AF_BLUETOOTH"
-        ];
-        RestrictNamespaces = true;
-        RestrictRealtime = true;
-        RestrictSUIDSGID = true;
-        SystemCallFilter = [
-          "~@keyring"
-          "~@swap"
-          "~@debug"
-          "~@module"
-          "~@obsolete"
-          "~@cpu-emulation"
-        ];
-        SystemCallArchitectures = "native";
-      };
-      acpid.serviceConfig = {
-        ProtectSystem = "full";
-        ProtectHome = true;
-        RestrictAddressFamilies = [
-          "AF_INET"
-          "AF_INET6"
-        ];
-        SystemCallFilter = "~@clock @cpu-emulation @debug @module @mount @raw-io @reboot @swap";
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-      };
-
-      auditd.serviceConfig = {
-        NoNewPrivileges = true;
-        ProtectSystem = "full";
-        ProtectHome = true;
-        ProtectHostname = true;
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-        ProtectControlGroups = true;
-        ProtectProc = "invisible";
-        ProtectClock = true;
-        PrivateTmp = true;
-        PrivateNetwork = true;
-        PrivateMounts = true;
-        PrivateDevices = true;
-        RestrictNamespaces = true;
-        RestrictRealtime = true;
-        RestrictSUIDSGID = true;
-        RestrictAddressFamilies = [
-          "~AF_INET6"
-          "~AF_INET"
-          "~AF_PACKET"
-        ];
-        MemoryDenyWriteExecute = true;
-        LockPersonality = true;
-        SystemCallFilter = [
-          "~@clock"
-          "~@module"
-          "~@mount"
-          "~@swap"
-          "~@obsolete"
-          "~@cpu-emulation"
-        ];
-        SystemCallArchitectures = "native";
-        CapabilityBoundingSet = [
-          "~CAP_CHOWN"
-          "~CAP_FSETID"
-          "~CAP_SETFCAP"
-        ];
-      };
-
       cups.serviceConfig = {
         NoNewPrivileges = true;
         ProtectSystem = "full";
@@ -121,39 +40,6 @@
           "~@swap"
           "~@obsolete"
           "~@cpu-emulation"
-        ];
-        SystemCallArchitectures = "native";
-        LockPersonality = true;
-      };
-
-      NetworkManager.serviceConfig = {
-        NoNewPrivileges = true;
-        ProtectHome = true;
-        ProtectKernelModules = true;
-        ProtectKernelLogs = true;
-        ProtectControlGroups = true;
-        ProtectClock = true;
-        ProtectHostname = true;
-        ProtectProc = "invisible";
-        PrivateTmp = true;
-        RestrictRealtime = true;
-        RestrictAddressFamilies = [
-          "AF_UNIX"
-          "AF_NETLINK"
-          "AF_INET"
-          "AF_INET6"
-          "AF_PACKET"
-        ];
-        RestrictNamespaces = true;
-        RestrictSUIDSGID = true;
-        MemoryDenyWriteExecute = true;
-        SystemCallFilter = [
-          "~@mount"
-          "~@module"
-          "~@swap"
-          "~@obsolete"
-          "~@cpu-emulation"
-          "ptrace"
         ];
         SystemCallArchitectures = "native";
         LockPersonality = true;
@@ -224,6 +110,7 @@
           "~CAP_SETFCAP"
         ];
       };
+
       bluetooth.serviceConfig = {
         ProtectKernelTunables = lib.mkDefault true;
         ProtectKernelModules = lib.mkDefault true;
@@ -240,45 +127,7 @@
         ];
         SystemCallArchitectures = "native";
       };
-      systemd-rfkill.serviceConfig = {
-        ProtectSystem = "strict";
-        ProtectHome = true;
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-        ProtectControlGroups = true;
-        ProtectClock = true;
-        ProtectProc = "invisible";
-        ProcSubset = "pid";
-        PrivateTmp = true;
-        MemoryDenyWriteExecute = true;
-        NoNewPrivileges = true;
-        LockPersonality = true;
-        RestrictRealtime = true;
-        SystemCallArchitectures = "native";
-        UMask = "0077";
-        IPAddressDeny = "any";
-      };
-      systemd-machined.serviceConfig = {
-        NoNewPrivileges = true;
-        ProtectSystem = "strict";
-        ProtectHome = true;
-        ProtectClock = true;
-        ProtectHostname = true;
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-        ProtectKernelLogs = true;
-        ProtectProc = "invisible";
-        PrivateTmp = true;
-        PrivateMounts = true;
-        PrivateUsers = true;
-        PrivateNetwork = true;
-        RestrictNamespaces = true;
-        RestrictRealtime = true;
-        RestrictSUIDSGID = true;
-        RestrictAddressFamilies = [ "AF_UNIX" ];
-        MemoryDenyWriteExecute = true;
-        SystemCallArchitectures = "native";
-      };
+
       systemd-udevd.serviceConfig = {
         NoNewPrivileges = true;
         ProtectSystem = "strict";
@@ -290,6 +139,7 @@
         RestrictNamespaces = true;
         CapabilityBoundingSet = "~CAP_SYS_PTRACE ~CAP_SYS_PACCT";
       };
+
       nix-daemon.serviceConfig = {
         NoNewPrivileges = true;
         ProtectControlGroups = true;
