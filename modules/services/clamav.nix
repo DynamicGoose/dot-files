@@ -1,5 +1,9 @@
+{ lib, config, ... }:
 {
-  services.clamav = {
+  options.modules.security.clamav.enable =
+    lib.mkEnableOption "Enable clamav antivirus (needs a lot of RAM)";
+
+  config.services.clamav = lib.mkIf config.modules.security.clamav.enable {
     daemon.enable = true;
     updater = {
       enable = true;

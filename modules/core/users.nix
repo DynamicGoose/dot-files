@@ -1,11 +1,14 @@
 {
   lib,
+  pkgs,
   username,
   userDescription,
   ...
 }:
 {
   # place password hash files in /home/${username}/secrets/ (including grub password)
+
+  users.defaultUserShell = pkgs.nushell;
 
   # default user
   users.users.${username} = {
