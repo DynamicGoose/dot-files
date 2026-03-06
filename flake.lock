@@ -124,11 +124,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1772620941,
-        "narHash": "sha256-YAG/jRXoclqZDOUfig0KtKP47/x0bPdgn/GEigr0SsE=",
+        "lastModified": 1772837225,
+        "narHash": "sha256-T8UtHuMqA/wwEib8c1G1L3aUT3J3tJ6qctj+dReVbuc=",
         "ref": "refs/heads/main",
-        "rev": "5c3d0cb634de3360c8d09c6ecb9166cc0a0966be",
-        "revCount": 80,
+        "rev": "6ee7de7e7a0b2e56834be78d8f95bef1c543c638",
+        "revCount": 81,
         "type": "git",
         "url": "https://codeberg.org/DynamicGoose/goose-shell"
       },
