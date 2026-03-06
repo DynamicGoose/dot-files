@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   username,
   userDescription,
   ...
@@ -8,22 +7,12 @@
 {
   # place password hash files in /home/${username}/secrets/ (including grub password)
 
-  # admin user for system management
-  users.defaultUserShell = pkgs.nushell;
-  users.mutableUsers = false;
-  users.users.admin = {
-    isNormalUser = true;
-    description = "System Administrator";
-    extraGroups = [ "wheel" ];
-    hashedPasswordFile = "/home/${username}/secrets/admin";
-    # openssh.authorizedKeys.keys = [];
-  };
-
-  # default user (doesn't have wheel)
+  # default user
   users.users.${username} = {
     isNormalUser = true;
     description = userDescription;
-    extraGroups = lib.mkForce [
+    extraGroups = [
+      "wheel"
       "networkmanager"
       "audio"
       "video"
@@ -37,9 +26,14 @@
   # set default passwords for vm builds
   virtualisation.vmVariant = {
     users.users = {
-      root.password = "root";
-      admin.password = "admin";
-      ${username}.password = username;
+      root = {
+        password = "root";
+        hashedPasswordFile = lib.mkForce null;
+      };
+      ${username} = {
+        password = username;
+        hashedPasswordFile = lib.mkForce null;
+      };
     };
   };
 

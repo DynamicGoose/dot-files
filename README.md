@@ -54,7 +54,7 @@ nixosConfigurations = lib.genHosts = {
 
 1. create password hash
 ```
-mkpasswd --method=yescrypt <password> >> /home/<user>/secrets/<root|admin|user>
+mkpasswd --method=yescrypt <password> >> /home/<user>/secrets/<root|user>
 ```
 2. Path to hashed passwords can be changed in [`modules/core/users.nix`](./modules/core/users.nix).
 
