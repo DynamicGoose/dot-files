@@ -7,7 +7,7 @@
 {
   options.modules.security.usbguard.enable = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = false;
     description = "Enable usbguard to protect usb ports.";
   };
 
@@ -15,7 +15,6 @@
     enable = true;
     IPCAllowedUsers = [
       "root"
-      "admin"
       username
     ];
     presentDevicePolicy = "allow";

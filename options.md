@@ -185,7 +185,7 @@ Enable usbguard to protect usb ports.
 
 **Type:** `lib.types.bool`
 
-**Default:** `true`
+**Default:** `false`
 
 ## [`options.modules.displayManager.sddm.enable`](modules/services/sddm.nix#L7)
 
