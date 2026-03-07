@@ -180,22 +180,96 @@
             "Alt+0".focus-workspace._args = [ 10 ];
 
             "Print".screenshot = [ ];
-            "XF86PowerOff".spawn-sh = [ "goose-shell ipc call panelService togglePowerMenu" ];
-            "XF86AudioMute".spawn-sh = [ "goose-shell ipc call volume toggleMuted" ];
-            "XF86AudioPlay".spawn-sh = [ "playerctl play-pause" ];
-            "XF86AudioPrev".spawn-sh = [ "playerctl previous" ];
-            "XF86AudioNext".spawn-sh = [ "playerctl next" ];
-            "XF86AudioRaiseVolume".spawn-sh = [ "goose-shell ipc call volume increase 5" ];
-            "XF86AudioLowerVolume".spawn-sh = [ "goose-shell ipc call volume decrease 5" ];
-            "XF86MonBrightnessUp".spawn-sh = [ "goose-shell ipc call brightness increase 5" ];
-            "XF86MonBrightnessDown".spawn-sh = [ "goose-shell ipc call brightness decrease 5" ];
+            "XF86PowerOff".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "panelService"
+              "togglePowerMenu"
+            ];
+            "XF86AudioMute".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "volume"
+              "toggleMuted"
+            ];
+            "XF86AudioPlay".spawn = [
+              "playerctl"
+              "play-pause"
+            ];
+            "XF86AudioPrev".spawn = [
+              "playerctl"
+              "previous"
+            ];
+            "XF86AudioNext".spawn = [
+              "playerctl"
+              "next"
+            ];
+            "XF86AudioRaiseVolume".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "volume"
+              "increase"
+              "5"
+            ];
+            "XF86AudioLowerVolume".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "volume"
+              "decrease"
+              "5"
+            ];
+            "XF86MonBrightnessUp".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "brightness"
+              "increase"
+              "5"
+            ];
+            "XF86MonBrightnessDown".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "brightness"
+              "decrease"
+              "5"
+            ];
             "Super+X".close-window = [ ];
-            "Super+A".spawn-sh = [ "goose-shell ipc call panelService toggleLauncher" ]; # launcher
-            "Super+L".spawn-sh = [ "goose-shell ipc call session lock" ]; # lock screen
-            "Super+P".spawn-sh = [ "goose-shell ipc call panelService togglePowerMenu" ]; # power options
-            "Super+S".spawn-sh = [ "goose-shell ipc call panelService toggleControlCenter" ]; # notification hub
+            "Super+A".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "panelService"
+              "toggleLauncher"
+            ]; # launcher
+            "Super+L".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "session"
+              "lock"
+            ]; # lock screen
+            "Super+P".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "panelService"
+              "togglePowerMenu"
+            ]; # power options
+            "Super+S".spawn = [
+              "goose-shell"
+              "ipc"
+              "call"
+              "panelService"
+              "toggleControlCenter"
+            ]; # notification hub
             "Super+T".spawn = "kitty"; # terminal
             "Super+C".spawn-sh = [ "pidof hyprpicker || hyprpicker -lar" ]; # color-picker
+            "Super+K".spawn-sh = [ "keepassxc ~/secrets/main.kdbx" ];
           };
 
           gestures.hot-corners.off = [ ];
