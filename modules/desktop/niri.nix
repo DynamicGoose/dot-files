@@ -331,7 +331,7 @@
                 { match._props.app-id = "io.github.kaii_lb.Overskride"; }
                 { match._props.app-id = "com.network.manager"; }
                 { match._props.app-id = "com.saivert.pwvucontrol"; }
-                { match._props.app-id = "org.pipewire.Helvum"; }
+                { match._props.app-id = "io.github.dp0sk.Crosspipe"; }
                 { match._props.app-id = "com.github.wwmm.easyeffects"; }
                 { match._props.app-id = "wdisplays"; }
               ];
