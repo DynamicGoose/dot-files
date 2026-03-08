@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   inputs,
   system,
@@ -16,6 +15,7 @@
     # easytag
     easyeffects
     fastfetch
+    fluxer
     freecad
     gamemode
     gedit
