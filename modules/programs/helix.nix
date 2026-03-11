@@ -67,17 +67,17 @@
           let
             black = "#000000";
             white = "#ffffff";
-            grey = "#e0e0e0";
-            dark-grey = "#a0a0a0";
-            background-grey = "#0f0f0f";
-            red = "#E00000";
-            orange = "#ff8f40";
-            yellow = "#cecd19";
-            light-green = "#32d032";
-            green = "#008030";
-            blue = "#32c9fa";
-            dark-blue = "#3060c0";
-            purple = "#c040a0";
+            background = "#0f0f0f";
+            foreground = "#616161";
+            accent = "#e0e0e0";
+            purple = "#BA68C8";
+            pink = "#F06292";
+            red = "#F44336";
+            orange = "#FB8C00";
+            yellow = "#FFD600";
+            green = "#66BB6A";
+            teal = "#4DB6AC";
+            blue = "#42A5F5";
           in
           {
             # Interface
@@ -89,25 +89,25 @@
               fg = black;
             };
             "ui.cursor.select" = {
-              bg = dark-grey;
-              fg = grey;
+              bg = foreground;
+              fg = accent;
             };
             "ui.cursor.match" = {
               bg = white;
               fg = black;
             };
-            "ui.cursor.secondary" = grey;
+            "ui.cursor.secondary" = accent;
             "ui.linenr" = {
-              fg = grey;
+              fg = accent;
               bg = black;
             };
             "ui.linenr.selected" = {
-              fg = dark-grey;
+              fg = foreground;
               bg = black;
             };
             "ui.statusline" = {
-              fg = grey;
-              bg = background-grey;
+              fg = accent;
+              bg = background;
             };
             "ui.statusline.normal" = {
               fg = black;
@@ -119,62 +119,62 @@
             };
             "ui.statusline.select" = {
               fg = black;
-              bg = purple;
+              bg = pink;
             };
             "ui.popup" = {
-              fg = grey;
-              bg = background-grey;
+              fg = accent;
+              bg = background;
             };
             "ui.window" = {
-              fg = grey;
+              fg = accent;
             };
             "ui.help" = {
-              fg = grey;
-              bg = background-grey;
+              fg = accent;
+              bg = background;
             };
             "ui.text" = {
-              fg = grey;
+              fg = accent;
             };
             "ui.text.focus" = {
               fg = black;
-              bg = grey;
+              bg = accent;
             };
             "ui.virtual.ruler" = {
-              fg = grey;
-              bg = dark-grey;
+              fg = accent;
+              bg = foreground;
             };
             "ui.virtual.whitespace" = {
-              fg = grey;
+              fg = accent;
             };
             "ui.virtual.indent-guide" = {
-              fg = dark-grey;
+              fg = foreground;
             };
             "ui.virtual.inlay-hint" = {
               fg = black;
               bg = orange;
             };
             "ui.virtual.wrap" = {
-              fg = dark-grey;
+              fg = foreground;
             };
             "ui.menu" = {
-              fg = grey;
-              bg = background-grey;
+              fg = accent;
+              bg = background;
             };
             "ui.menu.selected" = {
               fg = black;
-              bg = grey;
+              bg = accent;
             };
             "ui.menu.scroll" = {
-              fg = grey;
-              bg = dark-grey;
+              fg = accent;
+              bg = foreground;
             };
             "ui.selection" = {
               fg = black;
-              bg = grey;
+              bg = accent;
             };
             "ui.selection.primary" = {
               fg = black;
-              bg = grey;
+              bg = accent;
             };
             "warning" = {
               fg = orange;
@@ -184,14 +184,14 @@
               modifiers = [ "bold" ];
             };
             "info" = {
-              fg = grey;
+              fg = accent;
             };
             "hint" = {
               fg = white;
               modifiers = [ "bold" ];
             };
             "diagnostic" = {
-              fg = grey;
+              fg = accent;
             };
             "diagnostic.hint" = {
               underline = {
@@ -225,32 +225,32 @@
             };
 
             # Syntax Highlighting
-            "attribute" = purple;
+            "attribute" = pink;
             "type" = blue;
             "constructor" = yellow;
             "constant" = yellow;
             "constant.numeric" = green;
             "string" = green;
-            "comment" = light-green;
-            "variable" = grey;
+            "comment" = teal;
+            "variable" = accent;
             "variable.parameter" = yellow;
             "variable.builtin" = yellow;
-            "label" = grey;
-            "punctuation" = dark-grey;
-            "keyword" = dark-blue;
-            "keyword.control" = purple;
-            "operator" = grey;
+            "label" = accent;
+            "punctuation" = foreground;
+            "keyword" = purple;
+            "keyword.control" = pink;
+            "operator" = accent;
             "function" = {
               fg = white;
               modifiers = [ "bold" ];
             };
-            "tag" = dark-blue;
-            "namespace" = grey;
+            "tag" = purple;
+            "namespace" = accent;
             "special" = {
               fg = white;
               modifiers = [ "bold" ];
             };
-            "markup" = grey;
+            "markup" = accent;
             "markup.heading" = {
               fg = white;
               modifiers = [ "bold" ];
@@ -260,15 +260,15 @@
               };
             };
             "markup.bold" = {
-              fg = grey;
+              fg = accent;
               modifiers = [ "bold" ];
             };
             "markup.italic" = {
-              fg = grey;
+              fg = accent;
               modifiers = [ "italic" ];
             };
             "markup.strikethrough" = {
-              fg = grey;
+              fg = accent;
               modifiers = [ "crossed_out" ];
             };
             "markup.link" = {
@@ -279,7 +279,7 @@
               };
             };
             "markup.quote" = {
-              fg = dark-grey;
+              fg = foreground;
               modifiers = [ "italic" ];
             };
             "diff.plus" = green;
