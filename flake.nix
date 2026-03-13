@@ -18,11 +18,6 @@
       url = "git+https://codeberg.org/DynamicGoose/goose-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    better-soundcloud = {
-      url = "github:AlirezaKJ/BetterSoundCloud";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
