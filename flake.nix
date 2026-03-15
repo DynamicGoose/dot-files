@@ -18,6 +18,12 @@
       url = "git+https://codeberg.org/DynamicGoose/goose-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # mobile-nixos with 4G fix for oneplus-enchilada
+    mobile-nixos = {
+      url = "github:mwlaboratories/mobile-nixos/sdm845-bleeding-edge";
+      flake = false;
+    };
   };
 
   outputs =
@@ -58,7 +64,16 @@
           userDescription = "Géza Ahsendorf";
         };
 
-        cyberdeck-gezaa = {
+        # mobile-nixos for oneplus-enchilada
+        mobile-gezaa = {
+          system = "aarch64-linux";
+          # modules differ from normal desktop
+          includeModules = [
+            (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-enchilada"; })
+            inputs.home-manager.nixosModules.home-manager
+            "${self}/mobile.nix"
+            "${self}/hosts/mobile-gezaa"
+          ];
           username = "gezaa";
           userDescription = "Géza Ahsendorf";
         };

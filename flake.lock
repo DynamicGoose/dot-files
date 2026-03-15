@@ -118,6 +118,23 @@
         "type": "github"
       }
     },
+    "mobile-nixos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771796702,
+        "narHash": "sha256-PR0nXZ9kOYA+puqC8owO2ozTjNBDshqZmqbFtOe6jCg=",
+        "owner": "mwlaboratories",
+        "repo": "mobile-nixos",
+        "rev": "65b914fe1e3d59d83ef1933396e20465a12393a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mwlaboratories",
+        "ref": "sdm845-bleeding-edge",
+        "repo": "mobile-nixos",
+        "type": "github"
+      }
+    },
     "niri-nix": {
       "inputs": {
         "git-hooks": "git-hooks",
@@ -273,6 +290,7 @@
       "inputs": {
         "goose-shell": "goose-shell",
         "home-manager": "home-manager",
+        "mobile-nixos": "mobile-nixos",
         "niri-nix": "niri-nix",
         "nixpkgs": "nixpkgs_3"
       }

@@ -75,6 +75,8 @@
         consoleLogLevel = 0;
         initrd.verbose = false;
 
+        binfmt.emulatedSystems = [ "aarch64-linux" ];
+
         kernelParams = [
           "quiet"
           "splash"
