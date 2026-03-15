@@ -68,15 +68,13 @@
             black = "#000000";
             white = "#ffffff";
             background = "#0f0f0f";
-            foreground = "#616161";
+            foreground-dark = "#616161";
+            foreground = "#9E9E9E";
             accent = "#e0e0e0";
             purple = "#BA68C8";
-            pink = "#F06292";
             red = "#F44336";
-            orange = "#FB8C00";
             yellow = "#FFD600";
             green = "#66BB6A";
-            teal = "#4DB6AC";
             blue = "#42A5F5";
           in
           {
@@ -115,11 +113,11 @@
             };
             "ui.statusline.insert" = {
               fg = black;
-              bg = orange;
+              bg = yellow;
             };
             "ui.statusline.select" = {
               fg = black;
-              bg = pink;
+              bg = purple;
             };
             "ui.popup" = {
               fg = accent;
@@ -151,7 +149,7 @@
             };
             "ui.virtual.inlay-hint" = {
               fg = black;
-              bg = orange;
+              bg = yellow;
             };
             "ui.virtual.wrap" = {
               fg = foreground;
@@ -177,7 +175,7 @@
               bg = accent;
             };
             "warning" = {
-              fg = orange;
+              fg = yellow;
             };
             "error" = {
               fg = red;
@@ -207,7 +205,7 @@
             };
             "diagnostic.warning" = {
               underline = {
-                color = orange;
+                color = yellow;
                 style = "curl";
               };
             };
@@ -225,20 +223,19 @@
             };
 
             # Syntax Highlighting
-            "attribute" = pink;
+            "attribute" = purple;
             "type" = blue;
             "constructor" = yellow;
             "constant" = yellow;
             "constant.numeric" = green;
             "string" = green;
-            "comment" = teal;
+            "comment" = foreground-dark;
             "variable" = accent;
             "variable.parameter" = yellow;
             "variable.builtin" = yellow;
             "label" = accent;
             "punctuation" = foreground;
             "keyword" = purple;
-            "keyword.control" = pink;
             "operator" = accent;
             "function" = {
               fg = white;
