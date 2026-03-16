@@ -85,11 +85,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1772920752,
-        "narHash": "sha256-XBWkvWPEQIjRx0Dip+C8/hnTHGuO2rEqCJOePMdS43s=",
+        "lastModified": 1773702474,
+        "narHash": "sha256-xT0Ms87R4mS4GqxigqrKOSz71XVxmVYzACl63QCJtR8=",
         "ref": "refs/heads/main",
-        "rev": "6c712dbaa4b5651d0262c4f2f2a5feeb1a70ad4e",
-        "revCount": 82,
+        "rev": "e5b5ded6fca83baeda0a84f938aaedd27bb87360",
+        "revCount": 83,
         "type": "git",
         "url": "https://codeberg.org/DynamicGoose/goose-shell"
       },
@@ -251,11 +251,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1771081477,
-        "narHash": "sha256-KCaoH2DTP9C8JXZoDcjaRxabP1+53KU96rdbLlcDyow=",
+        "lastModified": 1773495240,
+        "narHash": "sha256-ITW412o7kTWggWT/ciEtx5eDPylGIvStN7TaxUw8574=",
         "owner": "imiric",
         "repo": "qml-niri",
-        "rev": "c9ffda54fbff2fc3095ed92c708e9812b86e15db",
+        "rev": "a25b44269b2a818b36831606b535a332eac52b21",
         "type": "github"
       },
       "original": {
@@ -273,11 +273,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772795720,
-        "narHash": "sha256-jAmJlxVl+dy3OgF9zn0MVmeXSmblRaDMMV1X1hzRN5g=",
+        "lastModified": 1773648506,
+        "narHash": "sha256-uVdqQIOzmMcHy1bUyF5NdZ3T5f1/5OVSNx3nIoXV6Os=",
         "ref": "refs/heads/master",
-        "rev": "6bcd3d9bbf81efdd8620409b268b90310bc1374c",
-        "revCount": 749,
+        "rev": "6705e2da778d216e81dbdc3764a3f50e89bfd87d",
+        "revCount": 761,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
