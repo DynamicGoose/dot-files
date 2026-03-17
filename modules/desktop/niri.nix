@@ -350,6 +350,88 @@
               };
             }
           ];
+          animations = {
+            workspace-switch.spring._props = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0003;
+            };
+
+            horizontal-view-movement.spring._props = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0003;
+            };
+
+            window-movement.spring._props = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0003;
+            };
+
+            window-resize.spring._props = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0003;
+            };
+
+            config-notification-open-close.spring._props = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0003;
+            };
+
+            exit-confirmation-open-close.spring._props = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0003;
+            };
+
+            overview-open-close.spring._props = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0003;
+            };
+
+            recent-windows-close.spring._props = {
+              damping-ratio = 1.0;
+              stiffness = 1000;
+              epsilon = 0.0003;
+            };
+
+            window-open = {
+              duration-ms._args = [ 128 ];
+              curve._args = [
+                "cubic-bezier"
+                0.5
+                0
+                0.5
+                1.0
+              ];
+            };
+
+            window-close = {
+              duration-ms._args = [ 128 ];
+              curve._args = [
+                "cubic-bezier"
+                0.5
+                0
+                0.5
+                1.0
+              ];
+            };
+
+            screenshot-ui-open = {
+              duration-ms._args = [ 256 ];
+              curve._args = [
+                "cubic-bezier"
+                0.5
+                0
+                0.5
+                1.0
+              ];
+            };
+          };
         };
       };
     };
