@@ -25,7 +25,7 @@
     gnome-disk-utility
     imv
     keepassxc
-    kicad
+    # kicad
     libreoffice-fresh
     librewolf
     musescore
