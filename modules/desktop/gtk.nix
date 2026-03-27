@@ -20,6 +20,7 @@
         iconTheme.package = pkgs.papirus-icon-theme;
         theme.name = "Graphite-Dark";
         theme.package = pkgs.graphite-gtk-theme.override { tweaks = [ "black" ]; };
+        gtk4.theme = config.gtk.theme;
       };
     };
 }
