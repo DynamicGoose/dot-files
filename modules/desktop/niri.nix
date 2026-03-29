@@ -51,6 +51,7 @@
   environment.systemPackages = with pkgs; [
     cliphist
     hyprpicker
+    wl-clipboard # dependency of hyprpicker
     kitty
     playerctl
     wl-clip-persist
@@ -268,7 +269,7 @@
               "toggleControlCenter"
             ]; # notification hub
             "Super+T".spawn = "kitty"; # terminal
-            "Super+C".spawn-sh = [ "pidof hyprpicker || hyprpicker -lar" ]; # color-picker
+            "Super+C".spawn-sh = [ "pidof hyprpicker || hyprpicker -la" ]; # color-picker
             "Super+K".spawn-sh = [ "keepassxc ~/secrets/main.kdbx" ];
           };
 
