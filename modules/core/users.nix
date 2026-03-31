@@ -20,6 +20,7 @@
       "audio"
       "video"
       "cdrom"
+      "dialout"
     ];
     hashedPasswordFile = "/home/${username}/secrets/${username}";
   };
