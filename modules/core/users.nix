@@ -21,6 +21,7 @@
       "video"
       "cdrom"
       "dialout"
+      "feedbackd"
     ];
     hashedPasswordFile = "/home/${username}/secrets/${username}";
   };
@@ -42,7 +43,7 @@
   };
 
   environment.etc."/security/pwquality.conf".text = ''
-    minlen=8
+    minlen=4
   '';
 
   # .cache tmpfs

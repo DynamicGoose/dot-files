@@ -53,6 +53,12 @@ enable hyprid mode for laptops
 
 **Default:** `""`
 
+## [`options.modules.pkgs.nemo.enable`](modules/pkgs/nemo.nix#L8)
+
+**Type:** `lib.types.bool`
+
+**Default:** `true`
+
 ## [`options.modules.desktop.plasma.enable`](modules/desktop/plasma.nix#L3)
 
 Enable KDE Plasma 6 Desktop

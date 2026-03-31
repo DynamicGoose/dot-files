@@ -19,9 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # mobile-nixos with 4G fix for oneplus-enchilada
     mobile-nixos = {
-      url = "github:mwlaboratories/mobile-nixos/sdm845-bleeding-edge";
+      url = "github:matthewcroughan/mobile-nixos/mc/611"; # TODO: use upstream in the future
       flake = false;
     };
   };
@@ -102,7 +101,7 @@
         tp-gezaa = lib.mkVMApp "tp-gezaa";
         hp-gezaa = lib.mkVMApp "hp-gezaa";
         dl-gezaa = lib.mkVMApp "dl-gezaa";
-        cyberdeck-gezaa = lib.mkVMApp "cyberdeck-gezaa";
+        mobile-gezaa = lib.mkVMApp "mobile-gezaa";
         usb-gezaa = lib.mkVMApp "usb-gezaa";
 
         # generate option documentation using https://github.com/Thunderbottom/nix-options-doc
@@ -113,6 +112,10 @@
           }";
         };
       });
+
+      # build mobile images
+      packages.mobile-images =
+        self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-fastboot-images;
       # Library functions for external use
       lib = lib;
     };

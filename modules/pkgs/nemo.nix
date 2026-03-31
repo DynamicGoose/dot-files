@@ -1,9 +1,21 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = [
-    pkgs.nemo-with-extensions
-    pkgs.xarchiver
-  ];
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
+  options.modules.pkgs.nemo.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+  };
 
-  services.gvfs.enable = true;
+  config = lib.mkIf (config.modules.pkgs.nemo.enable) {
+    environment.systemPackages = [
+      pkgs.nemo-with-extensions
+      pkgs.xarchiver
+    ];
+
+    services.gvfs.enable = true;
+  };
 }
