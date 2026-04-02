@@ -13,7 +13,7 @@
     # easytag
     easyeffects
     fastfetch
-    fluxer
+    # fluxer
     freecad
     gamemode
     gedit
