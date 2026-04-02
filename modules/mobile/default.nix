@@ -45,4 +45,6 @@
 
   # modem-manager
   networking.modemmanager.enable = true;
+
+  programs.steam.extraCompatPackages = lib.mkForce [ ];
 }
