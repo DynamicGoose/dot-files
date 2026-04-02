@@ -9,7 +9,7 @@
     lsp-plugins
     calf
     tap-plugins
-    distrho-ports
+    # distrho-ports
 
     # synths
     vital
