@@ -23,19 +23,32 @@
     # pkgs
     ../pkgs
     # programs
-    ../programs
+    ../programs/nix-ld.nix
+    ../programs/evince.nix
+    ../programs/helix.nix
+    ../programs/k3b.nix
+    ../programs/zoxide.nix
+    ../programs/nh.nix
     # services
-    ../services
+    ../services/xserver.nix
+    ../services/printing.nix
+    ../services/dbus.nix
+    ../services/syncthing.nix
+    ../services/power-management.nix
+    ../services/envfs.nix
+    ../services/journald.nix
+    ../services/ssh.nix
+    ../services/audio.nix
 
     # mobile modules
     ./desktop
     ./pkgs
   ];
 
-  modules.displayManager.lightdm.enable = false; # disable lightdm (bc mobile interface)
+  # modules.displayManager.lightdm.enable = false; # disable lightdm (bc mobile interface)
   modules.pkgs.nemo.enable = false; # disable nemo (bc mobile interface)
-  modules.programs.gpu-screen-recorder.enable = false; # disable bc incompatible
-  modules.programs.steam.enable = false; # disable steam
+  # modules.programs.gpu-screen-recorder.enable = false; # disable bc incompatible
+  # modules.programs.steam.enable = false; # disable steam
 
   hardware.graphics.enable32Bit = lib.mkForce false; # disable 32 bit graphics bc mobile
 
