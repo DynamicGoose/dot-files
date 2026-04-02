@@ -241,5 +241,11 @@ desktop config
 
 **Default:** `"/home/${username}/git/dot-files"`
 
+## [`options.modules.programs.steam.enable`](modules/programs/steam.nix#L8)
+
+**Type:** `lib.types.bool`
+
+**Default:** `true`
+
 ---
 *Generated with [nix-options-doc](https://github.com/Thunderbottom/nix-options-doc)*

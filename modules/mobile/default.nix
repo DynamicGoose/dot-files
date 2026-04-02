@@ -35,6 +35,7 @@
   modules.displayManager.lightdm.enable = false; # disable lightdm (bc mobile interface)
   modules.pkgs.nemo.enable = false; # disable nemo (bc mobile interface)
   modules.programs.gpu-screen-recorder.enable = false; # disable bc incompatible
+  modules.programs.steam.enable = false; # disable steam
 
   hardware.graphics.enable32Bit = lib.mkForce false; # disable 32 bit graphics bc mobile
 
@@ -46,5 +47,5 @@
   # modem-manager
   networking.modemmanager.enable = true;
 
-  programs.steam.extraCompatPackages = lib.mkForce [ ];
+  programs.steam.enable = lib.mkForce false;
 }
