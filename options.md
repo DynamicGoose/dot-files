@@ -229,6 +229,12 @@ desktop config
 
 **Example:** `true`
 
+## [`options.modules.programs.gpu-screen-recorder.enable`](modules/programs/gpu-screen-recorder.nix#L8)
+
+**Type:** `lib.types.bool`
+
+**Default:** `true`
+
 ## [`options.modules.programs.nh.configPath`](modules/programs/nh.nix#L8)
 
 **Type:** `lib.types.str`
