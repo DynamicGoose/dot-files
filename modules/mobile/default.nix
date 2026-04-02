@@ -30,11 +30,9 @@
     ../programs/zoxide.nix
     ../programs/nh.nix
     # services
-    ../services/xserver.nix
     ../services/printing.nix
     ../services/dbus.nix
     ../services/syncthing.nix
-    ../services/power-management.nix
     ../services/envfs.nix
     ../services/journald.nix
     ../services/ssh.nix
