@@ -20,7 +20,7 @@
     };
 
     mobile-nixos = {
-      url = "github:matthewcroughan/mobile-nixos/mc/611"; # TODO: use upstream in the future
+      url = "github:mobile-nixos/mobile-nixos"; # TODO: use upstream in the future
       flake = false;
     };
   };
