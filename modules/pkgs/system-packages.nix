@@ -35,20 +35,21 @@
         temurin-bin-25
       ];
     })
+    psst
     # r2modman
     resources
     scarlett2
-    sidequest
+    # sidequest
     signal-desktop
     sound-juicer
-    spotify
+    # spotify
     telegram-desktop
     thunderbird
     totem
     vesktop
     wasistlos
     wget
-    wineWow64Packages.waylandFull
+    # wineWow64Packages.waylandFull
     # yabridge
     # yabridgectl
   ];
