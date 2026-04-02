@@ -28,7 +28,7 @@
     librewolf
     musescore
     obsidian
-    pkgsRocm.blender
+    # pkgsRocm.blender
     (prismlauncher.override {
       jdks = [
         temurin-bin
