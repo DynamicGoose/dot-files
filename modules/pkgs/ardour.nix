@@ -12,7 +12,7 @@
     # distrho-ports
 
     # synths
-    vital
+    # vital
     zynaddsubfx
 
     # samplers
@@ -21,10 +21,10 @@
     drumkv1
 
     # eqs/filters
-    eq10q
+    # eq10q
 
     # distortion
-    wolf-shaper
+    # wolf-shaper
 
     # amp sim
     tamgamp-lv2
