@@ -114,8 +114,12 @@
       });
 
       # build mobile images
-      packages.aarch64-linux.mobile-images =
-        self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-fastboot-images;
+      packages.aarch64-linux.mobile-images = {
+        all = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-fastboot-images;
+        boot = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-bootimg;
+        system = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.generatedFilesystems.rootfs;
+      };
+
       # Library functions for external use
       lib = lib;
     };
