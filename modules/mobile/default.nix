@@ -55,6 +55,11 @@
     ${username}.password = lib.mkForce "1234";
     root.password = lib.mkForce "1234";
   };
+
+  security = {
+    run0.enableSudoAlias = lib.mkForce false;
+    sudo-rs.enable = lib.mkForce true;
+  };
   # users.users.${username}.hashedPasswordFile =
   #   lib.mkForce "/home/${username}/secrets/${username}-mobile";
   # users.users.root.hashedPasswordFile = lib.mkForce "/home/${username}/secrets/root-mobile";

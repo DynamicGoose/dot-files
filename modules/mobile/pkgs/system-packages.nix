@@ -2,8 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     gnome-console # mobile-friendly terminal
-    squeekboard
+    kitty
     phosh-mobile-settings
-    stevia
   ];
 }
