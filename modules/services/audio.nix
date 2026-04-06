@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   username,
   ...
@@ -23,11 +24,9 @@
       pulseaudio.enable = false;
     };
 
-    home-manager.users.${username} =
-      { config, ... }:
-      {
-        # pipewire user config
-        xdg.configFile."pipewire/pipewire.conf".text = ''
+    systemd.services.pipewireConfig =
+      let
+        config = pkgs.writeText "pipewire.conf" ''
           # Daemon config file for PipeWire version "1.4.9" #
           #
           # Copy and edit this file in /etc/pipewire for system-wide changes
@@ -400,6 +399,19 @@
             #  condition = [ { exec.pipewire-pulse = !false } ] }
           ]
         '';
+        copy-config = pkgs.writeShellScript "copy-kvantum-config.sh" ''
+          ${pkgs.coreutils}/bin/rm -rf /home/${username}/.config/pipewire
+          ${pkgs.coreutils}/bin/mkdir /home/${username}/.config/pipewire
+          ${pkgs.coreutils}/bin/ln -sf ${config} /home/${username}/.config/pipewire/pipewire.conf
+        '';
+      in
+      {
+        description = "Copy Pipewire Config";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = copy-config;
+        };
       };
   };
 }
