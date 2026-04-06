@@ -3,12 +3,11 @@
   ...
 }:
 {
-  home-manager.users.${username} =
-    { config, ... }:
-    {
-      services.syncthing = {
-        enable = true;
-        extraOptions = [ "--gui-apikey=gezaa" ];
-      };
-    };
+  services.syncthing = {
+    enable = true;
+    user = username;
+    dataDir = "/home/${username}";
+    configDir = "/home/${username}/.local/state/syncthing";
+    extraFlags = [ "--gui-apikey=gezaa" ];
+  };
 }

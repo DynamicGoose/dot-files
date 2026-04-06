@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 {
@@ -31,23 +30,22 @@
       memorySize = 4096;
       cores = 4;
     };
-        
+
     programs.virt-manager.enable = config.modules.virtualisation.virt-manager.enable;
-    programs.dconf.enable = true;
+    programs.dconf = {
+      enable = true;
+      profiles.user.databases = [
+        {
+          settings."org/virt-manager/virt-manager/connections" = {
+            autoconnect = [ "qemu:///system" ];
+            uris = [ "qemu:///system" ];
+          };
+        }
+      ];
+    };
 
     environment.systemPackages = lib.mkIf (config.modules.virtualisation.waydroid.enable) [
       pkgs.waydroid-helper
     ];
-
-    home-manager.users.${username} =
-      { config, ... }:
-      {
-        dconf.settings = {
-          "org/virt-manager/virt-manager/connections" = {
-            autoconnect = [ "qemu:///system" ];
-            uris = [ "qemu:///system" ];
-          };
-        };
-      };
   };
 }

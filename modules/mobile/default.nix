@@ -48,24 +48,31 @@
   # modules.programs.gpu-screen-recorder.enable = false; # disable bc incompatible
   # modules.programs.steam.enable = false; # disable steam
 
+  # mobile.beautification.splash = true;
+  # mobile.beautification.silentBoot = true;
+
   hardware.graphics.enable32Bit = lib.mkForce false; # disable 32 bit graphics bc mobile
 
   # allow mobile-specific passwords
-  users.users = {
-    ${username}.password = lib.mkForce "1234";
-    root.password = lib.mkForce "1234";
-  };
+  # users.users = {
+  #   ${username}.password = lib.mkForce "1234";
+  #   root.password = lib.mkForce "1234";
+  # };
 
   security = {
     run0.enableSudoAlias = lib.mkForce false;
     sudo-rs.enable = lib.mkForce true;
   };
-  # users.users.${username}.hashedPasswordFile =
-  #   lib.mkForce "/home/${username}/secrets/${username}-mobile";
-  # users.users.root.hashedPasswordFile = lib.mkForce "/home/${username}/secrets/root-mobile";
+  
+  users.users.${username}.hashedPasswordFile =
+    lib.mkForce "/home/${username}/secrets/${username}-mobile";
+  users.users.root.hashedPasswordFile = lib.mkForce "/home/${username}/secrets/root-mobile";
 
   # modem-manager
   networking.modemmanager.enable = true;
 
   programs.steam.enable = lib.mkForce false;
+
+  services.pipewire.enable = lib.mkForce false;
+  services.pulseaudio.enable = lib.mkForce true;
 }

@@ -20,7 +20,7 @@
     };
 
     mobile-nixos = {
-      url = "github:mobile-nixos/mobile-nixos"; # TODO: use upstream in the future
+      url = "github:mwlaboratories/mobile-nixos/sdm845-bleeding-edge"; # TODO: use upstream in the future
       flake = false;
     };
   };

@@ -37,6 +37,8 @@
     pkgs.graphite-cursors
   ];
 
+  environment.sessionVariables.GTK_THEME = "Graphite-Dark"; # for some reason gtk4 doesn't respect other settings
+
   # dconf settings
   programs.dconf.profiles.user.databases = [
     {

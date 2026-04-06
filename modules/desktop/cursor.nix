@@ -1,17 +1,36 @@
 {
   pkgs,
-  username,
+  # username,
   ...
 }:
+let
+  defaultIndexTheme = pkgs.writeTextFile {
+    name = "index.theme";
+    destination = "/share/icons/default/index.theme";
+    text = ''
+      [Icon Theme]
+      Name=Default
+      Comment=Default Icon Theme
+      Inherits=graphite-dark
+    '';
+  };
+in
 {
-  home-manager.users.${username} =
-    { config, ... }:
-    {
-      home.pointerCursor = {
-        name = "graphite-dark";
-        package = pkgs.graphite-cursors;
-        size = 24;
-        gtk.enable = true;
-      };
-    };
+  environment.systemPackages = [
+    pkgs.graphite-cursors
+    defaultIndexTheme
+  ];
+
+  environment.sessionVariables.XCURSOR_THEME = "graphite-dark";
+
+  # home-manager.users.${username} =
+  #   { config, ... }:
+  #   {
+  #     home.pointerCursor = {
+  #       name = "graphite-dark";
+  #       package = pkgs.graphite-cursors;
+  #       size = 24;
+  #       gtk.enable = true;
+  #     };
+  #   };
 }
