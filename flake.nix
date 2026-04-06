@@ -114,11 +114,29 @@
       });
 
       # build mobile images
-      packages.aarch64-linux.mobile-images = {
-        all = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-fastboot-images;
-        boot = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-bootimg;
-        system = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.generatedFilesystems.rootfs;
-      };
+      packages = lib.eachSystem (
+        system:
+        let
+          pkgs = lib.pkgsFor.${system};
+        in
+        {
+          mobile-images = {
+            all = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-fastboot-images;
+            boot = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-bootimg;
+            system = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.generatedFilesystems.rootfs;
+          };
+
+          pkgs = pkgs.lib.packagesFromDirectoryRecursive {
+            callPackage = pkgs.callPackage;
+            directory = ./pkgs;
+          };
+
+          # wrappers = pkgs.lib.packagesFromDirectoryRecursive {
+          #   callPackage = pkgs.callPackage;
+          #   directory = ./wrappers;
+          # };
+        }
+      );
 
       # Library functions for external use
       lib = lib;
