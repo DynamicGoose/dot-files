@@ -10,11 +10,23 @@
       allowUnfree = true;
     };
     overlays = [
+      # custom packages
       (
         final: prev:
         lib.packagesFromDirectoryRecursive {
           callPackage = prev.callPackage;
           directory = ../../pkgs;
+        }
+      )
+      # custom wrappers
+      (
+        final: prev:
+        let
+          prev-with-wrappers = prev.lib.mergeAttrs prev { wrapper-modules = inputs.wrapper-modules; };
+        in
+        lib.packagesFromDirectoryRecursive {
+          callPackage = prev.lib.callPackageWith prev-with-wrappers;
+          directory = ../../wrappers;
         }
       )
       inputs.goose-shell.overlays.${system}.default

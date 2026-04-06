@@ -292,7 +292,8 @@
         "home-manager": "home-manager",
         "mobile-nixos": "mobile-nixos",
         "niri-nix": "niri-nix",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "wrapper-modules": "wrapper-modules"
       }
     },
     "treefmt-nix": {
@@ -310,6 +311,26 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "wrapper-modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775505758,
+        "narHash": "sha256-akjVahwblAas9ea/pCopiQcmzAkNpRmPxh4j1nHPNV4=",
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
+        "rev": "483f1b2e52c919a4eb495b441b2245289406ed6b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
         "type": "github"
       }
     },

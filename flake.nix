@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wrapper-modules = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri-nix = {
       url = "git+https://codeberg.org/BANanaD3V/niri-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -131,10 +136,14 @@
             directory = ./pkgs;
           };
 
-          # wrappers = pkgs.lib.packagesFromDirectoryRecursive {
-          #   callPackage = pkgs.callPackage;
-          #   directory = ./wrappers;
-          # };
+          wrappers =
+            let
+              pkgs-with-wrappers = pkgs.lib.mergeAttrs pkgs { wrapper-modules = inputs.wrapper-modules; };
+            in
+            pkgs.lib.packagesFromDirectoryRecursive {
+              callPackage = pkgs.lib.callPackageWith pkgs-with-wrappers;
+              directory = ./wrappers;
+            };
         }
       );
 
