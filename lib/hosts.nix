@@ -8,7 +8,6 @@ let
       username ? "user",
       userDescription ? "Default User",
       includeModules ? [
-        inputs.home-manager.nixosModules.home-manager
         "${self}/default.nix"
         "${self}/hosts/${hostDir}"
       ],

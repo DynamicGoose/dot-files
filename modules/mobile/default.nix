@@ -3,7 +3,6 @@
   imports = [
     # imports from normal desktop
     # core
-    ../core/home-manager.nix
     ../core/locale.nix
     ../core/networking.nix
     ../core/nix.nix

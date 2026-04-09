@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     wrapper-modules = {
       url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,7 +69,6 @@
           # modules differ from normal desktop
           includeModules = [
             (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-enchilada"; })
-            inputs.home-manager.nixosModules.home-manager
             "${self}/mobile.nix"
             "${self}/hosts/mobile-gezaa"
           ];

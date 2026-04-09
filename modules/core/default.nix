@@ -9,7 +9,6 @@
     ./locale.nix
     ./users.nix
     ./shells.nix
-    ./home-manager.nix
     ./virtualisation.nix
   ];
 }
