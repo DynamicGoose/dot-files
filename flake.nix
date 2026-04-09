@@ -138,7 +138,10 @@
 
           wrappers =
             let
-              pkgs-with-wrappers = pkgs.lib.mergeAttrs pkgs { wrapper-modules = inputs.wrapper-modules; };
+              pkgs-with-wrappers = pkgs.lib.mergeAttrs pkgs {
+                inputs = inputs;
+                system = system;
+              };
             in
             pkgs.lib.packagesFromDirectoryRecursive {
               callPackage = pkgs.lib.callPackageWith pkgs-with-wrappers;

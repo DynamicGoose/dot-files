@@ -14,9 +14,9 @@
         if (!config.modules.services.hypridle.desktop) then
           ''
             general {
-              lock_cmd = goose-shell ipc call session lock
-              before_sleep_cmd = niri msg action power-off-monitors
-              after_sleep_cmd = loginctl lock-session && niri msg action power-on-monitors
+              lock_cmd = ${lib.getExe pkgs.goose-shell} ipc call session lock
+              before_sleep_cmd = ${lib.getExe config.programs.niri.package} msg action power-off-monitors
+              after_sleep_cmd = loginctl lock-session && ${lib.getExe config.programs.niri.package} msg action power-on-monitors
             }
 
             listener {
@@ -38,8 +38,8 @@
 
             listener {
               timeout = 380
-              on-timeout = niri msg action power-off-monitors
-              on-resume = niri msg action power-on-monitors
+              on-timeout = ${lib.getExe config.programs.niri.package} msg action power-off-monitors
+              on-resume = ${lib.getExe config.programs.niri.package} msg action power-on-monitors
             }
 
             listener {
@@ -50,9 +50,9 @@
         else
           ''
             general {
-              lock_cmd = goose-shell ipc call session lock
-              before_sleep_cmd = niri msg action power-off-monitors
-              after_sleep_cmd = loginctl lock-session && niri msg action power-on-monitors
+              lock_cmd = ${lib.getExe pkgs.goose-shell} ipc call session lock
+              before_sleep_cmd = ${lib.getExe config.programs.niri.package} msg action power-off-monitors
+              after_sleep_cmd = loginctl lock-session && ${lib.getExe config.programs.niri.package} msg action power-on-monitors
             }
           ''
       );

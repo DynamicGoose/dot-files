@@ -1,5 +1,8 @@
 {
   pkgs,
+  lib,
+  inputs,
+  system,
   username,
   ...
 }:
@@ -24,6 +27,17 @@
     # Ethernet expansion card support
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="8156", ATTR{power/autosuspend}="20"
   '';
+
+  # niri settings
+  programs.niri.package = lib.mkForce (
+    pkgs.callPackage ../../wrappers/niri-wrapped/package.nix {
+      settingsOverrides = {
+        outputs."eDP-1".scale = 1.0;
+      };
+      inputs = inputs;
+      system = system;
+    }
+  );
 
   home-manager.users.${username} =
     { pkgs, ... }:
@@ -81,14 +95,5 @@
         light_5 = 10
 
       '';
-
-      wayland.windowManager.niri.settings = {
-        output = [
-          {
-            _args = [ "eDP-1" ];
-            scale = 1.0;
-          }
-        ];
-      };
     };
 }

@@ -1,5 +1,5 @@
-{ wrapper-modules, pkgs }:
-wrapper-modules.wrappers.helix.wrap {
+{ inputs, pkgs }:
+inputs.wrapper-modules.wrappers.helix.wrap {
   inherit pkgs;
   settings = {
     theme = "minimal";

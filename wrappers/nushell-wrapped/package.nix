@@ -1,14 +1,14 @@
 {
-  wrapper-modules,
+  inputs,
   pkgs,
   lib,
 }:
 let
   starship-wrapped = pkgs.callPackage ../starship-wrapped/package.nix {
-    wrapper-modules = wrapper-modules;
+    inputs = inputs;
   };
 in
-wrapper-modules.wrappers.nushell.wrap {
+inputs.wrapper-modules.wrappers.nushell.wrap {
   inherit pkgs;
   extraPackages = [
     starship-wrapped

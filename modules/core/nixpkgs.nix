@@ -22,7 +22,10 @@
       (
         final: prev:
         let
-          prev-with-wrappers = prev.lib.mergeAttrs prev { wrapper-modules = inputs.wrapper-modules; };
+          prev-with-wrappers = prev.lib.mergeAttrs prev {
+            inputs = inputs;
+            system = system;
+          };
         in
         lib.packagesFromDirectoryRecursive {
           callPackage = prev.lib.callPackageWith prev-with-wrappers;

@@ -1,11 +1,11 @@
 {
-  wrapper-modules,
+  inputs,
   pkgs,
 }:
 let
   starship-config = pkgs.writeText "starship.toml" (builtins.readFile ./starship.toml);
 in
-wrapper-modules.lib.wrapPackage {
+inputs.wrapper-modules.lib.wrapPackage {
   inherit pkgs;
   package = pkgs.starship;
   env = {
