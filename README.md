@@ -5,7 +5,7 @@ My multi-host NixOS flake!
 ## Features
 
 - **Flakes:** dependency version management
-- **Home Manager:** user software configuration
+- **nix-wrapper-modules:** user software configuration
 - **Security:** sandboxing through nix-bwrapper, immutable user config, minimized setuid wrappers
 - **nh:** nice NixOS cli helper with rebuild dependency graph
 - **development shells:** built-in shells for some development environments
