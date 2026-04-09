@@ -1,5 +1,8 @@
 {
-  username,
+  pkgs,
+  lib,
+  inputs,
+  system,
   ...
 }:
 {
@@ -11,28 +14,33 @@
   # CpuFreqGov performance mode
   powerManagement.cpuFreqGovernor = "performance";
 
-  home-manager.users.${username} =
-    { pkgs, ... }:
-    {
-      wayland.windowManager.niri.settings = {
-        output = [
-          {
-            _args = [ "DP-1" ];
-            focus-at-startup = [ ];
-            variable-refresh-rate = [ ];
-          }
-          {
-            _args = [ "HDMI-A-1" ];
-            mode = {
-              _args = [ "1920x1080@74.906" ];
-              _props.custom = true;
+  # niri settings
+  programs.niri.package = lib.mkForce (
+    pkgs.callPackage ../../wrappers/niri-wrapped/package.nix {
+      settingsOverrides = {
+        outputs = {
+          "DP-1" = {
+            focus-at-startup = _: { };
+            variable-refresh-rate = _: { };
+          };
+          "HDMI-A-1" = {
+            mode = _: {
+              props = [
+                { custom = true; }
+                "1920x1080@74.906"
+              ];
             };
-          }
-        ];
+          };
+        };
 
         spawn-sh-at-startup = [
-          [ "sleep 1 && goose-shell ipc call networking setWifiEnabled false" ]
+          "sleep 1 && ${lib.getExe pkgs.goose-shell} ipc call networking setWifiEnabled false"
         ];
+
+        input.keyboard.xkb.layout = "eu";
       };
-    };
+      inputs = inputs;
+      system = system;
+    }
+  );
 }

@@ -39,11 +39,9 @@
     }
   );
 
-  home-manager.users.${username} =
-    { pkgs, ... }:
-    {
-      # config file for illuminanced service
-      xdg.configFile."illuminanced.toml".text = ''
+  systemd.services.illuminancedConfig =
+    let
+      config = pkgs.writeText "illuminanced.toml" ''
         [daemonize]
         # log_to = "syslog" or /file/path
         log_to = "syslog"
@@ -93,7 +91,17 @@
 
         illuminance_5 = 7100
         light_5 = 10
-
       '';
+      copy-config = pkgs.writeShellScript "copy-kvantum-config.sh" ''
+        ${pkgs.coreutils}/bin/ln -sf ${config} /home/${username}/.config/illuminanced.toml
+      '';
+    in
+    {
+      description = "Copy Illuminanced Config";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = copy-config;
+      };
     };
 }

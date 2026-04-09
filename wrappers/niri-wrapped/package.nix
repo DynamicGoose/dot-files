@@ -55,7 +55,7 @@ inputs.wrapper-modules.wrappers.niri.wrap {
     input = {
       disable-power-key-handling = _: { };
       warp-mouse-to-focus = _: { };
-      focus-follows-mouse = _: { propsmax-scroll-amount = "25%"; };
+      focus-follows-mouse = _: { props.max-scroll-amount = "25%"; };
       mouse.accel-speed = 0.5;
       touchpad = {
         tap = _: { };

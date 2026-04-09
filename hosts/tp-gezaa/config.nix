@@ -1,5 +1,8 @@
 {
-  username,
+  pkgs,
+  lib,
+  inputs,
+  system,
   ...
 }:
 {
@@ -21,16 +24,14 @@
     ];
   };
 
-  home-manager.users.${username} =
-    { pkgs, ... }:
-    {
-      wayland.windowManager.niri.settings = {
-        output = [
-          {
-            _args = [ "eDP-1" ];
-            scale = 1.0;
-          }
-        ];
+  # niri settings
+  programs.niri.package = lib.mkForce (
+    pkgs.callPackage ../../wrappers/niri-wrapped/package.nix {
+      settingsOverrides = {
+        outputs."eDP-1".scale = 1.0;
       };
-    };
+      inputs = inputs;
+      system = system;
+    }
+  );
 }
