@@ -33,10 +33,9 @@
     noise-repellent
   ];
 
-  home-manager.users.${username} =
-    { pkgs, ... }:
-    {
-      xdg.configFile."ardour8/ui_config".text = ''
+  systemd.services.ardourConfig =
+    let
+      ardour-ui-config = pkgs.writeText "ardour-ui_config" ''
         <?xml version="1.0" encoding="UTF-8"?>
         <Ardour>
           <UI>
@@ -229,7 +228,7 @@
           </Canvas>
         </Ardour>
       '';
-      xdg.configFile."ardour8/my-adwaita_dark-ardour-8.12.colors".text = ''
+      ardour-adwaita = pkgs.writeText "my-adwaita_dark-ardour-8.12.colors" ''
         <?xml version="1.0" encoding="UTF-8"?>
         <Ardour>
           <Colors>
@@ -769,5 +768,18 @@
           </Modifiers>
         </Ardour>
       '';
+      copy-config = pkgs.writeShellScript "copy-ardour-config.sh" ''
+        ${pkgs.coreutils}/bin/mkdir -p /home/${username}/.config/ardour8
+        ${pkgs.coreutils}/bin/ln -sf ${ardour-ui-config} /home/${username}/.config/ardour8/ui_config
+        ${pkgs.coreutils}/bin/ln -sf ${ardour-adwaita} /home/${username}/.config/ardour8/my-adwaita_dark-ardour-8.12.colors
+      '';
+    in
+    {
+      description = "Copy Ardour UI config";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = copy-config;
+      };
     };
 }
