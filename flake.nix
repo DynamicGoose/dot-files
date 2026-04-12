@@ -33,7 +33,7 @@
     }@inputs:
     let
       lib = import ./lib {
-        inherit self inputs;
+        inherit self inputs lib;
       };
     in
     {
