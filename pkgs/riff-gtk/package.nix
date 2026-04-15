@@ -1,0 +1,4 @@
+{
+  rustPlatform,
+  pkg-config
+}
