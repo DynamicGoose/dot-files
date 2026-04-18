@@ -21,5 +21,12 @@ in
     defaultIndexTheme
   ];
 
-  environment.sessionVariables.XCURSOR_THEME = "graphite-dark";
+  environment.sessionVariables = {
+    XCURSOR_THEME = "graphite-dark";
+    XCURSOR_SIZE = 24;
+    XCURSOR_PATH = [
+      "${pkgs.graphite-cursors}/share/icons"
+      "${defaultIndexTheme}/share/icons"
+    ];
+  };
 }
