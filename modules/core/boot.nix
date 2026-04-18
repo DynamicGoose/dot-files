@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  username,
   ...
 }:
 {
@@ -16,10 +15,11 @@
       bootloader =
         if (config.modules.boot.deviceType == "legacy") then
           {
-            grub = {
+            limine = {
               enable = true;
-              device = "/dev/sda";
-              splashImage = null;
+              biosSupport = true;
+              biosDevice = "/dev/sda";
+              style.wallpapers = lib.mkForce [ ];
             };
           }
         else if (config.modules.boot.deviceType == "removable") then
@@ -44,7 +44,6 @@
                   chainloader ${pkgs.netbootxyz-efi}
                 }
               '';
-              users.root.hashedPasswordFile = "/home/${username}/secrets/grub";
             };
           }
         else
@@ -53,12 +52,17 @@
               canTouchEfiVariables = true;
               efiSysMountPoint = "/boot";
             };
-            grub = {
+            limine = {
               enable = true;
               efiSupport = true;
-              device = "nodev";
-              splashImage = null;
-              users.root.hashedPasswordFile = "/home/${username}/secrets/grub";
+              enrollConfig = true;
+              panicOnChecksumMismatch = true;
+              secureBoot = {
+                enable = true;
+                autoGenerateKeys = true;
+                autoEnrollKeys.enable = true;
+              };
+              style.wallpapers = lib.mkForce [ ];
             };
           };
     in
