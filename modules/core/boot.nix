@@ -20,6 +20,7 @@
               biosSupport = true;
               biosDevice = "/dev/sda";
               style.wallpapers = lib.mkForce [ ];
+              style.graphicalTerminal.palette = "000000; F44336; 66BB6A; FB8C00; 42A5F5; F06292; 4DB6AC; 9E9E9E";
             };
           }
         else if (config.modules.boot.deviceType == "removable") then
@@ -28,22 +29,19 @@
               canTouchEfiVariables = false;
               efiSysMountPoint = "/boot";
             };
-            grub = {
+            limine = {
               enable = true;
+              biosSupport = true;
               efiSupport = true;
               efiInstallAsRemovable = true;
-              device = "nodev";
-              splashImage = null;
-              # UUID needs to be adjusted on new install
+              additionalFiles."efi/netbootxyz/netbootxyz.efi" = "${pkgs.netbootxyz-efi}";
               extraEntries = ''
-                menuentry "Netboot.xyz" {
-                  insmod part_gpt
-                  insmod ext2
-                  insmod chain
-                  search --no-floppy --fs-uuid --set root aa18d19c-9806-417e-be19-71065c50d455
-                  chainloader ${pkgs.netbootxyz-efi}
-                }
+                /Netboot.xyz
+                  protocol: efi
+                  image_path: boot():/limine/efi/netbootxyz/netbootxyz.efi
               '';
+              style.wallpapers = lib.mkForce [ ];
+              style.graphicalTerminal.palette = "000000; F44336; 66BB6A; FB8C00; 42A5F5; F06292; 4DB6AC; 9E9E9E";
             };
           }
         else
@@ -63,6 +61,7 @@
                 autoEnrollKeys.enable = true;
               };
               style.wallpapers = lib.mkForce [ ];
+              style.graphicalTerminal.palette = "000000; F44336; 66BB6A; FB8C00; 42A5F5; F06292; 4DB6AC; 9E9E9E";
             };
           };
     in
