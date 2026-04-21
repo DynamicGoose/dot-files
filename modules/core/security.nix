@@ -49,6 +49,9 @@
     ];
 
     # apparmor
-    apparmor.enable = true;
+    apparmor = {
+      enable = true;
+      includes = lib.mkForce { };
+    };
   };
 }
