@@ -21,7 +21,6 @@
         outputs = {
           "DP-1" = {
             focus-at-startup = _: { };
-            variable-refresh-rate = _: { };
           };
           "HDMI-A-1" = {
             mode = _: {
