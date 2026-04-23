@@ -26,7 +26,6 @@
     ../programs/evince.nix
     ../programs/helix.nix
     ../programs/k3b.nix
-    ../programs/zoxide.nix
     ../programs/nh.nix
     # services
     ../services/printing.nix
@@ -40,6 +39,7 @@
     # mobile modules
     ./desktop
     ./pkgs
+    ./services
   ];
 
   # modules.displayManager.lightdm.enable = false; # disable lightdm (bc mobile interface)
@@ -49,8 +49,12 @@
 
   # mobile.beautification.splash = true;
   # mobile.beautification.silentBoot = true;
+  mobile.quirks.qualcomm.qca-bluetooth.enable = true;
+  mobile.quirks.qualcomm.sdm845-modem.enable = true;
+  mobile.quirks.qualcomm.wcnss-wlan.enable = true;
 
   hardware.graphics.enable32Bit = lib.mkForce false; # disable 32 bit graphics bc mobile
+  hardware.sensor.iio.enable = lib.mkForce true;
 
   # allow mobile-specific passwords
   # users.users = {
@@ -62,7 +66,7 @@
     run0.enableSudoAlias = lib.mkForce false;
     sudo-rs.enable = lib.mkForce true;
   };
-  
+
   users.users.${username}.hashedPasswordFile =
     lib.mkForce "/home/${username}/secrets/${username}-mobile";
   users.users.root.hashedPasswordFile = lib.mkForce "/home/${username}/secrets/root-mobile";
@@ -71,6 +75,7 @@
   networking.modemmanager.enable = true;
 
   programs.steam.enable = lib.mkForce false;
+  programs.calls.enable = true;
 
   services.pipewire.enable = lib.mkForce false;
   services.pulseaudio.enable = lib.mkForce true;
