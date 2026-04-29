@@ -20,7 +20,7 @@
     };
 
     mobile-nixos = {
-      url = "github:DynamicGoose/mobile-nixos-fixes/development";
+      url = "github:mobile-nixos/mobile-nixos/development";
       flake = false;
     };
   };

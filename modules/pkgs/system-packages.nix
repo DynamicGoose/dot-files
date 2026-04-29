@@ -26,6 +26,7 @@
     # kicad
     libreoffice-fresh
     librewolf
+    marksman
     musescore
     obsidian
     # pkgsRocm.blender

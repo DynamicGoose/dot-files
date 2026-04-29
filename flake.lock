@@ -101,17 +101,17 @@
     "mobile-nixos": {
       "flake": false,
       "locked": {
-        "lastModified": 1777230910,
-        "narHash": "sha256-i2BI4ZMcbJKRhcTUQ33GR2MyqNEb5PB8zmCnFUnXsCE=",
-        "owner": "DynamicGoose",
-        "repo": "mobile-nixos-fixes",
-        "rev": "564a65217cf35533901e9d5a1a771c5cf6861b49",
+        "lastModified": 1772289954,
+        "narHash": "sha256-iDdtwk/dFb6AsXMtcOpZixxXl6C1HNUPe6cglxxHO7M=",
+        "owner": "mobile-nixos",
+        "repo": "mobile-nixos",
+        "rev": "1a9e0af79dc7b5e29ed772f1a8a76fcbd9d45fdf",
         "type": "github"
       },
       "original": {
-        "owner": "DynamicGoose",
+        "owner": "mobile-nixos",
         "ref": "development",
-        "repo": "mobile-nixos-fixes",
+        "repo": "mobile-nixos",
         "type": "github"
       }
     },
