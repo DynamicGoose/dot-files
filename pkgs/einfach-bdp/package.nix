@@ -5,12 +5,12 @@
 }:
 
 stdenvNoCC.mkDerivation {
-  pname = "bdp-fonts";
+  pname = "einfach-bdp";
   version = "1.0";
 
   src = fetchzip {
-    url = "https://meinbdp.de/download/attachments/60719504/BdP_CorporateDesign_Schriftarten_V1.zip";
-    sha256 = "sha256-DJLScCPygdxG6CQ2sx6ppUpeplV41ezSnD+uTjsttb8=";
+    url = "https://meinbdp.de/download/attachments/432144490/einfachBdP.zip";
+    sha256 = "sha256-Y2RGoMNtYL+B2puc6eImZfZUiwZp3oGRPLzGXm4LFW4=";
     stripRoot = false;
   };
 
@@ -22,13 +22,13 @@ stdenvNoCC.mkDerivation {
 
   installPhase = ''
     runHook preInstall
-    install -Dm644 -t $out/share/fonts/truetype/ BdPCorporateFonts/*.ttf
+    install -Dm644 -t $out/share/fonts/opentype/ einfachBdP/*.otf
     runHook postInstall
   '';
 
   meta = with lib; {
-    description = "Corporate fonts of the BdP";
-    homepage = "https://meinbdp.de/spaces/OeArbeit/pages/60719504/Schriften+und+Farbe";
+    description = "Regular CD font of the BdP";
+    homepage = "https://meinbdp.de/spaces/BUND/pages/432144490/Einfach+umsetzen.+Das+BdP+Corporate+Design";
     license = licenses.ofl;
     maintainers = [ ];
     platforms = platforms.all;

@@ -15,7 +15,8 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       vista-fonts
-      bdp-fonts
+      einfach-bdp
+      marks
     ];
 
     enableDefaultPackages = true;
