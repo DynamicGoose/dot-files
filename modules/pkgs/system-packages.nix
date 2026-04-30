@@ -27,6 +27,7 @@
     libreoffice-fresh
     librewolf
     marksman
+    markdown-oxide
     musescore
     obsidian
     # pkgsRocm.blender
