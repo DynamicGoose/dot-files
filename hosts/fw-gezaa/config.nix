@@ -20,8 +20,8 @@
   # https://gitlab.freedesktop.org/drm/amd/-/issues/3647
   boot.kernelParams = [ "amdgpu.dcdebugmask=0x10" ];
 
-  # detect/manage display brightness
-  hardware.sensor.iio.enable = true;
+  hardware.sensor.iio.enable = true; # detect/manage display brightness
+  hardware.fw-fanctrl.enable = true;
 
   services.udev.extraRules = ''
     # Ethernet expansion card support
