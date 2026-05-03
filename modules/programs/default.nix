@@ -9,6 +9,7 @@
     ./steam.nix
     # ./waybar.nix
     # ./wofi.nix
-    ./k3b.nix
+    # ./k3b.nix
+    ./zoom.nix
   ];
 }
