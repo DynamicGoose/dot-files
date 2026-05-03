@@ -22,12 +22,12 @@
     gitui
     gnome-disk-utility
     imv
+    karere
     keepassxc
     # kicad
     libreoffice-fresh
     librewolf
     marksman
-    markdown-oxide
     musescore
     obsidian
     # pkgsRocm.blender
@@ -49,7 +49,6 @@
     thunderbird
     totem
     vesktop
-    wasistlos
     wget
     # wineWow64Packages.waylandFull
     # yabridge
