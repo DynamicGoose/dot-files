@@ -67,7 +67,7 @@
       # Copy hypridle config
       systemd.services.hypridleConfig =
         let
-          copy-config = pkgs.writeShellScript "copy-kvantum-config.sh" ''
+          copy-config = pkgs.writeShellScript "copy-hypridle-config.sh" ''
             ${pkgs.coreutils}/bin/mkdir -p /home/${username}/.config/hypr
             ${pkgs.coreutils}/bin/ln -sf ${hypridle-config} /home/${username}/.config/hypr/hypridle.conf
           '';

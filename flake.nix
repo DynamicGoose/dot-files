@@ -23,6 +23,8 @@
       url = "github:mobile-nixos/mobile-nixos/development";
       flake = false;
     };
+
+    robotnix.url = "github:nix-community/robotnix";
   };
 
   outputs =
@@ -64,7 +66,7 @@
         };
 
         # mobile-nixos for oneplus-enchilada
-        mobile-gezaa = {
+        mobile-nixos-gezaa = {
           system = "aarch64-linux";
           # modules differ from normal desktop
           includeModules = [
@@ -112,18 +114,19 @@
         };
       });
 
-      # build mobile images
       packages = lib.eachSystem (
         system:
         let
           pkgs = lib.pkgsFor.${system};
         in
         {
-          mobile-images = {
+          mobile-nixos-images = {
             all = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-fastboot-images;
             boot = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-bootimg;
             system = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.generatedFilesystems.rootfs;
           };
+
+          mobile-gezaa = inputs.robotnix.lib.robotnixSystem ./mobile.nix;
 
           pkgs = pkgs.lib.packagesFromDirectoryRecursive {
             callPackage = pkgs.callPackage;
