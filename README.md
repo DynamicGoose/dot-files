@@ -4,13 +4,14 @@ My multi-host NixOS flake!
 
 ## Features
 
-- **Flakes:** dependency version management
-- **nix-wrapper-modules:** user software configuration
-- **Security:** sandboxing through nix-bwrapper, immutable user config, minimized setuid wrappers
-- **nh:** nice NixOS cli helper with rebuild dependency graph
+- **Flakes:** nix dependency version management
+- **nix-wrapper-modules:** [nix wrappers](https://birdeehub.github.io/nix-wrapper-modules/) for user software configuration
+- **Security:** Reasonably [hardened](https://saylesss88.github.io/nix/hardening_NixOS.html) system
+- **nh:** [nh](https://github.com/nix-community/nh) is a nice NixOS cli helper with rebuild dependency graph
 - **development shells:** built-in shells for some development environments
 - **multi-host config:** configure multiple hosts easily through the custom config options, described in [`options.md`](./options.md)
 - **lib:** lib module with some useful functions
+- **robotnix:** used for [custom android builds](https://github.com/nix-community/robotnix)
 
 ## Sofware
 
@@ -58,12 +59,11 @@ mkpasswd --method=yescrypt <password> >> /home/<user>/secrets/<root|user>
 ```
 2. Path to hashed passwords can be changed in [`modules/core/users.nix`](./modules/core/users.nix).
 
-#### GRUB Password
-
-1. Run `nix-shell -p grub2 --run 'grub-mkpasswd-pbkdf2'` and type in password.
-2. Copy password hash to file: `/home/<user>/secrets/grub`. Hash should look like this: `grub.pbkdf2.sha512.10000.674DFFDEF76E13EA...2CC972B102CF4355`.
-
 ### Building the System
+
+> [!TIP]
+> If you want to enable Secure Boot, you have to put your computer's secure boot into setup mode in the bios, before rebuilding.
+> Afterwards enable Secure Boot again.
 
 1. For the first rebuild with this config rebuild like this:
 ```shell
@@ -77,6 +77,14 @@ After the first build you can also use `nh`:
 
 1. Set `modules.programs.nh.configPath` to your `/path/to/nixos-config` before your first rebuild. (default is `/home/${username}/git/dot-files`)
 2. Rebuild the system with `nh os switch|boot|etc`.
+
+### Android
+
+A [robotnix](https://github.com/nix-community/robotnix) config is provided through the following flake output by default: `packages.${system}.mobile-gezaa`.
+Edit it through [`mobile.nix`](./mobile.nix).
+See [robotnix documentation](https://docs.robotnix.org/welcome.html) for build instructions.
+
+Currently this builds LineageOS for the OnePlus 6.
 
 ### Development Shells
 
