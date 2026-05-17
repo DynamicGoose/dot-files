@@ -44,7 +44,7 @@
     # sidequest
     signal-desktop
     sound-juicer
-    # spotify
+    teams-for-linux
     telegram-desktop
     thunderbird
     totem
