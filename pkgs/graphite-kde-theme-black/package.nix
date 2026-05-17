@@ -20,8 +20,8 @@ stdenv.mkDerivation rec {
   # Propagate sddm theme dependencies to user env otherwise sddm does
   # not find them. Putting them in buildInputs is not enough.
   propagatedUserEnvPkgs = [
-    pkgs.libsForQt5.kdeclarative.bin
-    pkgs.libsForQt5.plasma-framework
+    pkgs.kdePackages.kdeclarative
+    pkgs.kdePackages.frameworkintegration
     pkgs.kdePackages.plasma-workspace
   ];
 
