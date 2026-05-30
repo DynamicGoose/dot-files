@@ -10,7 +10,7 @@
   modules = {
     # powerManagement.ppd.enable = true;
     powerManagement.auto-cpufreq.enable = true;
-    services.illuminanced.enable = true;
+    # services.illuminanced.enable = true;
   };
 
   environment.systemPackages = [ pkgs.framework-tool ];

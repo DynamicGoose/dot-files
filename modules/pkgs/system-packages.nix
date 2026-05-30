@@ -24,6 +24,7 @@
     imv
     karere
     keepassxc
+    krita
     # kicad
     libreoffice-fresh
     librewolf
