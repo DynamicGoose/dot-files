@@ -7,6 +7,7 @@
   environment.sessionVariables = {
     QT_QPA_PLATFORM = "wayland;xkb";
     QT_QPA_PLATFORMTHEME = "gtk3";
+    XDG_DATA_DIRS = [ "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}" ];
   };
 
   qt = {
