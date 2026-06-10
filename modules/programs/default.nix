@@ -1,6 +1,7 @@
 {
   imports = [
     ./evince.nix
+    ./gnome-disks.nix
     ./gpu-screen-recorder.nix
     ./helix.nix
     # ./hyprlock.nix

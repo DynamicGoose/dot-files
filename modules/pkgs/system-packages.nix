@@ -20,7 +20,6 @@
     gimp3-with-plugins
     git
     gitui
-    gnome-disk-utility
     imv
     karere
     keepassxc
