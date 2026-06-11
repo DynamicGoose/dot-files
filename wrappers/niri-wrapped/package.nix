@@ -79,6 +79,7 @@ inputs.wrapper-modules.wrappers.niri.wrap {
         warp-mouse-to-focus = _: { };
         focus-follows-mouse = _: { props.max-scroll-amount = "25%"; };
         mouse.accel-speed = 0.5;
+        tablet.map-to-focused-output = _: { };
         touchpad = {
           tap = _: { };
           natural-scroll = _: { };
