@@ -103,11 +103,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1780176966,
-        "narHash": "sha256-9YXOvpqG4NQVFGQrA6N8QyjXOprtT40JlecOPiSYusI=",
+        "lastModified": 1781352752,
+        "narHash": "sha256-KKMkStxMCXzJoDj2DL6AMrK7Mr/2sUGtz6ilGeaMFDw=",
         "ref": "refs/heads/main",
-        "rev": "effe17fd8cb9ff85945a8433c178707e53d1109a",
-        "revCount": 89,
+        "rev": "ba4cdc18a0e4667609d41d49c6e47da3a30d12f4",
+        "revCount": 92,
         "type": "git",
         "url": "https://codeberg.org/DynamicGoose/goose-shell"
       },
@@ -220,11 +220,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1780749050,
-        "narHash": "sha256-3av0pIjlOWQ6rDbNOmpUSvbNnJkGORQKKjb4LtCZsIY=",
+        "lastModified": 1781074563,
+        "narHash": "sha256-md8WlXOlfnIeHeOScMTTHFyf2d6iaTwPl2apR5EQ3P4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+        "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
         "type": "github"
       },
       "original": {
