@@ -1,10 +1,9 @@
 { lib, ... }:
 {
   systemd = {
-    user.extraConfig = "DefaultLimitNOFILE=524288";
-    settings.Manager = {
-      DefaultLimitNOFILE = 524288;
-    };
+    user.settings.Manager.DefaultLimitNOFILE = 524288;
+    settings.Manager.DefaultLimitNOFILE = 524288;
+    
     coredump.enable = false; # disable coredumps for security reasons
 
     # imporve service security
