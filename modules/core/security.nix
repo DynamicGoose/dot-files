@@ -6,6 +6,7 @@
     allowUserNamespaces = true;
 
     # run0
+    run0.enable = true;
     run0.enableSudoAlias = true;
     sudo.enable = false;
 
