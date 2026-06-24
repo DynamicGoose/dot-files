@@ -14,6 +14,7 @@
       nerd-fonts.fira-code
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
+      google-fonts
       vista-fonts
       einfach-bdp
       marks

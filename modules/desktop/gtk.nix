@@ -49,6 +49,7 @@
           gtk-theme = "Graphite-Dark";
           icon-theme = "Papirus-Dark";
           cursor-size = "24";
+          font-name = "Ubuntu Nerd Font";
         };
       };
     }
