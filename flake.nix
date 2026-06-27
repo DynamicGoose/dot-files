@@ -24,7 +24,7 @@
       flake = false;
     };
 
-    robotnix.url = "github:nix-community/robotnix";
+    robotnix.url = "github:DynamicGoose/robotnix";
   };
 
   outputs =
