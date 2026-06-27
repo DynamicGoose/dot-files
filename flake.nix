@@ -120,6 +120,7 @@
           pkgs = lib.pkgsFor.${system};
         in
         {
+          # CURRENT ACTIVE SLOT: b. PUSH UPDATES TO A SLOT AND TEST FIRST!
           mobile-nixos-images = {
             all = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-fastboot-images;
             boot = self.nixosConfigurations.mobile-gezaa.config.mobile.outputs.android.android-bootimg;
