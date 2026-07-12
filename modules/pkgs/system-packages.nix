@@ -7,6 +7,7 @@
     alsa-scarlett-gui
     audacity
     # baobab
+    bambu-studio
     btop
     decibels
     # delfin (jellyfin client)
