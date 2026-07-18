@@ -15,7 +15,7 @@
     easyeffects
     fastfetch
     # fluxer
-    # freecad - broken (pdal)
+    freecad
     gamemode
     gedit
     gimp3-with-plugins
