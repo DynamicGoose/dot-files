@@ -8,7 +8,7 @@
     audacity
     # baobab
     # bambu-studio
-    bottles
+    # bottles - broken
     btop
     decibels
     # delfin (jellyfin client)
@@ -29,6 +29,7 @@
     # kicad
     libreoffice-fresh
     librewolf
+    lutris
     marksman
     musescore
     obsidian
