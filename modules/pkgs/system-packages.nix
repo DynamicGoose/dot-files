@@ -8,6 +8,7 @@
     audacity
     # baobab
     # bambu-studio
+    bottles
     btop
     decibels
     # delfin (jellyfin client)
