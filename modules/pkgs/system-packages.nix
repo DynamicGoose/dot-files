@@ -29,7 +29,6 @@
     # kicad
     libreoffice-fresh
     librewolf
-    lutris
     marksman
     musescore
     obsidian
