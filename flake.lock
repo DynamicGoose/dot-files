@@ -324,15 +324,15 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1782568937,
-        "narHash": "sha256-F1cLcq9SSyUsEapkDiGoEnsRT00HuT/Yzse3wjwvh40=",
-        "owner": "DynamicGoose",
+        "lastModified": 1780035230,
+        "narHash": "sha256-u1xJwSMWHPIju3q4KlP4MjsEVK5dnUxb7sEX0Gl/abc=",
+        "owner": "nix-community",
         "repo": "robotnix",
-        "rev": "7f5f7552c211fd080fcb7c35df36d1bba7df9ef3",
+        "rev": "b731f1aa2bfd26763714495a12ad50f6a9bd12ca",
         "type": "github"
       },
       "original": {
-        "owner": "DynamicGoose",
+        "owner": "nix-community",
         "repo": "robotnix",
         "type": "github"
       }
