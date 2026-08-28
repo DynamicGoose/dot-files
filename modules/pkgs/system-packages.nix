@@ -28,7 +28,7 @@
     keepassxc
     krita
     # kicad
-    libreoffice-fresh
+    libreoffice
     librewolf
     marksman
     musescore
