@@ -22,6 +22,7 @@
     gimp3-with-plugins
     git
     gitui
+    gnome-maps
     imv
     karere
     keepassxc
