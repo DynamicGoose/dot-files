@@ -40,7 +40,7 @@
         temurin-bin-25
       ];
     })
-    psst
+    # psst
     # r2modman
     resources
     scarlett2
