@@ -33,6 +33,7 @@
     marksman
     musescore
     obsidian
+    otpclient
     # pkgsRocm.blender
     (prismlauncher.override {
       jdks = [
