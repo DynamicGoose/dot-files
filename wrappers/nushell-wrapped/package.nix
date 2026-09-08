@@ -10,7 +10,7 @@ let
 in
 inputs.wrapper-modules.wrappers.nushell.wrap {
   inherit pkgs;
-  extraPackages = [
+  runtimePkgs = [
     starship-wrapped
     pkgs.zoxide
     pkgs.carapace
