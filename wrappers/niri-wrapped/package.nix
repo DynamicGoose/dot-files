@@ -210,6 +210,13 @@ inputs.wrapper-modules.wrappers.niri.wrap {
           "panelService"
           "toggleControlCenter"
         ]; # notification hub
+        "Super+D".spawn = [
+          "${lib.getExe inputs.goose-shell.packages.${system}.default}"
+          "ipc"
+          "call"
+          "panelService"
+          "toggleDateTime"
+        ]; # notification hub
         "Super+T".spawn = "kitty"; # terminal
         "Super+C".spawn-sh = [ "pidof hyprpicker || hyprpicker -la" ]; # color-picker
         "Super+K".spawn-sh = [ "keepassxc ~/secrets/main.kdbx" ];

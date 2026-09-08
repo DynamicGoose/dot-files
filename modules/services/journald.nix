@@ -1,6 +1,6 @@
 {
   services.journald = {
-    extraConfig = "SystemMaxUse=250M";
+    settings.Journal.SystemMaxUse = "250M";
     upload.enable = false;
   };
 }
