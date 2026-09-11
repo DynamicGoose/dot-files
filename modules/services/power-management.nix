@@ -28,6 +28,11 @@
     services.power-profiles-daemon.enable = config.modules.powerManagement.ppd.enable;
     services.auto-cpufreq.enable = config.modules.powerManagement.auto-cpufreq.enable;
 
-    services.upower.enable = true;
+    services.upower = {
+      enable = true;
+      usePercentageForPolicy = true;
+      percentageAction = 4;
+      criticalPowerAction = "Hibernate";
+    };
   };
 }

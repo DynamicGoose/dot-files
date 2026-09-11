@@ -4,6 +4,7 @@
     ./illuminanced.nix
     ./dbus.nix
     ./journald.nix
+    ./logind.nix
     ./xserver.nix
     ./ssh.nix
     ./printing.nix

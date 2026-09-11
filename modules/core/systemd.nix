@@ -3,7 +3,11 @@
   systemd = {
     user.settings.Manager.DefaultLimitNOFILE = 524288;
     settings.Manager.DefaultLimitNOFILE = 524288;
-    
+    sleep.settings.Sleep = {
+      HibernateDelaySec = "30m";
+      SuspendState = "mem";
+    };
+
     coredump.enable = false; # disable coredumps for security reasons
 
     # imporve service security
