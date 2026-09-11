@@ -90,7 +90,6 @@
           "udev.log_priority=3"
           "vsyscall=none"
           "debugfs=off"
-          "mem_sleep_default=deep"
         ];
 
         # hardening
