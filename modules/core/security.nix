@@ -2,7 +2,7 @@
 {
   security = {
     # Kernel
-    protectKernelImage = true;
+    # protectKernelImage = true;
     allowUserNamespaces = true;
 
     # run0

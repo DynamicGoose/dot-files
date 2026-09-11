@@ -235,5 +235,6 @@
 
         loader = bootloader;
       };
+      zramSwap.enable = true;
     };
 }
