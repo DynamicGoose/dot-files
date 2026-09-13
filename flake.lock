@@ -142,11 +142,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1788825875,
-        "narHash": "sha256-9UVUSL14g4odnHU2j/3FhhoaJmBJPh1Ku6Mhs3SdZRc=",
+        "lastModified": 1789257930,
+        "narHash": "sha256-BdYa4xcOnqeBHQsb/Alemek+2bD7JSrTNL55aXs10PM=",
         "ref": "refs/heads/main",
-        "rev": "74091365406ad4dc46d3ca1d317ff9f11fb8dac7",
-        "revCount": 183,
+        "rev": "17055c57b0194099ef38b9ba0208e7dccdc11147",
+        "revCount": 188,
         "type": "git",
         "url": "https://codeberg.org/BANanaD3V/niri-nix"
       },
@@ -158,11 +158,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1787337984,
-        "narHash": "sha256-BNZUEVR2H96hCKENNKoLSSTFT8W4smp7v94hJc4Ehfc=",
+        "lastModified": 1789244303,
+        "narHash": "sha256-ZymbkFBfgzMXbENnBzopIZ9LkrnJi6ytRABIzjCqEbk=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "dd75865f547f0eac0e9b6c4d86d2cd00c0744252",
+        "rev": "849c576ffc902c9a6f249d9371a1e95fb63cf553",
         "type": "github"
       },
       "original": {
@@ -220,11 +220,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1788752844,
-        "narHash": "sha256-VaWGJ6+cIYN2erfSecbRV+4ljI185Ty2wUrXyvQbgOw=",
+        "lastModified": 1789149629,
+        "narHash": "sha256-H6GwaZzZf+4npqv0tph94w9tZddSjFjmQrVsW0z78uk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dc5d91f840324650bac8c379428c7037a416959a",
+        "rev": "eaad089433ca2bb662274377d33df3d0e51ef28b",
         "type": "github"
       },
       "original": {
@@ -408,11 +408,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788744583,
-        "narHash": "sha256-oNMrijfyaoRjjWhxHNFSBYyEB4u/zb/AxoKewC56LvE=",
+        "lastModified": 1788981141,
+        "narHash": "sha256-7xWS16u13YGlRNKWaAPzRbEyh4OLOXJe31k7h4AnXNU=",
         "owner": "nix-community",
         "repo": "nix-wrapper-modules",
-        "rev": "e88c449105c6aafa460196d3cbd16718655aee0f",
+        "rev": "1db3c116a6aa61823f8d8f3c47c306846428fc54",
         "type": "github"
       },
       "original": {
@@ -424,11 +424,11 @@
     "xwayland-satellite-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1788436361,
-        "narHash": "sha256-i0QYbUlC03SrOomU+37TdZ9EdtEWLaUtsCQjC7+KhNU=",
+        "lastModified": 1788991189,
+        "narHash": "sha256-0TxfMgqW0/BLD4M942c5DCKYrtPvzsPJwvdcco4LQUM=",
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
-        "rev": "ea474b95a55ace75ad60a9bc0092a81ff5a1ba89",
+        "rev": "add2795134593faafce60e404a0a75df68e9ee0c",
         "type": "github"
       },
       "original": {
