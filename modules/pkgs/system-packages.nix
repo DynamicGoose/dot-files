@@ -39,6 +39,7 @@
       jdks = [
         temurin-bin
         temurin-bin-25
+        temurin-bin-17
       ];
     })
     # psst
