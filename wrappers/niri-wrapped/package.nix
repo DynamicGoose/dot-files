@@ -92,24 +92,25 @@ inputs.wrapper-modules.wrappers.niri.wrap {
       };
 
       binds = {
-        "Alt+Return".toggle-overview = _: { };
+        "Alt+Return".toggle-overview = _: { props.repeat = false; };
         "Alt+H".focus-column-or-monitor-left = _: { };
         "Alt+J".focus-window-or-workspace-down = _: { };
         "Alt+K".focus-window-or-workspace-up = _: { };
         "Alt+L".focus-column-or-monitor-right = _: { };
 
-        "Ctrl+Alt+D".toggle-window-floating = _: { };
-        "Ctrl+Alt+F".fullscreen-window = _: { };
+        "Ctrl+Alt+D".fullscreen-window = _: { props.repeat = false; };
+        "Ctrl+Alt+E".maximize-window-to-edges = _: { props.repeat = false; };
+        "Ctrl+Alt+F".toggle-window-floating = _: { props.repeat = false; };
         "Ctrl+Alt+L".consume-or-expel-window-right = _: { };
         "Ctrl+Alt+H".consume-or-expel-window-left = _: { };
         "Ctrl+Alt+K".move-window-up-or-to-workspace-up = _: { };
         "Ctrl+Alt+J".move-window-down-or-to-workspace-down = _: { };
         "Ctrl+Alt+Return".move-window-to-monitor-next = _: { };
-        "Ctrl+Alt+Q".switch-preset-column-width = _: { };
-        "Ctrl+Alt+A".switch-preset-window-height = _: { };
-        "Ctrl+Alt+W".maximize-column = _: { };
-        "Ctrl+Alt+S".expand-column-to-available-width = _: { };
-        "Ctrl+Alt+Tab".toggle-column-tabbed-display = _: { };
+        "Ctrl+Alt+Q".switch-preset-column-width = _: { props.repeat = false; };
+        "Ctrl+Alt+A".switch-preset-window-height = _: { props.repeat = false; };
+        "Ctrl+Alt+W".maximize-column = _: { props.repeat = false; };
+        "Ctrl+Alt+S".expand-column-to-available-width = _: { props.repeat = false; };
+        "Ctrl+Alt+Tab".toggle-column-tabbed-display = _: { props.repeat = false; };
 
         "Alt+1".focus-workspace = 1;
         "Alt+2".focus-workspace = 2;
@@ -122,7 +123,7 @@ inputs.wrapper-modules.wrappers.niri.wrap {
         "Alt+9".focus-workspace = 9;
         "Alt+0".focus-workspace = 10;
 
-        "Print".screenshot = _: { };
+        "Print".screenshot = _: { props.repeat = false; };
         "XF86PowerOff".spawn = [
           "${lib.getExe inputs.goose-shell.packages.${system}.default}"
           "ipc"
