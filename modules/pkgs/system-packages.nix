@@ -35,13 +35,7 @@
     obsidian
     otpclient
     # pkgsRocm.blender
-    (prismlauncher.override {
-      jdks = [
-        temurin-bin
-        temurin-bin-25
-        temurin-bin-17
-      ];
-    })
+    prismlauncher
     # psst
     # r2modman
     resources
