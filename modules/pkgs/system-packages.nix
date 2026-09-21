@@ -24,6 +24,7 @@
     gitui
     gnome-maps
     imv
+    inkscape-with-extensions
     karere
     keepassxc
     krita
