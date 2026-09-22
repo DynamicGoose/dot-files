@@ -24,7 +24,9 @@
     gitui
     gnome-maps
     imv
-    inkscape-with-extensions
+    (inkscape-with-extensions.override {
+      inkscapeExtensions = [ inkscape-extensions.textext ];
+    })
     karere
     keepassxc
     krita
