@@ -35,7 +35,6 @@
     librewolf
     marksman
     musescore
-    obsidian
     otpclient
     # pkgsRocm.blender
     prismlauncher
@@ -50,7 +49,7 @@
     telegram-desktop
     thunderbird
     totem
-    typst
+    # typst
     vesktop
     wget
     # wineWow64Packages.waylandFull
