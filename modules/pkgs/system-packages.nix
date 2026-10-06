@@ -35,7 +35,6 @@
     librewolf
     marksman
     musescore
-    otpclient
     # pkgsRocm.blender
     prismlauncher
     # psst
