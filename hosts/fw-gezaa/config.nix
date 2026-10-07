@@ -13,10 +13,7 @@
     # services.illuminanced.enable = true;
   };
 
-  environment.systemPackages = [
-    pkgs.framework-tool
-    pkgs.geteduroam
-  ];
+  environment.systemPackages = [ pkgs.framework-tool ];
 
   services.fprintd.enable = true;
 
