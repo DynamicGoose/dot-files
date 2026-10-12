@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri-nix = {
-      url = "git+https://codeberg.org/BANanaD3V/niri-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     goose-shell = {
       url = "git+https://codeberg.org/DynamicGoose/goose-shell";
       inputs.nixpkgs.follows = "nixpkgs";
