@@ -38,6 +38,26 @@ inputs.wrapper-modules.wrappers.helix.wrap {
         };
         auto-format = true;
       }
+      {
+        name = "java";
+        indent = {
+          tab-width = 4;
+          unit = "    ";
+        };
+        formatter = {
+          command = "google-java-format";
+          args = [ "-" ];
+        };
+        auto-format = true;
+      }
+      {
+        name = "haskell";
+        auto-format = true;
+        formatter = {
+          command = "stylish-haskell";
+          args = [ ];
+        };
+      }
     ];
 
     grammar = [

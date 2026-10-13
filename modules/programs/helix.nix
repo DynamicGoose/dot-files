@@ -57,6 +57,12 @@
         name = "haskell"
         auto-format = true
         formatter = { command = "stylish-haskell", args = [] }
+
+        [[language]]
+        name = "java"
+        indent = { tab-width = 4, unit = "    " }
+        formatter = { command = "google-java-format", args = ["-"] }
+        auto-format = true
       '';
       theme = pkgs.writeText "helix-theme-minimal.toml" ''
         attribute = "#BA68C8"
