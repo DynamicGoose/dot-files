@@ -12,6 +12,7 @@
     btop
     decibels
     # delfin (jellyfin client)
+    dino
     # easytag
     easyeffects
     fastfetch
