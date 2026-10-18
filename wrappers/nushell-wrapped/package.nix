@@ -74,56 +74,14 @@ inputs.wrapper-modules.wrappers.nushell.wrap {
         shape_custom: { attr: b }
     }
 
+    let carapace_completer = {|place|
+      ${lib.getExe pkgs.carapace} $place.command.0 nushell ...$place.command | from json
+    }
+    
     $env.config.color_config = $base16_theme # <-- this is the theme
     $env.config.ls.use_ls_colors = true
     $env.config.use_ansi_coloring = true
     $env.config.table.mode = 'single'
-
-    # carapce completions
-    let carapace_completer = {|spans: list<string>|
-      ^${lib.getExe pkgs.carapace} $spans.0 nushell ...$spans
-      | from json
-      | if ($in | default [] | where value == $"($spans | last)ERR" | is-empty) { $in } else { null }
-    }
-    # some completions are only available through a bridge
-    $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
-    $env.CARAPACE_MATCH = 1
-
-    # fish completions
-    let fish_completer = {|spans|
-      ^${lib.getExe pkgs.fish} --command $'complete "--do-complete=($spans | str join " ")"'
-      | $"value(char tab)description(char newline)" + $in
-      | from tsv --flexible --no-infer
-    }
-
-    # zoxide completions
-    let zoxide_completer = {|spans|
-        $spans | skip 1 | ${lib.getExe pkgs.zoxide} query -l ...$in | lines | where {|x| $x != $env.PWD}
-    }
-
-    # multiple completions
-    # the default will be carapace, but you can also switch to fish
-    let multiple_completers = {|spans|
-      ## alias fixer start
-      let expanded_alias = scope aliases
-      | where name == $spans.0
-      | get -o 0.expansion
-
-      let spans = if $expanded_alias != null {
-        $spans
-        | skip 1
-        | prepend ($expanded_alias | split row ' ' | take 1)
-      } else {
-        $spans
-      }
-      ## alias fixer end
-
-      match $spans.0 {
-        __zoxide_z | __zoxide_zi => $zoxide_completer
-        _ => $carapace_completer
-      } | do $in $spans
-    }
-
     $env.config = {
       show_banner: false,
       completions: {
@@ -136,7 +94,7 @@ inputs.wrapper-modules.wrappers.nushell.wrap {
           enable: true 
           # set to lower can improve completion performance at the cost of omitting some options
           max_results: 100 
-          completer: $multiple_completers
+          completer: $carapace_completer
         }
       }
       keybindings: [
@@ -157,6 +115,22 @@ inputs.wrapper-modules.wrappers.nushell.wrap {
     prepend /home/myuser/.apps |
     append /usr/bin/env
     )
+
+    def "nu-complete zoxide path" [place: record] {
+        let parts = $place.command | skip 1
+        {
+          options: {
+            sort: false,
+            completion_algorithm: substring,
+            case_sensitive: false,
+          },
+          completions: (^${lib.getExe pkgs.zoxide} query --list --exclude $env.PWD -- ...$parts | lines),
+        }
+      }
+
+    def --env --wrapped z [...rest: string@"nu-complete zoxide path"] {
+      __zoxide_z ...$rest
+    }
 
     source ${
       pkgs.runCommand "zoxide-nushell.nu" { } ''
