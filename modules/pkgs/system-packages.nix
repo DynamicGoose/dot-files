@@ -12,13 +12,13 @@
     btop
     decibels
     # delfin (jellyfin client)
-    dino
     # easytag
     easyeffects
     fastfetch
     # fluxer
     # freecad - broken (pdal)
     gamemode
+    gajim
     gedit
     gimp3-with-plugins
     git
