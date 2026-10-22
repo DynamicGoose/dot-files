@@ -5,7 +5,7 @@
 {
   environment.systemPackages = with pkgs; [
     alsa-scarlett-gui
-    audacity
+    # BROKEN: audacity 
     # baobab
     # bambu-studio
     # bottles - broken
@@ -16,7 +16,7 @@
     easyeffects
     fastfetch
     # fluxer
-    # freecad - broken (pdal)
+    # freecad
     gamemode
     gajim
     gedit
@@ -35,7 +35,7 @@
     libreoffice
     librewolf
     marksman
-    musescore
+    # BROKEN: musescore
     # pkgsRocm.blender
     prismlauncher
     # psst
