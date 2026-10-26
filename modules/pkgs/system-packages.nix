@@ -5,7 +5,7 @@
 {
   environment.systemPackages = with pkgs; [
     alsa-scarlett-gui
-    # BROKEN: audacity 
+    # BROKEN: audacity
     # baobab
     # bambu-studio
     # bottles - broken
@@ -49,7 +49,9 @@
     telegram-desktop
     thunderbird
     totem
-    # typst
+    tinymist
+    typst
+    typstyle
     vesktop
     wget
     # wineWow64Packages.waylandFull
