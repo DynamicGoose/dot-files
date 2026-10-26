@@ -30,6 +30,11 @@ inputs.wrapper-modules.wrappers.helix.wrap {
     };
   };
   languages = {
+    language-server.tinymist = {
+      command = "tinymist";
+      config.exportPdf = "onType";
+    };
+
     language = [
       {
         name = "nix";
@@ -56,6 +61,14 @@ inputs.wrapper-modules.wrappers.helix.wrap {
         formatter = {
           command = "stylish-haskell";
           args = [ ];
+        };
+      }
+      {
+        name = "typst";
+        language-servers = [ "tinymist" ];
+        auto-format = true;
+        formatter = {
+          command = "typstyle";
         };
       }
     ];
