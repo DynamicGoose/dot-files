@@ -32,7 +32,7 @@ inputs.wrapper-modules.wrappers.helix.wrap {
   languages = {
     language-server.tinymist = {
       command = "tinymist";
-      config.exportPdf = "onType";
+      config.exportPdf = "onSave";
     };
 
     language = [
