@@ -49,9 +49,6 @@
     telegram-desktop
     thunderbird
     totem
-    tinymist
-    typst
-    typstyle
     vesktop
     wget
     # wineWow64Packages.waylandFull
