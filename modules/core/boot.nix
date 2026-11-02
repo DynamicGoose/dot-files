@@ -76,7 +76,6 @@
 
         # Silent boot for plymouth
         consoleLogLevel = 0;
-        initrd.verbose = false;
 
         binfmt.emulatedSystems = [ "aarch64-linux" ];
 
