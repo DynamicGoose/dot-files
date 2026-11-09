@@ -6,7 +6,6 @@
     ./nemo.nix
     # ./via.nix
     ./ardour.nix
-    ./uutils.nix
     ./typst.nix
   ];
 }
