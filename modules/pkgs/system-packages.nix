@@ -5,10 +5,9 @@
 {
   environment.systemPackages = with pkgs; [
     alsa-scarlett-gui
-    # BROKEN: audacity
+    audacity
     # baobab
     # bambu-studio
-    # bottles - broken
     btop
     decibels
     # delfin (jellyfin client)
@@ -35,7 +34,7 @@
     libreoffice
     librewolf
     marksman
-    # BROKEN: musescore
+    musescore
     # pkgsRocm.blender
     prismlauncher
     # psst
