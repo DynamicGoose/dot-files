@@ -38,7 +38,7 @@
     # pkgsRocm.blender
     prismlauncher
     # psst
-    # r2modman
+    r2modman
     resources
     scarlett2
     # sidequest
