@@ -22,7 +22,6 @@
       "cdrom"
       "dialout"
       "feedbackd"
-      "pipewire"
     ];
     hashedPasswordFile = "/home/${username}/secrets/${username}";
   };
